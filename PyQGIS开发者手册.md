@@ -6,47 +6,47 @@
 
 # 1 引言
 
-本文档既可作为教程，也可作为参考指南。 虽然没有列举所有可能的案例，它应该对主要功能有一个很好的概述。
+本文档既可作为教程，也可作为参考指南。虽然没有列举所有可能的案例，但是对主要功能有一个很好的概述。
 
-对于Python的支持最初是在QGIS 0.9中引入的。 目前，在QGIS桌面版中，有几种方法可以使用Python，如下：
+对于Python的支持最初是在QGIS 0.9中引入的。 目前，在QGIS桌面版中有几种方法可以使用Python，如下：
 
 - 在QGIS的Python控制台中
 - 创建并使用插件
 - QGIS启动时自动运行Python代码
 - 基于QGIS API创建自定义应用程序
 
-Python绑定也可用于QGIS服务，包括Python插件（请参阅[QGIS Server Python插件](#18-qgis-server-python插件)）和Python绑定，可用于将QGIS服务嵌入到Python应用程序中。
-这里有一个[完整的QGIS API](<https://qgis.org/api/>)参考，用于记录QGIS库中的类。 [Pythonic QGIS API（pyqgis）](https://qgis.org/pyqgis)几乎与C ++ API相同。
-学习如何执行常见任务的一个好办法，是从[插件仓库](https://plugins.qgis.org/)下载现有插件并学习它们的代码。
+Python绑定也可用于QGIS服务，包括Python插件（请参阅[QGIS Server Python插件](#18 QGIS Server Python插件)）和Python绑定，可用于将QGIS服务嵌入到Python应用程序中。
+这里有一个[完整的QGIS API](<https://qgis.org/api/>)参考——用于记录QGIS库中的类。 [Pythonic QGIS API（pyqgis）](https://qgis.org/pyqgis)几乎与C ++ API相同。
+学习如何执行常见任务的一个好办法——是从[插件仓库](https://plugins.qgis.org/)下载现有插件并学习它们的代码。
 
 ## 1.1 在Python控制台中编写脚本
 
-QGIS为脚本编写提供了一个集成的python控制台。它可以从插件→python控制台菜单中打开：
+QGIS为脚本编写提供了一个集成的python控制台。可以从插件→python控制台菜单中打开：
 
 ![1559181577361](./assets/1559181577361.png)
 
-上面的截图说明了如何获取图层列表中当前选定的图层，并显示其ID，如果是矢量图层，还可以选择显示要素个数。对于与qgis环境的交互，有一个iface变量，它是[QgisInterface](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface)的一个实例。此界面允许访问地图画布、菜单、工具栏和QGIS应用程序的其他部分。
+上面的截图说明了如何获取图层列表中当前选定的图层，并显示其ID，如果是矢量图层，还可以选择显示要素个数。对于与qgis环境的交互，有一个iface变量，它是[QgisInterface](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface)的一个实例。此接口允许访问地图画布、菜单、工具栏和QGIS应用程序的其他部分。
 
-为方便用户，在启动控制台时将执行以下语句（将来它将会执行可以设置更多的初始命令）
+为了方便用户，在启动控制台时将会执行以下语句（将来可以设置更多的初始命令）
 
 ```python
 from qgis.core import *
 import qgis.utils
 ```
 
-对于经常使用控制台的用户，设置触发控制台的快捷方式可能很有用（在设置→键盘快捷键...）
+对于经常使用控制台的用户，设置打开控制台的快捷方式可能很有用（在设置→键盘快捷键...）
 
 ## 1.2 Python插件
 
-可以使用插件扩展QGIS的功能。现在也可以使用Python编写的插件。与C ++插件相比的主要优点是分发简单（不对每个平台进行编译）和更容易的开发。
+可以使用插件来扩展QGIS的功能。现在也可以使用Python编写插件。与C ++插件相比，主要优点是分发简单（不对每个平台进行编译）、更容易的开发。
 
-自从引入Python支持以来，已经编写了许多涵盖各种功能的插件。插件安装程序允许用户轻松获取，升级和删除Python插件。有关插件和插件开发的更多信息，请参阅[Python插件](https://plugins.qgis.org/)页面。
+自从引入对Python的支持以来，已经编写了许多涵盖各种功能的插件。插件安装程序允许用户轻松获取、升级和删除Python插件。有关插件和插件开发的更多信息，请参阅[Python插件](https://plugins.qgis.org/)页面。
 
 在Python中创建插件很简单，请参阅[开发Python插件](#15-开发python插件)以获取详细说明。
 
 ------
 
-**小贴士：** Python插件也可用于QGIS服务器（[QGIS as OGC数据服务器](https://docs.qgis.org/3.4/zh-Hant/docs/user_manual/working_with_ogc/server/index.html#label-qgisserver)），有关详细信息，请参阅[QGIS Server Python插件](#18-qgis-server-python插件)。
+**小贴士：** Python插件也可用于QGIS服务器（[QGIS as OGC数据服务器](https://docs.qgis.org/3.4/zh-Hant/docs/user_manual/working_with_ogc/server/index.html#label-qgisserver)），有关详细信息，请参阅[QGIS Server Python插件](#18 QGIS Server Python插件)。
 
 ------
 
@@ -67,27 +67,27 @@ import qgis.utils
 
 ---
 
-**小贴士：** 默认路径取决于操作系统。要查找适合您的路径，请打开Python控制台并运行`QStandardPaths.standardLocations(QStandardPaths.AppDataLocation)` 以查看默认目录列表。
+**小贴士：** 默认路径取决于操作系统。要查找适合你的路径，请打开Python控制台，并运行`QStandardPaths.standardLocations(QStandardPaths.AppDataLocation)` 查看默认目录列表。
 
 ---
 
 ### 1.3.2 PYQGIS_STARTUP环境变量
 
-您可以在QGIS初始化完成之前通过将`PYQGIS_STARTUP`环境变量设置为现有Python文件的路径来运行Python代码。
+你可以在QGIS初始化完成之前将`PYQGIS_STARTUP`环境变量设置为现有Python文件的路径来运行Python代码。
 
-此代码将在QGIS初始化完成之前运行。此方法对于清理可能具有不期望路径的sys.path或用于隔离/加载初始环境非常有用，而无需虚拟环境，例如Mac上的homebrew或MacPorts安装。
+此代码将在QGIS初始化完成之前运行。此方法对于清理sys.path非常有用——可能存在不需要的路径，或用于隔离/加载初始环境——无需虚拟环境，例如在Mac上使用homebrew或MacPorts。
 
 ## 1.4 Python应用程序
 
-为自动化流程创建脚本通常很方便。使用PyQGIS，这是完全可能的 - 导入`qgis.core`模块，初始化它，您就可以进行处理了。
+为自动化流程创建脚本通常很方便。使用PyQGIS，这是完全可能的——导入`qgis.core`模块，初始化它，你就可以进行处理了。
 
-或者您可能想要创建一个使用GIS功能的交互式应用程序 - 执行测量，将地图导出为PDF或任何其他功能。该`qgis.gui`模块带来了各种GUI组件，最值得注意的是可以合并到应用程序中的地图画布控件，支持缩放，平移和任何其他自定义地图工具。
+或者你可能想要创建一个使用GIS功能的交互式应用程序——执行测量、将地图导出为PDF或任何其他功能。`qgis.gui`模块带来了各种GUI组件，最值得注意的是可以合并到应用程序中的地图画布控件——支持缩放，平移和任何其他自定义地图工具。
 
-必须配置PyQGIS自定义应用程序或独立脚本以定位QGIS资源，例如投影信息，用于读取矢量和栅格图层的提供者等。QGIS资源通过在应用程序或脚本的开头添加几行来初始化。为自定义应用程序和独立脚本初始化QGIS的代码类似。以下提供各自的实例。
+必须配置PyQGIS自定义应用程序或独立脚本以定位QGIS资源，例如投影信息，用于读取矢量和栅格图层的提供者等。QGIS资源通过在应用程序或脚本的开头添加几行（代码）来初始化。为自定义应用程序和独立脚本初始化QGIS的代码类似。以下提供各自的实例。
 
 ---
 
-**小贴士：** 千万不能使用`qgis.py`作为您测试脚本的名称，否则Python将无法导入绑定作为脚本的名称，将影响他们。
+**小贴士：** 千万不能使用`qgis.py`作为你的测试脚本的名称，否则Python将无法导入绑定。
 
 ---
 
@@ -99,24 +99,24 @@ import qgis.utils
 from qgis.core import *
 # 提供qgis安装位置的路径(windows默认：C:\Program Files\QGIS 3.4\apps\qgis-ltr)
 QgsApplication.setPrefixPath("/path/to/qgis/installation", True)
-# 创建对QgsApplication的引用，将第二个参数设置为False将禁用GUI
+# 创建对QgsApplication的引用，第二个参数设置为False将禁用GUI
 qgs = QgsApplication([], False)
 # 加载提供者
 qgs.initQgis()
-# 在这里编写代码以加载一些层，使用处理算法等
+# 在这里编写代码，加载一些图层，使用处理算法等
 # 脚本完成后，调用exitQgis（）从内存中删除提供者和图层注册
 qgs.exitQgis()
 ```
 
-我们首先导入`qgis.core`模块，然后配置前缀路径。前缀路径是系统上安装QGIS的位置。它通过调用[`setPrefixPath`方法在脚本中配置。第二个参数 设置为`True`，它控制是否使用默认路径。
+我们首先导入`qgis.core`模块，然后配置前缀路径。前缀路径是安装QGIS的路径。它通过调用`setPrefixPath`方法在脚本中配置。第二个参数设置为`True`，它控制是否使用默认路径。
 
-QGIS安装路径因平台而异，在系统中找到它的最简单方法，是在QGIS 中使用[Python控制台](#11-在python控制台中编写脚本)运行 `QgsApplication.prefixPath()`并查看输出。
+QGIS安装路径因平台而异，在系统中找到它的最简单方法是在QGIS中使用[Python控制台](#1.1 在Python控制台中编写脚本)运行 `QgsApplication.prefixPath()`并查看输出。
 
-配置前缀路径后，我们`QgsApplication`在变量中保存引用 `qgs`。第二个参数设置为`False`，表示我们不打算使用GUI，因为我们正在编写一个独立的脚本。通过`QgsApplication` 配置，我们通过调用`qgs.initQgis()`方法加载QGIS数据提供者和图层注册。在QGIS初始化后，我们准备编写脚本的其余部分。最后，我们通过调用 `qgs.exitQgis()`从内存中删除数据提供者和图层注册来结束。
+配置前缀路径后，我们在变量`qgs`中保存了一个对`QgsApplication`的引用。第二个参数设置为`False`，表示我们不打算使用GUI，因为我们正在编写一个独立的脚本。配置`QgsApplication`后 ，我们通过调用`qgs.initQgis()`方法加载QGIS数据提供者和图层注册。在QGIS初始化后，我们准备编写脚本的其余部分。最后，我们通过调用`qgs.exitQgis()`从内存中删除数据提供者和图层注册来结束。
 
 ### 1.4.2 在自定义应用程序中使用PyQGIS
 
-[在独立脚本中使用PyQGIS](#141-在独立脚本中使用pyqgis)和自定义PyQGIS应用程序之间的唯一区别是实例化时的第二个参数`QgsApplication`。通过`True`而不是`False`表示我们计划使用GUI。
+[在独立脚本中使用PyQGIS](#1.4.1 在独立脚本中使用PyQGIS)和自定义PyQGIS应用程序之间的唯一的区别是在实例化`QgsApplication`时的第二个参数。传递`True`而不是`False`，表示我们计划使用GUI。
 
 ```python
 from qgis.core import *
@@ -126,29 +126,29 @@ QgsApplication.setPrefixPath("/path/to/qgis/installation", True)
 qgs = QgsApplication([], True)
 # 加载提供者
 qgs.initQgis()
-# 在这里编写代码以加载一些层，使用处理算法等
+# 在这里编写代码，加载一些图层，使用处理算法等
 # 脚本完成后，调用exitQgis（）从内存中删除提供者和图层注册
 qgs.exitQgis()
 ```
 
-现在，您可以使用QGIS API - 加载图层并执行一些处理或使用地图画布启动GUI。可能性是无止境的.
+现在，你可以使用QGIS API——加载图层并执行一些处理或使用地图画布启动GUI。
 
 ### 1.4.3 运行自定义应用程序
 
-如果它们不在一个众所周知的位置，你需要告诉你的系统在哪里搜索QGIS库和适当的Python模块 - 否则Python会抛出异常：
+如果它们不在一个众所周知的位置，你需要告诉系统在哪里搜索QGIS库和合适的Python模块——否则Python会抛出异常：
 
 ```python
 >>> import qgis.core
 ImportError: No module named qgis.core
 ```
 
-这可以通过设置`PYTHONPATH`环境变量来修复。在以下命令中，`<qgispath>`应替换为您的实际QGIS安装路径：
+可以通过设置`PYTHONPATH`环境变量来修复。在以下命令中，`<qgispath>`应替换为你的实际QGIS安装路径：
 
-- 在Linux上：**export PYTHONPATH = /qgispath/share/qgis/python**
-- 在Windows上：**set PYTHONPATH = c:\qgispath\python**
-- 在macOS上：**export PYTHONPATH = /qgispath/Contents/Resources/python**
+- 在Linux上：**export PYTHONPATH=/qgispath/share/qgis/python**
+- 在Windows上：**set PYTHONPATH=c:\qgispath\python**
+- 在macOS上：**export PYTHONPATH=/qgispath/Contents/Resources/python**
 
-现在已知PyQGIS模块的路径，但它们依赖于`qgis_core`和`qgis_gui`库（Python模块仅用作包装器）。这些库的路径通常是操作系统未知的，因此再次出现导入错误（消息可能因系统而异）：
+现在，PyQGIS模块的路径设置完成，但它们依赖于`qgis_core`和`qgis_gui`库（仅仅作为封装的Python模块）。这些库的路径通常是操作系统未知的，因此再次出现导入错误（错误消息可能因系统而异）：
 
 ```python
 >>> import qgis.core
@@ -158,27 +158,27 @@ ImportError: libqgis_core.so.3.2.0: cannot open shared object file:No such file 
 通过将QGIS库所在的目录添加到动态链接器的搜索路径来解决此问题：
 
 - 在Linux上：**export LD_LIBRARY_PATH=/qgispath/lib**
-- 在Windows上：**set PATH=C:\qgispath\BIN; C:\qgispath\APPS\qgisrelease\BIN;PATH％** ，其中`qgisrelease`应替换成您的发布类型（例如，`qgis-ltr`，`qgis`，`qgis-dev`）
+- 在Windows上：**set PATH=C:\qgispath\BIN; C:\qgispath\APPS\qgisrelease\BIN;PATH％** ，其中`qgisrelease`应替换成你的发布类型（例如，`qgis-ltr`，`qgis`，`qgis-dev`）
 
 这些命令可以放入一个引导脚本，负责启动。使用PyQGIS部署自定义应用程序时，通常有两种可能：
 
 - 要求用户在安装应用程序之前在其平台上安装QGIS。应用程序安装程序应查找QGIS库的默认位置，并允许用户设置路径（如果未找到）。该方法具有更简单的优点，但是它需要用户执行更多步骤。
-- 将QGIS与您的应用程序一起打包。发布应用程序可能更具挑战性，并且程序包将更大，但用户将免于下载和安装其他软件的负担。
+- 将QGIS与你的应用程序一起打包。发布应用程序可能更具挑战性，并且程序包将更大，但用户将免于下载和安装其他软件的负担。
 
-这两种部署模型可以混合使用 - 在Windows和macOS上部署独立应用程序，对于Linux，将QGIS的安装留给用户和他的包管理器。
+这两种部署模型可以混合使用——在Windows和macOS上部署独立应用程序，但是对于Linux，将QGIS的安装留给用户和他的包管理器。
 
 ## 1.5 有关PyQt和SIP的技术说明
 
-我们已经决定使用Python，因为它是最受欢迎的脚本语言之一。QGIS 3中的PyQGIS绑定依赖于SIP和PyQt5。使用SIP而不是更广泛使用的SWIG的原因是QGIS代码依赖于Qt库。Qt（PyQt）的Python绑定也使用SIP完成，这允许PyQGIS与PyQt无缝集成。
+我们决定使用Python，是因为它是最受欢迎的脚本语言之一。QGIS 3中的PyQGIS绑定依赖于SIP和PyQt5。使用SIP而不是更广泛使用的SWIG的原因是QGIS代码依赖于Qt库。Qt（PyQt）的Python绑定也使用SIP完成，这允许PyQGIS与PyQt无缝集成。
 
 # 2 加载项目
 
-有时您需要从插件加载现有项目，或者（更常见）在开发独立的QGIS Python应用程序时加载（请参阅：[Python应用程序](#14-python应用程序)）。
+有时你需要从插件加载现有项目，或者（更常见）在开发独立的QGIS Python应用程序时加载（请参阅：[Python应用程序](#14-python应用程序)）。
 
-要将项目加载到当前QGIS应用程序中，您需要创建[`QgsProject`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject)该类的实例。这是一个单例类，因此您必须使用其[`instance()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.instance)方法来执行此操作。您可以调用其[`read()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.read)方法，传递要加载的项目的路径：
+要将项目加载到当前QGIS应用程序中，你需要创建[`QgsProject`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject)该类的实例。这是一个单例类，因此你必须使用其[`instance()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.instance)方法来执行此操作。你可以调用其[`read()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.read)方法，传递要加载的项目的路径：
 
 ```python
-# 如果您不在QGIS控制台内，首先需要导入qgis和PyQt类，如下所示：
+# 如果你不在QGIS控制台内，首先需要导入qgis和PyQt类，如下所示：
 from qgis.core import QgsProject
 # 获取项目实例
 project = QgsProject.instance()
@@ -200,11 +200,11 @@ project.write()
 project.write('/home/user/projects/my_new_qgis_project.qgs')
 ```
 
-read（）和write（）函数都返回一个布尔值，您可以使用它来检查操作是否成功。
+read（）和write（）函数都返回一个布尔值，你可以使用它来检查操作是否成功。
 
 ---
 
-**小贴士：** 如果您正在编写QGIS独立应用程序，为了将加载的项目与画布同步，您需要实例化[`QgsLayerTreeMapCanvasBridge`](https://qgis.org/pyqgis/3.4/gui/QgsLayerTreeMapCanvasBridge.html#qgis.gui.QgsLayerTreeMapCanvasBridge)，如下例所示：
+**小贴士：** 如果你正在编写QGIS独立应用程序，为了将加载的项目与画布同步，你需要实例化[`QgsLayerTreeMapCanvasBridge`](https://qgis.org/pyqgis/3.4/gui/QgsLayerTreeMapCanvasBridge.html#qgis.gui.QgsLayerTreeMapCanvasBridge)，如下例所示：
 
 ---
 
@@ -301,11 +301,11 @@ if not vlayer:
 
   ---
 
-  **小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展身份验证配置参数，如果您没有使用任何身份验证配置，则此参数不会产生任何差异。
+  **小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展身份验证配置参数，如果你没有使用任何身份验证配置，则此参数不会产生任何差异。
 
   ---
 
-- CSV或其他分隔的文本文件 - 打开一个用分号作为分隔符的文件，对于X坐标使用字段“x”，对于Y坐标使用字段“y”，您将使用以下内容：
+- CSV或其他分隔的文本文件 - 打开一个用分号作为分隔符的文件，对于X坐标使用字段“x”，对于Y坐标使用字段“y”，你将使用以下内容：
 
   ```python
   uri = "/some/path/file.csv?delimiter={}&xField={}&yField={}".format(";", "x","y")
@@ -382,7 +382,7 @@ vlayer.setDataSource(uri.uri(), "layer name you like", "postgres")
 
 ## 3.2 栅格图层
 
-要访问栅格文件，用到了GDAL库。它支持多种文件格式。如果您在打开某些文件时遇到麻烦，请检查您的GDAL是否支持（默认情况下并非所有格式都可用）。要从文件加载栅格，需要指定其文件名和显示名称：
+要访问栅格文件，用到了GDAL库。它支持多种文件格式。如果你在打开某些文件时遇到麻烦，请检查你的GDAL是否支持（默认情况下并非所有格式都可用）。要从文件加载栅格，需要指定其文件名和显示名称：
 
 ```python
 # 获取tif文件的路径，例如：/home/project/data/srtm.tif 
@@ -438,7 +438,7 @@ WCS URI由**键=值**对组成，分隔符：`&`。它与URL中的查询字符�
 - **IgnoreAxisOrientation**（可选，hack）：如果指定（设置为1），则不要根据地理CRS的WCS标准反转轴方向。
 - **cache**（可选）：缓存加载控制，如QNetworkRequest :: CacheLoadControl中所述，但如果使用AlwaysCache失败，请求将重新发送为PreferCache。允许的值：AlwaysCache，PreferCache，PreferNetwork，AlwaysNetwork。默认为AlwaysCache。
 
-另外，您可以从WMS服务器加载栅格图层。但是目前无法从API访问GetCapabilities响应 - 您必须知道所需的图层：
+另外，你可以从WMS服务器加载栅格图层。但是目前无法从API访问GetCapabilities响应 - 你必须知道所需的图层：
 
 ```python
 urlWithParams = 'url=http://irs.gis-lab.info/?layers=landsat&styles=&format=image/jpeg&crs=EPSG:4326'
@@ -449,7 +449,7 @@ if not rlayer.isValid():
 
 ## 3.3 QgsProject 实例
 
-如果您想使用打开的图层进行渲染，请不要忘记将它们添加到[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例中。该[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例获取图层的所有权，稍后可以通过其唯一ID从应用程序的任何部分访问它们。从项目中删除图层时，它也会被删除。用户可以在QGIS界面中删除图层，也可以使用该[`removeMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.removeMapLayer)方法通过Python删除图层。
+如果你想使用打开的图层进行渲染，请不要忘记将它们添加到[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例中。该[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例获取图层的所有权，稍后可以通过其唯一ID从应用程序的任何部分访问它们。从项目中删除图层时，它也会被删除。用户可以在QGIS界面中删除图层，也可以使用该[`removeMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.removeMapLayer)方法通过Python删除图层。
 
 使用以下[`addMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.addMapLayer)方法将图层添加到当前项目：
 
@@ -474,7 +474,7 @@ layerTree.insertChildNode(-1, QgsLayerTreeLayer(rlayer))
 QgsProject.instance().removeMapLayer(rlayer.id())
 ```
 
-在上面的代码中，传递了图层ID（您可以调用图层的[`id()`](https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.id)方法），但您也可以传递图层对象本身。
+在上面的代码中，传递了图层ID（你可以调用图层的[`id()`](https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.id)方法），但你也可以传递图层对象本身。
 
 有关已加载图层和图层ID的列表，使用[`mapLayers()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.mapLayers)方法：
 
@@ -484,7 +484,7 @@ QgsProject.instance().mapLayers()
 
 # 4 使用栅格图层
 
-如果您在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -581,7 +581,7 @@ rlayer.triggerRepaint()
 
 ### 4.2.2 多波段栅格
 
-默认情况下，QGIS将前三个波段映射为红色，绿色和蓝色以创建彩色图像（这是`MultiBandColor`绘图样式。在某些情况下，您可能希望覆盖这些设置。以下代码互换红色波段（1）和绿色波段（2）：
+默认情况下，QGIS将前三个波段映射为红色，绿色和蓝色以创建彩色图像（这是`MultiBandColor`绘图样式。在某些情况下，你可能希望覆盖这些设置。以下代码互换红色波段（1）和绿色波段（2）：
 
 ```python
 rlayer_multi = QgsProject.instance().mapLayersByName('multiband')[0]
@@ -599,7 +599,7 @@ rlayer.triggerRepaint()
 
 ## 4.3 查询值
 
-查询栅格值的第一种方法是使用 [`QgsRasterDataProvider`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider)的[`sample`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample)方法查询。您必须指定栅格图层的[`QgsPointXY`](https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY)的和波段号。该方法返回一个value和result（true或false）：
+查询栅格值的第一种方法是使用 [`QgsRasterDataProvider`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider)的[`sample`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample)方法查询。你必须指定栅格图层的[`QgsPointXY`](https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY)的和波段号。该方法返回一个value和result（true或false）：
 
 ```python
 val, res = rlayer.dataProvider().sample(QgsPointXY(20.50, -34), 1)
@@ -623,7 +623,7 @@ if ident.isValid():
 
 ## 5.1 检索相关属性信息
 
-您可以通过调用[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)对象的[`fields()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.fields)方法检索一个矢量图层相关字段的信息：
+你可以通过调用[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)对象的[`fields()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.fields)方法检索一个矢量图层相关字段的信息：
 
 ```python
 # “layer”是一个QgsVectorLayer实例
@@ -704,7 +704,7 @@ layer.selectByExpression('"Class"=\'B52\' and "Heading" > 10 and "Heading" <70',
 iface.mapCanvas().setSelectionColor( QColor("red") )
 ```
 
-为给定图层的所选要素列表添加要素，您可以调用[`select()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.select)添加到要素ID列表：
+为给定图层的所选要素列表添加要素，你可以调用[`select()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.select)添加到要素ID列表：
 
 ```python
 selected_fid  =  []
@@ -740,7 +740,7 @@ print(feature[0])
 
 ### 5.3.2 遍历选中的要素
 
-如果您只需要已选择的要素，则可以使用矢量图层中的方法[`selectedFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.selectedFeatures)：
+如果你只需要已选择的要素，则可以使用矢量图层中的方法[`selectedFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.selectedFeatures)：
 
 ```python
 selection = layer.selectedFeatures()
@@ -771,7 +771,7 @@ request = QgsFeatureRequest().setFilterRect(areaOfInterest).setFlags(QgsFeatureR
 
 ```
 
-使用[`setLimit()`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest.setLimit)您可以限制用户要求的功能数量。下面是一个例子：
+使用[`setLimit()`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest.setLimit)你可以限制用户要求的功能数量。下面是一个例子：
 
 ```python
 request = QgsFeatureRequest()
@@ -827,7 +827,7 @@ if caps & QgsVectorDataProvider.DeleteFeatures:
 
 有关所有可用功能的列表，请参阅 ：[`API Documentation of QgsVectorDataProvider`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider)
 
-打印图层功能的文本描述，结果是以逗号分隔的列表，您可以使用[`capabilitiesString()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.capabilitiesString) ，如下例所示：
+打印图层功能的文本描述，结果是以逗号分隔的列表，你可以使用[`capabilitiesString()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.capabilitiesString) ，如下例所示：
 
 ```python
 caps_string = layer.dataProvider().capabilitiesString()
@@ -839,11 +839,11 @@ caps_string = layer.dataProvider().capabilitiesString()
 
 ```
 
-通过使用以下任何方法进行矢量图层编辑，更改将直接提交到基础数据存储（文件，数据库等）。如果您只想进行临时更改，请跳到下一节[5.4.4 使用编辑缓冲区修改矢量图层](#5.4.4 使用编辑缓冲区修改矢量图层)。
+通过使用以下任何方法进行矢量图层编辑，更改将直接提交到基础数据存储（文件，数据库等）。如果你只想进行临时更改，请跳到下一节[5.4.4 使用编辑缓冲区修改矢量图层](#5.4.4 使用编辑缓冲区修改矢量图层)。
 
 ------
 
-**小贴士：**如果您在QGIS内部（从控制台或从插件中），可能需要强制重绘地图画布，以便查看您对几何、样式或属性所做的更改：
+**小贴士：**如果你在QGIS内部（从控制台或从插件中），可能需要强制重绘地图画布，以便查看你对几何、样式或属性所做的更改：
 
 ```python
 # 如果启用了缓存，简单的画布刷新可能不足以触发重绘，并且必须清除层的缓存图像。
@@ -905,13 +905,13 @@ if caps & QgsVectorDataProvider.ChangeGeometries:
 
 **小贴士：**支持QgsVectorLayerEditUtils类进行仅几何编辑
 
-如果您只需要更改几何图形，可以考虑使用[`QgsVectorLayerEditUtils`](https://qgis.org/pyqgis/master/core/QgsVectorLayerEditUtils.html#qgis.core.QgsVectorLayerEditUtils)，它提供一些有用的方法来编辑几何图形（平移、插入或移动顶点等）。
+如果你只需要更改几何图形，可以考虑使用[`QgsVectorLayerEditUtils`](https://qgis.org/pyqgis/master/core/QgsVectorLayerEditUtils.html#qgis.core.QgsVectorLayerEditUtils)，它提供一些有用的方法来编辑几何图形（平移、插入或移动顶点等）。
 
 ------
 
 ### 5.4.4 使用编辑缓冲区修改矢量图层
 
-在QGIS应用程序中编辑矢量时，必须首先开始编辑特定图层的模式，然后进行一些修改，最后提交（或回滚）更改。您所做的所有更改在您提交之前都不会写入 - 它们保留在图层的内存编辑缓冲区中。也可以通过编程方式使用此功能 - 它仅仅是是矢量层编辑的另一种方法，可以补充数据提供者的直接使用。在为矢量图层编辑提供一些GUI工具时使用此选项，因为这将允许用户决定是否提交/回滚并允许使用undo / redo。提交更改时，编辑缓冲区中的所有更改都将保存到数据提供者中。
+在QGIS应用程序中编辑矢量时，必须首先开始编辑特定图层的模式，然后进行一些修改，最后提交（或回滚）更改。你所做的所有更改在你提交之前都不会写入 - 它们保留在图层的内存编辑缓冲区中。也可以通过编程方式使用此功能 - 它仅仅是是矢量层编辑的另一种方法，可以补充数据提供者的直接使用。在为矢量图层编辑提供一些GUI工具时使用此选项，因为这将允许用户决定是否提交/回滚并允许使用undo / redo。提交更改时，编辑缓冲区中的所有更改都将保存到数据提供者中。
 
 这些方法类似于我们在提供程序中看到的方法，但它们在[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer) 对象上调用。
 
@@ -941,7 +941,7 @@ layer.deleteAttribute(fieldIndex)
 
 ```
 
-为了使撤消/重做正常工作，上述调用必须包含在撤消命令中。（如果您不关心撤消/重做并希望立即存储更改，那么通过[5.4 修改矢量图层](#5.4 修改矢量图层)，您将可以更轻松地完成工作 。）
+为了使撤消/重做正常工作，上述调用必须包含在撤消命令中。（如果你不关心撤消/重做并希望立即存储更改，那么通过[5.4 修改矢量图层](#5.4 修改矢量图层)，你将可以更轻松地完成工作 。）
 
 以下是使用撤消功能的方法：
 
@@ -962,7 +962,7 @@ layer.endEditCommand()
 
 [`beginEditCommand()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.beginEditCommand)方法将创建一个内部“活动”命令，并将记录矢量图层中的后续更改。随着对[`endEditCommand()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.endEditCommand) 命令的调用被推送到撤销栈，用户将能够从GUI撤消/重做它。如果在执行更改时出现问题， [`destroyEditCommand()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.destroyEditCommand)方法将删除该命令并回滚此命令处于活动状态时所做的所有更改。
 
-您还可以使用`with edit(layer)`-将提交和回滚包装成更具语义的代码块中，如下例所示：
+你还可以使用`with edit(layer)`-将提交和回滚包装成更具语义的代码块中，如下例所示：
 
 ```python
 with edit(layer):
@@ -976,7 +976,7 @@ with edit(layer):
 
 ### 5.4.5 添加和删除字段
 
-添加字段（属性），您需要指定字段定义列表。要删除字段，只需提供字段索引列表。
+添加字段（属性），你需要指定字段定义列表。要删除字段，只需提供字段索引列表。
 
 ```python
 from qgis.PyQt.QtCore import QVariant
@@ -1008,11 +1008,11 @@ layer.updateFields()
 
 ## 5.5 使用空间索引
 
-如果需要对矢量图层进行频繁查询，空间索引可以显著提高代码的性能。例如，想象一下，您正在编写插值算法，并且对于给定位置，您需要知道点图层中最近的10个点，以便使用这些点来计算插值。如果没有空间索引，QGIS找到这10个点的唯一方法是计算从每个点到指定位置的距离，然后比较这些距离。这可能是一项非常耗时的任务，特别是如果需要在多个位置重复这项任务。如果图层存在空间索引，则操作更有效。
+如果需要对矢量图层进行频繁查询，空间索引可以显著提高代码的性能。例如，想象一下，你正在编写插值算法，并且对于给定位置，你需要知道点图层中最近的10个点，以便使用这些点来计算插值。如果没有空间索引，QGIS找到这10个点的唯一方法是计算从每个点到指定位置的距离，然后比较这些距离。这可能是一项非常耗时的任务，特别是如果需要在多个位置重复这项任务。如果图层存在空间索引，则操作更有效。
 
 可以将没有空间索引的层视为电话簿，其中不对电话号码进行排序或索引。找到给定人员的电话号码的唯一方法是从头开始阅读，直到找到它为止。
 
-默认情况下，QGIS矢量图层不会创建空间索引，但您可以轻松创建它们。这是你要做的：
+默认情况下，QGIS矢量图层不会创建空间索引，但你可以轻松创建它们。这是你要做的：
 
 - 使用[`QgsSpatialIndex()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.beginEditCommand)类创建空间索引：
 
@@ -1021,21 +1021,21 @@ layer.updateFields()
   
   ```
 
-- 向索引添加要素 - 索引获取[`QgsFeature`](https://qgis.org/pyqgis/master/core/QgsFeature.html#qgis.core.QgsFeature)对象并将其添加到内部数据结构。您可以手动创建对象，也可以使用先前提供者的 [`getFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.getFeatures)方法。
+- 向索引添加要素 - 索引获取[`QgsFeature`](https://qgis.org/pyqgis/master/core/QgsFeature.html#qgis.core.QgsFeature)对象并将其添加到内部数据结构。你可以手动创建对象，也可以使用先前提供者的 [`getFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.getFeatures)方法。
 
   ```python
   index.insertFeature(feat)
   
   ```
 
-- 或者，您可以批量加载图层的所有要素
+- 或者，你可以批量加载图层的所有要素
 
   ```python
   index = QgsSpatialIndex(layer.getFeatures())
   
   ```
 
-- 一旦空间索引填充了一些值，您就可以进行一些查询
+- 一旦空间索引填充了一些值，你就可以进行一些查询
 
   ```python
   #以数组形式返回五个最近要素的ID
@@ -1071,9 +1071,9 @@ if error[0] == QgsVectorFileWriter.NoError:
 
 还可以指定目标CRS - 如果将一个有效的[`QgsCoordinateReferenceSystem`](https://qgis.org/pyqgis/master/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem)实例作为第四个参数，则将该层转换为该CRS。
 
-有关有效的驱动程序的名称，请调用[`supportedFiltersAndFormats`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter.supportedFiltersAndFormats)方法或查阅[OGR支持的格式](https://www.gdal.org/ogr_formats.html) - 您应该将“Code”列中的值作为驱动程序名称传递。
+有关有效的驱动程序的名称，请调用[`supportedFiltersAndFormats`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter.supportedFiltersAndFormats)方法或查阅[OGR支持的格式](https://www.gdal.org/ogr_formats.html) - 你应该将“Code”列中的值作为驱动程序名称传递。
 
-（可选）您可以设置是仅导出选中的要素，传递更多驱动程序特定的选项以进行创建，还是告诉编写者不要创建属性...还有许多其他（可选）参数; 请参阅[`QgsVectorFileWriter`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter)的详细信息
+（可选）你可以设置是仅导出选中的要素，传递更多驱动程序特定的选项以进行创建，还是告诉编写者不要创建属性...还有许多其他（可选）参数; 请参阅[`QgsVectorFileWriter`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter)的详细信息
 
 ### 5.6.2 直接从要素创建
 
@@ -1117,7 +1117,7 @@ del writer
 
 提供者支持string，int和double字段。
 
-内存提供者还支持空间索引，通过调用提供者的[`createSpatialIndex()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.createSpatialIndex)函数来启用。创建空间索引后，您将能够更快地迭代较小区域内的要素（因为没有必要遍历所有要素，只有遍历指定矩形内的要素）。
+内存提供者还支持空间索引，通过调用提供者的[`createSpatialIndex()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.createSpatialIndex)函数来启用。创建空间索引后，你将能够更快地迭代较小区域内的要素（因为没有必要遍历所有要素，只有遍历指定矩形内的要素）。
 
 通过将`"memory"`作为[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)构造函数的参数来创建内存提供者。
 
@@ -1215,7 +1215,7 @@ QGIS核心库中有几种已知的渲染器类型：
 
 
 
-可能还有一些自定义渲染器类型，所以永远不要假设只有这些类型。您可以查询应用程序[`QgsRendererRegistry`](https://qgis.org/pyqgis/master/core/QgsRendererRegistry.html#qgis.core.QgsRendererRegistry) 以查找当前可用的渲染器：
+可能还有一些自定义渲染器类型，所以永远不要假设只有这些类型。你可以查询应用程序[`QgsRendererRegistry`](https://qgis.org/pyqgis/master/core/QgsRendererRegistry.html#qgis.core.QgsRendererRegistry) 以查找当前可用的渲染器：
 
 ```python
 print(QgsApplication.rendererRegistry().renderersList())
@@ -1242,13 +1242,13 @@ print(renderer.dump())
 
 ### 5.7.1 单符号渲染器
 
-您可以通过调用[`symbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.symbol)方法获取用于渲染的符号，使用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)方法更改它（C ++开发人员注意：渲染器将获取符号的所有权。）
+你可以通过调用[`symbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.symbol)方法获取用于渲染的符号，使用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)方法更改它（C ++开发人员注意：渲染器将获取符号的所有权。）
 
-您可以通过调用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)并传递适当的符号实例来更改特定矢量图层的符号。*点*，*线*和*多边形*图层的符号可以通过调用相应的类（[`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)，[`QgsLineSymbol`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol)和 [`QgsFillSymbol`](）[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)来创建别的功能https://qgis.org/pyqgis/master/core/QgsFillSymbol.html#qgis.core.QgsFillSymbol)）的 [`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)方法来创建
+你可以通过调用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)并传递适当的符号实例来更改特定矢量图层的符号。*点*，*线*和*多边形*图层的符号可以通过调用相应的类（[`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)，[`QgsLineSymbol`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol)和 [`QgsFillSymbol`](）[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)来创建别的功能https://qgis.org/pyqgis/master/core/QgsFillSymbol.html#qgis.core.QgsFillSymbol)）的 [`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)方法来创建
 
 传递给[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)的字典参数，设置符号的样式属性。
 
-例如，您可以通过调用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)并传递[`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)实例, 来替换特定**点**图层的符号，如下面的代码示例所示：
+例如，你可以通过调用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)并传递[`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)实例, 来替换特定**点**图层的符号，如下面的代码示例所示：
 
 ```python
 symbol = QgsMarkerSymbol.createSimple({'name': 'square', 'color': 'red'})
@@ -1303,7 +1303,7 @@ print(layer.renderer().symbol().symbolLayers()[0].properties())
 如果要更改某些属性，这可能很有用：
 
 ```python
-#您可以更改单个属性... 
+#你可以更改单个属性... 
 layer.renderer().symbol().symbolLayer(0).setSize(3)
 #...但并非所有属性都可以从方法访问，
 #你也可以完全替换符号：
@@ -1349,9 +1349,9 @@ for ran in renderer.ranges():
 
 ```
 
-您可以再次使用 [`classAttribute`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.classAttribute) （查找分类属性名称） [`sourceSymbol`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceSymbol)和[`sourceColorRamp`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceColorRamp)方法。此外，还有一种[`mode`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.mode) 方法可以确定范围的创建方式：使用等间隔，分位数或其他方法。
+你可以再次使用 [`classAttribute`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.classAttribute) （查找分类属性名称） [`sourceSymbol`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceSymbol)和[`sourceColorRamp`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceColorRamp)方法。此外，还有一种[`mode`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.mode) 方法可以确定范围的创建方式：使用等间隔，分位数或其他方法。
 
-如果您希望创建自己的渐变符号渲染器，则可以执行此操作，如下面的示例代码段所示（这将创建一个简单的两个类别）
+如果你希望创建自己的渐变符号渲染器，则可以执行此操作，如下面的示例代码段所示（这将创建一个简单的两个类别）
 
 ```python
 from qgis.PyQt import QtGui
@@ -1409,7 +1409,7 @@ for i in range(symbol.symbolLayerCount()):
 
 ```
 
-找出符号的颜色使用[`color`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.color)方法，[`setColor`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.setColor)改变其颜色。使用标记符号，您还可以使用[`size`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.size)和[`angle`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.angle)方法查询符号大小和旋转。对于线符号，[`width`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol.width)方法返回线宽。
+找出符号的颜色使用[`color`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.color)方法，[`setColor`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.setColor)改变其颜色。使用标记符号，你还可以使用[`size`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.size)和[`angle`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.angle)方法查询符号大小和旋转。对于线符号，[`width`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol.width)方法返回线宽。
 
 默认情况下，大小和宽度以毫米为单位，角度以度为单位。
 
@@ -1417,7 +1417,7 @@ for i in range(symbol.symbolLayerCount()):
 
 如前所述，符号层（[`QgsSymbolLayer`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer)的子类）决定要素的外观。有一些基本的符号图层类用于一般用途。可以实现新的符号图层类型，从而任意定制要素的呈现方式。[`layerType()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.layerType) 方法唯一地标识符号图层类 - 基本类和默认类`SimpleMarker`，`SimpleLine`以及`SimpleFill`符号图层类型。
 
-您可以使用以下代码获取可以为给定符号图层类创建的符号图层类型的完整列表：
+你可以使用以下代码获取可以为给定符号图层类创建的符号图层类型的完整列表：
 
 ```python
 from qgis.core import QgsSymbolLayerRegistry
@@ -1447,7 +1447,7 @@ VectorField
 
 #### 创建自定义符号图层类型
 
-想象一下，您想要自定义数据的呈现方式。您可以创建自己的符号图层类，以完全按照您的意愿绘制要素。以下是绘制具有指定半径的红色圆圈的标记示例：
+想象一下，你想要自定义数据的呈现方式。你可以创建自己的符号图层类，以完全按照你的意愿绘制要素。以下是绘制具有指定半径的红色圆圈的标记示例：
 
 ```python
 from qgis.core import QgsMarkerSymbolLayer
@@ -1486,7 +1486,7 @@ class FooSymbolLayer(QgsMarkerSymbolLayer):
 
 [`layerType`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.layerType)方法确定符号图层的名称; 它必须在所有符号层中是唯一的。[`properties`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.properties)方法用于属性的持久化。[`clone`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.clone) 方法必须返回符号图层的副本，其中所有属性完全相同。最后，渲染方法： [`startRender`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.startRender)在渲染第一个要素之前被调用，[`stopRender`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.stopRender) 渲染完成时被调用，[`renderPoint`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbolLayer.html#qgis.core.QgsMarkerSymbolLayer.renderPoint)渲染时被调用。点的坐标已经转换为输出坐标。
 
-对于折线和多边形，唯一的区别在于渲染方法：您将使用 [`renderPolyline`](https://qgis.org/pyqgis/master/core/QgsLineSymbolLayer.html#qgis.core.QgsLineSymbolLayer.renderPolyline) ——接收线列表，[`renderPolygon`](https://qgis.org/pyqgis/master/core/QgsFillSymbolLayer.html#qgis.core.QgsFillSymbolLayer.renderPolygon) ——接收外环上的点列表作为第一个参数和内环列表（或无）作为第二个参数。
+对于折线和多边形，唯一的区别在于渲染方法：你将使用 [`renderPolyline`](https://qgis.org/pyqgis/master/core/QgsLineSymbolLayer.html#qgis.core.QgsLineSymbolLayer.renderPolyline) ——接收线列表，[`renderPolygon`](https://qgis.org/pyqgis/master/core/QgsFillSymbolLayer.html#qgis.core.QgsFillSymbolLayer.renderPolygon) ——接收外环上的点列表作为第一个参数和内环列表（或无）作为第二个参数。
 
 通常可以方便地添加用于设置符号图层类型属性的GUI，以允许用户自定义外观：在上面的示例中，我们可以让用户设置圆半径。以下代码实现了这样的小控件
 
@@ -1552,7 +1552,7 @@ QgsApplication.symbolLayerRegistry().addSymbolLayerType(FooSymbolLayerMetadata()
 
 ```
 
-您应该将图层类型（与图层返回的相同）和符号类型（marker/line/fill）传递给父类的构造函数。[`createSymbolLayer()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerAbstractMetadata.html#qgis.core.QgsSymbolLayerAbstractMetadata.createSymbolLayer)方法负责使用props字典中指定的属性创建符号图层的实例。并且有一种[`createSymbolLayerWidget()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerAbstractMetadata.html#qgis.core.QgsSymbolLayerAbstractMetadata.createSymbolLayerWidget)方法可以返回此符号图层类型的设置小控件。
+你应该将图层类型（与图层返回的相同）和符号类型（marker/line/fill）传递给父类的构造函数。[`createSymbolLayer()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerAbstractMetadata.html#qgis.core.QgsSymbolLayerAbstractMetadata.createSymbolLayer)方法负责使用props字典中指定的属性创建符号图层的实例。并且有一种[`createSymbolLayerWidget()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerAbstractMetadata.html#qgis.core.QgsSymbolLayerAbstractMetadata.createSymbolLayerWidget)方法可以返回此符号图层类型的设置小控件。
 
 最后一步是将此符号图层添加到注册表中 -——我们完成了。
 
@@ -1694,7 +1694,7 @@ QgsRendererAbstractMetadata.__init__(self,
 
 # 6 几何处理
 
-如果您在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -1732,7 +1732,7 @@ PyQGIS提供了几种创建几何体的选项：
 
   折线（Linestring）由一系列点表示。
 
-  多边形由线性环列表（即闭合的线串）表示。第一个环是外环（边界），可选项后续环是多边形中的孔。请注意，与某些程序不同，QGIS会为您闭合环，因此无需将第一个点复制为最后一个。
+  多边形由线性环列表（即闭合的线串）表示。第一个环是外环（边界），可选项后续环是多边形中的孔。请注意，与某些程序不同，QGIS会为你闭合环，因此无需将第一个点复制为最后一个。
 
   多部分几何图形更进一步：多点是一个点列表，多线串是一个线列表，多多边形是一个多边形列表。
 
@@ -1756,7 +1756,7 @@ PyQGIS提供了几种创建几何体的选项：
 
 ## 6.2 访问几何
 
-首先，您应该找出几何类型。[`wkbType()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.wkbType) 方法是其中一种方法。它从[`QgsWkbTypes.Type`](https://qgis.org/pyqgis/3.4/core/QgsWkbTypes.html#qgis.core.QgsWkbTypes) 枚举中返回一个值。
+首先，你应该找出几何类型。[`wkbType()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.wkbType) 方法是其中一种方法。它从[`QgsWkbTypes.Type`](https://qgis.org/pyqgis/3.4/core/QgsWkbTypes.html#qgis.core.QgsWkbTypes) 枚举中返回一个值。
 
 ```python
 gPnt.wkbType() == QgsWkbTypes.Point
@@ -1771,7 +1771,7 @@ gPolygon.wkbType() == QgsWkbTypes.MultiPolygon
 
 作为替代方案，可以使用[`type()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.type) ，从[`QgsWkbTypes.GeometryType`](https://qgis.org/pyqgis/3.4/core/QgsWkbTypes.html#qgis.core.QgsWkbTypes) 枚举中返回值。
 
-您可以使用[`displayString()`](https://qgis.org/pyqgis/3.4/core/QgsWkbTypes.html#qgis.core.QgsWkbTypes.displayString) 函数来获取人类可读的几何类型。
+你可以使用[`displayString()`](https://qgis.org/pyqgis/3.4/core/QgsWkbTypes.html#qgis.core.QgsWkbTypes.displayString) 函数来获取人类可读的几何类型。
 
 ```python
 gPnt.wkbType()
@@ -1826,7 +1826,7 @@ for f in features:
   print('Perimeter: ', geom.length())
 ```
 
-现在，您已经计算并打印了几何图形的面积和周长。但是，您可能会很快注意到这些值很奇怪。这是因为当使用 [`QgsGeometry`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry)类中的[`area()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.area)和[`length()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.length) 方法计算时，面积和周长不会考虑CRS。可以使用更强大的[`QgsDistanceArea`](https://qgis.org/pyqgis/3.4/core/QgsDistanceArea.html#qgis.core.QgsDistanceArea) 类计算面积和周长，它可以执行基于椭球的计算：
+现在，你已经计算并打印了几何图形的面积和周长。但是，你可能会很快注意到这些值很奇怪。这是因为当使用 [`QgsGeometry`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry)类中的[`area()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.area)和[`length()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.length) 方法计算时，面积和周长不会考虑CRS。可以使用更强大的[`QgsDistanceArea`](https://qgis.org/pyqgis/3.4/core/QgsDistanceArea.html#qgis.core.QgsDistanceArea) 类计算面积和周长，它可以执行基于椭球的计算：
 
 以下代码假定`layer`是[`QgsVectorLayer`](https://qgis.org/pyqgis/3.4/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)具有多边形要素类型的对象。
 
@@ -1852,7 +1852,7 @@ for f in features:
   print("Area (km2):", d.convertAreaMeasurement(d.measureArea(geom), QgsUnitTypes.AreaSquareKilometers))
 ```
 
-或者，您可能想知道两点之间的距离和方位。
+或者，你可能想知道两点之间的距离和方位。
 
 ```python
 d = QgsDistanceArea()
@@ -1867,14 +1867,14 @@ tenerife = QgsPointXY(-16.5735, 28.0443)
 print("Distance in meters: ", d.measureLine(santa, tenerife))
 ```
 
-您可以在QGIS中找到许多算法示例，并使用这些方法来分析和转换矢量数据。以下是一些指向其中一些代码的链接。
+你可以在QGIS中找到许多算法示例，并使用这些方法来分析和转换矢量数据。以下是一些指向其中一些代码的链接。
 
 - 使用[`QgsDistanceArea`](https://qgis.org/pyqgis/3.4/core/QgsDistanceArea.html#qgis.core.QgsDistanceArea)类中的距离和面积： [距离矩阵算法](https://github.com/qgis/QGIS/blob/master/python/plugins/processing/algs/qgis/PointDistance.py)
 - [线到多边形算法](https://github.com/qgis/QGIS/blob/master/python/plugins/processing/algs/qgis/LinesToPolygons.py)
 
 # 7 投影支持
 
-如果您在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (QgsCoordinateReferenceSystem,
@@ -1924,7 +1924,7 @@ from qgis.core import (QgsCoordinateReferenceSystem,
 
 检查CRS的创建（即在数据库中查找）是否成功是明智的：[`isValid()`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.isValid)必须返回`True`。
 
-请注意，对于空间参考系统的初始化，QGIS需要在其内部数据库`srs.db`中查找适当的值。因此，如果您创建一个独立的应用程序，您需要正确设置路径 [`QgsApplication.setPrefixPath()`](https://qgis.org/pyqgis/3.4/core/QgsApplication.html#qgis.core.QgsApplication.setPrefixPath)，否则将无法找到数据库。如果您正在运行QGIS Python控制台中的命令或开发插件，则无需关注：所有内容都已为您设置。
+请注意，对于空间参考系统的初始化，QGIS需要在其内部数据库`srs.db`中查找适当的值。因此，如果你创建一个独立的应用程序，你需要正确设置路径 [`QgsApplication.setPrefixPath()`](https://qgis.org/pyqgis/3.4/core/QgsApplication.html#qgis.core.QgsApplication.setPrefixPath)，否则将无法找到数据库。如果你正在运行QGIS Python控制台中的命令或开发插件，则无需关注：所有内容都已为你设置。
 
 访问空间参考系统信息：
 
@@ -1958,7 +1958,7 @@ Map units: 6
 
 ## 7.2 坐标参考系统转换
 
-您可以使用[`QgsCoordinateTransform`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateTransform.html#qgis.core.QgsCoordinateTransform)类在不同的空间参照系之间进行转换。使用它的最简单方法是创建源和目标CRS，并在当前项目中构造[`QgsCoordinateTransform`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateTransform.html#qgis.core.QgsCoordinateTransform)实例。然后只需反复调用 [`transform()`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateTransform.html#qgis.core.QgsCoordinateTransform.transform)函数进行转换。默认情况下，它会正向转换，但也可以逆向转换。
+你可以使用[`QgsCoordinateTransform`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateTransform.html#qgis.core.QgsCoordinateTransform)类在不同的空间参照系之间进行转换。使用它的最简单方法是创建源和目标CRS，并在当前项目中构造[`QgsCoordinateTransform`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateTransform.html#qgis.core.QgsCoordinateTransform)实例。然后只需反复调用 [`transform()`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateTransform.html#qgis.core.QgsCoordinateTransform.transform)函数进行转换。默认情况下，它会正向转换，但也可以逆向转换。
 
 ```python
 crsSrc = QgsCoordinateReferenceSystem(4326)    # WGS 84
@@ -1985,7 +1985,7 @@ Transformed back: <QgsPointXY: POINT(18 5)>
 
 地图画布控件可能是QGIS中最重要的控件，因为它显示了由重叠的地图图层组成的地图，并允许与地图和图层进行交互。画布始终显示由当前画布范围定义的地图的一部分。通过使用**地图工具**完成交互：有平移，缩放，识别图层，测量，矢量编辑等工具。与其他图形程序类似，总有一个工具处于活动状态，用户可以在可用工具之间切换。
 
-地图画布由`qgis.gui`模块中的[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类实现。该实现基于Qt Graphics View框架。该框架通常提供表面和视图，其中放置自定义图形项并且用户可以与它们交互。我们假设您对Qt足够熟悉，以了解图形场景，视图和项的概念。如果没有，请阅读[框架概述](https://doc.qt.io/qt-5/graphicsview.html)。
+地图画布由`qgis.gui`模块中的[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类实现。该实现基于Qt Graphics View框架。该框架通常提供表面和视图，其中放置自定义图形项并且用户可以与它们交互。我们假设你对Qt足够熟悉，以了解图形场景，视图和项的概念。如果没有，请阅读[框架概述](https://doc.qt.io/qt-5/graphicsview.html)。
 
 无论何时平移地图，放大/缩小（或触发刷新的其他操作），地图都会在当前范围内再次渲染。图层将渲染为图像（使用[`QgsMapRendererJob`](https://qgis.org/pyqgis/3.4/core/QgsMapRendererJob.html#qgis.core.QgsMapRendererJob)类），并且图像将显示在画布上。[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类还控制渲染图的刷新。除了作为这个项的背景，可能还有更多的**地图画布项**。
 
@@ -2015,7 +2015,7 @@ canvas.setCanvasColor(Qt.white)
 canvas.enableAntiAliasing(True)
 ```
 
-（如果您想知道，`Qt`来自`PyQt.QtCore`模块并且 `Qt.white`是预定义`QColor`实例之一。）
+（如果你想知道，`Qt`来自`PyQt.QtCore`模块并且 `Qt.white`是预定义`QColor`实例之一。）
 
 现在是时候添加一些地图图层了。我们将首先打开一个图层并将其添加到当前项目中。然后我们将设置画布范围并设置画布的图层列表
 
@@ -2067,7 +2067,7 @@ r.setColor(QColor(0, 0, 255))
 r.setWidth(3)
 ```
 
-画布项绑定到画布场景。要暂时隐藏它们（并再次显示它们），请使用`hide()`和`show()`组合。要完全删除该项，您必须将其从画布的场景中删除
+画布项绑定到画布场景。要暂时隐藏它们（并再次显示它们），请使用`hide()`和`show()`组合。要完全删除该项，你必须将其从画布的场景中删除
 
 ```python
 canvas.scene().removeItem(r)
@@ -2077,7 +2077,7 @@ canvas.scene().removeItem(r)
 
 橡皮条也可用于绘制点，但 [`QgsVertexMarker`](https://qgis.org/pyqgis/3.4/gui/QgsVertexMarker.html#qgis.gui.QgsVertexMarker)类更适合于此（[`QgsRubberBand`](https://qgis.org/pyqgis/3.4/gui/QgsRubberBand.html#qgis.gui.QgsRubberBand)仅在所需点周围绘制一个矩形）。
 
-您可以像这样使用顶点标记：
+你可以像这样使用顶点标记：
 
 ```python
 m = QgsVertexMarker(canvas)
@@ -2153,7 +2153,7 @@ class MyWnd(QMainWindow):
         self.canvas.setMapTool(self.toolPan)
 ```
 
-您可以在Python控制台编辑器中尝试上述代码。要调用画布窗口，请添加以下代码以实例化`MyWnd`类。它们将在新创建的画布上渲染当前选定的图层
+你可以在Python控制台编辑器中尝试上述代码。要调用画布窗口，请添加以下代码以实例化`MyWnd`类。它们将在新创建的画布上渲染当前选定的图层
 
 ```python
 w = MyWnd(iface.activeLayer())
@@ -2162,7 +2162,7 @@ w.show()
 
 ## 8.4 编写自定义地图工具
 
-您可以编写自定义工具，以实现用户在画布上执行自定义行为的操作。
+你可以编写自定义工具，以实现用户在画布上执行自定义行为的操作。
 
 地图工具应继承自[`QgsMapTool`](https://qgis.org/pyqgis/3.4/gui/QgsMapTool.html#qgis.gui.QgsMapTool)类或任何派生类，并使用[`setMapTool()`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas.setMapTool) 在画布中选择为活动工具。
 
@@ -2293,7 +2293,7 @@ render.start()
 
 ## 9.2 使用不同的CRS渲染图层
 
-如果您有多个图层并且它们具有不同的CRS，上面的简单示例可能不起作用：要从范围计算中获取正确的值，您必须显式设置目标CRS
+如果你有多个图层并且它们具有不同的CRS，上面的简单示例可能不起作用：要从范围计算中获取正确的值，你必须显式设置目标CRS
 
 ```python
 settings.setLayers(layers)
@@ -2302,9 +2302,9 @@ render.setDestinationCrs(layers[0].crs())
 
 ## 9.3 使用打印布局输出
 
-如果您想要比上面显示的简单渲染更复杂的输出，打印布局是一个非常方便的工具。可以创建复杂的地图布局，包括地图视图，标签，图例，表格以及通常出现在纸质地图上的其他元素。然后可以将布局导出为PDF，光栅图像或直接打印在打印机上。
+如果你想要比上面显示的简单渲染更复杂的输出，打印布局是一个非常方便的工具。可以创建复杂的地图布局，包括地图视图，标签，图例，表格以及通常出现在纸质地图上的其他元素。然后可以将布局导出为PDF，光栅图像或直接打印在打印机上。
 
-布局由一堆类组成。它们都属于核心库。QGIS应用程序有一个方便的GUI布局元素，虽然它在GUI库中不可用。如果您不熟悉 [Qt Graphics View框架](http://doc.qt.io/qt-5/graphicsview.html)，那么建议您立即查看文档，因为布局是基于它的。
+布局由一堆类组成。它们都属于核心库。QGIS应用程序有一个方便的GUI布局元素，虽然它在GUI库中不可用。如果你不熟悉 [Qt Graphics View框架](http://doc.qt.io/qt-5/graphicsview.html)，那么建议你立即查看文档，因为布局是基于它的。
 
 布局的中心类是[`QgsLayout`](https://qgis.org/pyqgis/3.4/core/QgsLayout.html#qgis.core.QgsLayout) 类，它是从Qt [QGraphicsScene](https://doc.qt.io/qt-5/qgraphicsscene.html) 类派生的。让我们创建一个它的实例：
 
@@ -2391,7 +2391,7 @@ item.attemptMove(QgsLayoutPoint(1.4, 1.8, QgsUnitTypes.LayoutCentimeters))
 item.attemptResize(QgsLayoutSize(2.8, 2.2, QgsUnitTypes.LayoutCentimeters))
 ```
 
-默认情况下，每个项目周围都会绘制一个框架，您可以按如下方式删除它：
+默认情况下，每个项目周围都会绘制一个框架，你可以按如下方式删除它：
 
 ```python
 # for a composer label
@@ -2415,7 +2415,7 @@ exporter.exportToPdf(pdf_path, QgsLayoutExporter.PdfExportSettings())
 
 # 10 表达式，过滤和计算值
 
-如果您在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -2546,7 +2546,7 @@ assert(matches == 7)
 
 # 11 读取和存储设置
 
-如果您在pyqgis控制台之外，则此页上的代码段需要导入以下模块：
+如果你在pyqgis控制台之外，则此页上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -2558,13 +2558,13 @@ from qgis.core import (
 
 很多时候，插件保存一些变量非常有用，这样用户下次运行插件时就不必再输入或选择它们。
 
-借助Qt和QGIS API可以保存和检索这些变量。对于每个变量，您应该选择一个用于访问变量的键——对于用户喜欢的颜色，您可以使用键“favourite_color”或任何其他有意义的字符串。建议为键的命名提供一些结构。
+借助Qt和QGIS API可以保存和检索这些变量。对于每个变量，你应该选择一个用于访问变量的键——对于用户喜欢的颜色，你可以使用键“favourite_color”或任何其他有意义的字符串。建议为键的命名提供一些结构。
 
 我们可以区分几种类型的设置：
 
 - **全局设置：** 它们绑定到特定计算机上的用户。QGIS本身存储了许多全局设置，例如，主窗口大小或默认捕捉容差。使用[`QgsSettings`](https://qgis.org/pyqgis/3.4/core/QgsSettings.html#qgis.core.QgsSettings)类处理设置。该类提供[`setValue()`](https://qgis.org/pyqgis/3.4/core/QgsSettings.html#qgis.core.QgsSettings.setValue)和[`value()`](https://qgis.org/pyqgis/3.4/core/QgsSettings.html#qgis.core.QgsSettings.value)方法
 
-  在这里，您可以看到如何使用这些方法的示例：
+  在这里，你可以看到如何使用这些方法的示例：
 
   ```python
   def store():
@@ -2606,10 +2606,10 @@ from qgis.core import (
   mydouble, type_conversion_ok = proj.readDoubleEntry("myplugin", "mydouble", 123)
   mybool, type_conversion_ok = proj.readBoolEntry("myplugin", "mybool", 123)
 
-  # 如您所见, :meth:`writeEntry() <qgis.core.QgsProject.writeEntry>` 方法用于所有数据类型，但有几种方法可以读回设定值，而且必须为每种数据类型选择相应的一个。
+  # 如你所见, :meth:`writeEntry() <qgis.core.QgsProject.writeEntry>` 方法用于所有数据类型，但有几种方法可以读回设定值，而且必须为每种数据类型选择相应的一个。
     ```
 
-- **地图图层设置**：这些设置与项目的图层实例相关。它们不与图层的基础数据源连接，因此如果您创建两个shapefile图层实例，则它们不会共享设置。设置存储在项目文件中，因此如果用户再次打开项目，则与图层相关的设置将再次出现。使用[`customProperty()`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.customProperty)方法检索给定设置的值，并可使用该值进行设置[`setCustomProperty()`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.setCustomProperty)。
+- **地图图层设置**：这些设置与项目的图层实例相关。它们不与图层的基础数据源连接，因此如果你创建两个shapefile图层实例，则它们不会共享设置。设置存储在项目文件中，因此如果用户再次打开项目，则与图层相关的设置将再次出现。使用[`customProperty()`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.customProperty)方法检索给定设置的值，并可使用该值进行设置[`setCustomProperty()`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.setCustomProperty)。
 
     ```python
     vlayer = QgsVectorLayer()
@@ -2628,7 +2628,7 @@ from qgis.core import (
 
 从用户体验的角度来看，使用消息框可能是个坏主意。为了显示小信息行或警告/错误消息，QGIS消息栏通常是更好的选择。
 
-使用对QGIS接口对象的引用，您可以使用以下代码在消息栏中显示消息
+使用对QGIS接口对象的引用，你可以使用以下代码在消息栏中显示消息
 
 ```python
 from qgis.core import Qgis
@@ -2639,7 +2639,7 @@ iface.messageBar().pushMessage("Error", "I'm sorry Dave, I'm afraid I can't do t
 
 ​																						QGIS消息栏
 
-您可以设置持续时间，以在有限时间内显示它
+你可以设置持续时间，以在有限时间内显示它
 
 ```python
 iface.messageBar().pushMessage("Ooops", "The plugin is not working as it should", level=Qgis.Critical, duration=3)
@@ -2649,7 +2649,7 @@ iface.messageBar().pushMessage("Ooops", "The plugin is not working as it should"
 
 ​																				带定时器的QGIS消息栏
 
-上面的示例显示了错误栏，但`level`参数可用于使用[`Qgis.MessageLevel`](https://qgis.org/pyqgis/3.4/core/Qgis.html#qgis.core.Qgis.MessageLevel)枚举创建警告消息或正常消息 。您最多可以使用4个不同级别：
+上面的示例显示了错误栏，但`level`参数可用于使用[`Qgis.MessageLevel`](https://qgis.org/pyqgis/3.4/core/Qgis.html#qgis.core.Qgis.MessageLevel)枚举创建警告消息或正常消息 。你最多可以使用4个不同级别：
 
 1. Info
 2. Warning
@@ -2678,7 +2678,7 @@ iface.messageBar().pushWidget(widget, Qgis.Warning)
 
 ​																				带有按钮的QGIS消息栏
 
-您甚至可以在自己的对话框中使用消息栏，这样就不必显示消息框，或者在主QGIS窗口中显示消息时没有意义
+你甚至可以在自己的对话框中使用消息栏，这样就不必显示消息框，或者在主QGIS窗口中显示消息时没有意义
 
 ```python
 class MyDialog(QDialog):
@@ -2705,7 +2705,7 @@ myDlg.show()
 
 ## 12.2 显示进度
 
-进度条也可以放在QGIS消息栏中，因为正如我们所见，它接受控件。以下是您可以在控制台中尝试的示例：
+进度条也可以放在QGIS消息栏中，因为正如我们所见，它接受控件。以下是你可以在控制台中尝试的示例：
 
 ```python
 import time
@@ -2725,7 +2725,7 @@ for i in range(10):
 iface.messageBar().clearWidgets()
 ```
 
-此外，您可以使用内置状态栏报告进度，如下一个示例所示：
+此外，你可以使用内置状态栏报告进度，如下一个示例所示：
 
 ```python
 vlayer = QgsProject.instance().mapLayersByName("countries")[0]
@@ -2746,10 +2746,10 @@ iface.statusBarIface().clearMessage()
 
 ## 12.3 日志
 
-您可以使用QGIS日志记录系统记录保存有关代码执行的所有信息。
+你可以使用QGIS日志记录系统记录保存有关代码执行的所有信息。
 
 ```python
-# 您可以选择传递'tag'和'level'参数
+# 你可以选择传递'tag'和'level'参数
 QgsMessageLog.logMessage("Your plugin code has been executed correctly", 'MyPlugin', level=Qgis.Info)
 QgsMessageLog.logMessage("Your plugin code might have some problems", level=Qgis.Warning)
 QgsMessageLog.logMessage("Your plugin code has crashed!", level=Qgis.Critical)
@@ -2757,11 +2757,11 @@ QgsMessageLog.logMessage("Your plugin code has crashed!", level=Qgis.Critical)
 
 ---
 
-**警告：** **Python语句`print`在任何多线程的代码中使用是不安全的**。这包括**表达式函数**，**渲染器**， **符号层**和**处理算法**（以及其他）。在这些情况下，您应该始终使用线程安全类（[`QgsLogger`](https://qgis.org/pyqgis/3.4/core/QgsLogger.html#qgis.core.QgsLogger) 或[`QgsMessageLog`](https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog)）。
+**警告：** **Python语句`print`在任何多线程的代码中使用是不安全的**。这包括**表达式函数**，**渲染器**， **符号层**和**处理算法**（以及其他）。在这些情况下，你应该始终使用线程安全类（[`QgsLogger`](https://qgis.org/pyqgis/3.4/core/QgsLogger.html#qgis.core.QgsLogger) 或[`QgsMessageLog`](https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog)）。
 
-**小贴士：** 您可以在“ [日志消息”面板中](https://docs.qgis.org/3.4/en/docs/user_manual/introduction/general_tools.html#log-message-panel)看到[`QgsMessageLog`](https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog) 的输出
+**小贴士：** 你可以在“ [日志消息”面板中](https://docs.qgis.org/3.4/en/docs/user_manual/introduction/general_tools.html#log-message-panel)看到[`QgsMessageLog`](https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog) 的输出
 
-- [`QgsLogger`](https://qgis.org/pyqgis/3.4/core/QgsLogger.html#qgis.core.QgsLogger) 用于调试/开发人员的消息（比如，您怀疑它们是由某些异常代码触发的）
+- [`QgsLogger`](https://qgis.org/pyqgis/3.4/core/QgsLogger.html#qgis.core.QgsLogger) 用于调试/开发人员的消息（比如，你怀疑它们是由某些异常代码触发的）
 - [`QgsMessageLog`](https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog) 用于调查系统管理员消息（例如，帮助系统管理员修复配置）
 
 ---
@@ -2776,7 +2776,7 @@ QgsMessageLog.logMessage("Your plugin code has crashed!", level=Qgis.Critical)
 
 使用线程的后台处理，是在进行繁重处理时保持用户界面响应的一种方式。任务可用于在QGIS中实现线程。
 
-任务（[`QgsTask`](https://qgis.org/pyqgis/3.4/core/QgsTask.html#qgis.core.QgsTask)）是在后台执行代码的容器，任务管理（[`QgsTaskManager`](https://qgis.org/pyqgis/3.4/core/QgsTaskManager.html#qgis.core.QgsTaskManager)）用于控制任务的运行。这些类通过提供信号、进度报告和后台进程状态访问机制，简化了QGIS中的后台处理。可以使用子任务对任务进行分组。全局任务管理器（[`QgsApplication.taskManager()`](https://qgis.org/pyqgis/3.4/core/QgsApplication.html#qgis.core.QgsApplication.taskManager)）通常被使用。这意味着您的任务可能不是由任务管理器控制的唯一任务。
+任务（[`QgsTask`](https://qgis.org/pyqgis/3.4/core/QgsTask.html#qgis.core.QgsTask)）是在后台执行代码的容器，任务管理（[`QgsTaskManager`](https://qgis.org/pyqgis/3.4/core/QgsTaskManager.html#qgis.core.QgsTaskManager)）用于控制任务的运行。这些类通过提供信号、进度报告和后台进程状态访问机制，简化了QGIS中的后台处理。可以使用子任务对任务进行分组。全局任务管理器（[`QgsApplication.taskManager()`](https://qgis.org/pyqgis/3.4/core/QgsApplication.html#qgis.core.QgsApplication.taskManager)）通常被使用。这意味着你的任务可能不是由任务管理器控制的唯一任务。
 
 有几种方法可以创建QGIS任务：
 
@@ -3071,15 +3071,15 @@ Python插件与QGIS插件管理器中的C ++插件一起列出。他们在`~/(Us
 
 要创建插件，请执行以下步骤：
 
-1. *想法*：了解您想要使用新的QGIS插件做什么。你为什么要这么做？你想解决什么问题？这个问题已经有另一个插件吗？
+1. *想法*：了解你想要使用新的QGIS插件做什么。你为什么要这么做？你想解决什么问题？这个问题已经有另一个插件吗？
 2. *创建文件*：要点：一个起点`__init__.py`; 填写[插件元数据](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-metadata)`metadata.txt`。然后实现自己的设计。一个主要的Python插件体，例如`mainplugin.py`。可能是Qt Designer中的一个表单`form.ui`，带有它`resources.qrc`。
 3. *编写代码*：在里面写代码`mainplugin.py`
 4. *测试*：关闭并重新打开QGIS并再次导入插件。检查一切是否正常。
-5. *发布*：在QGIS存储库中发布您的插件或将您自己的存储库作为个人“GIS武器”的“武器库”。
+5. *发布*：在QGIS存储库中发布你的插件或将你自己的存储库作为个人“GIS武器”的“武器库”。
 
 ### 15.1.1 插件结构
 
-自从在QGIS中引入Python插件以来，出现了许多插件。QGIS团队维护一个[官方Python插件库](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)。您可以使用他们的源码来了解使用PyQGIS进行编程的更多信息，或者了解您是否在重复开发。
+自从在QGIS中引入Python插件以来，出现了许多插件。QGIS团队维护一个[官方Python插件库](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)。你可以使用他们的源码来了解使用PyQGIS进行编程的更多信息，或者了解你是否在重复开发。
 
 
   这是我们的示例插件的目录结构
@@ -3112,7 +3112,7 @@ PYTHON_PLUGINS_PATH/
 
 ### 15.1.2 插件内容
 
-在这里，您可以找到有关在上述文件结构中，每个文件需要添加内容的信息和示例。
+在这里，你可以找到有关在上述文件结构中，每个文件需要添加内容的信息和示例。
 
 #### metadata
 
@@ -3142,7 +3142,7 @@ PYTHON_PLUGINS_PATH/
 
 默认情况下，插件放在**插件菜单**中（我们将在下一节中看到如何为插件添加菜单项），但也可以将它们放入**Raster**，**Vector**， **Database**和**Web**菜单中。
 
-输入指定的“category”元数据，可以相应地对插件进行分类。此元数据用作提示用户，并告诉他们可以在哪里（在哪个菜单中）找到该插件。“category”的允许值为：Vector, Raster, Database or Web。例如，如果您的插件可以从Raster菜单中获得，请将其添加到`metadata.txt`
+输入指定的“category”元数据，可以相应地对插件进行分类。此元数据用作提示用户，并告诉他们可以在哪里（在哪个菜单中）找到该插件。“category”的允许值为：Vector, Raster, Database or Web。例如，如果你的插件可以从Raster菜单中获得，请将其添加到`metadata.txt`
 
 ```ini
 category=Raster
@@ -3208,8 +3208,8 @@ Python包需要此文件。此外，QGIS要求此文件包含一个`classFactory
 
 ```python
 def classFactory(iface):
-  from .mainPlugin import TestPlugin
-  return TestPlugin(iface)
+	from .mainPlugin import TestPlugin
+	return TestPlugin(iface)
 ```
 
 #### mainPlugin.py
@@ -3223,42 +3223,44 @@ from qgis.PyQt.QtWidgets import *
 # 从文件resources.py初始化Qt的资源
 from . import resources
 
+
 class TestPlugin:
 
-  def __init__(self, iface):
-    #保存QGIS interface引用
-    self.iface = iface
+    def __init__(self, iface):
+        # 保存QGIS interface引用
+        self.iface = iface
 
-  def  initGui （self ）：
-    #创建动作，它将启动插件配置
-    self.action = QAction(QIcon(":/plugins/testplug/icon.png"), "Test plugin", self.iface.mainWindow())
-    self.action.setObjectName("testAction")
-    self.action.setWhatsThis("Configuration for test plugin")
-    self.action.setStatusTip("This is status tip")
-    self.action.triggered.connect(self.run)
+    def initGui(self):
+        # 创建动作，它将启动插件配置
+        self.action = QAction(QIcon(":/plugins/testplug/icon.png"), "Test plugin", self.iface.mainWindow())
+        self.action.setObjectName("testAction")
+        self.action.setWhatsThis("Configuration for test plugin")
+        self.action.setStatusTip("This is status tip")
+        self.action.triggered.connect(self.run)
 
-    # 添加工具栏按钮和菜单项
-    self.iface.addToolBarIcon(self.action)
-    self.iface.addPluginToMenu("&Test plugins", self.action)
+        # 添加工具栏按钮和菜单项
+        self.iface.addToolBarIcon(self.action)
+        self.iface.addPluginToMenu("&Test plugins", self.action)
 
-    # 连接信号renderComplete——画布渲染完成后发送的信号 
-    self.iface.mapCanvas().renderComplete.connect(self.renderTest)
+        # 连接信号renderComplete——画布渲染完成后发送的信号
+        self.iface.mapCanvas().renderComplete.connect(self.renderTest)
 
-  def unload(self):
-    # 删除插件菜单项和图标
-    self.iface.removePluginMenu("&Test plugins", self.action)
-    self.iface.removeToolBarIcon(self.action)
+    def unload(self):
+        # 删除插件菜单项和图标
+        self.iface.removePluginMenu("&Test plugins", self.action)
+        self.iface.removeToolBarIcon(self.action)
 
-    # 断开信号
-    self.iface.mapCanvas().renderComplete.disconnect(self.renderTest)
+        # 断开信号
+        self.iface.mapCanvas().renderComplete.disconnect(self.renderTest)
 
-  def run(self):
-    #创建并显示一个配置对话框或类似的事情
-   print("TestPlugin: run called!")
+    def run(self):
+        # 创建并显示一个配置对话框或类似的事情
+        print("TestPlugin: run called!")
 
-   def renderTest(self, painter):
-    # 使用painter绘制地图画布
-    print("TestPlugin: renderTest called!")
+    def renderTest(self, painter):
+
+        # 使用painter绘制地图画布
+        print("TestPlugin: renderTest called!")
 ```
 
 主插件源文件中（例如 `mainPlugin.py`）必须存在的插件函数是：
@@ -3276,7 +3278,7 @@ class TestPlugin:
 
 它们都具有与[`addPluginToMenu`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)方法相同的语法 。
 
-建议将插件菜单添加到其中一个预定义方法，以保持插件条目组织方式的一致性。但是，您可以将自定义菜单组直接添加到菜单栏，如下面示例所示：
+建议将插件菜单添加到其中一个预定义方法，以保持插件条目组织方式的一致性。但是，你可以将自定义菜单组直接添加到菜单栏，如下面示例所示：
 
 ```python
 def initGui(self):
@@ -3302,7 +3304,7 @@ def unload(self):
 
 #### resources
 
-您可以看到在`initGui()`中我们使用了资源文件中的图标（在我们的案例中是`resources.qrc`）
+你可以看到在`initGui()`中我们使用了资源文件中的图标（在我们的案例中是`resources.qrc`）
 
 ```xml
 <RCC>
@@ -3312,13 +3314,13 @@ def unload(self):
 </RCC>
 ```
 
-最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则您可能会得到您不想要的资源。现在您只需要生成一个包含资源的Python文件。它是用**pyrcc5**命令完成的：
+最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则你可能会得到你不想要的资源。现在你只需要生成一个包含资源的Python文件。它是用**pyrcc5**命令完成的：
 
 ```shell
 pyrcc5 -o resources.py resources.qrc
 ```
 
-如果您已正确完成所有操作，则应该能够在插件管理器中查找并加载插件，在点击工具栏图标或相应的菜单项时，可以在控制台中查看到消息。
+如果你已正确完成所有操作，则应该能够在插件管理器中查找并加载插件，在点击工具栏图标或相应的菜单项时，可以在控制台中查看到消息。
 
 在处理真正的插件时，最好将插件写入另一个（工作）目录并创建一个makefile，它将生成UI +资源文件并将插件安装到QGIS安装中。
 
@@ -3332,11 +3334,11 @@ pyrcc5 -o resources.py resources.qrc
 
 ### 15.1.4 翻译
 
-通过几个步骤，您可以为插件本地化设置环境，以便根据计算机的区域设置，插件将以不同语言加载。
+通过几个步骤，你可以为插件本地化设置环境，以便根据计算机的区域设置，插件将以不同语言加载。
 
 #### 软件要求
 
-创建和管理所有翻译文件的最简单方法是安装 [Qt Linguist](https://doc.qt.io/qt-5/qtlinguist-index.html)。在基于Debian的GNU / Linux环境中，您可以安装它：
+创建和管理所有翻译文件的最简单方法是安装 [Qt Linguist](https://doc.qt.io/qt-5/qtlinguist-index.html)。在基于Debian的GNU / Linux环境中，你可以安装它：
 
 ```shell
 sudo apt-get install qttools5-dev-tools
@@ -3344,15 +3346,13 @@ sudo apt-get install qttools5-dev-tools
 
 #### 文件和目录
 
-创建插件时，您将在主插件目录中找到该文件夹`i18n`。
-
-**所有翻译文件都必须在此目录中。**
+创建插件时，你将在主插件目录中找到该文件夹`i18n`，**所有翻译文件都必须在此目录中。**
 
 #### .pro文件
 
-首先，您应该创建一个`.pro`文件，这是一个可以由**Qt Linguist**管理的*项目*文件。
+首先，你应该创建一个`.pro`文件，这是一个可以由**Qt Linguist**管理的*项目*文件。
 
-在此`.pro`文件中，您必须指定要翻译的所有文件和表单。此文件用于设置本地化文件和变量。一个项目文件，匹配我们的[示例插件](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-files-architecture)的结构 ：
+在此`.pro`文件中，你必须指定要翻译的所有文件和表单。此文件用于设置本地化文件和变量。一个项目文件，匹配我们的[示例插件](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-files-architecture)的结构 ：
 
 ```ini
 FORMS = ../form.ui
@@ -3360,7 +3360,7 @@ SOURCES = ../your_plugin.py
 TRANSLATIONS = your_plugin_it.ts
 ```
 
-您的插件可能遵循更复杂的结构，并且可能分布在多个文件中。如果是这种情况，请记住，使用`pylupdate5`读取`.pro`文件并更新可翻译字符串，这不会扩展通配符，因此您需要将每个文件显式放在`.pro`文件中。您的项目文件可能看起来像这样：
+你的插件可能遵循更复杂的结构，并且可能分布在多个文件中。如果是这种情况，请记住，使用`pylupdate5`读取`.pro`文件并更新可翻译字符串，这不会扩展通配符，因此你需要将每个文件显式放在`.pro`文件中。你的项目文件可能看起来像这样：
 
 ```ini
 FORMS = ../ui/about.ui ../ui/feedback.ui \
@@ -3369,13 +3369,13 @@ SOURCES = ../your_plugin.py ../computation.py \
           ../utils.py
 ```
 
-此外，`your_plugin.py`文件是*调用* QGIS工具栏中插件的所有菜单和子菜单的文件，您希望将它们全部翻译。
+此外，`your_plugin.py`文件是*调用* QGIS工具栏中插件的所有菜单和子菜单的文件，你希望将它们全部翻译。
 
-最后，使用*TRANSLATIONS*变量，您可以指定所需的翻译语言。
+最后，使用*TRANSLATIONS*变量，你可以指定所需的翻译语言。
 
 #### .ts文件
 
-创建完成后，`.pro`您就可`.ts`以为插件的语言生成文件了。
+创建完成后，`.pro`你就可`.ts`以为插件的语言生成文件了。
 
 打开终端，转到`your_plugin/i18n`目录并键入：
 
@@ -3389,7 +3389,7 @@ pylupdate5 your_plugin.pro
 
 #### .qm文件
 
-当您完成翻译插件时（如果某些字符串未完成，将使用这些字符串的源语言），您必须创建`.qm` 文件（编译文件`.ts`将被QGIS使用）。
+当你完成翻译插件时（如果某些字符串未完成，将使用这些字符串的源语言），你必须创建`.qm` 文件（编译文件`.ts`将被QGIS使用）。
 
 只需在`your_plugin/i18n`目录中打开终端cd 并输入：
 
@@ -3397,11 +3397,11 @@ pylupdate5 your_plugin.pro
 lrelease your_plugin.ts
 ```
 
-现在，在`i18n`目录中您将看到`your_plugin.qm`文件。
+现在，在`i18n`目录中你将看到`your_plugin.qm`文件。
 
 #### 使用MakeFile进行编译
 
-或者，如果您使用Plugin Builder创建了插件，则可以使用makefile从python代码和Qt对话框中提取消息。在Makefile的开头有一个LOCALES变量：
+或者，如果你使用Plugin Builder创建了插件，则可以使用makefile从python代码和Qt对话框中提取消息。在Makefile的开头有一个LOCALES变量：
 
 ```ini
 LOCALES = en
@@ -3413,13 +3413,13 @@ LOCALES = en
 LOCALES = en hu
 ```
 
-现在，您可以通过以下方式从源生成或更新`hu.ts`文件（以及其中的`en.ts`）：
+现在，你可以通过以下方式从源生成或更新`hu.ts`文件（以及其中的`en.ts`）：
 
 ```shell
 make transup
 ```
 
-在此之后，您已在LOCALES变量中更新`.ts`了所有语言的文件。使用**Qt Linguist**翻译程序消息。完成翻译后，`.qm`可以通过反编译创建：
+在此之后，你已在LOCALES变量中更新`.ts`了所有语言的文件。使用**Qt Linguist**翻译程序消息。完成翻译后，`.qm`可以通过反编译创建：
 
 ```shell
 make transcompile
@@ -3435,25 +3435,25 @@ make transcompile
 
 ### 15.1.5 提示和技巧
 
-### 插件重装载器
+#### 插件重装载器
 
-在开发插件期间，您经常需要在QGIS中重新加载它以进行测试。使用Plugin Reloader插件非常容易。您可以使用插件管理器中找到。
+在开发插件期间，你经常需要在QGIS中重新加载它以进行测试。使用Plugin Reloader插件非常容易。你可以使用插件管理器中找到。
 
-### 访问插件
+#### 访问插件
 
-您可以使用python从QGIS中访问所有已安装插件类，这可以方便调试：
+你可以使用python从QGIS中访问所有已安装插件类，这可以方便调试：
 
 ```python
 my_plugin = qgis.utils.plugins['My Plugin']
 ```
 
-### 日志消息
+#### 日志消息
 
 插件在“ [日志消息”面板中](https://docs.qgis.org/3.4/en/docs/user_manual/introduction/general_tools.html#log-message-panel)有自己的选项卡。
 
-### 分享你的插件
+#### 分享你的插件
 
-QGIS在插件存储库中托管了数百个插件。考虑分享你的插件！它将扩展QGIS，人们将能够从您的代码中学习。可以使用插件管理器在QGIS中找到并安装所有托管插件。
+QGIS在插件存储库中托管了数百个插件。考虑分享你的插件！它将扩展QGIS，人们将能够从你的代码中学习。可以使用插件管理器在QGIS中找到并安装所有托管插件。
 
 信息和要求：[plugins.qgis.org](https://plugins.qgis.org/)。
 
@@ -3482,8 +3482,7 @@ self.iface.unregisterMainWindowAction(self.keyAction)
 
 ```python
 def keyActionF7(self):
-  QMessageBox.information(self.iface.mainWindow(),"Ok", "You pressed F7")
-  
+	QMessageBox.information(self.iface.mainWindow(),"Ok", "You pressed F7")
 ```
 
 ### 15.2.2 如何切换图层
@@ -3501,24 +3500,24 @@ node.setItemVisibilityChecked(new_state)
 
 ```python
 def changeValue(self, value):
-  layer = self.iface.activeLayer()
-  if(layer):
-    nF = layer.selectedFeatureCount()
-    if (nF > 0):
-      layer.startEditing()
-      ob = layer.selectedFeaturesIds()
-      b = QVariant(value)
-      if (nF > 1):
-        for i in ob:
-        layer.changeAttributeValue(int(i), 1, b) # 1 是第二列
-      else:
-        layer.changeAttributeValue(int(ob[0]), 1, b) # 1 是第二列
-      layer.commitChanges()
+    layer = self.iface.activeLayer()
+    if (layer):
+        nF = layer.selectedFeatureCount()
+        if (nF > 0):
+            layer.startEditing()
+            ob = layer.selectedFeaturesIds()
+            b = QVariant(value)
+            if (nF > 1):
+                for i in ob:
+                    layer.changeAttributeValue(int(i), 1, b)  # 1 是第二列
+            else:
+                layer.changeAttributeValue(int(ob[0]), 1, b)  # 1 是第二列
+            layer.commitChanges()
+        else:
+            QMessageBox.critical(self.iface.mainWindow(), "Error",
+                                 "Please select at least one feature from current layer")
     else:
-      QMessageBox.critical(self.iface.mainWindow(), "Error",
-        "Please select at least one feature from current layer")
-  else:
-    QMessageBox.critical(self.iface.mainWindow(), "Error", "Please select a layer")
+        QMessageBox.critical(self.iface.mainWindow(), "Error", "Please select a layer")
 ```
 
 该方法需要一个参数（所选要素的属性字段的新值），可以通过调用以下方法：
@@ -3529,36 +3528,35 @@ self.changeValue(50)
 
 ## 15.3 使用插件图层
 
-如果您的插件使用自己的方法来渲染地图图层，那么基于QgsPluginLayer编写自己的图层类型可能是实现它的最佳方式。
+如果你的插件使用自己的方法来渲染地图图层，那么基于QgsPluginLayer编写自己的图层类型可能是实现它的最佳方式。
 
 下面是一个QgsPluginLayer实现的示例。它是[Watermark示例插件](https://github.com/sourcepole/qgis-watermark-plugin)的摘录
 
 ```python
 class WatermarkPluginLayer(QgsPluginLayer):
+    LAYER_TYPE = "watermark"
 
-  LAYER_TYPE="watermark"
+    def __init__(self):
+        QgsPluginLayer.__init__(self, WatermarkPluginLayer.LAYER_TYPE, "Watermark plugin layer")
+        self.setValid(True)
 
-  def __init__(self):
-    QgsPluginLayer.__init__(self, WatermarkPluginLayer.LAYER_TYPE, "Watermark plugin layer")
-    self.setValid(True)
-
-  def draw(self, rendererContext):
-    image = QImage("myimage.png")
-    painter = rendererContext.painter()
-    painter.save()
-    painter.drawImage(10, 10, image)
-    painter.restore()
-    return True
+    def draw(self, rendererContext):
+        image = QImage("myimage.png")
+        painter = rendererContext.painter()
+        painter.save()
+        painter.drawImage(10, 10, image)
+        painter.restore()
+        return True
 ```
 
 还可以添加项目文件特定信息的读取和写入方法
 
 ```python
 def readXml(self, node):
-  pass
+	pass
 
 def writeXml(self, node, doc):
-  pass
+	pass
 ```
 
 加载包含此类图层的项目时，需要工厂类
@@ -3566,21 +3564,21 @@ def writeXml(self, node, doc):
 ```python
 class WatermarkPluginLayerType(QgsPluginLayerType):
 
-  def __init__(self):
-    QgsPluginLayerType.__init__(self, WatermarkPluginLayer.LAYER_TYPE)
+    def __init__(self):
+        QgsPluginLayerType.__init__(self, WatermarkPluginLayer.LAYER_TYPE)
 
-  def createLayer(self):
-    return WatermarkPluginLayer()
+    def createLayer(self):
+        return WatermarkPluginLayer()
 ```
 
-您还可以添加一下代码，用于在图层属性中显示自定义信息
+你还可以添加一下代码，用于在图层属性中显示自定义信息
 
 ```python
 def showLayerProperties(self, layer):
-  pass
+	pass
 ```
 
-## 15.4 用于编写和调试插件的IDE设置
+## 15.4 编码与调试
 
 此小节描述过于复杂，请参见我的博客：[PyQGIS插件开发经验](<https://blog.csdn.net/this_is_id/article/details/90020197>)
 
@@ -3594,13 +3592,13 @@ def showLayerProperties(self, layer):
 
 为了分配这些算法，你应该创建一个新的插件，并将它们添加到处理工具箱。该插件应该包含一个算法提供者，它早插件实例化时进行注册。
 
-要从头开始创建一个插件，它包含一个算法提供者，您可以使用插件构造器，按照下列步骤操作：
+要从头开始创建一个插件，它包含一个算法提供者，你可以使用插件构造器，按照下列步骤操作：
 
 - 安装Plugin Builder插件
-- 使用Plugin Builder创建一个新的插件。当Plugin Builder要求您使用模板时，选择“Processing provide”。
+- 使用Plugin Builder创建一个新的插件。当Plugin Builder要求你使用模板时，选择“Processing provide”。
 - 创建的插件包含一个算法提供者。无论是提供文件和算法文件被完全注释，并包含有关如何修改提供者，并添加额外的算法的信息。参考它们以获取更多信息。
 
-如果你想添加您现有的插件来处理，你需要添加一些代码。
+如果你想添加你现有的插件来处理，你需要添加一些代码。
 
 在你的`metadata.txt`，你需要添加一个变量：
 
@@ -3631,10 +3629,10 @@ class YourPluginName():
         QgsApplication.processingRegistry().removeProvider(self.provider)
 ```
 
-您可以创建一个`processing_provider`文件夹，其中包含三个文件
+你可以创建一个`processing_provider`文件夹，其中包含三个文件
 
 - `__init__.py`没有任何东西。这是Python包所必需的。
-- `provider.py` 这将创建处理提供者并公开您的算法。
+- `provider.py` 这将创建处理提供者并公开你的算法。
 
 ```python
 from qgis.core import QgsProcessingProvider
@@ -3671,7 +3669,7 @@ class Provider(QgsProcessingProvider):
 
 - `example_processing_algorithm.py`，其中包含示例算法文件。复制/粘贴模板中的内容：[https](https://github.com/qgis/QGIS/blob/master/python/plugins/processing/script/ScriptTemplate.py)：[//github.com/qgis/QGIS/blob/master/python/plugins/processing/script/ScriptTemplate.py](https://github.com/qgis/QGIS/blob/master/python/plugins/processing/script/ScriptTemplate.py)
 
-现在，您可以在QGIS中重新加载插件，您应该在处理工具箱和吹模型中看到您的示例脚本。
+现在，你可以在QGIS中重新加载插件，你应该在处理工具箱和吹模型中看到你的示例脚本。
 
 # 17 网络分析库
 
