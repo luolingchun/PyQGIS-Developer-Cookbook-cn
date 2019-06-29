@@ -42,7 +42,7 @@ import qgis.utils
 
 自从引入对Python的支持以来，已经编写了许多涵盖各种功能的插件。插件安装程序允许用户轻松获取、升级和删除Python插件。有关插件和插件开发的更多信息，请参阅[Python插件](https://plugins.qgis.org/)页面。
 
-在Python中创建插件很简单，请参阅[开发Python插件](#15-开发python插件)以获取详细说明。
+在Python中创建插件很简单，请参阅[开发Python插件](#15 开发Python插件)以获取详细说明。
 
 ------
 
@@ -173,25 +173,25 @@ ImportError: libqgis_core.so.3.2.0: cannot open shared object file:No such file 
 
 # 2 加载项目
 
-有时你需要从插件加载现有项目，或者（更常见）在开发独立的QGIS Python应用程序时加载（请参阅：[Python应用程序](#14-python应用程序)）。
+有时你需要从插件加载现有项目，或者在开发独立的QGIS Python应用程序时加载（请参阅：[Python应用程序](#1.4 python应用程序)）。
 
-要将项目加载到当前QGIS应用程序中，你需要创建[`QgsProject`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject)该类的实例。这是一个单例类，因此你必须使用其[`instance()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.instance)方法来执行此操作。你可以调用其[`read()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.read)方法，传递要加载的项目的路径：
+将项目加载到当前QGIS应用程序中，需要创建[`QgsProject`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject)类的实例。这是一个单例类，因此你必须使用其[`instance()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.instance)方法来执行此操作。你可以调用[`read()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.read)方法，传递加载的项目的路径：
 
 ```python
-# 如果你不在QGIS控制台内，首先需要导入qgis和PyQt类，如下所示：
+# 如果你不在QGIS控制台内运行，首先需要导入qgis和PyQt类，如下所示：
 from qgis.core import QgsProject
 # 获取项目实例
 project = QgsProject.instance()
-# 打印当前项目的文件名（可能是空的情况下，没有项目已经加载）
+# 打印当前项目的文件名（可能为空，因为没有项目加载）
 print(project.fileName())
 '/home/user/projects/my_qgis_project.qgs'
 # 加载另一个项目
 project.read('/home/user/projects/my_other_qgis_project.qgs')
 print(project.fileName())
-'/home/user/projects/my_other_qgis_project.qgs'
+# '/home/user/projects/my_other_qgis_project.qgs'
 ```
 
-如果需要对项目进行修改（例如添加或删除某些图层）并保存更改，请调用[`write()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.write)项目实例的方法。该[`write()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.write)方法还接受将项目保存到新位置的可选路径：
+如果需要对项目进行修改（例如添加或删除某些图层）并保存更改，请调用[`write()`](https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.write)方法。该方法还支持将项目保存到新的位置：
 
 ```python
 # 将项目保存到同一个文件
@@ -200,7 +200,7 @@ project.write()
 project.write('/home/user/projects/my_new_qgis_project.qgs')
 ```
 
-read（）和write（）函数都返回一个布尔值，你可以使用它来检查操作是否成功。
+read()和write()函数都返回一个布尔值，你可以使用它来检查操作是否成功。
 
 ---
 
@@ -210,7 +210,7 @@ read（）和write（）函数都返回一个布尔值，你可以使用它来�
 
 ```python
 bridge = QgsLayerTreeMapCanvasBridge(QgsProject.instance().layerTreeRoot(), canvas)
-# 现在你可以安全地装载该项目，并看到它在画布上
+# 现在你可以安全地加载项目，并在画布上看到它
 project.read('/home/user/projects/my_other_qgis_project.qgs')
 ```
 
