@@ -216,7 +216,7 @@ project.read('/home/user/projects/my_other_qgis_project.qgs')
 
 # 3 加载图层
 
-此页面上的代码段需要导入以下模块：
+此页面上的代码片段需要导入以下模块：
 
 ```python
 import os # pyqgis控制台同样需要
@@ -245,10 +245,10 @@ if not vlayer.isValid():
 
 数据源标识符是一个字符串，它特定于每个矢量数据提供者。图层名称用于图层列表组件。检查图层是否已成功加载非常重要。如果不是，则返回无效的图层实例。
 
-对于地理矢量包图层：
+geopackage矢量图层：
 
 ```python
-# 获取地理数据包的路径，例如：/home/project/data/data.gpkg 
+# 获取geopackage的路径，例如：/home/project/data/data.gpkg 
 path_to_gpkg = os.path.join(QgsProject.instance().homePath(), "data", "data.gpkg")
 # 追加图层名称
 gpkg_places_layer = path_to_gpkg + "|layername=places"
@@ -258,7 +258,7 @@ if not vlayer.isValid():
 	print("图层加载失败！")
 ```
 
-在QGIS中打开并显示的矢量图层的最快方式是[`QgisInterface`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface)的 [`addVectorLayer()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addVectorLayer) 方法：
+在QGIS中打开并显示的矢量图层的最快方式是[`QgisInterface`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface)类的 [`addVectorLayer()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addVectorLayer) 方法：
 
 ```python
 vlayer = iface.addVectorLayer(path_to_ports_layer, "Ports layer", "ogr")
@@ -268,9 +268,9 @@ if not vlayer:
 
 这将创建一个新图层，并将其添加到当前QGIS项目中（使其显示在图层列表中）。该函数返回图层实例，如果无法加载图层则返回`None` 。
 
-以下列表显示了如何使用矢量数据提供者访问各种数据源：
+以下列表展示了如何使用矢量数据提供者访问各种数据源：
 
-- OGR库（Shapefile和许多其他文件格式）-数据源是文件的路径：
+- OGR库（Shapefile和许多其他文件格式）——数据源是文件的路径：
 
   - Shapefile：
 
@@ -285,7 +285,7 @@ if not vlayer:
     vlayer = QgsVectorLayer(uri, "layer_name_you_like", "ogr")
     ```
 
-- PostGIS数据库 - 数据源是一个字符串，其中包含创建与PostgreSQL数据库的连接所需的所有信息。
+- PostGIS数据库——数据源是一个字符串，其中包含创建与PostgreSQL数据库的连接所需的所有信息。
 
   [`QgsDataSourceUri`](https://qgis.org/pyqgis/master/core/QgsDataSourceUri.html#qgis.core.QgsDataSourceUri)类可以为你生成这个字符串。请注意，必须在编译QGIS时支持Postgres，否则此提供者不可用：
 
@@ -293,19 +293,18 @@ if not vlayer:
   uri = QgsDataSourceUri()
   # 设置host，端口，数据库名，用户名和密码
   uri.setConnection("localhost", "5432", "dbname", "johny", "xxx")
-  #设置数据库模式，表名，几何列和可选项
-  ＃子集 （WHERE 语句）
+  # 设置数据库schema，表名，几何列和可选项（WHERE 语句）
   uri.setDataSource("public", "roads", "the_geom", "cityid = 2643")
   vlayer = QgsVectorLayer(uri.uri(False), "layer name you like", "postgres")
   ```
-
-  ---
-
-  **小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展身份验证配置参数，如果你没有使用任何身份验证配置，则此参数不会产生任何差异。
-
-  ---
-
-- CSV或其他分隔的文本文件 - 打开一个用分号作为分隔符的文件，对于X坐标使用字段“x”，对于Y坐标使用字段“y”，你将使用以下内容：
+  
+---
+  
+**小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展认证配置参数，如果你没有使用任何身份验证配置，则此参数不会产生任何差异。
+  
+---
+  
+- CSV或其他分隔的文本文件——打开一个用分号作为分隔符的文件，X坐标使用字段“x”，Y坐标使用字段“y”：
 
   ```python
   uri = "/some/path/file.csv?delimiter={}&xField={}&yField={}".format(";", "x","y")
@@ -314,7 +313,7 @@ if not vlayer:
 
   ---
 
-  **小贴士：** 提供者的字符串作为URL，因此路径必须以file://为前缀。它还允许WKT（(well known text）格式几何作为`x`和`y`字段的替代，并允许指定坐标参考系统。例如：
+  **小贴士：** 提供者的字符串作为URL，因此路径必须以file://为前缀。它还允许WKT（(well known text）格式的几何作为`x`和`y`字段的替代，并允许指定坐标参考系统。例如：
 
   ```python
   uri = "file:///some/path/file.csv?delimiter={}&crs=epsg:4723&wktField={}".format(";", "shape")
@@ -322,14 +321,14 @@ if not vlayer:
 
   ---
 
-- GPX文件 - “gpx”数据提供者从gpx文件中读取轨道，路径和航点。要打开文件，需要将类型（track / route / waypoint）指定为url的一部分：
+- GPX文件——“gpx”数据提供者从gpx文件中读取轨道，路径和航点。要打开文件，需要将类型（track / route / waypoint）指定为url的一部分：
 
   ```python
   uri = "path/to/gpx/file.gpx?type=track"
   vlayer = QgsVectorLayer(uri, "layer name you like", "gpx")
   ```
 
-- SpatiaLite数据库 - 与PostGIS数据库类似， [`QgsDataSourceUri`](https://qgis.org/pyqgis/master/core/QgsDataSourceUri.html#qgis.core.QgsDataSourceUri)可用于生成数据源标识符：
+- SpatiaLite数据库——与PostGIS数据库类似， [`QgsDataSourceUri`](https://qgis.org/pyqgis/master/core/QgsDataSourceUri.html#qgis.core.QgsDataSourceUri)可用于生成数据源标识符：
 
   ```python
   uri = QgsDataSourceUri()
@@ -342,7 +341,7 @@ if not vlayer:
   vlayer = QgsVectorLayer(uri.uri(), display_name, 'spatialite')
   ```
 
-- 基于MySQL WKB的几何，通过OGR - 数据源是连接表的字符串：
+- 基于MySQL WKB的几何，通过OGR——数据源是表的连接字符串：
 
   ```python
   uri = "MySQL:dbname,host=localhost,port=3306,user=root,password=xxx|layername=my_table"
@@ -352,11 +351,11 @@ if not vlayer:
 - WFS连接：连接使用URI定义并使用`WFS`提供者：
 
   ```python
-  uri = "http://localhost:8080/geoserver/wfs?srsname=EPSG:23030&typename=union&˓→version=1.0.0&request=GetFeature&service=WFS",
+  uri = "http://localhost:8080/geoserver/wfs?srsname=EPSG:23030&typename=union&version=1.0.0&request=GetFeature&service=WFS",
   vlayer = QgsVectorLayer(uri, "my wfs layer", "WFS")
   ```
 
-  可以使用标准`urllib`库创建uri ：
+  可以使用标准库`urllib`创建uri ：
 
   ```python
   params = {
@@ -371,7 +370,7 @@ if not vlayer:
 
 ---
 
-**小贴士：** 可以通过调用[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)实例的 [`setDataSource()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.setDataSource) 更改现有图层的数据源，如下面的例子：
+**小贴士：** 可以通过调用[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)的 [`setDataSource()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.setDataSource) 方法更改现有图层的数据源，如下面的例子：
 
 ```python
 # vlayer是一个矢量图层，uri是一个QgsDataSourceUri实例
@@ -382,7 +381,7 @@ vlayer.setDataSource(uri.uri(), "layer name you like", "postgres")
 
 ## 3.2 栅格图层
 
-要访问栅格文件，用到了GDAL库。它支持多种文件格式。如果你在打开某些文件时遇到麻烦，请检查你的GDAL是否支持（默认情况下并非所有格式都可用）。要从文件加载栅格，需要指定其文件名和显示名称：
+访问栅格文件，用到了GDAL库。它支持多种文件格式。如果你在打开某些文件时遇到问题，请检查你的GDAL是否支持（默认情况下并非所有格式都可用）。从文件加载栅格，需要指定其文件名和显示名称：
 
 ```python
 # 获取tif文件的路径，例如：/home/project/data/srtm.tif 
@@ -392,10 +391,10 @@ if not rlayer.isValid():
 	print("图层加载失败！")
 ```
 
-从地理数据包中加载栅格：
+从geopackage中加载栅格：
 
 ```python
-# 获取地理数据包的路径，例如：/home/project/data/data.gpkg 
+# 获取geopackage的路径，例如：/home/project/data/data.gpkg 
 path_to_gpkg = os.path.join(QgsProject.instance().homePath(), "data", "data.gpkg")
 # gpkg_raster_layer = "GPKG:/home/project/data/data.gpkg:srtm"
 gpkg_raster_layer = "GPKG:" + path_to_gpkg + ":srtm"
@@ -424,21 +423,21 @@ rlayer = QgsRasterLayer(str(uri.encodedUri()), 'my wcs layer', 'wcs')
 
 以下是WCS URI可以包含的参数说明：
 
-WCS URI由**键=值**对组成，分隔符：`&`。它与URL中的查询字符串格式相同，编码方式相同。[`QgsDataSourceUri`](https://qgis.org/pyqgis/master/core/QgsDataSourceUri.html#qgis.core.QgsDataSourceUri) 应该用于构造URI以确保正确编码特殊字符。
+WCS URI由**键=值**对组成，分隔符：`&`。它与URL中的查询字符串格式相同，编码方式相同。[`QgsDataSourceUri`](https://qgis.org/pyqgis/master/core/QgsDataSourceUri.html#qgis.core.QgsDataSourceUri) 可以用于构造URI以确保正确编码特殊字符。
 
 - **url**（必填）：WCS服务器URL。不要在URL中使用VERSION，因为每个版本的WCS对**GetCapabilities** 版本使用不同的参数名称，请参阅param版本。
 - **identifier**（必填）：覆盖范围名称
-- **time**（可选）：时间位置或时间段（beginPosition / endPosition [/ timeResolution]）
+- **time**（可选）：时间位置或时间段（beginPosition / endPosition / timeResolution）
 - **format**（可选）：支持的格式名称。默认是第一个支持的格式，其名称为tif或第一个支持的格式。
-- **crs**（可选）：CRS格式为AUTHORITY：ID，例如，EPSG：4326。默认为EPSG：4326（如果支持）或第一个支持的CRS。
-- **username**（可选）：基本身份验证的用户**名**。
+- **crs**（可选）：CRS格式为AUTHORITY:ID，例如，EPSG:4326。默认为EPSG:4326（如果支持）或第一个支持的CRS。
+- **username**（可选）：基本身份验证的用户名。
 - **password**（可选）：基本身份验证的密码。
 - **IgnoreGetMapUrl**（可选，hack）：如果指定（设置为1），则忽略GetCapabilities公布的GetCoverage URL。如果未正确配置服务器，则可能需要。
 - **InvertAxisOrientation**（可选，hack）：如果指定（设置为1），则在GetCoverage请求中切换轴。如果服务器使用错误的轴顺序，则可能需要地理CRS。
 - **IgnoreAxisOrientation**（可选，hack）：如果指定（设置为1），则不要根据地理CRS的WCS标准反转轴方向。
 - **cache**（可选）：缓存加载控制，如QNetworkRequest :: CacheLoadControl中所述，但如果使用AlwaysCache失败，请求将重新发送为PreferCache。允许的值：AlwaysCache，PreferCache，PreferNetwork，AlwaysNetwork。默认为AlwaysCache。
 
-另外，你可以从WMS服务器加载栅格图层。但是目前无法从API访问GetCapabilities响应 - 你必须知道所需的图层：
+另外，你可以从WMS服务器加载栅格图层。但是目前无法从API访问GetCapabilities响应——你必须知道所需的图层：
 
 ```python
 urlWithParams = 'url=http://irs.gis-lab.info/?layers=landsat&styles=&format=image/jpeg&crs=EPSG:4326'
@@ -449,9 +448,9 @@ if not rlayer.isValid():
 
 ## 3.3 QgsProject 实例
 
-如果你想使用打开的图层进行渲染，请不要忘记将它们添加到[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例中。该[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例获取图层的所有权，稍后可以通过其唯一ID从应用程序的任何部分访问它们。从项目中删除图层时，它也会被删除。用户可以在QGIS界面中删除图层，也可以使用该[`removeMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.removeMapLayer)方法通过Python删除图层。
+如果你想使用打开的图层进行渲染，请不要忘记将它们添加到[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例中。[`QgsProject`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject)实例获取图层的所有权，可以通过其唯一ID从应用程序的任何部分访问它们。从项目中删除图层时，它也会被删除。用户可以在QGIS界面中删除图层，也可以使用[`removeMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.removeMapLayer)方法通过Python删除图层。
 
-使用以下[`addMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.addMapLayer)方法将图层添加到当前项目：
+使用[`addMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.addMapLayer)方法将图层添加到当前项目：
 
 ```python
 QgsProject.instance().addMapLayer(rlayer)
@@ -468,7 +467,7 @@ layerTree = iface.layerTreeCanvasBridge().rootGroup()
 layerTree.insertChildNode(-1, QgsLayerTreeLayer(rlayer))
 ```
 
-如果要删除图层，使用以下[`removeMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.removeMapLayer)方法：
+如果要删除图层，使用[`removeMapLayer()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.removeMapLayer)方法：
 
 ```python
 QgsProject.instance().removeMapLayer(rlayer.id())
@@ -476,7 +475,7 @@ QgsProject.instance().removeMapLayer(rlayer.id())
 
 在上面的代码中，传递了图层ID（你可以调用图层的[`id()`](https://qgis.org/pyqgis/master/core/QgsMapLayer.html#qgis.core.QgsMapLayer.id)方法），但你也可以传递图层对象本身。
 
-有关已加载图层和图层ID的列表，使用[`mapLayers()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.mapLayers)方法：
+获取已加载图层和图层ID的列表，使用[`mapLayers()`](https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject.mapLayers)方法：
 
 ```python
 QgsProject.instance().mapLayers()
@@ -2767,6 +2766,168 @@ QgsMessageLog.logMessage("Your plugin code has crashed!", level=Qgis.Critical)
 ---
 
 # 13 认证基础
+
+## 13.1 介绍
+
+认证基础结构的用户参考可以在用户手册的[“认证系统概述”](https://docs.qgis.org/3.4/en/docs/user_manual/auth_system/auth_overview.html#authentication-overview)中阅读。
+
+本章是描述从开发人员角度使用认证系统的最佳实践。
+
+以下大多数代码段都源自Geoserver Explorer插件及其测试的代码。这是第一个使用认证基础结构的插件。可以在此[链接中](https://github.com/boundlessgeo/qgis-geoserver-plugin)找到插件代码及其测试 。可以从认证基础结构[测试代码中](https://github.com/qgis/QGIS/blob/master/tests/src/python/test_qgsauthsystem.py)读取其他良好的代码引用
+
+## 13.2 词汇表
+
+以下是本章中最常见对象的一些定义。
+
+- 主密码
+
+  允许访问和解密存储在QGIS Authentication DB中的凭据的密码
+
+- 认证数据库
+
+  一个[主密码](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-master-password)加密后的SQLite数据库`qgis-auth.db` ，其中[认证配置](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-configuration)被存储再这里。例如用户/密码，个人证书和密钥，证书颁发机构
+
+- 认证数据库
+
+  [认证数据库](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-database)
+
+- 验证配置
+
+  一组身份验证数据，取决于[身份验证方法](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method)。例如，基本认证方法存储一对用户/密码。
+
+- 验证配置
+
+  [验证配置](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-configuration)
+
+- 认证方法
+
+  用于获取认证的特定方法。每种方法都有自己的协议用于获得经过验证的级别。每个方法都实现作为在QGIS认证基础结构初始化期间动态加载的共享库。
+
+## 13.3 QgsAuthManager入口
+
+单例类[`QgsAuthManager`](https://qgis.org/pyqgis/3.4/core/QgsAuthManager.html#qgis.core.QgsAuthManager)是使用存储在加密QGIS证书 [认证DB](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-db)的入口，即，活动[配置文件](https://docs.qgis.org/3.4/en/docs/user_manual/introduction/qgis_configuration.html#user-profiles)文件夹下的`qgis-auth.db`文件。
+
+此类负责用户交互：通过要求设置主密码或透明地使用它来访问加密的存储信息。
+
+### 13.3.1 初始化管理器并设置主密码
+
+以下代码段提供了一个示例，用于设置主密码以打开对身份验证设置的访问权限。代码注释对于理解代码非常重要。
+
+```python
+authMgr = QgsApplication.authManager()
+# 检查QgsAuthManager是否已经初始化... QgsAuthManager.init()的副作用是设置了AuthDbPath。
+# QgsAuthManager.init()在QGIS应用程序初始化期间执行，因此通常不需要直接调用它。
+if authMgr.authenticationDatabasePath():
+    if authMgr.masterPasswordIsSet():
+        msg = 'Authentication master password not recognized'
+        assert authMgr.masterPasswordSame( "your master password" ), msg
+    else:
+        msg = 'Master password could not be set'
+        # 验证参数检查密码的哈希是否已保存在身份验证数据库中
+        assert authMgr.setMasterPassword( "your master password",verify=True), msg
+else:
+    # 在qgis环境之外，例如在测试环境中=>在数据库初始化之前设置环境变量
+    os.environ['QGIS_AUTH_DB_DIR_PATH'] = "/path/where/located/qgis-auth.db"
+    msg = 'Master password could not be set'
+    assert authMgr.setMasterPassword("your master password", True), msg
+    authMgr.init( "/path/where/located/qgis-auth.db" )
+```
+
+### 13.3.2 使用新的认证配置项填充认证数据库
+
+任何存储的凭证都是[`QgsAuthMethodConfig`](https://qgis.org/pyqgis/3.4/core/QgsAuthMethodConfig.html#qgis.core.QgsAuthMethodConfig)类的[认证配置](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-configuration)实例——使用唯一字符串访问：
+
+```python
+authcfg = 'fm1s770'
+```
+
+使用QGIS API或GUI创建条目时会自动生成该字符串。
+
+[`QgsAuthMethodConfig`](https://qgis.org/pyqgis/3.4/core/QgsAuthMethodConfig.html#qgis.core.QgsAuthMethodConfig)是任何[认证方法](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method)的基类。任何认证方法集都会配置哈希映射，其中存储身份验证信息。此后是一个有用的代码片段，用于存储假设alice用户的PKI路径凭据：
+
+```python
+authMgr = QgsApplication.authManager()
+# 设置 alice PKI 数据
+p_config = QgsAuthMethodConfig()
+p_config.setName("alice")
+p_config.setMethod("PKI-Paths")
+p_config.setUri("https://example.com")
+p_config.setConfig("certpath", "path/to/alice-cert.pem" )
+p_config.setConfig("keypath", "path/to/alice-key.pem" )
+# 检查方法参数是否正确设置
+assert p_config.isValid()
+
+# 在认证数据库中注册alice数据，返回存储的‘authcfg’配置
+authMgr.storeAuthenticationConfig(p_config)
+newAuthCfgId = p_config.id()
+assert (newAuthCfgId)
+```
+
+#### 可用的认证方法
+
+[认证方法](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method)在身份验证管理器初始化时动态加载。认证方法列表可能因QGIS版本演变而异，但原始的可用方法列表如下：
+
+1. `Basic` 用户和密码验证
+2. `Identity-Cert` 身份证书身份验证
+3. `PKI-Paths` PKI路径认证
+4. `PKI-PKCS#12` PKI PKCS＃12认证
+
+上述字符串用于标识QGIS认证系统中的认证方法。在[开发](https://www.qgis.org/en/site/getinvolved/development/index.html)部分中描述了如何创建新的c ++ [认证方法](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method)。
+
+#### 填充权限
+
+```python
+from qgis.PyQt.QtNetwork import QSslCertificate, QSslKey, QSsl
+
+authMgr = QgsApplication.authManager()
+# 添加权限
+cacerts = QSslCertificate.fromPath( "/path/to/ca_chains.pem" )
+assert cacerts is not None
+# 存储 CA
+authMgr.storeCertAuthorities(cacerts)
+# 重建 CA 缓存
+authMgr.rebuildCaCertsCache()
+authMgr.rebuildTrustedCaCertsCache()
+```
+
+---
+
+**警告**
+
+由于QT4 / OpenSSL接口限制，更新的缓存CA仅在一分钟后才暴露给OpenSsl。希望这将在QT5身份验证基础架构中得到解决。
+
+---
+
+#### 使用QgsPkiBundle管理PKI包
+
+包含在SslCert，SslKey和CA链上组成的PKI包的类是[`QgsPkiBundle`](https://qgis.org/pyqgis/3.4/core/QgsPkiBundle.html#qgis.core.QgsPkiBundle)。以下是获取密码保护的代码片段：
+
+```python
+# 密钥与密码一起添加alice证书
+boundle = QgsPkiBundle.fromPemPaths( "/path/to/alice-cert.pem",
+                                     "/path/to/alice-key_w-pass.pem",
+                                     "unlock_pwd",
+                                     [])
+assert boundle is not None
+assert boundle.isValid()
+```
+
+请参阅[`QgsPkiBundle`](https://qgis.org/pyqgis/3.4/core/QgsPkiBundle.html#qgis.core.QgsPkiBundle)类文档从包中提取证书/密钥/ CA.
+
+### 13.3.3 从认证数据库中删除记录
+
+我们可以使用以下代码段使用`authcfg`标识符从[认证数据库中](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-database)删除记录：
+
+```python
+authMgr = QgsApplication.authManager()
+authMgr.removeAuthenticationConfig( "authCfg_Id_to_remove" )
+```
+
+## 13.2 [Adapt plugins to use Authentication infrastructure](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/authentication.html#id23)
+
+**TODO**
+
+## 13.4 [Authentication GUIs](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/authentication.html#id24)
 
 **TODO**
 
