@@ -299,11 +299,11 @@ if not vlayer:
   ```
   
 ---
-  
+
 **小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展认证配置参数，如果你没有使用任何身份验证配置，则此参数不会产生任何差异。
-  
+
 ---
-  
+
 - CSV或其他分隔的文本文件——打开一个用分号作为分隔符的文件，X坐标使用字段“x”，Y坐标使用字段“y”：
 
   ```python
@@ -483,7 +483,7 @@ QgsProject.instance().mapLayers()
 
 # 4 使用栅格图层
 
-如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+此页面上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -495,9 +495,9 @@ QgsSingleBandPseudoColorRenderer
 
 ## 4.1 图层细节
 
-栅格图层由一个或多个栅格波段组成 - 称为单波段和多波段栅格。一个波段代表一个值矩阵。彩色图像（例如航拍照片）是由红色，蓝色和绿色波段组成。单波段栅格通常表示连续变量（例如高程）或离散变量（例如土地使用）。在某些情况下，栅格图层带有调色板，栅格值指的是调色板中存储的颜色。
+栅格图层由一个或多个栅格波段组成——简称为单波段和多波段栅格。一个波段代表一个值矩阵。彩色图像（例如航片）是由红色，蓝色和绿色波段组成。单波段栅格通常表示连续变量（例如高程）或离散变量（例如土地使用）。在某些情况下，栅格图层带有调色板，栅格值指的是调色板中存储的颜色。
 
-以下代码假定`rlayer`是一个 [`QgsRasterLayer`](https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer)对象。
+以下代码假设`rlayer`是一个 [`QgsRasterLayer`](https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer)对象。
 
 ```python
 rlayer = QgsProject.instance().mapLayersByName('srtm')[0]
@@ -521,11 +521,11 @@ rlayer.metadata()
 '<qgis._core.QgsLayerMetadata object at 0x13711d558>'
 ```
 
-## 4.2 渲染
+## 4.2 渲染器
 
 加载栅格图层时，它会根据其类型获取默认渲染器。它可以在图层属性中更改，也可以通过编程方式更改。
 
-要查询当前渲染器：
+查询当前渲染器：
 
 ```python
 rlayer.renderer()
@@ -572,7 +572,7 @@ rlayer.setRenderer(renderer)
 
 上面代码的数值`1`是波段号（栅格波段的一个索引）。
 
-最后我们必须使用该 [`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint)方法来查看结果：
+最后我们必须使用[`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint)方法来查看结果：
 
 ```python
 rlayer.triggerRepaint()
@@ -588,9 +588,9 @@ rlayer_multi.renderer().setGreenBand(1)
 rlayer_multi.renderer().setRedBand(2)
 ```
 
-如果只需要一个波段来实现光栅的可视化，则可以选择单波段绘制，灰度级或伪彩色。
+如果只需要一个波段来实现光栅的可视化，则可以选择单波段绘制，单波段灰度或单波段伪彩色。
 
-我们必须使用[`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint) 更新地图并查看结果：
+我们必须使用[`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint)更新地图并查看结果：
 
 ```python
 rlayer.triggerRepaint()
@@ -598,7 +598,7 @@ rlayer.triggerRepaint()
 
 ## 4.3 查询值
 
-查询栅格值的第一种方法是使用 [`QgsRasterDataProvider`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider)的[`sample`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample)方法查询。你必须指定栅格图层的[`QgsPointXY`](https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY)的和波段号。该方法返回一个value和result（true或false）：
+查询栅格值的第一种方法是使用 [`QgsRasterDataProvider`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider)的[`sample`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample)方法查询。你必须指定栅格图层的[`QgsPointXY`](https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY)和波段号。该方法返回一个value和result（true或false）：
 
 ```python
 val, res = rlayer.dataProvider().sample(QgsPointXY(20.50, -34), 1)
