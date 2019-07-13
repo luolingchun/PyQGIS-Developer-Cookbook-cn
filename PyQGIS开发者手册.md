@@ -298,11 +298,11 @@ if not vlayer:
   vlayer = QgsVectorLayer(uri.uri(False), "layer name you like", "postgres")
   ```
   
----
-
-**小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展认证配置参数，如果你没有使用任何身份验证配置，则此参数不会产生任何差异。
-
----
+  ---
+  
+  **小贴士：** `uri.uri(False)`中的`False`参数可以防止扩展认证配置参数，如果你没有使用任何身份验证配置，则此参数不会产生任何差异。
+  
+  ---
 
 - CSV或其他分隔的文本文件——打开一个用分号作为分隔符的文件，X坐标使用字段“x”，Y坐标使用字段“y”：
 
@@ -483,7 +483,7 @@ QgsProject.instance().mapLayers()
 
 # 4 使用栅格图层
 
-此页面上的代码段需要导入以下模块：
+如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -495,9 +495,9 @@ QgsSingleBandPseudoColorRenderer
 
 ## 4.1 图层细节
 
-栅格图层由一个或多个栅格波段组成——简称为单波段和多波段栅格。一个波段代表一个值矩阵。彩色图像（例如航片）是由红色，蓝色和绿色波段组成。单波段栅格通常表示连续变量（例如高程）或离散变量（例如土地使用）。在某些情况下，栅格图层带有调色板，栅格值指的是调色板中存储的颜色。
+栅格图层由一个或多个栅格波段组成 - 称为单波段和多波段栅格。一个波段代表一个值矩阵。彩色图像（例如航拍照片）是由红色，蓝色和绿色波段组成。单波段栅格通常表示连续变量（例如高程）或离散变量（例如土地使用）。在某些情况下，栅格图层带有调色板，栅格值指的是调色板中存储的颜色。
 
-以下代码假设`rlayer`是一个 [`QgsRasterLayer`](https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer)对象。
+以下代码假定`rlayer`是一个 [`QgsRasterLayer`](https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer)对象。
 
 ```python
 rlayer = QgsProject.instance().mapLayersByName('srtm')[0]
@@ -521,11 +521,11 @@ rlayer.metadata()
 '<qgis._core.QgsLayerMetadata object at 0x13711d558>'
 ```
 
-## 4.2 渲染器
+## 4.2 渲染
 
 加载栅格图层时，它会根据其类型获取默认渲染器。它可以在图层属性中更改，也可以通过编程方式更改。
 
-查询当前渲染器：
+要查询当前渲染器：
 
 ```python
 rlayer.renderer()
@@ -572,7 +572,7 @@ rlayer.setRenderer(renderer)
 
 上面代码的数值`1`是波段号（栅格波段的一个索引）。
 
-最后我们必须使用[`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint)方法来查看结果：
+最后我们必须使用该 [`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint)方法来查看结果：
 
 ```python
 rlayer.triggerRepaint()
@@ -588,9 +588,9 @@ rlayer_multi.renderer().setGreenBand(1)
 rlayer_multi.renderer().setRedBand(2)
 ```
 
-如果只需要一个波段来实现光栅的可视化，则可以选择单波段绘制，单波段灰度或单波段伪彩色。
+如果只需要一个波段来实现光栅的可视化，则可以选择单波段绘制，灰度级或伪彩色。
 
-我们必须使用[`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint)更新地图并查看结果：
+我们必须使用[`triggerRepaint`](https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint) 更新地图并查看结果：
 
 ```python
 rlayer.triggerRepaint()
@@ -598,7 +598,7 @@ rlayer.triggerRepaint()
 
 ## 4.3 查询值
 
-查询栅格值的第一种方法是使用 [`QgsRasterDataProvider`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider)的[`sample`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample)方法查询。你必须指定栅格图层的[`QgsPointXY`](https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY)和波段号。该方法返回一个value和result（true或false）：
+查询栅格值的第一种方法是使用 [`QgsRasterDataProvider`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider)的[`sample`](https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample)方法查询。你必须指定栅格图层的[`QgsPointXY`](https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY)的和波段号。该方法返回一个value和result（true或false）：
 
 ```python
 val, res = rlayer.dataProvider().sample(QgsPointXY(20.50, -34), 1)
@@ -616,9 +616,9 @@ if ident.isValid():
 
 # 5 使用矢量图层
 
-本节总结了可以使用矢量图层执行各种操作。
+本节总结了使用矢量图层执行各种操作。
 
-这里的大部分工作都是基于[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)类的方法。
+这里的大部分工作都是基于类[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)的方法。
 
 ## 5.1 检索相关属性信息
 
@@ -632,7 +632,7 @@ for field in layer.fields():
 
 ## 5.2 遍历矢量图层
 
-迭代矢量图层中的要素是最常见的任务之一。下面是执行此任务的简单基本代码示例，并显示有关每个功能的一些信息。该`layer`变量被假定为具有一个[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)对象。
+迭代矢量图层要素是最常见的任务之一。下面是执行此任务的简单基本代码示例，并显示有关每个功能的一些信息。`layer`变量被假定为一个[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)对象。
 
 ```python
 layer = iface.activeLayer()
@@ -676,7 +676,7 @@ for feature in features:
 
 ## 5.3 选择要素
 
-在QGIS桌面中，可以通过不同方式选择要素：用户可以单击要素，在地图画布上绘制矩形或使用表达式过滤器。所选要素通常以不同颜色突出显示（默认为黄色），以引起用户对选择的注意。
+在QGIS桌面中，可以通过不同方式选择要素：用户可以单击要素、在地图画布上绘制矩形或使用表达式过滤器。所选要素通常以不同颜色突出显示（默认为黄色），以引起用户对已选要素的注意。
 
 有时，以编程方式选择要素或更改默认颜色会很有用。
 
@@ -688,7 +688,7 @@ layer = iface.activeLayer()
 layer.selectAll()
 ```
 
-要使用表达式进行选择，使用[selectByExpression()](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.selectByExpression)方法：
+使用表达式进行选择，使用[selectByExpression()](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.selectByExpression)方法：
 
 ```python
 # 假设当前图层是来自QGIS测试套件的points.shp文件
@@ -700,7 +700,7 @@ layer.selectByExpression('"Class"=\'B52\' and "Heading" > 10 and "Heading" <70',
 更改选择颜色，可以使用[`QgsMapCanvas`](https://qgis.org/pyqgis/master/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)的[`setSelectionColor()`](https://qgis.org/pyqgis/master/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas.setSelectionColor)方法 ：
 
 ```python
-iface.mapCanvas().setSelectionColor( QColor("red") )
+iface.mapCanvas().setSelectionColor(QColor("red"))
 ```
 
 为给定图层的所选要素列表添加要素，你可以调用[`select()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.select)添加到要素ID列表：
@@ -708,11 +708,11 @@ iface.mapCanvas().setSelectionColor( QColor("red") )
 ```python
 selected_fid  =  []
 
-#获取从层的第一功能要素ID 
+# 获取图层的第一个要素ID 
 for feature in layer.getFeatures():
     selected_fid.append(feature.id())
     break
-#将这些功能添加到选定的列表
+# 将这些要素添加到选定的列表
 layer.select(selected_fid)
 ```
 
@@ -730,11 +730,10 @@ layer.removeSelection()
 print(feature['name'])
 ```
 
-或者，可以通过索引引用属性。这比使用名称快一点。例如，要获取第一个属性：
+或者，可以通过索引引用属性。这比使用名称快一点。例如，获取第一个属性：
 
 ```python
 print(feature[0])
-
 ```
 
 ### 5.3.2 遍历选中的要素
@@ -746,12 +745,11 @@ selection = layer.selectedFeatures()
 print(len(selection))
 for feature in selection:
     #做任何你需要的功能
-
 ```
 
 ### 5.3.3 遍历一部分要素
 
-如果要迭代层中特定的要素子集（例如给定区域内的要素），则必须添加[`QgsFeatureRequest`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest)对象到[`getFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.getFeatures)。下面是一个例子：
+如果要迭代图层中特定的要素子集（例如给定区域内的要素），则必须添加[`QgsFeatureRequest`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest)对象到[`getFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.getFeatures)方法。下面是一个例子：
 
 ```python
 areaOfInterest = QgsRectangle(450290,400520, 450750,400780)
@@ -760,68 +758,62 @@ request = QgsFeatureRequest().setFilterRect(areaOfInterest)
 
 for feature in layer.getFeatures(request):
     #使用该功能执行任何操作
-
 ```
 
-为了速度，交叉点通常仅使用要素的边界(bbox)来完成。但是有一个标志`ExactIntersect`可以确保只返回相交的要素：
+为了速度，交叉点通常仅使用要素的范围(bbox)来完成。但是有一个标志`ExactIntersect`可以确保只返回相交的要素：
 
 ```python
 request = QgsFeatureRequest().setFilterRect(areaOfInterest).setFlags(QgsFeatureRequest.ExactIntersect)
-
 ```
 
-使用[`setLimit()`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest.setLimit)你可以限制用户要求的功能数量。下面是一个例子：
+使用[`setLimit()`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest.setLimit)你可以限制用户要素的数量。下面是一个例子：
 
 ```python
 request = QgsFeatureRequest()
 request.setLimit(2)
 for feature in layer.getFeatures(request):
     #循环只有2个要素
-
 ```
 
-如果你需要一个基于属性的过滤器来代替（或另外）一个空间过滤器，如上面的例子中所示，你可以构建一个[`QgsExpression`](https://qgis.org/pyqgis/master/core/QgsExpression.html#qgis.core.QgsExpression)对象并将其传递给[`QgsFeatureRequest`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest)构造函数。下面是一个例子：
+如果你需要一个基于属性的过滤器来代替（或另外）一个空间过滤器，如上面的例子所示，你可以构建一个[`QgsExpression`](https://qgis.org/pyqgis/master/core/QgsExpression.html#qgis.core.QgsExpression)对象并将其传递给[`QgsFeatureRequest`](https://qgis.org/pyqgis/master/core/QgsFeatureRequest.html#qgis.core.QgsFeatureRequest)函数。下面是一个例子：
 
 ```python
-#表达式将过滤字段“location_name” 
-#包含单词“Lake”（不区分大小写）
-exp = QgsExpression('location_name ILIKE \'%Lake%\'')
+# 表达式将过滤字段“location_name” 
+# 包含单词“Lake”（不区分大小写）
+exp = QgsExpression("location_name ILIKE \'%Lake%\'")
 request = QgsFeatureRequest(exp)
-
 ```
 
-有关支持的语法（[`QgsExpression`](https://qgis.org/pyqgis/master/core/QgsExpression.html#qgis.core.QgsExpression)）的详细信息，请参阅[表达式，过滤和计算值](#)。
+有关支持语法（[`QgsExpression`](https://qgis.org/pyqgis/master/core/QgsExpression.html#qgis.core.QgsExpression)）的详细信息，请参阅[表达式，过滤和计算值](#10 表达式，过滤和计算值)。
 
 该请求可用于定义为每个要素的数据检索，因此迭代器返回所有要素，但返回每个要素的部分数据。
 
 ```python
-#仅返回选定的字段以增加请求
+# 仅返回选定的字段以增加请求
 request.setSubsetOfAttributes([0,2])
 
-#更多用户友好的版本
+# 更多用户友好的版本
 request.setSubsetOfAttributes(['name','id'],layer.fields())
 
-#不返回几何对象以增加请求
+# 不返回几何对象以增加请求
 request.setFlags(QgsFeatureRequest.NoGeometry)
 
-#仅获取ID为45的功能
+# 仅获取ID为45的要素
 request.setFilterFid(45)
 
-#这些选项可以是链式的
+# 这些选项可以是链式的
 request.setFilterRect(areaOfInterest).setFlags(QgsFeatureRequest.NoGeometry).setFilterFid(45).setSubsetOfAttributes([0,2])
-
 ```
 
 ## 5.4 修改矢量图层
 
-大多数矢量数据提供者都支持编辑图层数据。有时它们仅支持编辑子集。使用该[`capabilities()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.capabilities)功能可以找出支持的功能集。
+大多数矢量数据提供者都支持编辑图层数据。有时它们仅支持编辑子集。使用[`capabilities()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.capabilities)功能可以找出支持的功能集。
 
 ```python
 caps = layer.dataProvider().capabilities()
-#检查是否支持特定功能：
+# 检查是否支持特定功能：
 if caps & QgsVectorDataProvider.DeleteFeatures:
     print('The layer supports DeleteFeatures')
-
 ```
 
 有关所有可用功能的列表，请参阅 ：[`API Documentation of QgsVectorDataProvider`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider)
@@ -835,7 +827,6 @@ caps_string = layer.dataProvider().capabilitiesString()
 # Delete Attributes, Rename Attributes, Fast Access to Features at ID,
 # Presimplify Geometries, Presimplify Geometries with Validity Check,
 # Transactions, Curved Geometries'
-
 ```
 
 通过使用以下任何方法进行矢量图层编辑，更改将直接提交到基础数据存储（文件，数据库等）。如果你只想进行临时更改，请跳到下一节[5.4.4 使用编辑缓冲区修改矢量图层](#5.4.4 使用编辑缓冲区修改矢量图层)。
@@ -845,12 +836,11 @@ caps_string = layer.dataProvider().capabilitiesString()
 **小贴士：**如果你在QGIS内部（从控制台或从插件中），可能需要强制重绘地图画布，以便查看你对几何、样式或属性所做的更改：
 
 ```python
-# 如果启用了缓存，简单的画布刷新可能不足以触发重绘，并且必须清除层的缓存图像。
+# 如果启用了缓存，简单的画布刷新可能不足以触发重绘，并且必须清除图层的缓存图像。
 if iface.mapCanvas().isCachingEnabled():
     layer.triggerRepaint()
 else:
     iface.mapCanvas().refresh()
-
 ```
 
 ------
@@ -865,12 +855,11 @@ else:
 if caps & QgsVectorDataProvider.AddFeatures:
     feat = QgsFeature(layer.fields())
     feat.setAttributes([0, 'hello'])
-    #或按key或index设置单个属性：
+    # 或按key或index设置单个属性：
     feat.setAttribute('name', 'hello')
     feat.setAttribute(0, 'hello')
     feat.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(123, 456)))
     (res, outFeats) = layer.dataProvider().addFeatures([feat])
-
 ```
 
 ### 5.4.2 删除要素
@@ -880,7 +869,6 @@ if caps & QgsVectorDataProvider.AddFeatures:
 ```python
 if caps & QgsVectorDataProvider.DeleteFeatures:
     res = layer.dataProvider().deleteFeatures([5, 10])
-
 ```
 
 ### 5.4.3 修改要素
@@ -888,7 +876,7 @@ if caps & QgsVectorDataProvider.DeleteFeatures:
 可以更改要素的几何图形或更改某些属性。以下示例首先更改索引为0和1的属性值，然后更改要素的几何。
 
 ```python
-fid = 100  #我们将修改的要素ID
+fid = 100  # 我们将修改的要素ID
 
 if caps & QgsVectorDataProvider.ChangeAttributeValues:
     attrs = { 0 : "hello", 1 : 123 }
@@ -897,7 +885,6 @@ if caps & QgsVectorDataProvider.ChangeAttributeValues:
 if caps & QgsVectorDataProvider.ChangeGeometries:
     geom = QgsGeometry.fromPointXY(QgsPointXY(111,222))
     layer.dataProvider().changeGeometryValues({ fid : geom })
-
 ```
 
 ------
@@ -910,34 +897,33 @@ if caps & QgsVectorDataProvider.ChangeGeometries:
 
 ### 5.4.4 使用编辑缓冲区修改矢量图层
 
-在QGIS应用程序中编辑矢量时，必须首先开始编辑特定图层的模式，然后进行一些修改，最后提交（或回滚）更改。你所做的所有更改在你提交之前都不会写入 - 它们保留在图层的内存编辑缓冲区中。也可以通过编程方式使用此功能 - 它仅仅是是矢量层编辑的另一种方法，可以补充数据提供者的直接使用。在为矢量图层编辑提供一些GUI工具时使用此选项，因为这将允许用户决定是否提交/回滚并允许使用undo / redo。提交更改时，编辑缓冲区中的所有更改都将保存到数据提供者中。
+在QGIS应用程序中编辑矢量时，必须首先为特定图层开始编辑模式，然后进行一些修改，最后提交（或回滚）更改。你所做的所有更改在你提交之前都不会写入——它们保留在图层的内存编辑缓冲区中。也可以通过编程方式使用此功能——它仅仅是是矢量图层编辑的另一种方法，可以补充直接使用数据提供者。在为矢量图层编辑提供一些GUI工具时使用此选项，因为这将允许用户决定是否提交/回滚并允许使用undo / redo。提交更改时，编辑缓冲区中的所有更改都将保存到数据提供者中。
 
 这些方法类似于我们在提供程序中看到的方法，但它们在[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer) 对象上调用。
 
-使这些方法起作用，图层必须处于编辑模式。要开始编辑模式，请使用该[`startEditing()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.startEditing)方法。要停止编辑，请使用[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges) 或[`rollBack()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.rollBack)方法。第一个将提交对数据源的所有更改，而第二个将丢弃它们，并且根本不会修改数据源。
+使这些方法起作用，图层必须处于编辑模式。开始编辑模式，使用[`startEditing()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.startEditing)方法。停止编辑，使用[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges) 或[`rollBack()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.rollBack)方法。第一个将提交对数据源的所有更改，而第二个将丢弃它们，并且根本不会修改数据源。
 
-要确定图层是否处于编辑模式，请使用[`isEditable()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.isEditable)方法。
+要确定图层是否处于编辑模式，使用[`isEditable()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.isEditable)方法。
 
-这里有一些示例演示如何使用这些编辑方法。
+这里有一些示例演示，如何使用这些编辑方法。
 
 ```python
 from qgis.PyQt.QtCore import QVariant
 
-#添加两个要素（QgsFeature实例）
+# 添加两个要素（QgsFeature实例）
 layer.addFeatures([feat1,feat2])
-#删除指定ID的要素 
+# 删除指定ID的要素 
 layer.deleteFeature(fid)
 
-#为要素设置新几何（QgsGeometry实例）。
+# 为要素设置新几何（QgsGeometry实例）。
 layer.changeGeometry(fid, geometry)
-#将给定字段索引（int）的属性更新为给定值
+# 将给定字段索引（int）的属性更新为给定值
 layer.changeAttributeValue(fid, fieldIndex, value)
 
-#添加新的字段
+# 添加新的字段
 layer.addAttribute(QgsField("mytext", QVariant.String))
-#删除字段
+# 删除字段
 layer.deleteAttribute(fieldIndex)
-
 ```
 
 为了使撤消/重做正常工作，上述调用必须包含在撤消命令中。（如果你不关心撤消/重做并希望立即存储更改，那么通过[5.4 修改矢量图层](#5.4 修改矢量图层)，你将可以更轻松地完成工作 。）
@@ -947,28 +933,26 @@ layer.deleteAttribute(fieldIndex)
 ```python
 layer.beginEditCommand("Feature triangulation")
 
-#...调用图层的编辑方法......
+# ...调用图层的编辑方法......
 
 if problem_occurred:
   layer.destroyEditCommand()
   return
 
-#...更多编辑...
+# ...更多编辑...
 
 layer.endEditCommand()
-
 ```
 
 [`beginEditCommand()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.beginEditCommand)方法将创建一个内部“活动”命令，并将记录矢量图层中的后续更改。随着对[`endEditCommand()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.endEditCommand) 命令的调用被推送到撤销栈，用户将能够从GUI撤消/重做它。如果在执行更改时出现问题， [`destroyEditCommand()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.destroyEditCommand)方法将删除该命令并回滚此命令处于活动状态时所做的所有更改。
 
-你还可以使用`with edit(layer)`-将提交和回滚包装成更具语义的代码块中，如下例所示：
+你还可以使用`with edit(layer)`——将提交和回滚包装成更具语义的代码块中，如下例所示：
 
 ```python
 with edit(layer):
   feat = next(layer.getFeatures())
   feat[0] = 5
   layer.updateFeature(feat)
-
 ```
 
 结束后将自动调用[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges)。如果发生任何异常，它将进行[`rollBack()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.rollBack)所有更改。如果遇到问题[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges)（当方法返回False时）将引发异常[`QgsEditError`](https://qgis.org/pyqgis/master/core/QgsEditError.html#qgis.core.QgsEditError)。
@@ -987,21 +971,19 @@ if caps & QgsVectorDataProvider.AddAttributes:
 
 if caps & QgsVectorDataProvider.DeleteAttributes:
     res = layer.dataProvider().deleteAttributes([0])
-
 ```
 
 在数据提供程者中添加或删除字段后，需要更新图层的字段，因为更改不会自动传播。
 
 ```python
 layer.updateFields()
-
 ```
 
 ------
 
 **小贴士：**使用`with`命令直接保存更改
 
-使用`with edit(layer):` 更改将在结束后调用[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges)自动提交。如果发生任何异常，它将[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges)所有更改。请参见[5.4.4 使用编辑缓冲区修改矢量图层](#5.4.4 使用编辑缓冲区修改矢量图层)
+使用`with edit(layer):` 更改将在结束后调用[`commitChanges()`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.commitChanges)自动提交。如果发生任何异常，它将[`rollBack()`](https://qgis.org/pyqgis/3.4/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer.rollBack)所有更改。请参见[5.4.4 使用编辑缓冲区修改矢量图层](#5.4.4 使用编辑缓冲区修改矢量图层)
 
 ------
 
@@ -1009,7 +991,7 @@ layer.updateFields()
 
 如果需要对矢量图层进行频繁查询，空间索引可以显著提高代码的性能。例如，想象一下，你正在编写插值算法，并且对于给定位置，你需要知道点图层中最近的10个点，以便使用这些点来计算插值。如果没有空间索引，QGIS找到这10个点的唯一方法是计算从每个点到指定位置的距离，然后比较这些距离。这可能是一项非常耗时的任务，特别是如果需要在多个位置重复这项任务。如果图层存在空间索引，则操作更有效。
 
-可以将没有空间索引的层视为电话簿，其中不对电话号码进行排序或索引。找到给定人员的电话号码的唯一方法是从头开始阅读，直到找到它为止。
+可以将没有空间索引的图层视为电话簿，其中不对电话号码进行排序或索引。找到给定人员的电话号码的唯一方法是从头开始阅读，直到找到它为止。
 
 默认情况下，QGIS矢量图层不会创建空间索引，但你可以轻松创建它们。这是你要做的：
 
@@ -1017,32 +999,28 @@ layer.updateFields()
 
   ```python
   index = QgsSpatialIndex()
-  
   ```
-
-- 向索引添加要素 - 索引获取[`QgsFeature`](https://qgis.org/pyqgis/master/core/QgsFeature.html#qgis.core.QgsFeature)对象并将其添加到内部数据结构。你可以手动创建对象，也可以使用先前提供者的 [`getFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.getFeatures)方法。
+  
+- 向索引添加要素——索引获取[`QgsFeature`](https://qgis.org/pyqgis/master/core/QgsFeature.html#qgis.core.QgsFeature)对象并将其添加到内部数据结构。你可以手动创建对象，也可以使用先前提供者的[`getFeatures()`](https://qgis.org/pyqgis/master/core/QgsVectorDataProvider.html#qgis.core.QgsVectorDataProvider.getFeatures)方法。
 
   ```python
   index.insertFeature(feat)
-  
   ```
-
+  
 - 或者，你可以批量加载图层的所有要素
 
   ```python
   index = QgsSpatialIndex(layer.getFeatures())
-  
   ```
-
+  
 - 一旦空间索引填充了一些值，你就可以进行一些查询
 
   ```python
-  #以数组形式返回五个最近要素的ID
+  # 以数组形式返回五个最近要素的ID
   nearest = index.nearestNeighbor(QgsPointXY(25.4, 12.7), 5)
   
-  #以数组形式返回与矩形相交的要素
+  # 以数组形式返回与矩形相交的要素
   intersect = index.intersects(QgsRectangle(22.5, 15.3, 23.1, 17.2))
-  
   ```
 
 ## 5.6 创建矢量图层
@@ -1055,22 +1033,21 @@ layer.updateFields()
 ### 5.6.1 从[`QgsVectorFileWriter`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter)实例创建
 
 ```python
-#写入GeoPackage（默认）
+# 写入GeoPackage（默认）
 error = QgsVectorFileWriter.writeAsVectorFormat(layer, "/path/to/folder/my_data", "")
 if error[0] == QgsVectorFileWriter.NoError:
     print("success!")
-#使用UTF-8文本编码写入ESRI Shapefile格式数据集
+# 使用UTF-8编码写入ESRI Shapefile格式数据集
 error = QgsVectorFileWriter.writeAsVectorFormat(layer, "/path/to/folder/my_esridata","UTF-8", driverName="ESRI Shapefile")
 if error[0] == QgsVectorFileWriter.NoError:
     print("success again!")
-
 ```
 
-第三个（强制）参数指定输出的文本编码。只有一些驱动程序需要这个才能正确操作 - Shapefile就是其中之一（其他驱动程序将忽略此参数）。如果使用国际（非US-ASCII）字符，则指定正确的编码非常重要。
+第三个（强制）参数指定输出的编码。只有一些驱动程序需要这个才能正确操作——Shapefile就是其中之一（其他驱动程序将忽略此参数）。如果使用国际（非US-ASCII）字符，则指定正确的编码非常重要。
 
-还可以指定目标CRS - 如果将一个有效的[`QgsCoordinateReferenceSystem`](https://qgis.org/pyqgis/master/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem)实例作为第四个参数，则将该层转换为该CRS。
+还可以指定目标CRS——如果将一个有效的[`QgsCoordinateReferenceSystem`](https://qgis.org/pyqgis/master/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem)实例作为第四个参数，则将该层转换为该CRS。
 
-有关有效的驱动程序的名称，请调用[`supportedFiltersAndFormats`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter.supportedFiltersAndFormats)方法或查阅[OGR支持的格式](https://www.gdal.org/ogr_formats.html) - 你应该将“Code”列中的值作为驱动程序名称传递。
+有关有效的驱动程序的名称，请调用[`supportedFiltersAndFormats`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter.supportedFiltersAndFormats)方法或查阅[OGR支持的格式](https://www.gdal.org/ogr_formats.html)——你应该将“Code”列中的值作为驱动程序名称传递。
 
 （可选）你可以设置是仅导出选中的要素，传递更多驱动程序特定的选项以进行创建，还是告诉编写者不要创建属性...还有许多其他（可选）参数; 请参阅[`QgsVectorFileWriter`](https://qgis.org/pyqgis/master/core/QgsVectorFileWriter.html#qgis.core.QgsVectorFileWriter)的详细信息
 
@@ -1079,14 +1056,14 @@ if error[0] == QgsVectorFileWriter.NoError:
 ```python
 from qgis.PyQt.QtCore import QVariant
 
-#为要素属性定义字段。需要QgsFields对象
+# 为要素属性定义字段。需要QgsFields对象
 fields = QgsFields()
 fields.append(QgsField("first", QVariant.Int))
 fields.append(QgsField("second", QVariant.String))
 
 """创建一个矢量文件编写器的实例，它将创建矢量文件
 参数：
-1. 新文件的路径（如果已存在则将失败）
+1. 新文件的路径（如果已存在则失败）
 2. 属性编码
 3. 字段映射
 4. 几何类型 - WKBTYPE枚举
@@ -1098,16 +1075,15 @@ writer = QgsVectorFileWriter("my_shapes.shp", "UTF-8", fields, QgsWkbTypes.Point
 if writer.hasError() != QgsVectorFileWriter.NoError:
     print("Error when creating shapefile: ",  w.errorMessage())
 
-#添加一个要素
+# 添加一个要素
 fet = QgsFeature()
 
 fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(10,10)))
 fet.setAttributes([1, "text"])
 writer.addFeature(fet)
 
-#删除writer以将要素保存到磁盘
+# 删除writer以将要素保存到磁盘
 del writer
-
 ```
 
 ### 5.6.3 从[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)实例创建
@@ -1140,7 +1116,6 @@ URI还可以指定坐标参考系统、字段和索引。语法是：
 
 ```python
 "Point?crs=epsg:4326&field=id:integer&field=name:string(20)&index=yes"
-
 ```
 
 以下示例代码说明了如何创建和填充内存提供者
@@ -1156,34 +1131,31 @@ pr = vl.dataProvider()
 
 # 添加字段
 pr.addAttributes([QgsField("name", QVariant.String),QgsField("age",  QVariant.Int),QgsField("size", QVariant.Double)])
-vl.updateFields() #告诉矢量图层从提供者获取更改
+vl.updateFields() # 告诉矢量图层从提供者获取更改
 
-#添加一个要素
+# 添加一个要素
 fet = QgsFeature()
 fet.setGeometry(QgsGeometry.fromPointXY(QgsPointXY(10,10)))
 fet.setAttributes(["Johny", 2, 0.3])
 pr.addFeatures([fet])
 
-#在添加新要素时更新图层的范围
-#，因为提供者中的范围更改不会传播到图层
+# 在添加新要素时更新图层的范围，因为提供者中的范围更改不会传播到图层
 vl.updateExtents()
-
 ```
 
 最后，让我们检查一切是否顺利
 
 ```python
-#显示一些统计
+# 显示一些统计
 print("fields:", len(pr.fields()))
 print("features:", pr.featureCount())
 e = vl.extent()
 print("extent:", e.xMinimum(), e.yMinimum(), e.xMaximum(), e.yMaximum())
 
-#遍历要素
+# 遍历要素
 features = vl.getFeatures()
 for fet in features:
     print("F:", fet.id(), fet.attributes(), fet.geometry().asPoint())
-
 ```
 
 ## 5.7 矢量图层的外观（符号系统）
@@ -1194,14 +1166,12 @@ for fet in features:
 
 ```python
 renderer = layer.renderer()
-
 ```
 
 有了这个参考，让我们来探讨一下
 
 ```python
 print("Type:", renderer.type())
-
 ```
 
 QGIS核心库中有几种已知的渲染器类型：
@@ -1211,8 +1181,6 @@ QGIS核心库中有几种已知的渲染器类型：
 | singleSymbol      | [`QgsSingleSymbolRenderer`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer) | 使用相同的符号呈现所有要素         |
 | categorizedSymbol | [`QgsCategorizedSymbolRenderer`](https://qgis.org/pyqgis/master/core/QgsCategorizedSymbolRenderer.html#qgis.core.QgsCategorizedSymbolRenderer) | 使用每个类别的不同符号呈现要素     |
 | graduatedSymbol   | [`QgsGraduatedSymbolRenderer`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer) | 为每个值范围使用不同的符号呈现要素 |
-
-
 
 可能还有一些自定义渲染器类型，所以永远不要假设只有这些类型。你可以查询应用程序[`QgsRendererRegistry`](https://qgis.org/pyqgis/master/core/QgsRendererRegistry.html#qgis.core.QgsRendererRegistry) 以查找当前可用的渲染器：
 
@@ -1229,21 +1197,19 @@ print(QgsApplication.rendererRegistry().renderersList())
 'invertedPolygonRenderer',
 'heatmapRenderer',
 '25dRenderer']
-
 ```
 
-可以以文本形式获取渲染器的内容 - 可用于调试
+可以以文本形式获取渲染器的内容——可用于调试
 
 ```python
 print(renderer.dump())
-
 ```
 
-### 5.7.1 单符号渲染器
+### 5.7.1 单一符号渲染器
 
 你可以通过调用[`symbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.symbol)方法获取用于渲染的符号，使用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)方法更改它（C ++开发人员注意：渲染器将获取符号的所有权。）
 
-你可以通过调用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)并传递适当的符号实例来更改特定矢量图层的符号。*点*，*线*和*多边形*图层的符号可以通过调用相应的类（[`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)，[`QgsLineSymbol`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol)和 [`QgsFillSymbol`](）[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)来创建别的功能https://qgis.org/pyqgis/master/core/QgsFillSymbol.html#qgis.core.QgsFillSymbol)）的 [`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)方法来创建
+你可以通过调用[`setSymbol()`](https://qgis.org/pyqgis/master/core/QgsSingleSymbolRenderer.html#qgis.core.QgsSingleSymbolRenderer.setSymbol)并传递适当的符号实例来更改特定矢量图层的符号。*点*，*线*和*多边形*图层的符号可以通过调用相应的类（[`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)，[`QgsLineSymbol`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol)和 [`QgsFillSymbol`](）[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)来创建别的功能https://qgis.org/pyqgis/master/core/QgsFillSymbol.html#qgis.core.QgsFillSymbol)）的[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)方法来创建
 
 传递给[`createSimple()`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.createSimple)的字典参数，设置符号的样式属性。
 
@@ -1252,9 +1218,8 @@ print(renderer.dump())
 ```python
 symbol = QgsMarkerSymbol.createSimple({'name': 'square', 'color': 'red'})
 layer.renderer().setSymbol(symbol)
-#显示更改
+# 显示更改
 layer.triggerRepaint()
-
 ```
 
 `name` 表示符号的形状，可以是以下任何一种：
@@ -1273,7 +1238,7 @@ layer.triggerRepaint()
 - `filled_arrowhead`
 - `x`
 
-要获取符号实例的第一个符号图层的完整属性列表，可以按照示例代码进行操作：
+获取符号实例的第一个符号图层的完整属性列表，可以按照示例代码进行操作：
 
 ```python
 print(layer.renderer().symbol().symbolLayers()[0].properties())
@@ -1296,35 +1261,32 @@ print(layer.renderer().symbol().symbolLayers()[0].properties())
 'size_map_unit_scale': '0,0',
 'size_unit': 'MM',
 'vertical_anchor_point': '1'}
-
 ```
 
 如果要更改某些属性，这可能很有用：
 
 ```python
-#你可以更改单个属性... 
+# 你可以更改单个属性... 
 layer.renderer().symbol().symbolLayer(0).setSize(3)
-#...但并非所有属性都可以从方法访问，
-#你也可以完全替换符号：
+# ...但并非所有属性都可以从方法访问，
+# 你也可以完全替换符号：
 props = layer.renderer().symbol().symbolLayer(0).properties()
 props['color'] = 'yellow'
 props['name'] = 'square'
 layer.renderer().setSymbol(QgsMarkerSymbol.createSimple(props))
-#显示更改
+# 显示更改
 layer.triggerRepaint()
-
 ```
 
 ### 5.7.2 分类符号渲染器
 
 使用分类渲染器时，可以查询和设置：使用 [`classAttribute()`](https://qgis.org/pyqgis/master/core/QgsCategorizedSymbolRenderer.html#qgis.core.QgsCategorizedSymbolRenderer.classAttribute)和[`setClassAttribute()`](https://qgis.org/pyqgis/master/core/QgsCategorizedSymbolRenderer.html#qgis.core.QgsCategorizedSymbolRenderer.setClassAttribute)方法。
 
-获取类别列表
+获取类别列表：
 
 ```python
 for cat in renderer.categories():
     print("{}: {} :: {}".format(cat.value(), cat.label(), cat.symbol()))
-
 ```
 
 其中[`value()`](https://qgis.org/pyqgis/master/core/QgsRendererCategory.html#qgis.core.QgsRendererCategory.value)是类别之间用于区别的值， [`label()`](https://qgis.org/pyqgis/master/core/QgsRendererCategory.html#qgis.core.QgsRendererCategory.label)是用于类别描述的文本，[`symbol()`](https://qgis.org/pyqgis/master/core/QgsRendererCategory.html#qgis.core.QgsRendererCategory.symbol)方法返回所分配的符号。
@@ -1345,10 +1307,9 @@ for ran in renderer.ranges():
         ran.label(),
         ran.symbol()
       ))
-
 ```
 
-你可以再次使用 [`classAttribute`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.classAttribute) （查找分类属性名称） [`sourceSymbol`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceSymbol)和[`sourceColorRamp`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceColorRamp)方法。此外，还有一种[`mode`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.mode) 方法可以确定范围的创建方式：使用等间隔，分位数或其他方法。
+你可以再次使用 [`classAttribute`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.classAttribute) （查找分类属性名称） [`sourceSymbol`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceSymbol)和[`sourceColorRamp`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.sourceColorRamp)方法。此外，还有一种[`mode`](https://qgis.org/pyqgis/master/core/QgsGraduatedSymbolRenderer.html#qgis.core.QgsGraduatedSymbolRenderer.mode)方法可以确定范围的创建方式：使用等间隔，分位数或其他方法。
 
 如果你希望创建自己的渐变符号渲染器，则可以执行此操作，如下面的示例代码段所示（这将创建一个简单的两个类别）
 
@@ -1359,7 +1320,7 @@ myVectorLayer = QgsVectorLayer(myVectorPath, myName, 'ogr')
 myTargetField = 'target_field'
 myRangeList = []
 myOpacity = 1
-#让我们的第一符号和范围... 
+# 让我们的第一符号和范围... 
 myMin = 0.0
 myMax = 50.0
 myLabel = 'Group 1'
@@ -1369,7 +1330,7 @@ mySymbol1.setColor(myColour)
 mySymbol1.setOpacity(myOpacity)
 myRange1 = QgsRendererRange(myMin, myMax, mySymbol1, myLabel)
 myRangeList.append(myRange1)
-#now创建另一个符号和范围... 
+# now创建另一个符号和范围... 
 myMin = 50.1
 myMax = 100
 myLabel = 'Group 2'
@@ -1386,16 +1347,15 @@ myRenderer.setClassAttribute(myTargetField)
 
 myVectorLayer.setRenderer(myRenderer)
 QgsProject.instance().addMapLayer(myVectorLayer)
-
 ```
 
 ### 5.7.4 使用符号
 
 对于符号的表示，[`QgsSymbol`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol)基类有三个派生类：
 
-- [`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol) - 用于点功能
-- [`QgsLineSymbol`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol) - 用于线路功能
-- [`QgsFillSymbol`](https://qgis.org/pyqgis/master/core/QgsFillSymbol.html#qgis.core.QgsFillSymbol) - 用于面要素
+- [`QgsMarkerSymbol`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol)——用于点要素
+- [`QgsLineSymbol`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol)——用于线要素
+- [`QgsFillSymbol`](https://qgis.org/pyqgis/master/core/QgsFillSymbol.html#qgis.core.QgsFillSymbol)——用于面要素
 
 **每个符号由一个或多个符号图层**（从[`QgsSymbolLayer`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer)派生的类）。符号图层执行实际渲染，符号类本身仅用作符号图层的容器。
 
@@ -1405,7 +1365,6 @@ QgsProject.instance().addMapLayer(myVectorLayer)
 for i in range(symbol.symbolLayerCount()):
     lyr = symbol.symbolLayer(i)
     print("{}: {}".format(i, lyr.layerType()))
-
 ```
 
 找出符号的颜色使用[`color`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.color)方法，[`setColor`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.setColor)改变其颜色。使用标记符号，你还可以使用[`size`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.size)和[`angle`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.angle)方法查询符号大小和旋转。对于线符号，[`width`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol.width)方法返回线宽。
@@ -1414,7 +1373,7 @@ for i in range(symbol.symbolLayerCount()):
 
 #### 使用符号图层
 
-如前所述，符号层（[`QgsSymbolLayer`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer)的子类）决定要素的外观。有一些基本的符号图层类用于一般用途。可以实现新的符号图层类型，从而任意定制要素的呈现方式。[`layerType()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.layerType) 方法唯一地标识符号图层类 - 基本类和默认类`SimpleMarker`，`SimpleLine`以及`SimpleFill`符号图层类型。
+如前所述，符号层（[`QgsSymbolLayer`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer)的子类）决定要素的外观。有一些基本的符号图层类用于一般用途。可以实现新的符号图层类型，从而任意定制要素的呈现方式。[`layerType()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.layerType) 方法唯一地标识符号图层类——基本类和默认类`SimpleMarker`，`SimpleLine`以及`SimpleFill`符号图层类型。
 
 你可以使用以下代码获取可以为给定符号图层类创建的符号图层类型的完整列表：
 
@@ -1424,7 +1383,6 @@ myRegistry = QgsApplication.symbolLayerRegistry()
 myMetadata = myRegistry.symbolLayerMetadata("SimpleFill")
 for item in myRegistry.symbolLayersForType(QgsSymbol.Marker):
     print(item)
-
 ```
 
 输出：
@@ -1437,12 +1395,11 @@ GeometryGenerator
 SimpleMarker 
 SvgMarker 
 VectorField
-
 ```
 
 [`QgsSymbolLayerRegistry`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerRegistry.html#qgis.core.QgsSymbolLayerRegistry)类管理一个所有可用的符号层类型的数据库。
 
-要访问符号图层数据，请使用其[`properties()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.properties)返回属性的键值字典的方法，该字典决定外观。每个符号图层类型都有一组特定的属性。此外，还有通用的方法[`color`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.color)，[`size`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.size)，[`angle`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.angle)和 [`width`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol.width)，与他们定制者的副本。当然，尺寸和角度仅适用于标记符号图层和线符号图层的宽度。
+访问符号图层数据，使用其[`properties()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.properties)方法返回属性的键值字典，该字典决定外观。每个符号图层类型都有一组特定的属性。此外，还有通用的方法[`color`](https://qgis.org/pyqgis/master/core/QgsSymbol.html#qgis.core.QgsSymbol.color)，[`size`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.size)，[`angle`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbol.html#qgis.core.QgsMarkerSymbol.angle)和 [`width`](https://qgis.org/pyqgis/master/core/QgsLineSymbol.html#qgis.core.QgsLineSymbol.width)，与他们定制者的副本。当然，尺寸和角度仅适用于标记符号图层和线符号图层的宽度。
 
 #### 创建自定义符号图层类型
 
@@ -1480,12 +1437,11 @@ class FooSymbolLayer(QgsMarkerSymbolLayer):
 
   def clone(self):
       return FooSymbolLayer(self.radius)
-
 ```
 
 [`layerType`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.layerType)方法确定符号图层的名称; 它必须在所有符号层中是唯一的。[`properties`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.properties)方法用于属性的持久化。[`clone`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.clone) 方法必须返回符号图层的副本，其中所有属性完全相同。最后，渲染方法： [`startRender`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.startRender)在渲染第一个要素之前被调用，[`stopRender`](https://qgis.org/pyqgis/master/core/QgsSymbolLayer.html#qgis.core.QgsSymbolLayer.stopRender) 渲染完成时被调用，[`renderPoint`](https://qgis.org/pyqgis/master/core/QgsMarkerSymbolLayer.html#qgis.core.QgsMarkerSymbolLayer.renderPoint)渲染时被调用。点的坐标已经转换为输出坐标。
 
-对于折线和多边形，唯一的区别在于渲染方法：你将使用 [`renderPolyline`](https://qgis.org/pyqgis/master/core/QgsLineSymbolLayer.html#qgis.core.QgsLineSymbolLayer.renderPolyline) ——接收线列表，[`renderPolygon`](https://qgis.org/pyqgis/master/core/QgsFillSymbolLayer.html#qgis.core.QgsFillSymbolLayer.renderPolygon) ——接收外环上的点列表作为第一个参数和内环列表（或无）作为第二个参数。
+对于线和多边形，唯一的区别在于渲染方法：你将使用 [`renderPolyline`](https://qgis.org/pyqgis/master/core/QgsLineSymbolLayer.html#qgis.core.QgsLineSymbolLayer.renderPolyline) ——接收线列表，[`renderPolygon`](https://qgis.org/pyqgis/master/core/QgsFillSymbolLayer.html#qgis.core.QgsFillSymbolLayer.renderPolygon) ——接收外环上的点列表作为第一个参数和内环列表（或无）作为第二个参数。
 
 通常可以方便地添加用于设置符号图层类型属性的GUI，以允许用户自定义外观：在上面的示例中，我们可以让用户设置圆半径。以下代码实现了这样的小控件
 
@@ -1498,7 +1454,7 @@ class FooSymbolLayerWidget(QgsSymbolLayerWidget):
 
         self.layer = None
 
-        #设置简单的UI 
+        # 设置简单的UI 
         self.label = QLabel("Radius:")
         self.spinRadius = QDoubleSpinBox()
         self.hbox = QHBoxLayout()
@@ -1520,7 +1476,6 @@ class FooSymbolLayerWidget(QgsSymbolLayerWidget):
     def radiusChanged(self, value):
         self.layer.radius = value
         self.emit(SIGNAL("changed()"))
-
 ```
 
 此窗口小控件可以嵌入到符号属性对话框中。在符号属性对话框中选择符号图层类型时，它会创建符号图层的实例和符号图窗口小控件的实例。然后它调用[`setSymbolLayer`](https://qgis.org/pyqgis/master/gui/QgsSymbolLayerWidget.html#qgis.gui.QgsSymbolLayerWidget.setSymbolLayer)方法将符号图层分配给窗口小控件。在该方法中，小控件应该更新UI以反映符号层的属性。[`symbolLayer`](https://qgis.org/pyqgis/master/gui/QgsSymbolLayerWidget.html#qgis.gui.QgsSymbolLayerWidget.symbolLayer)方法用于通过属性对话框再次检索符号图层，以将其用于符号。
@@ -1548,7 +1503,6 @@ class FooSymbolLayerMetadata(QgsSymbolLayerAbstractMetadata):
         return FooSymbolLayer(radius)
 
 QgsApplication.symbolLayerRegistry().addSymbolLayerType(FooSymbolLayerMetadata())
-
 ```
 
 你应该将图层类型（与图层返回的相同）和符号类型（marker/line/fill）传递给父类的构造函数。[`createSymbolLayer()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerAbstractMetadata.html#qgis.core.QgsSymbolLayerAbstractMetadata.createSymbolLayer)方法负责使用props字典中指定的属性创建符号图层的实例。并且有一种[`createSymbolLayerWidget()`](https://qgis.org/pyqgis/master/core/QgsSymbolLayerAbstractMetadata.html#qgis.core.QgsSymbolLayerAbstractMetadata.createSymbolLayerWidget)方法可以返回此符号图层类型的设置小控件。
@@ -1562,7 +1516,7 @@ QgsApplication.symbolLayerRegistry().addSymbolLayerType(FooSymbolLayerMetadata()
 下面的代码显示了一个简单的自定义渲染器，它可以创建两个标记符号，并为每个要素随机选择其中一个
 
 ```python
- import random
+import random
 from qgis.core import QgsWkbTypes, QgsSymbol, QgsFeatureRenderer
 
 
@@ -1612,7 +1566,6 @@ class RandomRendererWidget(QgsRendererWidget):
 
   def renderer(self):
     return self.r
-
 ```
 
 父类[`QgsFeatureRenderer`](https://qgis.org/pyqgis/master/core/QgsFeatureRenderer.html#qgis.core.QgsFeatureRenderer) 的构造函数需要一个渲染器名称（在渲染器中必须是唯一的）。[`symbolForFeature`](https://qgis.org/pyqgis/master/core/QgsFeatureRenderer.html#qgis.core.QgsFeatureRenderer.symbolForFeature)方法是决定将用于特定特征的符号的 方法。 [`startRender`](https://qgis.org/pyqgis/master/core/QgsFeatureRenderer.html#qgis.core.QgsFeatureRenderer.startRender)和[`stopRender`](https://qgis.org/pyqgis/master/core/QgsFeatureRenderer.html#qgis.core.QgsFeatureRenderer.stopRender)负责符号渲染的初始化/完成。[`usedAttributes`](https://qgis.org/pyqgis/master/core/QgsFeatureRenderer.html#qgis.core.QgsFeatureRenderer.usedAttributes) 方法可以返回渲染器期望存在的字段名称列表。最后，[`clone`](https://qgis.org/pyqgis/master/core/QgsFeatureRenderer.html#qgis.core.QgsFeatureRenderer.clone)方法应返回渲染器的副本。
@@ -1645,7 +1598,6 @@ class RandomRendererWidget(QgsRendererWidget):
 
   def renderer(self):
     return self.r
-
 ```
 
 构造函数接收当前图层（[`QgsVectorLayer`](https://qgis.org/pyqgis/master/core/QgsVectorLayer.html#qgis.core.QgsVectorLayer)），全局样式（[`QgsStyle`](https://qgis.org/pyqgis/master/core/QgsStyle.html#qgis.core.QgsStyle)）和当前渲染器的实例。如果没有渲染器或渲染器具有不同的类型，它将被我们的新渲染器替换，否则我们将使用当前渲染器（已经是我们需要的类型）。应更新窗口小控件内容以显示渲染器的当前状态。当接受渲染器对话框时，将[`renderer`](https://qgis.org/pyqgis/master/gui/QgsRendererWidget.html#qgis.gui.QgsRendererWidget.renderer)调用窗口小控件的方法以获取当前渲染器 - 它将被分配给该图层。
@@ -1665,7 +1617,6 @@ class RandomRendererMetadata(QgsRendererAbstractMetadata):
     return RandomRendererWidget(layer, style, renderer)
 
 QgsApplication.rendererRegistry().addRenderer(RandomRendererMetadata())
-
 ```
 
 与符号图层类似，抽象元数据构造函数等待渲染器名称，对用户可见的名称以及渲染器图标的可选的名称。[`createRenderer`](https://qgis.org/pyqgis/master/core/QgsRendererAbstractMetadata.html#qgis.core.QgsRendererAbstractMetadata.createRenderer) 方法传递一个`QDomElement`实例，该实例可用于从DOM树恢复渲染器的状态。[`createRendererWidget`](https://qgis.org/pyqgis/master/core/QgsRendererAbstractMetadata.html#qgis.core.QgsRendererAbstractMetadata.createRendererWidget) 方法创建配置小控件。如果渲染器没有GUI，它不必存在或可以返回`None`。
@@ -1677,7 +1628,6 @@ QgsRendererAbstractMetadata.__init__(self,
        "RandomRenderer",
        "Random renderer",
        QIcon(QPixmap("RandomRendererIcon.png", "png")))
-
 ```
 
 也可以使用元数据类的方法[`setIcon`](https://qgis.org/pyqgis/master/core/QgsRendererAbstractMetadata.html#qgis.core.QgsRendererAbstractMetadata.setIcon)在以后的任何时间关联该图标。图标可以从文件加载（如上所示），也可以从[Qt资源](https://doc.qt.io/qt-5/resources.html)加载 （PyQt5包含Python的.qrc编译器）。
