@@ -1643,7 +1643,7 @@ QgsRendererAbstractMetadata.__init__(self,
 
 # 6 几何处理
 
-如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+此页面上的代码片段需要导入以下模块：
 
 ```python
 from qgis.core import (
@@ -1659,7 +1659,7 @@ from qgis.core import (
 
 表示空间特征的点、线和多边形通常称为几何。在QGIS中，它们用[`QgsGeometry`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry)类来表示 。
 
-有时，一个几何实际上是简单（single-part）几何的集合。这种几何形状称为multi-part几何。如果它只包含一种类型的简单几何，我们称之为多点、多线或多多边形。例如，由多个岛组成的国家可以表示为多边形。
+有时，一种几何实际上是简单（single-part）几何的集合。另一种几何形状称为multi-part几何。如果它只包含一种类型的简单几何，我们称之为多点、多线或多多边形。例如，由多个岛组成的国家可以表示为多多边形。
 
 几何的坐标可以在任何坐标参考系统（CRS）中。从图层中提取要素时，关联的几何图形将在图层的CRS中具有坐标。
 
@@ -1667,7 +1667,7 @@ from qgis.core import (
 
 ## 6.1 几何构造
 
-PyQGIS提供了几种创建几何体的选项：
+PyQGIS提供了几种创建几何的选项：
 
 - 坐标
 
@@ -1683,7 +1683,7 @@ PyQGIS提供了几种创建几何体的选项：
 
   多边形由线性环列表（即闭合的线串）表示。第一个环是外环（边界），可选项后续环是多边形中的孔。请注意，与某些程序不同，QGIS会为你闭合环，因此无需将第一个点复制为最后一个。
 
-  多部分几何图形更进一步：多点是一个点列表，多线串是一个线列表，多多边形是一个多边形列表。
+  多部分几何图形更进一步：多点是一个点列表，多线是一个线列表，多多边形是一个多边形列表。
 
 - WKT
 
@@ -1697,7 +1697,6 @@ PyQGIS提供了几种创建几何体的选项：
   g = QgsGeometry()
   wkb = bytes.fromhex("010100000000000000000045400000000000001440")
   g.fromWkb(wkb)
-  g 。来自Wkb （wkb ）
   
   #使用WKT打印几何
   print(g.asWkt())
@@ -1723,10 +1722,12 @@ gPolygon.wkbType() == QgsWkbTypes.MultiPolygon
 你可以使用[`displayString()`](https://qgis.org/pyqgis/3.4/core/QgsWkbTypes.html#qgis.core.QgsWkbTypes.displayString) 函数来获取人类可读的几何类型。
 
 ```python
-gPnt.wkbType()
-# output: 1
-QgsWkbTypes.displayString(gPnt.wkbType())
+print(QgsWkbTypes.displayString(gPnt.wkbType()))
 # output: 'Point'
+print(QgsWkbTypes.displayString(gLine.wkbType()))
+# output: 'LineString'
+print(QgsWkbTypes.displayString(gPolygon.wkbType()))
+# output: 'Polygon'
 ```
 
 还有一个辅助函数 [`isMultipart()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.isMultipart)可以确定几何是否是multipart 。
@@ -1750,7 +1751,7 @@ gPolygon.asPolygon()
 
 对于多几何形状也有类似的访问函数： [`asMultiPoint()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.asMultiPoint)，[`asMultiPolyline()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.asMultiPolyline)和[`asMultiPolygon()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.asMultiPolygon)。
 
-## 6.3 几何述语与操作
+## 6.3 几何术语与操作
 
 QGIS使用GEOS库进行高级几何操作，如几何术语（[`contains()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.contains)，[`intersects()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.intersects)，...），操作（[`combine()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.combine)，[`difference()`](https://qgis.org/pyqgis/3.4/core/QgsGeometry.html#qgis.core.QgsGeometry.difference)，...）。它还可以计算几何的几何属性，例如面积（多边形）或长度（多边形和线）。
 
@@ -1816,7 +1817,7 @@ tenerife = QgsPointXY(-16.5735, 28.0443)
 print("Distance in meters: ", d.measureLine(santa, tenerife))
 ```
 
-你可以在QGIS中找到许多算法示例，并使用这些方法来分析和转换矢量数据。以下是一些指向其中一些代码的链接。
+你可以在QGIS中找到许多算法示例，并使用这些方法来分析和转换矢量数据。以下是一些代码的链接。
 
 - 使用[`QgsDistanceArea`](https://qgis.org/pyqgis/3.4/core/QgsDistanceArea.html#qgis.core.QgsDistanceArea)类中的距离和面积： [距离矩阵算法](https://github.com/qgis/QGIS/blob/master/python/plugins/processing/algs/qgis/PointDistance.py)
 - [线到多边形算法](https://github.com/qgis/QGIS/blob/master/python/plugins/processing/algs/qgis/LinesToPolygons.py)
