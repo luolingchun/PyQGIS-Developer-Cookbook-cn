@@ -1824,7 +1824,7 @@ print("Distance in meters: ", d.measureLine(santa, tenerife))
 
 # 7 投影支持
 
-如果你在pyqgis控制台之外，则此页面上的代码段需要导入以下模块：
+此页面上的代码片段需要导入以下模块：
 
 ```python
 from qgis.core import (QgsCoordinateReferenceSystem,
@@ -1848,9 +1848,9 @@ from qgis.core import (QgsCoordinateReferenceSystem,
 
   QGIS为每个参考系统使用三种不同的ID：
 
-  - [`InternalCrsId`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.InternalCrsId) - QGIS内部数据库中使用的ID
-  - [`PostgisCrsId`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.PostgisCrsId) - PostGIS数据库中使用的ID
-  - [`EpsgCrsId`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.EpsgCrsId) - EPSG组织分配的ID
+  - [`InternalCrsId`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.InternalCrsId)——QGIS内部数据库中使用的ID
+  - [`PostgisCrsId`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.PostgisCrsId)——PostGIS数据库中使用的ID
+  - [`EpsgCrsId`](https://qgis.org/pyqgis/3.4/core/QgsCoordinateReferenceSystem.html#qgis.core.QgsCoordinateReferenceSystem.EpsgCrsId)——EPSG组织分配的ID
 
   如果未使用第二个参数指定，则默认使用PostGIS SRID。
 
