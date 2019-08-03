@@ -1935,17 +1935,17 @@ Transformed back: <QgsPointXY: POINT(18 5)>
 
 地图画布控件可能是QGIS中最重要的控件，因为它显示了由重叠的地图图层组成的地图，并允许与地图和图层进行交互。画布始终显示由当前画布范围定义的地图的一部分。通过使用**地图工具**完成交互：有平移，缩放，识别图层，测量，矢量编辑等工具。与其他图形程序类似，总有一个工具处于活动状态，用户可以在可用工具之间切换。
 
-地图画布由`qgis.gui`模块中的[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类实现。该实现基于Qt Graphics View框架。该框架通常提供表面和视图，其中放置自定义图形项并且用户可以与它们交互。我们假设你对Qt足够熟悉，以了解图形场景，视图和项的概念。如果没有，请阅读[框架概述](https://doc.qt.io/qt-5/graphicsview.html)。
+地图画布由`qgis.gui`模块中的[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类实现。该类基于Qt Graphics View框架。该框架通常提供场景和视图，其中放置自定义图形项并且用户可以与它们交互。我们假设你对Qt足够熟悉，以了解图形场景，视图和项的概念。如果没有，请阅读[框架概述](https://doc.qt.io/qt-5/graphicsview.html)。
 
-无论何时平移地图，放大/缩小（或触发刷新的其他操作），地图都会在当前范围内再次渲染。图层将渲染为图像（使用[`QgsMapRendererJob`](https://qgis.org/pyqgis/3.4/core/QgsMapRendererJob.html#qgis.core.QgsMapRendererJob)类），并且图像将显示在画布上。[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类还控制渲染图的刷新。除了作为这个项的背景，可能还有更多的**地图画布项**。
+无论何时平移地图，放大/缩小（或触发刷新的其他操作），地图都会在当前范围内再次渲染。图层将渲染为图像（使用[`QgsMapRendererJob`](https://qgis.org/pyqgis/3.4/core/QgsMapRendererJob.html#qgis.core.QgsMapRendererJob)类），图像将显示在画布上。[`QgsMapCanvas`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas)类还控制渲染图的刷新。除了作为这个项的背景，可能还有更多的**地图画布项**。
 
 典型的地图画布项目是橡皮条（用于测量，矢量编辑等）或顶点标记。画布项通常用于为地图工具提供视觉反馈，例如，在创建新多边形时，地图工具会创建一个橡皮条画布项，显示多边形的当前形状。所有地图画布项都是[`QgsMapCanvasItem`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvasItem.html#qgis.gui.QgsMapCanvasItem) 的子类，它为基类`QGraphicsItem`对象添加了更多功能。
 
 总而言之，地图画布架构包含三个概念：
 
-- 地图画布 - 用于查看地图
-- 地图画布项目 - 可以在地图画布上显示的其他项目
-- 地图工具 - 用于与地图画布交互
+- 地图画布——用于查看地图
+- 地图画布项——可以在地图画布上显示的其他项
+- 地图工具——用于与地图画布交互
 
 ## 8.1 嵌入地图画布
 
@@ -1976,13 +1976,13 @@ vlayer = QgsVectorLayer(path_to_ports_layer, "Ports layer", "ogr")
 if not vlayer.isValid():
     print("图层加载失败！")
 
-＃将图层添加到注册表
+# 将图层添加到注册表
 QgsProject.instance().addMapLayer(vlayer)
 
 # 缩放到图层
 canvas.setExtent(vlayer.extent())
 
-＃设置地图画布的图层集
+# 设置地图画布的图层集
 canvas.setLayers([vlayer])
 ```
 
@@ -1996,7 +1996,7 @@ canvas.setLayers([vlayer])
 
 ```python
 r = QgsRubberBand(canvas, False)  # False = not a polygon
-points = [QgsPoint(-100, 45), QgsPoint(10, 60), QgsPoint(120, 45)]
+points = [QgsPointXY(-100, 45), QgsPointXY(10, 60), QgsPointXY(120, 45)]
 r.setToGeometry(QgsGeometry.fromPolyline(points), None)
 ```
 
@@ -2047,7 +2047,7 @@ m.setPenWidth(3)
 
 ## 8.3 在画布中使用地图工具
 
-以下示例构造一个窗口，其中包含用于地图平移和缩放的地图画布和基本地图工具。激活每个工具：平移工具[`QgsMapToolPan`](https://qgis.org/pyqgis/3.4/gui/QgsMapToolPan.html#qgis.gui.QgsMapToolPan)，放大缩小工具[`QgsMapToolZoom`](https://qgis.org/pyqgis/3.4/gui/QgsMapToolZoom.html#qgis.gui.QgsMapToolZoom)。设置为可被选中，允许自动处理选中/未选中的操作状态 - 当激活地图工具时，一个工具被选中时，取消选中上一个工具。使用[`setMapTool()`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas.setMapTool)方法激活地图工具。
+以下示例构造一个窗口，其中包含用于地图平移和缩放的地图画布和基本地图工具。激活每个工具：平移工具[`QgsMapToolPan`](https://qgis.org/pyqgis/3.4/gui/QgsMapToolPan.html#qgis.gui.QgsMapToolPan)，放大缩小工具[`QgsMapToolZoom`](https://qgis.org/pyqgis/3.4/gui/QgsMapToolZoom.html#qgis.gui.QgsMapToolZoom)。设置为可被选中，允许自动处理选中/未选中的操作状态——当激活地图工具时，一个工具被选中时，取消选中上一个工具。使用[`setMapTool()`](https://qgis.org/pyqgis/3.4/gui/QgsMapCanvas.html#qgis.gui.QgsMapCanvas.setMapTool)方法激活地图工具。
 
 ```python
 from qgis.gui import *
