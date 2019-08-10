@@ -2286,7 +2286,7 @@ layout.initializeDefaults()
 
 - 图例
 
-  ```
+  ```python
   legend = QgsLayoutItemLegend(layout)
   legend.setLinkedMap(map) # map is an instance of QgsLayoutItemMap
   layout.addItem(legend)
@@ -2296,8 +2296,8 @@ layout.initializeDefaults()
 
   ```python
   item = QgsLayoutItemScaleBar(layout)
-  item.setStyle('Numeric') ＃可选择修改样式
-  item.setLinkedMap(map)  #map is an instance of QgsLayoutItemMap
+  item.setStyle('Numeric') # 可选择修改样式
+  item.setLinkedMap(map)  # map is an instance of QgsLayoutItemMap
   item.applyDefaultSize()
   layout.addItem(item)
   ```
