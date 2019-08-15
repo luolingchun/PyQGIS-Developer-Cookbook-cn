@@ -1,0 +1,74 @@
+{
+	"title": "PYQGIS开发者手册-中文",
+	"author": "llc",
+	"description": "PYQGIS开发者手册中文翻译",
+	"language": "zh-hans",
+	"links": {
+		"sidebar": {
+			"Home": "https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"
+		}
+	},
+	"plugins": [
+		"-lunr",
+		"-search",
+		"search-pro",
+		"-sharing",
+		"sharing-plus",
+		"github",
+		"splitter",
+		"toc",
+		"code",
+		"back-to-top-button",
+		"hide-element",
+		"donate",
+		"auto-scroll-table",
+		"lightbox",
+		"custom-favicon",
+		"pageview-count"
+	],
+	"pluginsConfig": {
+		"sharing": {
+			"douban": false,
+			"facebook": false,
+			"google": false,
+			"hatenaBookmark": false,
+			"instapaper": false,
+			"line": false,
+			"linkedin": false,
+			"messenger": false,
+			"pocket": false,
+			"qq": false,
+			"qzone": false,
+			"stumbleupon": false,
+			"twitter": false,
+			"viber": false,
+			"vk": false,
+			"weibo": false,
+			"whatsapp": false
+		},
+		"toc": {
+			"addClass": true,
+			"className": "toc"
+		},
+		"code": {
+			"copyButtons": true
+		},
+		"favicon": "image/favicon.ico",
+		"hide-element": {
+			"elements": [
+				".gitbook-link"
+			]
+		},
+		"github": {
+			"url": "https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"
+		},
+		"donate": {
+			"wechat": "image/wechat.jpg",
+			"alipay": "image/alipay.jpg",
+			"title": "",
+			"button": "赏",
+			"alipayText": "支付宝打赏",
+			"wechatText": "微信打赏"
+		}
+	}
+}
