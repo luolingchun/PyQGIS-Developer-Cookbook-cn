@@ -13,10 +13,9 @@
 		"-search",
 		"search-pro",
 		"-sharing",
-		"sharing-plus",
+		"chapter-fold",
 		"github",
 		"splitter",
-		"toc",
 		"code",
 		"back-to-top-button",
 		"hide-element",
@@ -27,33 +26,10 @@
 		"pageview-count"
 	],
 	"pluginsConfig": {
-		"sharing": {
-			"douban": false,
-			"facebook": false,
-			"google": false,
-			"hatenaBookmark": false,
-			"instapaper": false,
-			"line": false,
-			"linkedin": false,
-			"messenger": false,
-			"pocket": false,
-			"qq": false,
-			"qzone": false,
-			"stumbleupon": false,
-			"twitter": false,
-			"viber": false,
-			"vk": false,
-			"weibo": false,
-			"whatsapp": false
-		},
-		"toc": {
-			"addClass": true,
-			"className": "toc"
-		},
+		"favicon": "image/favicon.ico",
 		"code": {
 			"copyButtons": true
 		},
-		"favicon": "image/favicon.ico",
 		"hide-element": {
 			"elements": [
 				".gitbook-link"
