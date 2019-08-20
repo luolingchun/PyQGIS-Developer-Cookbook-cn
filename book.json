@@ -26,7 +26,7 @@
 		"pageview-count"
 	],
 	"pluginsConfig": {
-		"favicon": "image/favicon.ico",
+		"favicon": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/favicon.ico",
 		"code": {
 			"copyButtons": true
 		},
@@ -39,8 +39,8 @@
 			"url": "https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"
 		},
 		"donate": {
-			"wechat": "image/wechat.jpg",
-			"alipay": "image/alipay.jpg",
+			"wechat": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/wechat.jpg",
+			"alipay": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/alipay.jpg",
 			"title": "",
 			"button": "赏",
 			"alipayText": "支付宝打赏",

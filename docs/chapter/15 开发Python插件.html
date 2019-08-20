@@ -1,0 +1,1707 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>15 开发Python插件 · PYQGIS开发者手册-中文</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="llc">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-auto-scroll-table/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/lightbox.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="15 开发Python插件.html" />
+    
+    
+    <link rel="prev" href="14 任务 - 在后台做繁重的工作.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn" target="_blank" class="custom-link">Home</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    0 简介
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="1 引言.html">
+            
+                <a href="1 引言.html">
+            
+                    
+                    1 引言
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="1 引言.html">
+            
+                <a href="1 引言.html#11-在python控制台中编写脚本">
+            
+                    
+                    1.1 在Python控制台中编写脚本
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="1 引言.html">
+            
+                <a href="1 引言.html#12-python插件">
+            
+                    
+                    1.2 Python插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="1 引言.html">
+            
+                <a href="1 引言.html#13-qgis启动时运行python代码">
+            
+                    
+                    1.3 QGIS启动时运行Python代码
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="1 引言.html">
+            
+                <a href="1 引言.html#14-python应用程序">
+            
+                    
+                    1.4 Python应用程序
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="2 加载项目.html">
+            
+                <a href="2 加载项目.html">
+            
+                    
+                    2 加载项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="3 加载图层.html">
+            
+                <a href="3 加载图层.html">
+            
+                    
+                    3 加载图层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="3 加载图层.html">
+            
+                <a href="3 加载图层.html#31-矢量图层">
+            
+                    
+                    3.1 矢量图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="3 加载图层.html">
+            
+                <a href="3 加载图层.html#32-栅格图层">
+            
+                    
+                    3.2 栅格图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="3 加载图层.html">
+            
+                <a href="3 加载图层.html#33-qgsproject-实例">
+            
+                    
+                    3.3 QgsProject 实例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="4 使用栅格图层.html">
+            
+                <a href="4 使用栅格图层.html">
+            
+                    
+                    4 使用栅格图层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="4 使用栅格图层.html">
+            
+                <a href="4 使用栅格图层.html#41-图层细节">
+            
+                    
+                    4.1 图层细节
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="4 使用栅格图层.html">
+            
+                <a href="4 使用栅格图层.html#42-渲染">
+            
+                    
+                    4.2 渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="4 使用栅格图层.html">
+            
+                <a href="4 使用栅格图层.html#43-查询值">
+            
+                    
+                    4.3 查询值
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html">
+            
+                    
+                    5 使用矢量图层
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#51-检索相关属性信息">
+            
+                    
+                    5.1 检索相关属性信息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#52-遍历矢量图层">
+            
+                    
+                    5.2 遍历矢量图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#53-选择要素">
+            
+                    
+                    5.3 选择要素
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#54-修改矢量图层">
+            
+                    
+                    5.4 修改矢量图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#55-使用空间索引">
+            
+                    
+                    5.5 使用空间索引
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#56-创建矢量图层">
+            
+                    
+                    5.6 创建矢量图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.7" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#57-矢量图层的外观（符号系统）">
+            
+                    
+                    5.7 矢量图层的外观（符号系统）
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.8" data-path="5 使用矢量图层.html">
+            
+                <a href="5 使用矢量图层.html#58-更多主题">
+            
+                    
+                    5.8 更多主题
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="6 几何处理.html">
+            
+                <a href="6 几何处理.html">
+            
+                    
+                    6 几何处理
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="6 几何处理.html">
+            
+                <a href="6 几何处理.html#61-几何构造">
+            
+                    
+                    6.1 几何构造
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="6 几何处理.html">
+            
+                <a href="6 几何处理.html#62-访问几何">
+            
+                    
+                    6.2 访问几何
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="6 几何处理.html">
+            
+                <a href="6 几何处理.html#63-几何术语与操作">
+            
+                    
+                    6.3 几何术语与操作
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="7 投影支持.html">
+            
+                <a href="7 投影支持.html">
+            
+                    
+                    7 投影支持
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="7 投影支持.html">
+            
+                <a href="7 投影支持.html#71-坐标参考系统">
+            
+                    
+                    7.1 坐标参考系统
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="7 投影支持.html">
+            
+                <a href="7 投影支持.html#72-坐标参考系统转换">
+            
+                    
+                    7.2 坐标参考系统转换
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="8 使用地图画布.html">
+            
+                <a href="8 使用地图画布.html">
+            
+                    
+                    8 使用地图画布
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="8 使用地图画布.html">
+            
+                <a href="8 使用地图画布.html#81-嵌入地图画布">
+            
+                    
+                    8.1 嵌入地图画布
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="8 使用地图画布.html">
+            
+                <a href="8 使用地图画布.html#82-橡皮条和顶点标记">
+            
+                    
+                    8.2 橡皮条和顶点标记
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="8 使用地图画布.html">
+            
+                <a href="8 使用地图画布.html#83-在画布中使用地图工具">
+            
+                    
+                    8.3 在画布中使用地图工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="8 使用地图画布.html">
+            
+                <a href="8 使用地图画布.html#84-编写自定义地图工具">
+            
+                    
+                    8.4 编写自定义地图工具
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="8 使用地图画布.html">
+            
+                <a href="8 使用地图画布.html#85-编写自定义地图画布项目">
+            
+                    
+                    8.5 编写自定义地图画布项目
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="9 地图渲染和打印.html">
+            
+                <a href="9 地图渲染和打印.html">
+            
+                    
+                    9 地图渲染和打印
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="9 地图渲染和打印.html">
+            
+                <a href="9 地图渲染和打印.html#91-简单的渲染">
+            
+                    
+                    9.1 简单的渲染
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="9 地图渲染和打印.html">
+            
+                <a href="9 地图渲染和打印.html#92-使用不同的crs渲染图层">
+            
+                    
+                    9.2 使用不同的CRS渲染图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="9 地图渲染和打印.html">
+            
+                <a href="9 地图渲染和打印.html#93-使用打印布局输出">
+            
+                    
+                    9.3 使用打印布局输出
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="10 表达式，过滤和计算值.html">
+            
+                <a href="10 表达式，过滤和计算值.html">
+            
+                    
+                    10 表达式，过滤和计算值
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="10 表达式，过滤和计算值.html">
+            
+                <a href="10 表达式，过滤和计算值.html#101-解析表达式">
+            
+                    
+                    10.1 解析表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="10 表达式，过滤和计算值.html">
+            
+                <a href="10 表达式，过滤和计算值.html#102-评估表达式">
+            
+                    
+                    10.2 评估表达式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="10 表达式，过滤和计算值.html">
+            
+                <a href="10 表达式，过滤和计算值.html#103-示例">
+            
+                    
+                    10.3 示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="11 读取和存储设置.html">
+            
+                <a href="11 读取和存储设置.html">
+            
+                    
+                    11 读取和存储设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="12 与用户通信.html">
+            
+                <a href="12 与用户通信.html">
+            
+                    
+                    12 与用户通信
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="12 与用户通信.html">
+            
+                <a href="12 与用户通信.html#121-显示消息">
+            
+                    
+                    12.1 显示消息
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="12 与用户通信.html">
+            
+                <a href="12 与用户通信.html#122-显示进度">
+            
+                    
+                    12.2 显示进度
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="12 与用户通信.html">
+            
+                <a href="12 与用户通信.html#123-日志">
+            
+                    
+                    12.3 日志
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="13 认证基础.html">
+            
+                <a href="13 认证基础.html">
+            
+                    
+                    13 认证基础
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="13 认证基础.html">
+            
+                <a href="13 认证基础.html#131-介绍">
+            
+                    
+                    13.1 介绍
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="13 认证基础.html">
+            
+                <a href="13 认证基础.html#132-词汇表">
+            
+                    
+                    13.2 词汇表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="13 认证基础.html">
+            
+                <a href="13 认证基础.html#133-qgsauthmanager入口">
+            
+                    
+                    13.3 QgsAuthManager入口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.4" >
+            
+                <a target="_blank" href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/authentication.html#id23">
+            
+                    
+                    13.2 Adapt plugins to use Authentication infrastructure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.5" >
+            
+                <a target="_blank" href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/authentication.html#id24">
+            
+                    
+                    13.4 Authentication GUIs
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="14 任务 - 在后台做繁重的工作.html">
+            
+                <a href="14 任务 - 在后台做繁重的工作.html">
+            
+                    
+                    14 任务 - 在后台做繁重的工作
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="14 任务 - 在后台做繁重的工作.html">
+            
+                <a href="14 任务 - 在后台做繁重的工作.html#141-引言">
+            
+                    
+                    14.1 引言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="14 任务 - 在后台做繁重的工作.html">
+            
+                <a href="14 任务 - 在后台做繁重的工作.html#142-示例">
+            
+                    
+                    14.2 示例
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.16" data-path="15 开发Python插件.html">
+            
+                <a href="15 开发Python插件.html">
+            
+                    
+                    15 开发Python插件
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.16.1" data-path="15 开发Python插件.html">
+            
+                <a href="15 开发Python插件.html#151-构建python插件">
+            
+                    
+                    15.1 构建Python插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.2" data-path="15 开发Python插件.html">
+            
+                <a href="15 开发Python插件.html#152-代码片段">
+            
+                    
+                    15.2 代码片段
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.3" data-path="15 开发Python插件.html">
+            
+                <a href="15 开发Python插件.html#153-使用插件图层">
+            
+                    
+                    15.3 使用插件图层
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.4" data-path="15 开发Python插件.html">
+            
+                <a href="15 开发Python插件.html#154-编码与调试">
+            
+                    
+                    15.4 编码与调试
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.5" data-path="15 开发Python插件.html">
+            
+                <a href="15 开发Python插件.html#155-发布你的插件">
+            
+                    
+                    15.5 发布你的插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="16 编写处理插件.html">
+            
+                <a href="16 编写处理插件.html">
+            
+                    
+                    16 编写处理插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="17 网络分析库.html">
+            
+                <a href="17 网络分析库.html">
+            
+                    
+                    17 网络分析库
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="18 QGIS Server Python插件.html">
+            
+                <a href="18 QGIS Server Python插件.html">
+            
+                    
+                    18 QGIS Server Python插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >15 开发Python插件</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <html><head></head><body><h1 id="15-&#x5F00;&#x53D1;python&#x63D2;&#x4EF6;">15 &#x5F00;&#x53D1;Python&#x63D2;&#x4EF6;</h1>
+<p>&#x53EF;&#x4EE5;&#x7528;Python&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x521B;&#x5EFA;&#x63D2;&#x4EF6;&#x3002;&#x4E0E;&#x7528;C ++&#x7F16;&#x5199;&#x63D2;&#x4EF6;&#x76F8;&#x6BD4;&#xFF0C;&#x7531;&#x4E8E;Python&#x8BED;&#x8A00;&#x7684;&#x52A8;&#x6001;&#x7279;&#x6027;&#xFF0C;&#x8FD9;&#x4E9B;&#x63D2;&#x4EF6;&#x5E94;&#x8BE5;&#x66F4;&#x5BB9;&#x6613;&#x7F16;&#x5199;&#xFF0C;&#x7406;&#x89E3;&#xFF0C;&#x7EF4;&#x62A4;&#x548C;&#x5206;&#x53D1;&#x3002;</p>
+<p>Python&#x63D2;&#x4EF6;&#x4E0E;QGIS&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x4E2D;&#x7684;C ++&#x63D2;&#x4EF6;&#x4E00;&#x8D77;&#x5217;&#x51FA;&#x3002;&#x4ED6;&#x4EEC;&#x5728;<code>~/(UserProfile)/python/plugins</code>&#x548C;&#x4EE5;&#x4E0B;&#x8DEF;&#x5F84;&#x4E2D;&#x641C;&#x7D22;&#xFF1A;</p>
+<ul>
+<li>UNIX / Mac&#x4E0A;&#xFF1A; <code>(qgis_prefix)/share/qgis/python/plugins</code></li>
+<li>Windows&#xFF1A; <code>(qgis_prefix)/python/plugins</code></li>
+</ul>
+<p>&#x6709;&#x5173;<code>~</code>&#x548C;<code>(UserProfile)</code>&#x7684;&#x5B9A;&#x4E49;,&#x8BF7;&#x67E5;&#x770B;<a href="https://docs.qgis.org/3.4/en/docs/user_manual/plugins/plugins.html#core-and-external-plugins" target="_blank">Core&#x548C;External&#x63D2;&#x4EF6;</a>&#x3002;</p>
+<hr>
+<p><strong>&#x5C0F;&#x8D34;&#x58EB;&#xFF1A;</strong> &#x5C06;QGIS_PLUGINPATH&#x8BBE;&#x7F6E;&#x4E3A;&#x73B0;&#x6709;&#x76EE;&#x5F55;&#x8DEF;&#x5F84;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x6B64;&#x8DEF;&#x5F84;&#x6DFB;&#x52A0;&#x5230;&#x63D2;&#x4EF6;&#x7684;&#x641C;&#x7D22;&#x8DEF;&#x5F84;&#x5217;&#x8868;&#x4E2D;&#x3002;</p>
+<hr>
+<h2 id="151-&#x6784;&#x5EFA;python&#x63D2;&#x4EF6;">15.1 &#x6784;&#x5EFA;Python&#x63D2;&#x4EF6;</h2>
+<p>&#x8981;&#x521B;&#x5EFA;&#x63D2;&#x4EF6;&#xFF0C;&#x8BF7;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x6B65;&#x9AA4;&#xFF1A;</p>
+<ol>
+<li><em>&#x60F3;&#x6CD5;</em>&#xFF1A;&#x4E86;&#x89E3;&#x4F60;&#x60F3;&#x8981;&#x4F7F;&#x7528;&#x65B0;&#x7684;QGIS&#x63D2;&#x4EF6;&#x505A;&#x4EC0;&#x4E48;&#x3002;&#x4F60;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD9;&#x4E48;&#x505A;&#xFF1F;&#x4F60;&#x60F3;&#x89E3;&#x51B3;&#x4EC0;&#x4E48;&#x95EE;&#x9898;&#xFF1F;&#x8FD9;&#x4E2A;&#x95EE;&#x9898;&#x5DF2;&#x7ECF;&#x6709;&#x53E6;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x5417;&#xFF1F;</li>
+<li><em>&#x521B;&#x5EFA;&#x6587;&#x4EF6;</em>&#xFF1A;&#x8981;&#x70B9;&#xFF1A;&#x4E00;&#x4E2A;&#x8D77;&#x70B9;<code>__init__.py</code>; &#x586B;&#x5199;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-metadata" target="_blank">&#x63D2;&#x4EF6;&#x5143;&#x6570;&#x636E;</a><code>metadata.txt</code>&#x3002;&#x7136;&#x540E;&#x5B9E;&#x73B0;&#x81EA;&#x5DF1;&#x7684;&#x8BBE;&#x8BA1;&#x3002;&#x4E00;&#x4E2A;&#x4E3B;&#x8981;&#x7684;Python&#x63D2;&#x4EF6;&#x4F53;&#xFF0C;&#x4F8B;&#x5982;<code>mainplugin.py</code>&#x3002;&#x53EF;&#x80FD;&#x662F;Qt Designer&#x4E2D;&#x7684;&#x4E00;&#x4E2A;ui&#x6587;&#x4EF6;<code>form.ui</code>&#xFF0C;&#x5E26;&#x6709;&#x8D44;&#x6E90;&#x6587;&#x4EF6;<code>resources.qrc</code>&#x3002;</li>
+<li><em>&#x7F16;&#x5199;&#x4EE3;&#x7801;</em>&#xFF1A;&#x5728;&#x91CC;&#x9762;&#x5199;&#x4EE3;&#x7801;<code>mainplugin.py</code></li>
+<li><em>&#x6D4B;&#x8BD5;</em>&#xFF1A;&#x5173;&#x95ED;&#x5E76;&#x91CD;&#x65B0;&#x6253;&#x5F00;QGIS&#x5E76;&#x518D;&#x6B21;&#x5BFC;&#x5165;&#x63D2;&#x4EF6;&#x3002;&#x68C0;&#x67E5;&#x4E00;&#x5207;&#x662F;&#x5426;&#x6B63;&#x5E38;&#x3002;</li>
+<li><em>&#x53D1;&#x5E03;</em>&#xFF1A;&#x5728;QGIS&#x5B58;&#x50A8;&#x5E93;&#x4E2D;&#x53D1;&#x5E03;&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#x6216;&#x5C06;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x5B58;&#x50A8;&#x5E93;&#x4F5C;&#x4E3A;&#x4E2A;&#x4EBA;&#x201C;GIS&#x6B66;&#x5668;&#x201D;&#x7684;&#x201C;&#x6B66;&#x5668;&#x5E93;&#x201D;&#x3002;</li>
+</ol>
+<h3 id="1511-&#x63D2;&#x4EF6;&#x7ED3;&#x6784;">15.1.1 &#x63D2;&#x4EF6;&#x7ED3;&#x6784;</h3>
+<p>&#x81EA;&#x4ECE;&#x5728;QGIS&#x4E2D;&#x5F15;&#x5165;Python&#x63D2;&#x4EF6;&#x4EE5;&#x6765;&#xFF0C;&#x51FA;&#x73B0;&#x4E86;&#x8BB8;&#x591A;&#x63D2;&#x4EF6;&#x3002;QGIS&#x56E2;&#x961F;&#x7EF4;&#x62A4;&#x4E00;&#x4E2A;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository" target="_blank">&#x5B98;&#x65B9;Python&#x63D2;&#x4EF6;&#x5E93;</a>&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4ED6;&#x4EEC;&#x7684;&#x6E90;&#x7801;&#x6765;&#x4E86;&#x89E3;&#x4F7F;&#x7528;PyQGIS&#x8FDB;&#x884C;&#x7F16;&#x7A0B;&#x7684;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#xFF0C;&#x6216;&#x8005;&#x4E86;&#x89E3;&#x4F60;&#x662F;&#x5426;&#x5728;&#x91CD;&#x590D;&#x5F00;&#x53D1;&#x3002;</p>
+<p>  &#x8FD9;&#x662F;&#x6211;&#x4EEC;&#x7684;&#x793A;&#x4F8B;&#x63D2;&#x4EF6;&#x7684;&#x76EE;&#x5F55;&#x7ED3;&#x6784;</p>
+<pre><code class="lang-bash">PYTHON_PLUGINS_PATH/
+  MyPlugin/
+    __init__.py    --&gt; *&#x5FC5;&#x9700;*
+    mainPlugin.py  --&gt; *&#x6838;&#x5FC3;&#x4EE3;&#x7801;*
+    metadata.txt   --&gt; *&#x5FC5;&#x9700;*
+    resources.qrc  --&gt; *&#x53EF;&#x80FD;&#x9700;&#x8981;*
+    resources.py   --&gt; *&#x7F16;&#x8BD1;&#x7248;&#x672C;, &#x53EF;&#x80FD;&#x9700;&#x8981;*
+    form.ui        --&gt; *&#x53EF;&#x80FD;&#x9700;&#x8981;*
+    form.py        --&gt; *&#x7F16;&#x8BD1;&#x7248;&#x672C;, &#x53EF;&#x80FD;&#x9700;&#x8981;*
+</code></pre>
+<p>&#x8FD9;&#x4E9B;&#x6587;&#x4EF6;&#x7684;&#x542B;&#x4E49;&#x662F;&#x4EC0;&#x4E48;&#xFF1A;</p>
+<ul>
+<li><code>__init__.py</code>=&#x63D2;&#x4EF6;&#x7684;&#x5165;&#x53E3;&#x3002;&#x5B83;&#x5FC5;&#x987B;&#x5177;&#x6709; <code>classFactory()</code>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x5177;&#x6709;&#x4EFB;&#x4F55;&#x5176;&#x4ED6;&#x521D;&#x59CB;&#x5316;&#x4EE3;&#x7801;&#x3002;</li>
+<li><code>mainPlugin.py</code>=&#x63D2;&#x4EF6;&#x7684;&#x4E3B;&#x8981;&#x5DE5;&#x4F5C;&#x4EE3;&#x7801;&#x3002;&#x5305;&#x542B;&#x6709;&#x5173;&#x63D2;&#x4EF6;&#x64CD;&#x4F5C;&#x548C;&#x4E3B;&#x8981;&#x4EE3;&#x7801;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#x3002;</li>
+<li><code>resources.qrc</code>= Qt Designer&#x521B;&#x5EFA;&#x7684;xml&#x6587;&#x6863;&#x3002;&#x5305;&#x542B;&#x8868;&#x5355;&#x8D44;&#x6E90;&#x7684;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x3002;</li>
+<li><code>resources.py</code> =&#x5C06;&#x4E0A;&#x8FF0;.qrc&#x6587;&#x4EF6;&#x8F6C;&#x6362;&#x4E3A;Python&#x4EE3;&#x7801;&#x3002;</li>
+<li><code>form.ui</code> = Qt Designer&#x521B;&#x5EFA;&#x7684;GUI&#x3002;</li>
+<li><code>form.py</code> =&#x5C06;&#x4E0A;&#x9762;&#x63CF;&#x8FF0;&#x7684;form.ui&#x8F6C;&#x6362;&#x4E3A;Python&#x4EE3;&#x7801;&#x3002;</li>
+<li><code>metadata.txt</code> =&#x5305;&#x542B;&#x63D2;&#x4EF6;&#x7F51;&#x7AD9;&#x548C;&#x63D2;&#x4EF6;&#x57FA;&#x7840;&#x7ED3;&#x6784;&#x4F7F;&#x7528;&#x7684;&#x5E38;&#x89C4;&#x4FE1;&#x606F;&#xFF0C;&#x7248;&#x672C;&#x3001;&#x540D;&#x79F0;&#x548C;&#x4E00;&#x4E9B;&#x5176;&#x4ED6;&#x5143;&#x6570;&#x636E;&#x3002;</li>
+</ul>
+<p><a href="https://www.dimitrisk.gr/qgis/creator/" target="_blank">&#x8FD9;</a>&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x5178;&#x578B;QGIS Python&#x63D2;&#x4EF6;&#x7684;&#x57FA;&#x672C;&#x6587;&#x4EF6;&#xFF08;&#x6846;&#x67B6;&#xFF09;&#x7684;&#x5728;&#x7EBF;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<a href="https://plugins.qgis.org/plugins/pluginbuilder3/" target="_blank">Plugin Builder 3</a>&#x7684;QGIS&#x63D2;&#x4EF6; &#xFF0C;&#x5B83;&#x4E3A;QGIS&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x6A21;&#x677F;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x4E92;&#x8054;&#x7F51;&#x8FDE;&#x63A5;&#x3002;&#x8FD9;&#x662F;&#x63A8;&#x8350;&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x517C;&#x5BB9;3.x&#x7248;&#x672C;&#x3002;</p>
+<h3 id="1512-&#x63D2;&#x4EF6;&#x5185;&#x5BB9;">15.1.2 &#x63D2;&#x4EF6;&#x5185;&#x5BB9;</h3>
+<p>&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x6709;&#x5173;&#x5728;&#x4E0A;&#x8FF0;&#x6587;&#x4EF6;&#x7ED3;&#x6784;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5185;&#x5BB9;&#x7684;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#x3002;</p>
+<h4 id="metadata">metadata</h4>
+<p>&#x9996;&#x5148;&#xFF0C;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x9700;&#x8981;&#x68C0;&#x7D22;&#x6709;&#x5173;&#x63D2;&#x4EF6;&#x7684;&#x4E00;&#x4E9B;&#x57FA;&#x672C;&#x4FE1;&#x606F;&#xFF0C;&#x4F8B;&#x5982;&#x5176;&#x540D;&#x79F0;&#x3001;&#x63CF;&#x8FF0;&#x7B49;&#x3002;&#x6587;&#x4EF6;<code>metadata.txt</code>&#x5B58;&#x50A8;&#x6B64;&#x4FE1;&#x606F;&#x3002;</p>
+<p><strong>&#x6CE8;&#x610F;&#xFF1A;</strong> &#x6240;&#x6709;&#x5143;&#x6570;&#x636E;&#x5FC5;&#x987B;&#x91C7;&#x7528;UTF-8&#x7F16;&#x7801;&#x3002;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">&#x5143;&#x6570;&#x636E;&#x540D;&#x79F0;</th>
+<th style="text-align:center">&#x662F;&#x5426;&#x5FC5;&#x9700;</th>
+<th style="text-align:left">&#x63CF;&#x8FF0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">name</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x63D2;&#x4EF6;&#x540D;&#x79F0;&#xFF0C;&#x77ED;&#x5B57;&#x7B26;&#x4E32;</td>
+</tr>
+<tr>
+<td style="text-align:left">qgisMinimumVersion</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x6700;&#x5C0F;QGIS&#x7248;&#x672C;</td>
+</tr>
+<tr>
+<td style="text-align:left">qgisMaximumVersion</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x6700;&#x5927;QGIS&#x7248;&#x672C;</td>
+</tr>
+<tr>
+<td style="text-align:left">description</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x63CF;&#x8FF0;&#x63D2;&#x4EF6;&#x7684;&#x7B80;&#x77ED;&#x6587;&#x672C;&#xFF0C;&#x4E0D;&#x652F;&#x6301;HTML</td>
+</tr>
+<tr>
+<td style="text-align:left">about</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x8F83;&#x957F;&#x7684;&#x6587;&#x672C;&#xFF0C;&#x8BE6;&#x7EC6;&#x63CF;&#x8FF0;&#x63D2;&#x4EF6;&#xFF0C;&#x4E0D;&#x652F;&#x6301;HTML</td>
+</tr>
+<tr>
+<td style="text-align:left">version</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x7248;&#x672C;</td>
+</tr>
+<tr>
+<td style="text-align:left">author</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x4F5C;&#x8005;&#x59D3;&#x540D;</td>
+</tr>
+<tr>
+<td style="text-align:left">email</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x4F5C;&#x8005;&#x7684;&#x7535;&#x5B50;&#x90AE;&#x4EF6;&#xFF0C;&#x5728;&#x7F51;&#x7AD9;&#x4E0A;&#x4EC5;&#x663E;&#x793A;&#x7ED9;&#x767B;&#x5F55;&#x7684;&#x7528;&#x6237;&#xFF0C;&#x4F46;&#x5728;&#x63D2;&#x4EF6;&#x5B89;&#x88C5;&#x540E;&#x53EF;&#x5728;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x4E2D;&#x770B;&#x5230;</td>
+</tr>
+<tr>
+<td style="text-align:left">changelog</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x53EF;&#x4EE5;&#x662F;&#x591A;&#x884C;&#xFF0C;&#x4E0D;&#x652F;&#x6301;HTML</td>
+</tr>
+<tr>
+<td style="text-align:left">experimental</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x5E03;&#x5C14;&#x503C;&#xFF0C;True&#x6216;False</td>
+</tr>
+<tr>
+<td style="text-align:left">deprecated</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">boolean&#x503C;&#xFF0C;True&#x6216;False&#xFF0C;&#x9002;&#x7528;&#x4E8E;&#x6574;&#x4E2A;&#x63D2;&#x4EF6;&#xFF0C;&#x800C;&#x4E0D;&#x4EC5;&#x4EC5;&#x9002;&#x7528;&#x4E8E;&#x4E0A;&#x4F20;&#x7684;&#x7248;&#x672C;</td>
+</tr>
+<tr>
+<td style="text-align:left">tags</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x4EE5;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x5141;&#x8BB8;&#x5728;&#x5355;&#x4E2A;&#x6807;&#x8BB0;&#x5185;&#x4F7F;&#x7528;&#x7A7A;&#x683C;</td>
+</tr>
+<tr>
+<td style="text-align:left">homepage</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x6307;&#x5411;&#x63D2;&#x4EF6;&#x4E3B;&#x9875;&#x7684;&#x6709;&#x6548;&#x7F51;&#x5740;</td>
+</tr>
+<tr>
+<td style="text-align:left">repository</td>
+<td style="text-align:center">&#x662F;</td>
+<td style="text-align:left">&#x6E90;&#x4EE3;&#x7801;&#x5B58;&#x50A8;&#x5E93;&#x7684;&#x6709;&#x6548;URL</td>
+</tr>
+<tr>
+<td style="text-align:left">tracker</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x6545;&#x969C;&#x5355;&#x548C;&#x9519;&#x8BEF;&#x62A5;&#x544A;&#x7684;&#x6709;&#x6548;URL</td>
+</tr>
+<tr>
+<td style="text-align:left">icon</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x5BF9;&#x4E8E;web&#x53CB;&#x597D;&#x7684;&#x56FE;&#x50CF;&#xFF08;PNG&#xFF0C;JPEG&#xFF09;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x6216;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#xFF08;&#x76F8;&#x5BF9;&#x4E8E;&#x63D2;&#x4EF6;&#x538B;&#x7F29;&#x5305;&#x7684;&#x6587;&#x4EF6;&#x5939;&#xFF09;</td>
+</tr>
+<tr>
+<td style="text-align:left">category</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">Raster, Vector, Database and Web&#xFF08;&#x6805;&#x683C;&#x3001;&#x77E2;&#x91CF;&#x3001;&#x6570;&#x636E;&#x5E93;&#x548C;&#x7F51;&#x7EDC;&#xFF09;</td>
+</tr>
+</tbody>
+</table>
+<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x63D2;&#x4EF6;&#x653E;&#x5728;<strong>&#x63D2;&#x4EF6;&#x83DC;&#x5355;</strong>&#x4E2D;&#xFF08;&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x4E2D;&#x770B;&#x5230;&#x5982;&#x4F55;&#x4E3A;&#x63D2;&#x4EF6;&#x6DFB;&#x52A0;&#x83DC;&#x5355;&#x9879;&#xFF09;&#xFF0C;&#x4F46;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5165;<strong>Raster</strong>&#xFF0C;<strong>Vector</strong>&#xFF0C; <strong>Database</strong>&#x548C;<strong>Web</strong>&#x83DC;&#x5355;&#x4E2D;&#x3002;</p>
+<p>&#x8F93;&#x5165;&#x6307;&#x5B9A;&#x7684;&#x201C;category&#x201D;&#x5143;&#x6570;&#x636E;&#xFF0C;&#x53EF;&#x4EE5;&#x76F8;&#x5E94;&#x5730;&#x5BF9;&#x63D2;&#x4EF6;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#x3002;&#x6B64;&#x5143;&#x6570;&#x636E;&#x7528;&#x4F5C;&#x63D0;&#x793A;&#x7528;&#x6237;&#xFF0C;&#x5E76;&#x544A;&#x8BC9;&#x4ED6;&#x4EEC;&#x53EF;&#x4EE5;&#x5728;&#x54EA;&#x91CC;&#xFF08;&#x5728;&#x54EA;&#x4E2A;&#x83DC;&#x5355;&#x4E2D;&#xFF09;&#x627E;&#x5230;&#x8BE5;&#x63D2;&#x4EF6;&#x3002;&#x201C;category&#x201D;&#x7684;&#x5141;&#x8BB8;&#x503C;&#x4E3A;&#xFF1A;Vector, Raster, Database or Web&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#x53EF;&#x4EE5;&#x4ECE;Raster&#x83DC;&#x5355;&#x4E2D;&#x83B7;&#x5F97;&#xFF0C;&#x8BF7;&#x5C06;&#x5176;&#x6DFB;&#x52A0;&#x5230;<code>metadata.txt</code></p>
+<pre><code class="lang-ini"><span class="hljs-attr">category</span>=Raster
+</code></pre>
+<hr>
+<p><strong>&#x5C0F;&#x8D34;&#x58EB;&#xFF1A;</strong> &#x5982;&#x679C;qgisMaximumVersion&#x4E3A;&#x7A7A;&#xFF0C;&#x5219;&#x5728;&#x4E0A;&#x4F20;&#x5230;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository" target="_blank">&#x5B98;&#x65B9;Python&#x63D2;&#x4EF6;&#x5B58;&#x50A8;&#x5E93;</a>&#x65F6;&#xFF0C;&#x5B83;&#x5C06;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E3B;&#x8981;&#x7248;&#x672C;&#x52A0;&#x4E0A;.99&#xFF08;&#x4F8B;&#x5982;&#xFF1A;3.99&#xFF09;&#x3002;</p>
+<hr>
+<p>metadata.txt&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-ini">; &#x4EE5;&#x4E0B;&#x662F;&#x5F3A;&#x5236;&#x6027;&#x7684;
+
+[general]
+name=HelloWorld
+email=me@example.com
+author=Just Me
+qgisMinimumVersion=3.0
+description=This is an example plugin for greeting the world.\
+    Multiline is allowed:\
+    lines starting with spaces belong to the same\
+    field, in this case to the &quot;description&quot; field.\
+    HTML formatting is not allowed.
+about=This paragraph can contain a detailed description\
+    of the plugin. Multiline is allowed, HTML is not.
+version=version 1.2
+tracker=http://bugs.itopen.it
+repository=http://www.itopen.it/repo
+; &#x7ED3;&#x675F;&#x5F3A;&#x5236;
+
+; &#x4EE5;&#x4E0B;&#x662F;&#x53EF;&#x9009;&#x7684;
+category=Raster
+changelog=The changelog lists the plugin versions\
+    and their changes as in the example below:\
+    1.0 - First stable release\
+    0.9 - All features implemented\
+    0.8 - First testing release
+
+; &#x6807;&#x7B7E;&#x91C7;&#x7528;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x503C;&#x683C;&#x5F0F;&#xFF0C;&#x6807;&#x7B7E;&#x540D;&#x79F0;&#x5141;&#x8BB8;&#x4F7F;&#x7528;&#x7A7A;&#x683C;
+; &#x6807;&#x7B7E;&#x5E94;&#x8BE5;&#x662F;&#x82F1;&#x6587;&#x7684;&#x3002;&#x5728;&#x521B;&#x5EFA;&#x4E4B;&#x524D;&#x8BF7;&#x68C0;&#x67E5;&#x73B0;&#x6709;&#x6807;&#x7B7E;&#x548C;&#x540C;&#x4E49;&#x8BCD;
+tags=wkt,raster,hello world
+
+; &#x8FD9;&#x4E9B;&#x5143;&#x6570;&#x636E;&#x53EF;&#x4EE5;&#x4E3A;&#x7A7A;&#xFF0C;&#x6700;&#x7EC8;&#x5C06;&#x6210;&#x4E3A;&#x5F3A;&#x5236;&#x6027;&#x7684;&#x3002;
+homepage=https://www.itopen.it
+icon=icon.png
+
+; &#x5B9E;&#x9A8C;&#x6807;&#x5FD7;&#xFF08;&#x9002;&#x7528;&#x4E8E;&#x5355;&#x4E00;&#x7248;&#x672C;&#xFF09;
+experimental=True
+
+; &#x5F03;&#x7528;&#x6807;&#x5FD7; &#xFF08;&#x9002;&#x7528;&#x4E8E;&#x6574;&#x4E2A;&#x63D2;&#x4EF6;&#xFF0C;&#x4E0D;&#x4EC5;&#x9002;&#x7528;&#x4E8E;&#x4E0A;&#x4F20;&#x7684;&#x7248;&#x672C;&#xFF09;
+deprecated=False
+
+; &#x5982;&#x679C;&#x4E3A;&#x7A7A;&#xFF0C;&#x5B83;&#x5C06;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E3B;&#x8981;&#x7248;&#x672C;+.99
+qgisMaximumVersion=3.99
+</code></pre>
+<h4 id="initpy">__init__.py</h4>
+<p>Python&#x5305;&#x9700;&#x8981;&#x6B64;&#x6587;&#x4EF6;&#x3002;&#x6B64;&#x5916;&#xFF0C;QGIS&#x8981;&#x6C42;&#x6B64;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x4E00;&#x4E2A;<code>classFactory()</code>&#x51FD;&#x6570;&#xFF0C;&#x8BE5;&#x51FD;&#x6570;&#x5728;&#x63D2;&#x4EF6;&#x88AB;&#x52A0;&#x8F7D;&#x5230;QGIS&#x65F6;&#x8C03;&#x7528;&#x3002;&#x5B83;&#x63A5;&#x6536;<a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface" target="_blank"><code>QgisInterface</code></a>&#x5B9E;&#x4F8B;&#xFF0C; &#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x8FD4;&#x56DE;<code>mainplugin.py</code>&#x4E2D;&#x63D2;&#x4EF6;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x2014;&#x2014;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#x5B83;&#x88AB;&#x547D;&#x540D;&#x4E3A;<code>TestPlugin</code>&#xFF08;&#x89C1;&#x4E0B;&#x6587;&#xFF09;&#x3002;<code>__init__.py</code>&#x5E94;&#x8BE5;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">classFactory</span><span class="hljs-params">(iface)</span>:</span>
+    <span class="hljs-keyword">from</span> .mainPlugin <span class="hljs-keyword">import</span> TestPlugin
+    <span class="hljs-keyword">return</span> TestPlugin(iface)
+</code></pre>
+<h4 id="mainpluginpy">mainPlugin.py</h4>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x9B54;&#x6CD5;&#x53D1;&#x751F;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x4E0B;&#x9762;&#x5C31;&#x662F;&#x9B54;&#x6CD5;&#x7684;&#x4F8B;&#x5B50;:</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> qgis.PyQt.QtGui <span class="hljs-keyword">import</span> *
+<span class="hljs-keyword">from</span> qgis.PyQt.QtWidgets <span class="hljs-keyword">import</span> *
+
+<span class="hljs-comment"># &#x4ECE;&#x6587;&#x4EF6;resources.py&#x521D;&#x59CB;&#x5316;Qt&#x7684;&#x8D44;&#x6E90;</span>
+<span class="hljs-keyword">from</span> . <span class="hljs-keyword">import</span> resources
+
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestPlugin</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, iface)</span>:</span>
+        <span class="hljs-comment"># &#x4FDD;&#x5B58;QGIS interface&#x5F15;&#x7528;</span>
+        self.iface = iface
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initGui</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-comment"># &#x521B;&#x5EFA;&#x52A8;&#x4F5C;&#xFF0C;&#x5B83;&#x5C06;&#x542F;&#x52A8;&#x63D2;&#x4EF6;&#x914D;&#x7F6E;</span>
+        self.action = QAction(QIcon(<span class="hljs-string">&quot;:/plugins/testplug/icon.png&quot;</span>), <span class="hljs-string">&quot;Test plugin&quot;</span>, self.iface.mainWindow())
+        self.action.setObjectName(<span class="hljs-string">&quot;testAction&quot;</span>)
+        self.action.setWhatsThis(<span class="hljs-string">&quot;Configuration for test plugin&quot;</span>)
+        self.action.setStatusTip(<span class="hljs-string">&quot;This is status tip&quot;</span>)
+        self.action.triggered.connect(self.run)
+
+        <span class="hljs-comment"># &#x6DFB;&#x52A0;&#x5DE5;&#x5177;&#x680F;&#x6309;&#x94AE;&#x548C;&#x83DC;&#x5355;&#x9879;</span>
+        self.iface.addToolBarIcon(self.action)
+        self.iface.addPluginToMenu(<span class="hljs-string">&quot;&amp;Test plugins&quot;</span>, self.action)
+
+        <span class="hljs-comment"># &#x8FDE;&#x63A5;&#x4FE1;&#x53F7;renderComplete&#x2014;&#x2014;&#x753B;&#x5E03;&#x6E32;&#x67D3;&#x5B8C;&#x6210;&#x540E;&#x53D1;&#x9001;&#x7684;&#x4FE1;&#x53F7;</span>
+        self.iface.mapCanvas().renderComplete.connect(self.renderTest)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">unload</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-comment"># &#x5220;&#x9664;&#x63D2;&#x4EF6;&#x83DC;&#x5355;&#x9879;&#x548C;&#x56FE;&#x6807;</span>
+        self.iface.removePluginMenu(<span class="hljs-string">&quot;&amp;Test plugins&quot;</span>, self.action)
+        self.iface.removeToolBarIcon(self.action)
+
+        <span class="hljs-comment"># &#x65AD;&#x5F00;&#x4FE1;&#x53F7;</span>
+        self.iface.mapCanvas().renderComplete.disconnect(self.renderTest)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-comment"># &#x521B;&#x5EFA;&#x5E76;&#x663E;&#x793A;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x5BF9;&#x8BDD;&#x6846;&#x6216;&#x7C7B;&#x4F3C;&#x7684;&#x4E8B;&#x60C5;</span>
+        print(<span class="hljs-string">&quot;TestPlugin: run called!&quot;</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">renderTest</span><span class="hljs-params">(self, painter)</span>:</span>
+
+        <span class="hljs-comment"># &#x4F7F;&#x7528;painter&#x7ED8;&#x5236;&#x5730;&#x56FE;&#x753B;&#x5E03;</span>
+        print(<span class="hljs-string">&quot;TestPlugin: renderTest called!&quot;</span>)
+</code></pre>
+<p>&#x4E3B;&#x63D2;&#x4EF6;&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#xFF08;&#x4F8B;&#x5982; <code>mainPlugin.py</code>&#xFF09;&#x5FC5;&#x987B;&#x5B58;&#x5728;&#x7684;&#x63D2;&#x4EF6;&#x51FD;&#x6570;&#x662F;&#xFF1A;</p>
+<ul>
+<li><code>__init__</code> - &gt;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;QGIS&#x754C;&#x9762;</li>
+<li><code>initGui()</code> - &gt;&#x52A0;&#x8F7D;&#x63D2;&#x4EF6;&#x65F6;&#x8C03;&#x7528;</li>
+<li><code>unload()</code> - &gt;&#x5728;&#x5378;&#x8F7D;&#x63D2;&#x4EF6;&#x65F6;&#x8C03;&#x7528;</li>
+</ul>
+<p>&#x5728;&#x4E0A;&#x9762;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#xFF0C;<a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu" target="_blank"><code>addPluginToMenu</code></a>&#x88AB;&#x4F7F;&#x7528;&#x3002;&#x8FD9;&#x4F1A;&#x5C06;&#x76F8;&#x5E94;&#x7684;&#x83DC;&#x5355;&#x64CD;&#x4F5C;&#x6DFB;&#x52A0;&#x5230;<strong>Plugins</strong> &#x83DC;&#x5355;&#x4E2D;&#x3002;&#x5B58;&#x5728;&#x5C06;&#x52A8;&#x4F5C;&#xFF08;action&#xFF09;&#x6DFB;&#x52A0;&#x5230;&#x4E0D;&#x540C;&#x83DC;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x7684;&#x5217;&#x8868;&#xFF1A;</p>
+<ul>
+<li><a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToRasterMenu" target="_blank"><code>addPluginToRasterMenu()</code></a></li>
+<li><a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToVectorMenu" target="_blank"><code>addPluginToVectorMenu()</code></a></li>
+<li><a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToDatabaseMenu" target="_blank"><code>addPluginToDatabaseMenu()</code></a></li>
+<li><a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToWebMenu" target="_blank"><code>addPluginToWebMenu()</code></a></li>
+</ul>
+<p>&#x5B83;&#x4EEC;&#x90FD;&#x5177;&#x6709;&#x4E0E;<a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu" target="_blank"><code>addPluginToMenu</code></a>&#x65B9;&#x6CD5;&#x76F8;&#x540C;&#x7684;&#x8BED;&#x6CD5; &#x3002;</p>
+<p>&#x5EFA;&#x8BAE;&#x5C06;&#x63D2;&#x4EF6;&#x83DC;&#x5355;&#x6DFB;&#x52A0;&#x5230;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x9884;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#xFF0C;&#x4EE5;&#x4FDD;&#x6301;&#x63D2;&#x4EF6;&#x6761;&#x76EE;&#x7EC4;&#x7EC7;&#x65B9;&#x5F0F;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x81EA;&#x5B9A;&#x4E49;&#x83DC;&#x5355;&#x7EC4;&#x76F4;&#x63A5;&#x6DFB;&#x52A0;&#x5230;&#x83DC;&#x5355;&#x680F;&#xFF0C;&#x5982;&#x4E0B;&#x9762;&#x793A;&#x4F8B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">initGui</span><span class="hljs-params">(self)</span>:</span>
+    self.menu = QMenu(self.iface.mainWindow())
+    self.menu.setObjectName(<span class="hljs-string">&quot;testMenu&quot;</span>)
+    self.menu.setTitle(<span class="hljs-string">&quot;MyMenu&quot;</span>)
+
+    self.action = QAction(QIcon(<span class="hljs-string">&quot;:/plugins/testplug/icon.png&quot;</span>), <span class="hljs-string">&quot;Test plugin&quot;</span>, self.iface.mainWindow())
+    self.action.setObjectName(<span class="hljs-string">&quot;testAction&quot;</span>)
+    self.action.setWhatsThis(<span class="hljs-string">&quot;Configuration for test plugin&quot;</span>)
+    self.action.setStatusTip(<span class="hljs-string">&quot;This is status tip&quot;</span>)
+    self.action.triggered.connect(self.run)
+    self.menu.addAction(self.action)
+
+    menuBar = self.iface.mainWindow().menuBar()
+    menuBar.insertMenu(self.iface.firstRightStandardMenu().menuAction(), self.menu)
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">unload</span><span class="hljs-params">(self)</span>:</span>
+    self.menu.deleteLater()
+</code></pre>
+<p>&#x4E0D;&#x8981;&#x5FD8;&#x8BB0;&#x8BBE;&#x7F6E;<code>QAction</code>&#x548C;<code>QMenu</code> <code>objectName</code>&#x63D2;&#x4EF6;&#x7684;&#x7279;&#x5B9A;&#x540D;&#x79F0;&#xFF0C;&#x4EE5;&#x4FBF;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x3002;</p>
+<h4 id="resources">resources</h4>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5728;<code>initGui()</code>&#x4E2D;&#x6211;&#x4EEC;&#x4F7F;&#x7528;&#x4E86;&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x56FE;&#x6807;&#xFF08;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x6848;&#x4F8B;&#x4E2D;&#x662F;<code>resources.qrc</code>&#xFF09;</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-name">RCC</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">qresource</span> <span class="hljs-attr">prefix</span>=<span class="hljs-string">&quot;/plugins/testplug&quot;</span> &gt;</span>
+     <span class="hljs-tag">&lt;<span class="hljs-name">file</span>&gt;</span>icon.png<span class="hljs-tag">&lt;/<span class="hljs-name">file</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">qresource</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">RCC</span>&gt;</span>
+</code></pre>
+<p>&#x6700;&#x597D;&#x4F7F;&#x7528;&#x4E0D;&#x4F1A;&#x4E0E;&#x5176;&#x4ED6;&#x63D2;&#x4EF6;&#x6216;QGIS&#x7684;&#x4EFB;&#x4F55;&#x90E8;&#x5206;&#x53D1;&#x751F;&#x51B2;&#x7A81;&#x7684;&#x524D;&#x7F00;&#xFF0C;&#x5426;&#x5219;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x5F97;&#x5230;&#x4F60;&#x4E0D;&#x60F3;&#x8981;&#x7684;&#x8D44;&#x6E90;&#x3002;&#x73B0;&#x5728;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5305;&#x542B;&#x8D44;&#x6E90;&#x7684;Python&#x6587;&#x4EF6;&#x3002;&#x5B83;&#x662F;&#x7528;<strong>pyrcc5</strong>&#x547D;&#x4EE4;&#x5B8C;&#x6210;&#x7684;&#xFF1A;</p>
+<pre><code class="lang-shell">pyrcc5 -o resources.py resources.qrc
+</code></pre>
+<p>&#x5982;&#x679C;&#x4F60;&#x5DF2;&#x6B63;&#x786E;&#x5B8C;&#x6210;&#x6240;&#x6709;&#x64CD;&#x4F5C;&#xFF0C;&#x5219;&#x5E94;&#x8BE5;&#x80FD;&#x591F;&#x5728;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x4E2D;&#x67E5;&#x627E;&#x5E76;&#x52A0;&#x8F7D;&#x63D2;&#x4EF6;&#xFF0C;&#x5728;&#x70B9;&#x51FB;&#x5DE5;&#x5177;&#x680F;&#x56FE;&#x6807;&#x6216;&#x76F8;&#x5E94;&#x7684;&#x83DC;&#x5355;&#x9879;&#x65F6;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#x67E5;&#x770B;&#x5230;&#x6D88;&#x606F;&#x3002;</p>
+<p>&#x5728;&#x5904;&#x7406;&#x771F;&#x6B63;&#x7684;&#x63D2;&#x4EF6;&#x65F6;&#xFF0C;&#x6700;&#x597D;&#x5C06;&#x63D2;&#x4EF6;&#x5199;&#x5165;&#x53E6;&#x4E00;&#x4E2A;&#xFF08;&#x5DE5;&#x4F5C;&#xFF09;&#x76EE;&#x5F55;&#x5E76;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;makefile&#xFF0C;&#x5B83;&#x5C06;&#x751F;&#x6210;UI +&#x8D44;&#x6E90;&#x6587;&#x4EF6;&#x5E76;&#x5C06;&#x63D2;&#x4EF6;&#x5B89;&#x88C5;&#x5230;QGIS&#x5B89;&#x88C5;&#x4E2D;&#x3002;</p>
+<h3 id="1513-&#x6587;&#x6863;">15.1.3 &#x6587;&#x6863;</h3>
+<p>&#x8BE5;&#x63D2;&#x4EF6;&#x7684;&#x6587;&#x6863;&#x53EF;&#x4EE5;&#x7F16;&#x5199;&#x4E3A;HTML&#x6587;&#x4EF6;&#x3002;<code>qgis.utils</code>&#x6A21;&#x5757;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x529F;&#x80FD;&#xFF0C;<code>showPluginHelp()</code>&#x5B83;&#x5C06;&#x4EE5;&#x4E0E;&#x5176;&#x4ED6;QGIS&#x5E2E;&#x52A9;&#x6587;&#x6863;&#x76F8;&#x540C;&#x7684;&#x65B9;&#x5F0F;&#x6253;&#x5F00;&#x5E2E;&#x52A9;&#x6587;&#x4EF6;&#x3002;</p>
+<p><code>showPluginHelp()</code>&#x51FD;&#x6570;&#x5728;&#x4E0E;&#x8C03;&#x7528;&#x6A21;&#x5757;&#x76F8;&#x540C;&#x7684;&#x76EE;&#x5F55;&#x4E2D;&#x67E5;&#x627E;&#x5E2E;&#x52A9;&#x6587;&#x6863;&#x3002;&#x5B83;&#x4F1A;&#x5BFB;&#x627E;&#xFF0C;<code>index-ll_cc.html</code>&#xFF0C;<code>index-ll.html</code>&#xFF0C;<code>index-en.html</code>&#xFF0C;<code>index-en_us.html</code>&#x548C;<code>index.html</code>&#xFF0C;&#x663E;&#x793A;&#x6B64;&#x6587;&#x6863;&#xFF0C;&#x65E0;&#x8BBA;&#x5B83;&#x627E;&#x5230;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x3002;&#x8FD9;<code>ll_cc</code>&#x662F;QGIS&#x8BED;&#x8A00;&#x73AF;&#x5883;&#xFF0C;&#x8FD9;&#x5141;&#x8BB8;&#x6587;&#x6863;&#x6709;&#x591A;&#x4E2A;&#x7FFB;&#x8BD1;&#x3002;</p>
+<p><code>showPluginHelp()</code>&#x51FD;&#x6570;&#x8FD8;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x53C2;&#x6570;packageName&#xFF0C;&#x5B83;&#x6807;&#x8BC6;&#x5C06;&#x663E;&#x793A;&#x5E2E;&#x52A9;&#x7684;&#x7279;&#x5B9A;&#x63D2;&#x4EF6;&#xFF0C;filename&#xFF0C;&#x53EF;&#x4EE5;&#x66FF;&#x6362;&#x88AB;&#x641C;&#x7D22;&#x7684;&#x6587;&#x4EF6;&#x540D;&#x79F0;&#x4E2D;&#x7684;&#x201C;index&#x201D;&#xFF0C;section&#xFF0C;&#x5B83;&#x662F;html&#x951A;&#x6807;&#x8BB0;&#x7684;&#x540D;&#x79F0;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x5C06;&#x5B9A;&#x4F4D;&#x5230;&#x8BE5;&#x4F4D;&#x7F6E;&#x3002;</p>
+<h3 id="1514-&#x7FFB;&#x8BD1;">15.1.4 &#x7FFB;&#x8BD1;</h3>
+<p>&#x901A;&#x8FC7;&#x51E0;&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4E3A;&#x63D2;&#x4EF6;&#x672C;&#x5730;&#x5316;&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#xFF0C;&#x4EE5;&#x4FBF;&#x6839;&#x636E;&#x8BA1;&#x7B97;&#x673A;&#x7684;&#x533A;&#x57DF;&#x8BBE;&#x7F6E;&#xFF0C;&#x63D2;&#x4EF6;&#x5C06;&#x4EE5;&#x4E0D;&#x540C;&#x8BED;&#x8A00;&#x52A0;&#x8F7D;&#x3002;</p>
+<h4 id="&#x8F6F;&#x4EF6;&#x8981;&#x6C42;">&#x8F6F;&#x4EF6;&#x8981;&#x6C42;</h4>
+<p>&#x521B;&#x5EFA;&#x548C;&#x7BA1;&#x7406;&#x6240;&#x6709;&#x7FFB;&#x8BD1;&#x6587;&#x4EF6;&#x7684;&#x6700;&#x7B80;&#x5355;&#x65B9;&#x6CD5;&#x662F;&#x5B89;&#x88C5; <a href="https://doc.qt.io/qt-5/qtlinguist-index.html" target="_blank">Qt Linguist</a>&#x3002;&#x5728;&#x57FA;&#x4E8E;Debian&#x7684;GNU / Linux&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#x5B83;&#xFF1A;</p>
+<pre><code class="lang-shell">sudo apt-get install qttools5-dev-tools
+</code></pre>
+<h4 id="&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;">&#x6587;&#x4EF6;&#x548C;&#x76EE;&#x5F55;</h4>
+<p>&#x521B;&#x5EFA;&#x63D2;&#x4EF6;&#x65F6;&#xFF0C;&#x4F60;&#x5C06;&#x5728;&#x4E3B;&#x63D2;&#x4EF6;&#x76EE;&#x5F55;&#x4E2D;&#x627E;&#x5230;&#x8BE5;&#x6587;&#x4EF6;&#x5939;<code>i18n</code>&#xFF0C;<strong>&#x6240;&#x6709;&#x7FFB;&#x8BD1;&#x6587;&#x4EF6;&#x90FD;&#x5FC5;&#x987B;&#x5728;&#x6B64;&#x76EE;&#x5F55;&#x4E2D;&#x3002;</strong></p>
+<h4 id="pro&#x6587;&#x4EF6;">.pro&#x6587;&#x4EF6;</h4>
+<p>&#x9996;&#x5148;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;<code>.pro</code>&#x6587;&#x4EF6;&#xFF0C;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x53EF;&#x4EE5;&#x7531;<strong>Qt Linguist</strong>&#x7BA1;&#x7406;&#x7684;<em>&#x9879;&#x76EE;</em>&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x5728;&#x6B64;<code>.pro</code>&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x6307;&#x5B9A;&#x8981;&#x7FFB;&#x8BD1;&#x7684;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x548C;&#x8868;&#x5355;&#x3002;&#x6B64;&#x6587;&#x4EF6;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x672C;&#x5730;&#x5316;&#x6587;&#x4EF6;&#x548C;&#x53D8;&#x91CF;&#x3002;&#x4E00;&#x4E2A;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#xFF0C;&#x5339;&#x914D;&#x6211;&#x4EEC;&#x7684;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-files-architecture" target="_blank">&#x793A;&#x4F8B;&#x63D2;&#x4EF6;</a>&#x7684;&#x7ED3;&#x6784; &#xFF1A;</p>
+<pre><code class="lang-ini"><span class="hljs-attr">FORMS</span> = ../form.ui
+<span class="hljs-attr">SOURCES</span> = ../your_plugin.py
+<span class="hljs-attr">TRANSLATIONS</span> = your_plugin_it.ts
+</code></pre>
+<p>&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#x53EF;&#x80FD;&#x9075;&#x5FAA;&#x66F4;&#x590D;&#x6742;&#x7684;&#x7ED3;&#x6784;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x80FD;&#x5206;&#x5E03;&#x5728;&#x591A;&#x4E2A;&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x5982;&#x679C;&#x662F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#xFF0C;&#x8BF7;&#x8BB0;&#x4F4F;&#xFF0C;&#x4F7F;&#x7528;<code>pylupdate5</code>&#x8BFB;&#x53D6;<code>.pro</code>&#x6587;&#x4EF6;&#x5E76;&#x66F4;&#x65B0;&#x53EF;&#x7FFB;&#x8BD1;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x8FD9;&#x4E0D;&#x4F1A;&#x6269;&#x5C55;&#x901A;&#x914D;&#x7B26;&#xFF0C;&#x56E0;&#x6B64;&#x4F60;&#x9700;&#x8981;&#x5C06;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x663E;&#x5F0F;&#x653E;&#x5728;<code>.pro</code>&#x6587;&#x4EF6;&#x4E2D;&#x3002;&#x4F60;&#x7684;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x53EF;&#x80FD;&#x770B;&#x8D77;&#x6765;&#x50CF;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code class="lang-ini">FORMS = ../ui/about.ui ../ui/feedback.ui \
+        ../ui/main_dialog.ui
+SOURCES = ../your_plugin.py ../computation.py \
+          ../utils.py
+</code></pre>
+<p>&#x6B64;&#x5916;&#xFF0C;<code>your_plugin.py</code>&#x6587;&#x4EF6;&#x662F;<em>&#x8C03;&#x7528;</em> QGIS&#x5DE5;&#x5177;&#x680F;&#x4E2D;&#x63D2;&#x4EF6;&#x7684;&#x6240;&#x6709;&#x83DC;&#x5355;&#x548C;&#x5B50;&#x83DC;&#x5355;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x4F60;&#x5E0C;&#x671B;&#x5C06;&#x5B83;&#x4EEC;&#x5168;&#x90E8;&#x7FFB;&#x8BD1;&#x3002;</p>
+<p>&#x6700;&#x540E;&#xFF0C;&#x4F7F;&#x7528;<em>TRANSLATIONS</em>&#x53D8;&#x91CF;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x6240;&#x9700;&#x7684;&#x7FFB;&#x8BD1;&#x8BED;&#x8A00;&#x3002;</p>
+<h4 id="ts&#x6587;&#x4EF6;">.ts&#x6587;&#x4EF6;</h4>
+<p>&#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#xFF0C;<code>.pro</code>&#x4F60;&#x5C31;&#x53EF;<code>.ts</code>&#x4EE5;&#x4E3A;&#x63D2;&#x4EF6;&#x7684;&#x8BED;&#x8A00;&#x751F;&#x6210;&#x6587;&#x4EF6;&#x4E86;&#x3002;</p>
+<p>&#x6253;&#x5F00;&#x7EC8;&#x7AEF;&#xFF0C;&#x8F6C;&#x5230;<code>your_plugin/i18n</code>&#x76EE;&#x5F55;&#x5E76;&#x952E;&#x5165;&#xFF1A;</p>
+<pre><code class="lang-shell">pylupdate5 your_plugin.pro
+</code></pre>
+<p>&#x4F60;&#x5E94;&#x8BE5;&#x770B;&#x5230;<code>your_plugin_language.ts</code>&#x6587;&#x4EF6;&#x3002;</p>
+<p><code>.ts</code>&#x7528;<strong>Qt Linguist</strong>&#x6253;&#x5F00;&#x6587;&#x4EF6;&#x5E76;&#x5F00;&#x59CB;&#x7FFB;&#x8BD1;&#x3002;</p>
+<h4 id="qm&#x6587;&#x4EF6;">.qm&#x6587;&#x4EF6;</h4>
+<p>&#x5F53;&#x4F60;&#x5B8C;&#x6210;&#x7FFB;&#x8BD1;&#x63D2;&#x4EF6;&#x65F6;&#xFF08;&#x5982;&#x679C;&#x67D0;&#x4E9B;&#x5B57;&#x7B26;&#x4E32;&#x672A;&#x5B8C;&#x6210;&#xFF0C;&#x5C06;&#x4F7F;&#x7528;&#x8FD9;&#x4E9B;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x6E90;&#x8BED;&#x8A00;&#xFF09;&#xFF0C;&#x4F60;&#x5FC5;&#x987B;&#x521B;&#x5EFA;<code>.qm</code> &#x6587;&#x4EF6;&#xFF08;&#x7F16;&#x8BD1;&#x6587;&#x4EF6;<code>.ts</code>&#x5C06;&#x88AB;QGIS&#x4F7F;&#x7528;&#xFF09;&#x3002;</p>
+<p>&#x53EA;&#x9700;&#x5728;<code>your_plugin/i18n</code>&#x76EE;&#x5F55;&#x4E2D;&#x6253;&#x5F00;&#x7EC8;&#x7AEF;cd &#x5E76;&#x8F93;&#x5165;&#xFF1A;</p>
+<pre><code class="lang-shell">lrelease your_plugin.ts
+</code></pre>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x5728;<code>i18n</code>&#x76EE;&#x5F55;&#x4E2D;&#x4F60;&#x5C06;&#x770B;&#x5230;<code>your_plugin.qm</code>&#x6587;&#x4EF6;&#x3002;</p>
+<h4 id="&#x4F7F;&#x7528;makefile&#x8FDB;&#x884C;&#x7F16;&#x8BD1;">&#x4F7F;&#x7528;MakeFile&#x8FDB;&#x884C;&#x7F16;&#x8BD1;</h4>
+<p>&#x6216;&#x8005;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528;Plugin Builder&#x521B;&#x5EFA;&#x4E86;&#x63D2;&#x4EF6;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;makefile&#x4ECE;python&#x4EE3;&#x7801;&#x548C;Qt&#x5BF9;&#x8BDD;&#x6846;&#x4E2D;&#x63D0;&#x53D6;&#x6D88;&#x606F;&#x3002;&#x5728;Makefile&#x7684;&#x5F00;&#x5934;&#x6709;&#x4E00;&#x4E2A;LOCALES&#x53D8;&#x91CF;&#xFF1A;</p>
+<pre><code class="lang-ini"><span class="hljs-attr">LOCALES</span> = en
+</code></pre>
+<p>&#x5C06;&#x8BE5;&#x8BED;&#x8A00;&#x7684;&#x7F29;&#x5199;&#x6DFB;&#x52A0;&#x5230;&#x6B64;&#x53D8;&#x91CF;&#x4E2D;&#xFF0C;&#x4F8B;&#x5982;&#x5308;&#x7259;&#x5229;&#x8BED;&#xFF1A;</p>
+<pre><code class="lang-ini"><span class="hljs-attr">LOCALES</span> = en hu
+</code></pre>
+<p>&#x73B0;&#x5728;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x65B9;&#x5F0F;&#x4ECE;&#x6E90;&#x751F;&#x6210;&#x6216;&#x66F4;&#x65B0;<code>hu.ts</code>&#x6587;&#x4EF6;&#xFF08;&#x4EE5;&#x53CA;&#x5176;&#x4E2D;&#x7684;<code>en.ts</code>&#xFF09;&#xFF1A;</p>
+<pre><code class="lang-shell">make transup
+</code></pre>
+<p>&#x5728;&#x6B64;&#x4E4B;&#x540E;&#xFF0C;&#x4F60;&#x5DF2;&#x5728;LOCALES&#x53D8;&#x91CF;&#x4E2D;&#x66F4;&#x65B0;<code>.ts</code>&#x4E86;&#x6240;&#x6709;&#x8BED;&#x8A00;&#x7684;&#x6587;&#x4EF6;&#x3002;&#x4F7F;&#x7528;<strong>Qt Linguist</strong>&#x7FFB;&#x8BD1;&#x7A0B;&#x5E8F;&#x6D88;&#x606F;&#x3002;&#x5B8C;&#x6210;&#x7FFB;&#x8BD1;&#x540E;&#xFF0C;<code>.qm</code>&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x53CD;&#x7F16;&#x8BD1;&#x521B;&#x5EFA;&#xFF1A;</p>
+<pre><code class="lang-shell">make transcompile
+</code></pre>
+<p>&#x4F60;&#x5FC5;&#x987B;&#x5728;&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#x4E2D;&#x5206;&#x53D1;<code>.ts</code>&#x6587;&#x4EF6;&#x3002;</p>
+<h4 id="&#x52A0;&#x8F7D;&#x63D2;&#x4EF6;">&#x52A0;&#x8F7D;&#x63D2;&#x4EF6;</h4>
+<p>&#x8981;&#x67E5;&#x770B;&#x63D2;&#x4EF6;&#x7684;&#x7FFB;&#x8BD1;&#xFF0C;&#x53EA;&#x9700;&#x6253;&#x5F00;QGIS&#xFF0C;&#x66F4;&#x6539;&#x8BED;&#x8A00;&#xFF08;<strong>&#x8BBE;&#x7F6E;&#x2023;&#x9009;&#x9879;&#x2023;&#x8BED;&#x8A00;</strong>&#xFF09;&#x5E76;&#x91CD;&#x65B0;&#x542F;&#x52A8;QGIS&#x3002;</p>
+<p>&#x4F60;&#x5E94;&#x8BE5;&#x7528;&#x6B63;&#x786E;&#x7684;&#x8BED;&#x8A00;&#x770B;&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#x3002;</p>
+<h3 id="1515-&#x63D0;&#x793A;&#x548C;&#x6280;&#x5DE7;">15.1.5 &#x63D0;&#x793A;&#x548C;&#x6280;&#x5DE7;</h3>
+<h4 id="&#x63D2;&#x4EF6;&#x91CD;&#x88C5;&#x8F7D;&#x5668;">&#x63D2;&#x4EF6;&#x91CD;&#x88C5;&#x8F7D;&#x5668;</h4>
+<p>&#x5728;&#x5F00;&#x53D1;&#x63D2;&#x4EF6;&#x671F;&#x95F4;&#xFF0C;&#x4F60;&#x7ECF;&#x5E38;&#x9700;&#x8981;&#x5728;QGIS&#x4E2D;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;&#x5B83;&#x4EE5;&#x8FDB;&#x884C;&#x6D4B;&#x8BD5;&#x3002;&#x4F7F;&#x7528;Plugin Reloader&#x63D2;&#x4EF6;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x4E2D;&#x627E;&#x5230;&#x3002;</p>
+<h4 id="&#x8BBF;&#x95EE;&#x63D2;&#x4EF6;">&#x8BBF;&#x95EE;&#x63D2;&#x4EF6;</h4>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;python&#x4ECE;QGIS&#x4E2D;&#x8BBF;&#x95EE;&#x6240;&#x6709;&#x5DF2;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;&#x7C7B;&#xFF0C;&#x8FD9;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x8C03;&#x8BD5;&#xFF1A;</p>
+<pre><code class="lang-python">my_plugin = qgis.utils.plugins[<span class="hljs-string">&apos;My Plugin&apos;</span>]
+</code></pre>
+<h4 id="&#x65E5;&#x5FD7;&#x6D88;&#x606F;">&#x65E5;&#x5FD7;&#x6D88;&#x606F;</h4>
+<p>&#x63D2;&#x4EF6;&#x5728;&#x201C; <a href="https://docs.qgis.org/3.4/en/docs/user_manual/introduction/general_tools.html#log-message-panel" target="_blank">&#x65E5;&#x5FD7;&#x6D88;&#x606F;&#x201D;&#x9762;&#x677F;&#x4E2D;</a>&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x9009;&#x9879;&#x5361;&#x3002;</p>
+<h4 id="&#x5206;&#x4EAB;&#x4F60;&#x7684;&#x63D2;&#x4EF6;">&#x5206;&#x4EAB;&#x4F60;&#x7684;&#x63D2;&#x4EF6;</h4>
+<p>QGIS&#x5728;&#x63D2;&#x4EF6;&#x5B58;&#x50A8;&#x5E93;&#x4E2D;&#x6258;&#x7BA1;&#x4E86;&#x6570;&#x767E;&#x4E2A;&#x63D2;&#x4EF6;&#x3002;&#x8003;&#x8651;&#x5206;&#x4EAB;&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#xFF01;&#x5B83;&#x5C06;&#x6269;&#x5C55;QGIS&#xFF0C;&#x4EBA;&#x4EEC;&#x5C06;&#x80FD;&#x591F;&#x4ECE;&#x4F60;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x5B66;&#x4E60;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x63D2;&#x4EF6;&#x7BA1;&#x7406;&#x5668;&#x5728;QGIS&#x4E2D;&#x627E;&#x5230;&#x5E76;&#x5B89;&#x88C5;&#x6240;&#x6709;&#x6258;&#x7BA1;&#x63D2;&#x4EF6;&#x3002;</p>
+<p>&#x4FE1;&#x606F;&#x548C;&#x8981;&#x6C42;&#xFF1A;<a href="https://plugins.qgis.org/" target="_blank">plugins.qgis.org</a>&#x3002;</p>
+<h2 id="152-&#x4EE3;&#x7801;&#x7247;&#x6BB5;">15.2 &#x4EE3;&#x7801;&#x7247;&#x6BB5;</h2>
+<p>&#x672C;&#x8282;&#x4EE5;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x4E3A;&#x4F8B;&#xFF0C;&#x8BB2;&#x89E3;&#x63D2;&#x4EF6;&#x5F00;&#x53D1;</p>
+<h3 id="1521-&#x5982;&#x4F55;&#x901A;&#x8FC7;&#x5FEB;&#x6377;&#x952E;&#x8C03;&#x7528;&#x65B9;&#x6CD5;">15.2.1 &#x5982;&#x4F55;&#x901A;&#x8FC7;&#x5FEB;&#x6377;&#x952E;&#x8C03;&#x7528;&#x65B9;&#x6CD5;</h3>
+<p>&#x5728;<code>initGui()</code>&#x4E2D;&#x6DFB;&#x52A0;&#xFF1A;</p>
+<pre><code class="lang-python">self.keyAction = QAction(<span class="hljs-string">&quot;Test Plugin&quot;</span>, self.iface.mainWindow())
+self.iface.registerMainWindowAction(self.keyAction, <span class="hljs-string">&quot;F7&quot;</span>) <span class="hljs-comment"># &#x901A;&#x8FC7;F7&#x952E;&#x89E6;&#x53D1;&#x52A8;&#x4F5C;1 </span>
+self.iface.addPluginToMenu(<span class="hljs-string">&quot;&amp;Test plugins&quot;</span>, self.keyAction)
+self.keyAction.triggered().connect(self.keyActionF7)
+</code></pre>
+<p>&#x5728;<code>unload()</code>&#x4E2D;&#x6DFB;&#x52A0;&#xFF1A;</p>
+<pre><code class="lang-python">self.iface.unregisterMainWindowAction(self.keyAction)
+</code></pre>
+<p>&#x6309;&#x4E0B;F7&#x65F6;&#x8C03;&#x7528;&#x7684;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">keyActionF7</span><span class="hljs-params">(self)</span>:</span>
+    QMessageBox.information(self.iface.mainWindow(),<span class="hljs-string">&quot;Ok&quot;</span>, <span class="hljs-string">&quot;You pressed F7&quot;</span>)
+</code></pre>
+<h3 id="1522-&#x5982;&#x4F55;&#x5207;&#x6362;&#x56FE;&#x5C42;">15.2.2 &#x5982;&#x4F55;&#x5207;&#x6362;&#x56FE;&#x5C42;</h3>
+<p>&#x4ECE;QGIS 2.4&#x5F00;&#x59CB;&#xFF0C;&#x65B0;&#x7684;&#x56FE;&#x5C42;&#x6811;API&#x5141;&#x8BB8;&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x56FE;&#x5C42;&#x9762;&#x677F;&#x7684;&#x56FE;&#x5C42;&#x6811;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x5982;&#x4F55;&#x5207;&#x6362;&#x5F53;&#x524D;&#x56FE;&#x5C42;&#x53EF;&#x89C1;&#x6027;&#x7684;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-python">root = QgsProject.instance().layerTreeRoot()
+node = root.findLayer(iface.activeLayer().id())
+new_state = Qt.Checked <span class="hljs-keyword">if</span> node.isVisible() == Qt.Unchecked <span class="hljs-keyword">else</span> Qt.Unchecked
+node.setItemVisibilityChecked(new_state)
+</code></pre>
+<h3 id="1523-&#x5982;&#x4F55;&#x8BBF;&#x95EE;&#x6240;&#x9009;&#x8981;&#x7D20;&#x7684;&#x5C5E;&#x6027;&#x8868;">15.2.3 &#x5982;&#x4F55;&#x8BBF;&#x95EE;&#x6240;&#x9009;&#x8981;&#x7D20;&#x7684;&#x5C5E;&#x6027;&#x8868;</h3>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">changeValue</span><span class="hljs-params">(self, value)</span>:</span>
+    layer = self.iface.activeLayer()
+    <span class="hljs-keyword">if</span> (layer):
+        nF = layer.selectedFeatureCount()
+        <span class="hljs-keyword">if</span> (nF &gt; <span class="hljs-number">0</span>):
+            layer.startEditing()
+            ob = layer.selectedFeaturesIds()
+            b = QVariant(value)
+            <span class="hljs-keyword">if</span> (nF &gt; <span class="hljs-number">1</span>):
+                <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> ob:
+                    layer.changeAttributeValue(int(i), <span class="hljs-number">1</span>, b)  <span class="hljs-comment"># 1 &#x662F;&#x7B2C;&#x4E8C;&#x5217;</span>
+            <span class="hljs-keyword">else</span>:
+                layer.changeAttributeValue(int(ob[<span class="hljs-number">0</span>]), <span class="hljs-number">1</span>, b)  <span class="hljs-comment"># 1 &#x662F;&#x7B2C;&#x4E8C;&#x5217;</span>
+            layer.commitChanges()
+        <span class="hljs-keyword">else</span>:
+            QMessageBox.critical(self.iface.mainWindow(), <span class="hljs-string">&quot;Error&quot;</span>,
+                                 <span class="hljs-string">&quot;Please select at least one feature from current layer&quot;</span>)
+    <span class="hljs-keyword">else</span>:
+        QMessageBox.critical(self.iface.mainWindow(), <span class="hljs-string">&quot;Error&quot;</span>, <span class="hljs-string">&quot;Please select a layer&quot;</span>)
+</code></pre>
+<p>&#x8BE5;&#x65B9;&#x6CD5;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#xFF08;&#x6240;&#x9009;&#x8981;&#x7D20;&#x7684;&#x5C5E;&#x6027;&#x5B57;&#x6BB5;&#x7684;&#x65B0;&#x503C;&#xFF09;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8C03;&#x7528;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-python">self.changeValue(<span class="hljs-number">50</span>)
+</code></pre>
+<h2 id="153-&#x4F7F;&#x7528;&#x63D2;&#x4EF6;&#x56FE;&#x5C42;">15.3 &#x4F7F;&#x7528;&#x63D2;&#x4EF6;&#x56FE;&#x5C42;</h2>
+<p>&#x5982;&#x679C;&#x4F60;&#x7684;&#x63D2;&#x4EF6;&#x4F7F;&#x7528;&#x81EA;&#x5DF1;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x6E32;&#x67D3;&#x5730;&#x56FE;&#x56FE;&#x5C42;&#xFF0C;&#x90A3;&#x4E48;&#x57FA;&#x4E8E;QgsPluginLayer&#x7F16;&#x5199;&#x81EA;&#x5DF1;&#x7684;&#x56FE;&#x5C42;&#x7C7B;&#x578B;&#x53EF;&#x80FD;&#x662F;&#x5B9E;&#x73B0;&#x5B83;&#x7684;&#x6700;&#x4F73;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>&#x4E0B;&#x9762;&#x662F;&#x4E00;&#x4E2A;QgsPluginLayer&#x5B9E;&#x73B0;&#x7684;&#x793A;&#x4F8B;&#x3002;&#x5B83;&#x662F;<a href="https://github.com/sourcepole/qgis-watermark-plugin" target="_blank">Watermark&#x793A;&#x4F8B;&#x63D2;&#x4EF6;</a>&#x7684;&#x6458;&#x5F55;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WatermarkPluginLayer</span><span class="hljs-params">(QgsPluginLayer)</span>:</span>
+    LAYER_TYPE = <span class="hljs-string">&quot;watermark&quot;</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        QgsPluginLayer.__init__(self, WatermarkPluginLayer.LAYER_TYPE, <span class="hljs-string">&quot;Watermark plugin layer&quot;</span>)
+        self.setValid(<span class="hljs-keyword">True</span>)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">draw</span><span class="hljs-params">(self, rendererContext)</span>:</span>
+        image = QImage(<span class="hljs-string">&quot;myimage.png&quot;</span>)
+        painter = rendererContext.painter()
+        painter.save()
+        painter.drawImage(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>, image)
+        painter.restore()
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">True</span>
+</code></pre>
+<p>&#x8FD8;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x7279;&#x5B9A;&#x4FE1;&#x606F;&#x7684;&#x8BFB;&#x53D6;&#x548C;&#x5199;&#x5165;&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">readXml</span><span class="hljs-params">(self, node)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">writeXml</span><span class="hljs-params">(self, node, doc)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+</code></pre>
+<p>&#x52A0;&#x8F7D;&#x5305;&#x542B;&#x6B64;&#x7C7B;&#x56FE;&#x5C42;&#x7684;&#x9879;&#x76EE;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x5DE5;&#x5382;&#x7C7B;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">WatermarkPluginLayerType</span><span class="hljs-params">(QgsPluginLayerType)</span>:</span>
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        QgsPluginLayerType.__init__(self, WatermarkPluginLayer.LAYER_TYPE)
+
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">createLayer</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">return</span> WatermarkPluginLayer()
+</code></pre>
+<p>&#x4F60;&#x8FD8;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x4E00;&#x4E0B;&#x4EE3;&#x7801;&#xFF0C;&#x7528;&#x4E8E;&#x5728;&#x56FE;&#x5C42;&#x5C5E;&#x6027;&#x4E2D;&#x663E;&#x793A;&#x81EA;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">showLayerProperties</span><span class="hljs-params">(self, layer)</span>:</span>
+    <span class="hljs-keyword">pass</span>
+</code></pre>
+<h2 id="154-&#x7F16;&#x7801;&#x4E0E;&#x8C03;&#x8BD5;">15.4 &#x7F16;&#x7801;&#x4E0E;&#x8C03;&#x8BD5;</h2>
+<p>&#x6B64;&#x5C0F;&#x8282;&#x63CF;&#x8FF0;&#x8FC7;&#x4E8E;&#x590D;&#x6742;&#xFF0C;&#x8BF7;&#x53C2;&#x89C1;&#x6211;&#x7684;&#x535A;&#x5BA2;&#xFF1A;<a href="https://blog.csdn.net/this_is_id/article/details/90020197" target="_blank">PyQGIS&#x63D2;&#x4EF6;&#x5F00;&#x53D1;&#x7ECF;&#x9A8C;</a></p>
+<h2 id="155-&#x53D1;&#x5E03;&#x4F60;&#x7684;&#x63D2;&#x4EF6;">15.5 &#x53D1;&#x5E03;&#x4F60;&#x7684;&#x63D2;&#x4EF6;</h2>
+<p><strong>TODO</strong></p>
+</body></html>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="14 任务 - 在后台做繁重的工作.html#142-示例" class="navigation navigation-prev " aria-label="Previous page: 14.2 示例">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="15 开发Python插件.html#151-构建python插件" class="navigation navigation-next " aria-label="Next page: 15.1 构建Python插件">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"15 开发Python插件","level":"1.16","depth":1,"next":{"title":"15.1 构建Python插件","level":"1.16.1","depth":2,"anchor":"#151-构建python插件","path":"chapter/15 开发Python插件.md","ref":"chapter/15 开发Python插件.md#151-构建python插件","articles":[]},"previous":{"title":"14.2 示例","level":"1.15.2","depth":2,"anchor":"#142-示例","path":"chapter/14 任务 - 在后台做繁重的工作.md","ref":"chapter/14 任务 - 在后台做繁重的工作.md#142-示例","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/favicon.ico","lightbox":{"jquery":true},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","links":{"sidebar":{"Home":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"}},"gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"chapter/15 开发Python插件.md","mtime":"2019-08-20T07:10:05.095Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-20T07:13:37.830Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-hide-element/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-auto-scroll-table/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lightbox/jquery.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-lightbox/lightbox.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
