@@ -2,4 +2,4 @@
 
 本项目是PyQGIS开发者手册的中文翻译。
 
-**主页：**https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn
+**主页：** https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn
