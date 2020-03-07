@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>4 使用栅格图层 · PYQGIS开发者手册-中文</title>
+        <title>13 认证基础 · PYQGIS开发者手册-中文</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -12,52 +12,52 @@
         
         
     
-    <link rel="stylesheet" href="../gitbook/style.css">
+    <link rel="stylesheet" href="style.css">
 
     
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                <link rel="stylesheet" href="gitbook-plugin-search-pro/search.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                <link rel="stylesheet" href="gitbook-plugin-chapter-fold/chapter-fold.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                <link rel="stylesheet" href="gitbook-plugin-splitter/splitter.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                <link rel="stylesheet" href="gitbook-plugin-code/plugin.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                <link rel="stylesheet" href="gitbook-plugin-back-to-top-button/plugin.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-donate/plugin.css">
+                <link rel="stylesheet" href="gitbook-plugin-donate/plugin.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-auto-scroll-table/website.css">
+                <link rel="stylesheet" href="gitbook-plugin-auto-scroll-table/website.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-lightbox/lightbox.min.css">
+                <link rel="stylesheet" href="gitbook-plugin-lightbox/css/lightbox.min.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                <link rel="stylesheet" href="gitbook-plugin-pageview-count/plugin.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                <link rel="stylesheet" href="gitbook-plugin-highlight/website.css">
                 
             
                 
-                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                <link rel="stylesheet" href="gitbook-plugin-fontsettings/website.css">
                 
             
         
@@ -85,14 +85,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="4 使用栅格图层.html" />
+    <link rel="next" href="13 认证基础.html" />
     
     
-    <link rel="prev" href="3 加载图层.html" />
+    <link rel="prev" href="12 与用户通信.html" />
     
 
     </head>
@@ -114,16 +114,7 @@
 <ul class="summary">
     
     
-    
-        
-        <li>
-            <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn" target="_blank" class="custom-link">Home</a>
-        </li>
-    
-    
 
-    
-    <li class="divider"></li>
     
 
     
@@ -285,7 +276,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.5" data-path="4 使用栅格图层.html">
+        <li class="chapter " data-level="1.5" data-path="4 使用栅格图层.html">
             
                 <a href="4 使用栅格图层.html">
             
@@ -840,7 +831,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14" data-path="13 认证基础.html">
+        <li class="chapter active" data-level="1.14" data-path="13 认证基础.html">
             
                 <a href="13 认证基础.html">
             
@@ -1122,7 +1113,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >4 使用栅格图层</a>
+        <a href=".." >13 认证基础</a>
     </h1>
 </div>
 
@@ -1137,98 +1128,125 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <html><head></head><body><h1 id="4-&#x4F7F;&#x7528;&#x6805;&#x683C;&#x56FE;&#x5C42;">4 &#x4F7F;&#x7528;&#x6805;&#x683C;&#x56FE;&#x5C42;</h1>
-<p>&#x5982;&#x679C;&#x4F60;&#x5728;pyqgis&#x63A7;&#x5236;&#x53F0;&#x4E4B;&#x5916;&#xFF0C;&#x5219;&#x6B64;&#x9875;&#x9762;&#x4E0A;&#x7684;&#x4EE3;&#x7801;&#x6BB5;&#x9700;&#x8981;&#x5BFC;&#x5165;&#x4EE5;&#x4E0B;&#x6A21;&#x5757;&#xFF1A;</p>
-<pre><code class="lang-python"><span class="hljs-keyword">from</span> qgis.core <span class="hljs-keyword">import</span> (
-QgsRasterLayer,
-QgsColorRampShader,
-QgsSingleBandPseudoColorRenderer
-)
-</code></pre>
-<h2 id="41-&#x56FE;&#x5C42;&#x7EC6;&#x8282;">4.1 &#x56FE;&#x5C42;&#x7EC6;&#x8282;</h2>
-<p>&#x6805;&#x683C;&#x56FE;&#x5C42;&#x7531;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x6805;&#x683C;&#x6CE2;&#x6BB5;&#x7EC4;&#x6210; - &#x79F0;&#x4E3A;&#x5355;&#x6CE2;&#x6BB5;&#x548C;&#x591A;&#x6CE2;&#x6BB5;&#x6805;&#x683C;&#x3002;&#x4E00;&#x4E2A;&#x6CE2;&#x6BB5;&#x4EE3;&#x8868;&#x4E00;&#x4E2A;&#x503C;&#x77E9;&#x9635;&#x3002;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#xFF08;&#x4F8B;&#x5982;&#x822A;&#x62CD;&#x7167;&#x7247;&#xFF09;&#x662F;&#x7531;&#x7EA2;&#x8272;&#xFF0C;&#x84DD;&#x8272;&#x548C;&#x7EFF;&#x8272;&#x6CE2;&#x6BB5;&#x7EC4;&#x6210;&#x3002;&#x5355;&#x6CE2;&#x6BB5;&#x6805;&#x683C;&#x901A;&#x5E38;&#x8868;&#x793A;&#x8FDE;&#x7EED;&#x53D8;&#x91CF;&#xFF08;&#x4F8B;&#x5982;&#x9AD8;&#x7A0B;&#xFF09;&#x6216;&#x79BB;&#x6563;&#x53D8;&#x91CF;&#xFF08;&#x4F8B;&#x5982;&#x571F;&#x5730;&#x4F7F;&#x7528;&#xFF09;&#x3002;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x6805;&#x683C;&#x56FE;&#x5C42;&#x5E26;&#x6709;&#x8C03;&#x8272;&#x677F;&#xFF0C;&#x6805;&#x683C;&#x503C;&#x6307;&#x7684;&#x662F;&#x8C03;&#x8272;&#x677F;&#x4E2D;&#x5B58;&#x50A8;&#x7684;&#x989C;&#x8272;&#x3002;</p>
-<p>&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x5047;&#x5B9A;<code>rlayer</code>&#x662F;&#x4E00;&#x4E2A; <a href="https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer" target="_blank"><code>QgsRasterLayer</code></a>&#x5BF9;&#x8C61;&#x3002;</p>
-<pre><code class="lang-python">rlayer = QgsProject.instance().mapLayersByName(<span class="hljs-string">&apos;srtm&apos;</span>)[<span class="hljs-number">0</span>]
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x56FE;&#x5C42;&#x5355;&#x5143;</span>
-rlayer.width(), rlayer.height()
-(<span class="hljs-number">919</span>, <span class="hljs-number">619</span>)
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x56FE;&#x5C42;&#x8303;&#x56F4;&#xFF0C;&#x8FD4;&#x56DE;QgsRectangle&#x5BF9;&#x8C61;</span>
-rlayer.extent()
-&lt;QgsRectangle: <span class="hljs-number">20.06856808199999875</span> <span class="hljs-number">-34.27001076999999896</span>, <span class="hljs-number">20.83945284300000012</span>,<span class="hljs-number">-33.75077500700000144</span>&gt;
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x56FE;&#x5C42;&#x8303;&#x56F4;&#xFF0C;&#x8F6C;&#x6362;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;</span>
-rlayer.extent().toString()
-<span class="hljs-string">&apos;20.0685680819999988,-34.2700107699999990 : 20.8394528430000001,-33.7507750070000014&apos;</span>
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x6805;&#x683C;&#x7C7B;&#x578B;: 0 = &#x7070;&#x5EA6;&#x503C;&#xFF08;&#x5355;&#x6CE2;&#x6BB5;&#xFF09;, 1 = &#x8C03;&#x8272;&#x677F;&#xFF08;&#x5355;&#x6CE2;&#x6BB5;&#xFF09;, 2 = &#x591A;&#x6CE2;&#x6BB5;&#xFF0C;3 = &#x7F51;&#x7EDC;&#xFF1F;</span>
-rlayer.rasterType()
-<span class="hljs-number">0</span>
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x6CE2;&#x6BB5;&#x4E2A;&#x6570;</span>
-rlayer.bandCount()
-<span class="hljs-number">1</span>
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x6240;&#x6709;&#x53EF;&#x7528;&#x7684;&#x5143;&#x6570;&#x636E;&#xFF0C;&#x8FD4;&#x56DE;QgsLayerMetadata&#x5BF9;&#x8C61;</span>
-rlayer.metadata()
-<span class="hljs-string">&apos;&lt;qgis._core.QgsLayerMetadata object at 0x13711d558&gt;&apos;</span>
-</code></pre>
-<h2 id="42-&#x6E32;&#x67D3;">4.2 &#x6E32;&#x67D3;</h2>
-<p>&#x52A0;&#x8F7D;&#x6805;&#x683C;&#x56FE;&#x5C42;&#x65F6;&#xFF0C;&#x5B83;&#x4F1A;&#x6839;&#x636E;&#x5176;&#x7C7B;&#x578B;&#x83B7;&#x53D6;&#x9ED8;&#x8BA4;&#x6E32;&#x67D3;&#x5668;&#x3002;&#x5B83;&#x53EF;&#x4EE5;&#x5728;&#x56FE;&#x5C42;&#x5C5E;&#x6027;&#x4E2D;&#x66F4;&#x6539;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x7F16;&#x7A0B;&#x65B9;&#x5F0F;&#x66F4;&#x6539;&#x3002;</p>
-<p>&#x8981;&#x67E5;&#x8BE2;&#x5F53;&#x524D;&#x6E32;&#x67D3;&#x5668;&#xFF1A;</p>
-<pre><code class="lang-python">rlayer.renderer()
-&lt;qgis._core.QgsSingleBandGrayRenderer object at <span class="hljs-number">0x7f471c1da8a0</span>&gt;
-rlayer.renderer().type()
-<span class="hljs-string">&apos;singlebandgray&apos;</span>
-</code></pre>
-<p>&#x8BBE;&#x7F6E;&#x6E32;&#x67D3;&#x5668;&#xFF0C;&#x4F7F;&#x7528;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer" target="_blank"><code>QgsRasterLayer</code></a>&#x7684;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterLayer.html#qgis.core.QgsRasterLayer.setRenderer" target="_blank"><code>setRenderer</code></a> &#x65B9;&#x6CD5;&#x3002;&#x4E0B;&#x9762;&#x6709;&#x8BB8;&#x591A;&#x6E32;&#x67D3;&#x5668;&#x7C7B;&#xFF08;&#x6D3E;&#x751F;&#x81EA;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterRenderer.html#qgis.core.QgsRasterRenderer" target="_blank"><code>QgsRasterRenderer</code></a>&#xFF09;&#xFF1A;</p>
+                                <h1 id="13-&#x8BA4;&#x8BC1;&#x57FA;&#x7840;">13 &#x8BA4;&#x8BC1;&#x57FA;&#x7840;</h1>
+<h2 id="131-&#x4ECB;&#x7ECD;">13.1 &#x4ECB;&#x7ECD;</h2>
+<p>&#x8BA4;&#x8BC1;&#x57FA;&#x7840;&#x7ED3;&#x6784;&#x7684;&#x7528;&#x6237;&#x53C2;&#x8003;&#x53EF;&#x4EE5;&#x5728;&#x7528;&#x6237;&#x624B;&#x518C;&#x7684;<a href="https://docs.qgis.org/3.4/en/docs/user_manual/auth_system/auth_overview.html#authentication-overview" target="_blank">&#x201C;&#x8BA4;&#x8BC1;&#x7CFB;&#x7EDF;&#x6982;&#x8FF0;&#x201D;</a>&#x4E2D;&#x9605;&#x8BFB;&#x3002;</p>
+<p>&#x672C;&#x7AE0;&#x662F;&#x63CF;&#x8FF0;&#x4ECE;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x89D2;&#x5EA6;&#x4F7F;&#x7528;&#x8BA4;&#x8BC1;&#x7CFB;&#x7EDF;&#x7684;&#x6700;&#x4F73;&#x5B9E;&#x8DF5;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x5927;&#x591A;&#x6570;&#x4EE3;&#x7801;&#x6BB5;&#x90FD;&#x6E90;&#x81EA;Geoserver Explorer&#x63D2;&#x4EF6;&#x53CA;&#x5176;&#x6D4B;&#x8BD5;&#x7684;&#x4EE3;&#x7801;&#x3002;&#x8FD9;&#x662F;&#x7B2C;&#x4E00;&#x4E2A;&#x4F7F;&#x7528;&#x8BA4;&#x8BC1;&#x57FA;&#x7840;&#x7ED3;&#x6784;&#x7684;&#x63D2;&#x4EF6;&#x3002;&#x53EF;&#x4EE5;&#x5728;&#x6B64;<a href="https://github.com/boundlessgeo/qgis-geoserver-plugin" target="_blank">&#x94FE;&#x63A5;&#x4E2D;</a>&#x627E;&#x5230;&#x63D2;&#x4EF6;&#x4EE3;&#x7801;&#x53CA;&#x5176;&#x6D4B;&#x8BD5; &#x3002;&#x53EF;&#x4EE5;&#x4ECE;&#x8BA4;&#x8BC1;&#x57FA;&#x7840;&#x7ED3;&#x6784;<a href="https://github.com/qgis/QGIS/blob/master/tests/src/python/test_qgsauthsystem.py" target="_blank">&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;&#x4E2D;</a>&#x8BFB;&#x53D6;&#x5176;&#x4ED6;&#x826F;&#x597D;&#x7684;&#x4EE3;&#x7801;&#x5F15;&#x7528;</p>
+<h2 id="132-&#x8BCD;&#x6C47;&#x8868;">13.2 &#x8BCD;&#x6C47;&#x8868;</h2>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x672C;&#x7AE0;&#x4E2D;&#x6700;&#x5E38;&#x89C1;&#x5BF9;&#x8C61;&#x7684;&#x4E00;&#x4E9B;&#x5B9A;&#x4E49;&#x3002;</p>
 <ul>
-<li><a href="https://qgis.org/pyqgis/3.4/core/QgsMultiBandColorRenderer.html#qgis.core.QgsMultiBandColorRenderer" target="_blank"><code>QgsMultiBandColorRenderer</code></a></li>
-<li><a href="https://qgis.org/pyqgis/3.4/core/QgsPalettedRasterRenderer.html#qgis.core.QgsPalettedRasterRenderer" target="_blank"><code>QgsPalettedRasterRenderer</code></a></li>
-<li><a href="https://qgis.org/pyqgis/3.4/core/QgsSingleBandColorDataRenderer.html#qgis.core.QgsSingleBandColorDataRenderer" target="_blank"><code>QgsSingleBandColorDataRenderer</code></a></li>
-<li><a href="https://qgis.org/pyqgis/3.4/core/QgsSingleBandGrayRenderer.html#qgis.core.QgsSingleBandGrayRenderer" target="_blank"><code>QgsSingleBandGrayRenderer</code></a></li>
-<li><a href="https://qgis.org/pyqgis/3.4/core/QgsSingleBandPseudoColorRenderer.html#qgis.core.QgsSingleBandPseudoColorRenderer" target="_blank"><code>QgsSingleBandPseudoColorRenderer</code></a></li>
+<li><p>&#x4E3B;&#x5BC6;&#x7801;</p>
+<p>&#x5141;&#x8BB8;&#x8BBF;&#x95EE;&#x548C;&#x89E3;&#x5BC6;&#x5B58;&#x50A8;&#x5728;QGIS Authentication DB&#x4E2D;&#x7684;&#x51ED;&#x636E;&#x7684;&#x5BC6;&#x7801;</p>
+</li>
+<li><p>&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;</p>
+<p>&#x4E00;&#x4E2A;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-master-password" target="_blank">&#x4E3B;&#x5BC6;&#x7801;</a>&#x52A0;&#x5BC6;&#x540E;&#x7684;SQLite&#x6570;&#x636E;&#x5E93;<code>qgis-auth.db</code> &#xFF0C;&#x5176;&#x4E2D;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-configuration" target="_blank">&#x8BA4;&#x8BC1;&#x914D;&#x7F6E;</a>&#x88AB;&#x5B58;&#x50A8;&#x518D;&#x8FD9;&#x91CC;&#x3002;&#x4F8B;&#x5982;&#x7528;&#x6237;/&#x5BC6;&#x7801;&#xFF0C;&#x4E2A;&#x4EBA;&#x8BC1;&#x4E66;&#x548C;&#x5BC6;&#x94A5;&#xFF0C;&#x8BC1;&#x4E66;&#x9881;&#x53D1;&#x673A;&#x6784;</p>
+</li>
+<li><p>&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;</p>
+<p><a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-database" target="_blank">&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;</a></p>
+</li>
+<li><p>&#x9A8C;&#x8BC1;&#x914D;&#x7F6E;</p>
+<p>&#x4E00;&#x7EC4;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#xFF0C;&#x53D6;&#x51B3;&#x4E8E;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method" target="_blank">&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x65B9;&#x6CD5;</a>&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x57FA;&#x672C;&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;&#x5B58;&#x50A8;&#x4E00;&#x5BF9;&#x7528;&#x6237;/&#x5BC6;&#x7801;&#x3002;</p>
+</li>
+<li><p>&#x9A8C;&#x8BC1;&#x914D;&#x7F6E;</p>
+<p><a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-configuration" target="_blank">&#x9A8C;&#x8BC1;&#x914D;&#x7F6E;</a></p>
+</li>
+<li><p>&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;</p>
+<p>&#x7528;&#x4E8E;&#x83B7;&#x53D6;&#x8BA4;&#x8BC1;&#x7684;&#x7279;&#x5B9A;&#x65B9;&#x6CD5;&#x3002;&#x6BCF;&#x79CD;&#x65B9;&#x6CD5;&#x90FD;&#x6709;&#x81EA;&#x5DF1;&#x7684;&#x534F;&#x8BAE;&#x7528;&#x4E8E;&#x83B7;&#x5F97;&#x7ECF;&#x8FC7;&#x9A8C;&#x8BC1;&#x7684;&#x7EA7;&#x522B;&#x3002;&#x6BCF;&#x4E2A;&#x65B9;&#x6CD5;&#x90FD;&#x5B9E;&#x73B0;&#x4F5C;&#x4E3A;&#x5728;QGIS&#x8BA4;&#x8BC1;&#x57FA;&#x7840;&#x7ED3;&#x6784;&#x521D;&#x59CB;&#x5316;&#x671F;&#x95F4;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x7684;&#x5171;&#x4EAB;&#x5E93;&#x3002;</p>
+</li>
 </ul>
-<p>&#x5355;&#x6CE2;&#x6BB5;&#x6805;&#x683C;&#x56FE;&#x5C42;&#x53EF;&#x4EE5;&#x4EE5;&#x7070;&#x8272;&#xFF08;&#x4F4E;&#x503C;=&#x9ED1;&#x8272;&#xFF0C;&#x9AD8;&#x503C;=&#x767D;&#x8272;&#xFF09;&#x6216;&#x4F7F;&#x7528;&#x4F2A;&#x5F69;&#x8272;&#x7B97;&#x6CD5;&#x7ED8;&#x5236;&#xFF0C;&#x8BE5;&#x7B97;&#x6CD5;&#x4E3A;&#x503C;&#x6307;&#x5B9A;&#x989C;&#x8272;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8C03;&#x8272;&#x677F;&#x7ED8;&#x5236;&#x5E26;&#x8C03;&#x8272;&#x677F;&#x7684;&#x5355;&#x6CE2;&#x6BB5;&#x6805;&#x683C;&#x3002;&#x591A;&#x6CE2;&#x6BB5;&#x56FE;&#x5C42;&#x901A;&#x5E38;&#x901A;&#x8FC7;&#x5C06;&#x6CE2;&#x6BB5;&#x6620;&#x5C04;&#x5230;RGB&#x6765;&#x7ED8;&#x5236;&#x989C;&#x8272;&#x3002;&#x53E6;&#x4E00;&#x79CD;&#x53EF;&#x80FD;&#x6027;&#x662F;&#x4EC5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x6CE2;&#x6BB5;&#x6765;&#x7ED8;&#x56FE;&#x3002;</p>
-<h3 id="421-&#x5355;&#x6CE2;&#x6BB5;&#x6805;&#x683C;">4.2.1 &#x5355;&#x6CE2;&#x6BB5;&#x6805;&#x683C;</h3>
-<p>&#x5047;&#x8BBE;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x6E32;&#x67D3;&#x4E00;&#x4E2A;&#x5355;&#x6CE2;&#x6BB5;&#x6805;&#x683C;&#x56FE;&#x5C42;&#xFF0C;&#x989C;&#x8272;&#x8303;&#x56F4;&#x4ECE;&#x7EFF;&#x8272;&#x5230;&#x9EC4;&#x8272;&#xFF08;&#x5BF9;&#x5E94;&#x4E8E;0&#x5230;255&#x4E4B;&#x95F4;&#x7684;&#x50CF;&#x7D20;&#x503C;&#xFF09;&#x3002;&#x5728;&#x7B2C;&#x4E00;&#x9636;&#x6BB5;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x51C6;&#x5907;&#x4E00;&#x4E2A;&#xFF1A;QgsRasterShader <qgis.core.qgsrastershader>&#x5BF9;&#x8C61;&#x5E76;&#x914D;&#x7F6E;&#x5176;&#x7740;&#x8272;&#x5668;&#x529F;&#x80FD;&#xFF1A;</qgis.core.qgsrastershader></p>
-<pre><code class="lang-python">fcn = QgsColorRampShader()
-fcn.setColorRampType(QgsColorRampShader.Interpolated)
-lst = [ QgsColorRampShader.ColorRampItem(<span class="hljs-number">0</span>, QColor(<span class="hljs-number">0</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>)),QgsColorRampShader.ColorRampItem(<span class="hljs-number">255</span>, QColor(<span class="hljs-number">255</span>,<span class="hljs-number">255</span>,<span class="hljs-number">0</span>)) ]
-fcn.setColorRampItemList(lst)
-shader = QgsRasterShader()
-shader.setRasterShaderFunction(fcn)
+<h2 id="133-qgsauthmanager&#x5165;&#x53E3;">13.3 QgsAuthManager&#x5165;&#x53E3;</h2>
+<p>&#x5355;&#x4F8B;&#x7C7B;<a href="https://qgis.org/pyqgis/3.4/core/QgsAuthManager.html#qgis.core.QgsAuthManager" target="_blank"><code>QgsAuthManager</code></a>&#x662F;&#x4F7F;&#x7528;&#x5B58;&#x50A8;&#x5728;&#x52A0;&#x5BC6;QGIS&#x8BC1;&#x4E66; <a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-db" target="_blank">&#x8BA4;&#x8BC1;DB</a>&#x7684;&#x5165;&#x53E3;&#xFF0C;&#x5373;&#xFF0C;&#x6D3B;&#x52A8;<a href="https://docs.qgis.org/3.4/en/docs/user_manual/introduction/qgis_configuration.html#user-profiles" target="_blank">&#x914D;&#x7F6E;&#x6587;&#x4EF6;</a>&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x7684;<code>qgis-auth.db</code>&#x6587;&#x4EF6;&#x3002;</p>
+<p>&#x6B64;&#x7C7B;&#x8D1F;&#x8D23;&#x7528;&#x6237;&#x4EA4;&#x4E92;&#xFF1A;&#x901A;&#x8FC7;&#x8981;&#x6C42;&#x8BBE;&#x7F6E;&#x4E3B;&#x5BC6;&#x7801;&#x6216;&#x900F;&#x660E;&#x5730;&#x4F7F;&#x7528;&#x5B83;&#x6765;&#x8BBF;&#x95EE;&#x52A0;&#x5BC6;&#x7684;&#x5B58;&#x50A8;&#x4FE1;&#x606F;&#x3002;</p>
+<h3 id="1331-&#x521D;&#x59CB;&#x5316;&#x7BA1;&#x7406;&#x5668;&#x5E76;&#x8BBE;&#x7F6E;&#x4E3B;&#x5BC6;&#x7801;">13.3.1 &#x521D;&#x59CB;&#x5316;&#x7BA1;&#x7406;&#x5668;&#x5E76;&#x8BBE;&#x7F6E;&#x4E3B;&#x5BC6;&#x7801;</h3>
+<p>&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x6BB5;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#xFF0C;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x4E3B;&#x5BC6;&#x7801;&#x4EE5;&#x6253;&#x5F00;&#x5BF9;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x8BBE;&#x7F6E;&#x7684;&#x8BBF;&#x95EE;&#x6743;&#x9650;&#x3002;&#x4EE3;&#x7801;&#x6CE8;&#x91CA;&#x5BF9;&#x4E8E;&#x7406;&#x89E3;&#x4EE3;&#x7801;&#x975E;&#x5E38;&#x91CD;&#x8981;&#x3002;</p>
+<pre><code class="lang-python">authMgr = QgsApplication.authManager()
+<span class="hljs-comment"># &#x68C0;&#x67E5;QgsAuthManager&#x662F;&#x5426;&#x5DF2;&#x7ECF;&#x521D;&#x59CB;&#x5316;... QgsAuthManager.init()&#x7684;&#x526F;&#x4F5C;&#x7528;&#x662F;&#x8BBE;&#x7F6E;&#x4E86;AuthDbPath&#x3002;</span>
+<span class="hljs-comment"># QgsAuthManager.init()&#x5728;QGIS&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x521D;&#x59CB;&#x5316;&#x671F;&#x95F4;&#x6267;&#x884C;&#xFF0C;&#x56E0;&#x6B64;&#x901A;&#x5E38;&#x4E0D;&#x9700;&#x8981;&#x76F4;&#x63A5;&#x8C03;&#x7528;&#x5B83;&#x3002;</span>
+<span class="hljs-keyword">if</span> authMgr.authenticationDatabasePath():
+    <span class="hljs-keyword">if</span> authMgr.masterPasswordIsSet():
+        msg = <span class="hljs-string">&apos;Authentication master password not recognized&apos;</span>
+        <span class="hljs-keyword">assert</span> authMgr.masterPasswordSame( <span class="hljs-string">&quot;your master password&quot;</span> ), msg
+    <span class="hljs-keyword">else</span>:
+        msg = <span class="hljs-string">&apos;Master password could not be set&apos;</span>
+        <span class="hljs-comment"># &#x9A8C;&#x8BC1;&#x53C2;&#x6570;&#x68C0;&#x67E5;&#x5BC6;&#x7801;&#x7684;&#x54C8;&#x5E0C;&#x662F;&#x5426;&#x5DF2;&#x4FDD;&#x5B58;&#x5728;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x6570;&#x636E;&#x5E93;&#x4E2D;</span>
+        <span class="hljs-keyword">assert</span> authMgr.setMasterPassword( <span class="hljs-string">&quot;your master password&quot;</span>,verify=<span class="hljs-keyword">True</span>), msg
+<span class="hljs-keyword">else</span>:
+    <span class="hljs-comment"># &#x5728;qgis&#x73AF;&#x5883;&#x4E4B;&#x5916;&#xFF0C;&#x4F8B;&#x5982;&#x5728;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4E2D;=&gt;&#x5728;&#x6570;&#x636E;&#x5E93;&#x521D;&#x59CB;&#x5316;&#x4E4B;&#x524D;&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;</span>
+    os.environ[<span class="hljs-string">&apos;QGIS_AUTH_DB_DIR_PATH&apos;</span>] = <span class="hljs-string">&quot;/path/where/located/qgis-auth.db&quot;</span>
+    msg = <span class="hljs-string">&apos;Master password could not be set&apos;</span>
+    <span class="hljs-keyword">assert</span> authMgr.setMasterPassword(<span class="hljs-string">&quot;your master password&quot;</span>, <span class="hljs-keyword">True</span>), msg
+    authMgr.init( <span class="hljs-string">&quot;/path/where/located/qgis-auth.db&quot;</span> )
 </code></pre>
-<p>&#x7740;&#x8272;&#x5668;&#x6309;&#x5176;&#x989C;&#x8272;&#x6620;&#x5C04;&#x6307;&#x5B9A;&#x7684;&#x989C;&#x8272;&#x3002;&#x5F69;&#x8272;&#x5730;&#x56FE;&#x88AB;&#x63D0;&#x4F9B;&#x4E3A;&#x5177;&#x6709;&#x76F8;&#x5173;&#x989C;&#x8272;&#x7684;&#x50CF;&#x7D20;&#x503C;&#x5217;&#x8868;&#x3002;&#x63D2;&#x503C;&#x6709;&#x4E09;&#x79CD;&#x6A21;&#x5F0F;&#xFF1A;</p>
-<ul>
-<li>linear&#xFF08;<code>Interpolated</code>&#xFF09;&#xFF1A;&#x4ECE;&#x50CF;&#x7D20;&#x503C;&#x4E0A;&#x65B9;&#x548C;&#x4E0B;&#x65B9;&#x7684;&#x989C;&#x8272;&#x6620;&#x5C04;&#x6761;&#x76EE;&#x7EBF;&#x6027;&#x63D2;&#x503C;&#x989C;&#x8272;</li>
-<li>discrete&#xFF08;<code>Discrete</code>&#xFF09;&#xFF1A;&#x989C;&#x8272;&#x53D6;&#x81EA;&#x5177;&#x6709;&#x76F8;&#x540C;&#x6216;&#x66F4;&#x9AD8;&#x503C;&#x7684;&#x6700;&#x63A5;&#x8FD1;&#x7684;&#x989C;&#x8272;&#x6620;&#x5C04;&#x6761;&#x76EE;</li>
-<li>exact&#xFF08;<code>Exact</code>&#xFF09;&#xFF1A;&#x4E0D;&#x63D2;&#x5165;&#x989C;&#x8272;&#xFF0C;&#x53EA;&#x7ED8;&#x5236;&#x503C;&#x7B49;&#x4E8E;&#x989C;&#x8272;&#x6620;&#x5C04;&#x6761;&#x76EE;&#x7684;&#x50CF;&#x7D20;</li>
-</ul>
-<p>&#x5728;&#x7B2C;&#x4E8C;&#x6B65;&#x4E2D;&#xFF0C;&#x6211;&#x4EEC;&#x5C06;&#x6B64;&#x7740;&#x8272;&#x5668;&#x4E0E;&#x6805;&#x683C;&#x56FE;&#x5C42;&#x76F8;&#x5173;&#x8054;&#xFF1A;</p>
-<pre><code class="lang-python">renderer = QgsSingleBandPseudoColorRenderer(rlayer.dataProvider(), <span class="hljs-number">1</span>, shader)
-rlayer.setRenderer(renderer)
+<h3 id="1332-&#x4F7F;&#x7528;&#x65B0;&#x7684;&#x8BA4;&#x8BC1;&#x914D;&#x7F6E;&#x9879;&#x586B;&#x5145;&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;">13.3.2 &#x4F7F;&#x7528;&#x65B0;&#x7684;&#x8BA4;&#x8BC1;&#x914D;&#x7F6E;&#x9879;&#x586B;&#x5145;&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;</h3>
+<p>&#x4EFB;&#x4F55;&#x5B58;&#x50A8;&#x7684;&#x51ED;&#x8BC1;&#x90FD;&#x662F;<a href="https://qgis.org/pyqgis/3.4/core/QgsAuthMethodConfig.html#qgis.core.QgsAuthMethodConfig" target="_blank"><code>QgsAuthMethodConfig</code></a>&#x7C7B;&#x7684;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-configuration" target="_blank">&#x8BA4;&#x8BC1;&#x914D;&#x7F6E;</a>&#x5B9E;&#x4F8B;&#x2014;&#x2014;&#x4F7F;&#x7528;&#x552F;&#x4E00;&#x5B57;&#x7B26;&#x4E32;&#x8BBF;&#x95EE;&#xFF1A;</p>
+<pre><code class="lang-python">authcfg = <span class="hljs-string">&apos;fm1s770&apos;</span>
 </code></pre>
-<p>&#x4E0A;&#x9762;&#x4EE3;&#x7801;&#x7684;&#x6570;&#x503C;<code>1</code>&#x662F;&#x6CE2;&#x6BB5;&#x53F7;&#xFF08;&#x6805;&#x683C;&#x6CE2;&#x6BB5;&#x7684;&#x4E00;&#x4E2A;&#x7D22;&#x5F15;&#xFF09;&#x3002;</p>
-<p>&#x6700;&#x540E;&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x8BE5; <a href="https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint" target="_blank"><code>triggerRepaint</code></a>&#x65B9;&#x6CD5;&#x6765;&#x67E5;&#x770B;&#x7ED3;&#x679C;&#xFF1A;</p>
-<pre><code class="lang-python">rlayer.triggerRepaint()
+<p>&#x4F7F;&#x7528;QGIS API&#x6216;GUI&#x521B;&#x5EFA;&#x6761;&#x76EE;&#x65F6;&#x4F1A;&#x81EA;&#x52A8;&#x751F;&#x6210;&#x8BE5;&#x5B57;&#x7B26;&#x4E32;&#x3002;</p>
+<p><a href="https://qgis.org/pyqgis/3.4/core/QgsAuthMethodConfig.html#qgis.core.QgsAuthMethodConfig" target="_blank"><code>QgsAuthMethodConfig</code></a>&#x662F;&#x4EFB;&#x4F55;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method" target="_blank">&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;</a>&#x7684;&#x57FA;&#x7C7B;&#x3002;&#x4EFB;&#x4F55;&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;&#x96C6;&#x90FD;&#x4F1A;&#x914D;&#x7F6E;&#x54C8;&#x5E0C;&#x6620;&#x5C04;&#xFF0C;&#x5176;&#x4E2D;&#x5B58;&#x50A8;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x4FE1;&#x606F;&#x3002;&#x6B64;&#x540E;&#x662F;&#x4E00;&#x4E2A;&#x6709;&#x7528;&#x7684;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#xFF0C;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x5047;&#x8BBE;alice&#x7528;&#x6237;&#x7684;PKI&#x8DEF;&#x5F84;&#x51ED;&#x636E;&#xFF1A;</p>
+<pre><code class="lang-python">authMgr = QgsApplication.authManager()
+<span class="hljs-comment"># &#x8BBE;&#x7F6E; alice PKI &#x6570;&#x636E;</span>
+p_config = QgsAuthMethodConfig()
+p_config.setName(<span class="hljs-string">&quot;alice&quot;</span>)
+p_config.setMethod(<span class="hljs-string">&quot;PKI-Paths&quot;</span>)
+p_config.setUri(<span class="hljs-string">&quot;https://example.com&quot;</span>)
+p_config.setConfig(<span class="hljs-string">&quot;certpath&quot;</span>, <span class="hljs-string">&quot;path/to/alice-cert.pem&quot;</span> )
+p_config.setConfig(<span class="hljs-string">&quot;keypath&quot;</span>, <span class="hljs-string">&quot;path/to/alice-key.pem&quot;</span> )
+<span class="hljs-comment"># &#x68C0;&#x67E5;&#x65B9;&#x6CD5;&#x53C2;&#x6570;&#x662F;&#x5426;&#x6B63;&#x786E;&#x8BBE;&#x7F6E;</span>
+<span class="hljs-keyword">assert</span> p_config.isValid()
+
+<span class="hljs-comment"># &#x5728;&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x6CE8;&#x518C;alice&#x6570;&#x636E;&#xFF0C;&#x8FD4;&#x56DE;&#x5B58;&#x50A8;&#x7684;&#x2018;authcfg&#x2019;&#x914D;&#x7F6E;</span>
+authMgr.storeAuthenticationConfig(p_config)
+newAuthCfgId = p_config.id()
+<span class="hljs-keyword">assert</span> (newAuthCfgId)
 </code></pre>
-<h3 id="422-&#x591A;&#x6CE2;&#x6BB5;&#x6805;&#x683C;">4.2.2 &#x591A;&#x6CE2;&#x6BB5;&#x6805;&#x683C;</h3>
-<p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;QGIS&#x5C06;&#x524D;&#x4E09;&#x4E2A;&#x6CE2;&#x6BB5;&#x6620;&#x5C04;&#x4E3A;&#x7EA2;&#x8272;&#xFF0C;&#x7EFF;&#x8272;&#x548C;&#x84DD;&#x8272;&#x4EE5;&#x521B;&#x5EFA;&#x5F69;&#x8272;&#x56FE;&#x50CF;&#xFF08;&#x8FD9;&#x662F;<code>MultiBandColor</code>&#x7ED8;&#x56FE;&#x6837;&#x5F0F;&#x3002;&#x5728;&#x67D0;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x5E0C;&#x671B;&#x8986;&#x76D6;&#x8FD9;&#x4E9B;&#x8BBE;&#x7F6E;&#x3002;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x4E92;&#x6362;&#x7EA2;&#x8272;&#x6CE2;&#x6BB5;&#xFF08;1&#xFF09;&#x548C;&#x7EFF;&#x8272;&#x6CE2;&#x6BB5;&#xFF08;2&#xFF09;&#xFF1A;</p>
-<pre><code class="lang-python">rlayer_multi = QgsProject.instance().mapLayersByName(<span class="hljs-string">&apos;multiband&apos;</span>)[<span class="hljs-number">0</span>]
-rlayer_multi.renderer().setGreenBand(<span class="hljs-number">1</span>)
-rlayer_multi.renderer().setRedBand(<span class="hljs-number">2</span>)
+<h4 id="&#x53EF;&#x7528;&#x7684;&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;">&#x53EF;&#x7528;&#x7684;&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;</h4>
+<p><a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method" target="_blank">&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;</a>&#x5728;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x7BA1;&#x7406;&#x5668;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x52A8;&#x6001;&#x52A0;&#x8F7D;&#x3002;&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x53EF;&#x80FD;&#x56E0;QGIS&#x7248;&#x672C;&#x6F14;&#x53D8;&#x800C;&#x5F02;&#xFF0C;&#x4F46;&#x539F;&#x59CB;&#x7684;&#x53EF;&#x7528;&#x65B9;&#x6CD5;&#x5217;&#x8868;&#x5982;&#x4E0B;&#xFF1A;</p>
+<ol>
+<li><code>Basic</code> &#x7528;&#x6237;&#x548C;&#x5BC6;&#x7801;&#x9A8C;&#x8BC1;</li>
+<li><code>Identity-Cert</code> &#x8EAB;&#x4EFD;&#x8BC1;&#x4E66;&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;</li>
+<li><code>PKI-Paths</code> PKI&#x8DEF;&#x5F84;&#x8BA4;&#x8BC1;</li>
+<li><code>PKI-PKCS#12</code> PKI PKCS&#xFF03;12&#x8BA4;&#x8BC1;</li>
+</ol>
+<p>&#x4E0A;&#x8FF0;&#x5B57;&#x7B26;&#x4E32;&#x7528;&#x4E8E;&#x6807;&#x8BC6;QGIS&#x8BA4;&#x8BC1;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;&#x3002;&#x5728;<a href="https://www.qgis.org/en/site/getinvolved/development/index.html" target="_blank">&#x5F00;&#x53D1;</a>&#x90E8;&#x5206;&#x4E2D;&#x63CF;&#x8FF0;&#x4E86;&#x5982;&#x4F55;&#x521B;&#x5EFA;&#x65B0;&#x7684;c ++ <a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-method" target="_blank">&#x8BA4;&#x8BC1;&#x65B9;&#x6CD5;</a>&#x3002;</p>
+<h4 id="&#x586B;&#x5145;&#x6743;&#x9650;">&#x586B;&#x5145;&#x6743;&#x9650;</h4>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> qgis.PyQt.QtNetwork <span class="hljs-keyword">import</span> QSslCertificate, QSslKey, QSsl
+
+authMgr = QgsApplication.authManager()
+<span class="hljs-comment"># &#x6DFB;&#x52A0;&#x6743;&#x9650;</span>
+cacerts = QSslCertificate.fromPath( <span class="hljs-string">&quot;/path/to/ca_chains.pem&quot;</span> )
+<span class="hljs-keyword">assert</span> cacerts <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>
+<span class="hljs-comment"># &#x5B58;&#x50A8; CA</span>
+authMgr.storeCertAuthorities(cacerts)
+<span class="hljs-comment"># &#x91CD;&#x5EFA; CA &#x7F13;&#x5B58;</span>
+authMgr.rebuildCaCertsCache()
+authMgr.rebuildTrustedCaCertsCache()
 </code></pre>
-<p>&#x5982;&#x679C;&#x53EA;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x6CE2;&#x6BB5;&#x6765;&#x5B9E;&#x73B0;&#x5149;&#x6805;&#x7684;&#x53EF;&#x89C6;&#x5316;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x5355;&#x6CE2;&#x6BB5;&#x7ED8;&#x5236;&#xFF0C;&#x7070;&#x5EA6;&#x7EA7;&#x6216;&#x4F2A;&#x5F69;&#x8272;&#x3002;</p>
-<p>&#x6211;&#x4EEC;&#x5FC5;&#x987B;&#x4F7F;&#x7528;<a href="https://qgis.org/pyqgis/3.4/core/QgsMapLayer.html#qgis.core.QgsMapLayer.triggerRepaint" target="_blank"><code>triggerRepaint</code></a> &#x66F4;&#x65B0;&#x5730;&#x56FE;&#x5E76;&#x67E5;&#x770B;&#x7ED3;&#x679C;&#xFF1A;</p>
-<pre><code class="lang-python">rlayer.triggerRepaint()
+<hr>
+<p><strong>&#x8B66;&#x544A;</strong></p>
+<p>&#x7531;&#x4E8E;QT4 / OpenSSL&#x63A5;&#x53E3;&#x9650;&#x5236;&#xFF0C;&#x66F4;&#x65B0;&#x7684;&#x7F13;&#x5B58;CA&#x4EC5;&#x5728;&#x4E00;&#x5206;&#x949F;&#x540E;&#x624D;&#x66B4;&#x9732;&#x7ED9;OpenSsl&#x3002;&#x5E0C;&#x671B;&#x8FD9;&#x5C06;&#x5728;QT5&#x8EAB;&#x4EFD;&#x9A8C;&#x8BC1;&#x57FA;&#x7840;&#x67B6;&#x6784;&#x4E2D;&#x5F97;&#x5230;&#x89E3;&#x51B3;&#x3002;</p>
+<hr>
+<h4 id="&#x4F7F;&#x7528;qgspkibundle&#x7BA1;&#x7406;pki&#x5305;">&#x4F7F;&#x7528;QgsPkiBundle&#x7BA1;&#x7406;PKI&#x5305;</h4>
+<p>&#x5305;&#x542B;&#x5728;SslCert&#xFF0C;SslKey&#x548C;CA&#x94FE;&#x4E0A;&#x7EC4;&#x6210;&#x7684;PKI&#x5305;&#x7684;&#x7C7B;&#x662F;<a href="https://qgis.org/pyqgis/3.4/core/QgsPkiBundle.html#qgis.core.QgsPkiBundle" target="_blank"><code>QgsPkiBundle</code></a>&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x83B7;&#x53D6;&#x5BC6;&#x7801;&#x4FDD;&#x62A4;&#x7684;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x5BC6;&#x94A5;&#x4E0E;&#x5BC6;&#x7801;&#x4E00;&#x8D77;&#x6DFB;&#x52A0;alice&#x8BC1;&#x4E66;</span>
+boundle = QgsPkiBundle.fromPemPaths( <span class="hljs-string">&quot;/path/to/alice-cert.pem&quot;</span>,
+                                     <span class="hljs-string">&quot;/path/to/alice-key_w-pass.pem&quot;</span>,
+                                     <span class="hljs-string">&quot;unlock_pwd&quot;</span>,
+                                     [])
+<span class="hljs-keyword">assert</span> boundle <span class="hljs-keyword">is</span> <span class="hljs-keyword">not</span> <span class="hljs-keyword">None</span>
+<span class="hljs-keyword">assert</span> boundle.isValid()
 </code></pre>
-<h2 id="43-&#x67E5;&#x8BE2;&#x503C;">4.3 &#x67E5;&#x8BE2;&#x503C;</h2>
-<p>&#x67E5;&#x8BE2;&#x6805;&#x683C;&#x503C;&#x7684;&#x7B2C;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528; <a href="https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider" target="_blank"><code>QgsRasterDataProvider</code></a>&#x7684;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.sample" target="_blank"><code>sample</code></a>&#x65B9;&#x6CD5;&#x67E5;&#x8BE2;&#x3002;&#x4F60;&#x5FC5;&#x987B;&#x6307;&#x5B9A;&#x6805;&#x683C;&#x56FE;&#x5C42;&#x7684;<a href="https://qgis.org/pyqgis/3.4/core/QgsPointXY.html#qgis.core.QgsPointXY" target="_blank"><code>QgsPointXY</code></a>&#x7684;&#x548C;&#x6CE2;&#x6BB5;&#x53F7;&#x3002;&#x8BE5;&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;value&#x548C;result&#xFF08;true&#x6216;false&#xFF09;&#xFF1A;</p>
-<pre><code class="lang-python">val, res = rlayer.dataProvider().sample(QgsPointXY(<span class="hljs-number">20.50</span>, <span class="hljs-number">-34</span>), <span class="hljs-number">1</span>)
+<p>&#x8BF7;&#x53C2;&#x9605;<a href="https://qgis.org/pyqgis/3.4/core/QgsPkiBundle.html#qgis.core.QgsPkiBundle" target="_blank"><code>QgsPkiBundle</code></a>&#x7C7B;&#x6587;&#x6863;&#x4ECE;&#x5305;&#x4E2D;&#x63D0;&#x53D6;&#x8BC1;&#x4E66;/&#x5BC6;&#x94A5;/ CA.</p>
+<h3 id="1333-&#x4ECE;&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5220;&#x9664;&#x8BB0;&#x5F55;">13.3.3 &#x4ECE;&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x5220;&#x9664;&#x8BB0;&#x5F55;</h3>
+<p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x6BB5;&#x4F7F;&#x7528;<code>authcfg</code>&#x6807;&#x8BC6;&#x7B26;&#x4ECE;<a href="https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/authentication.html#term-authentication-database" target="_blank">&#x8BA4;&#x8BC1;&#x6570;&#x636E;&#x5E93;&#x4E2D;</a>&#x5220;&#x9664;&#x8BB0;&#x5F55;&#xFF1A;</p>
+<pre><code class="lang-python">authMgr = QgsApplication.authManager()
+authMgr.removeAuthenticationConfig( <span class="hljs-string">&quot;authCfg_Id_to_remove&quot;</span> )
 </code></pre>
-<p>&#x67E5;&#x8BE2;&#x6805;&#x683C;&#x503C;&#x7684;&#x53E6;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterDataProvider.html#qgis.core.QgsRasterDataProvider.identify" target="_blank"><code>identify</code></a>&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterIdentifyResult.html#qgis.core.QgsRasterIdentifyResult" target="_blank"><code>QgsRasterIdentifyResult</code></a>&#x5BF9;&#x8C61; &#x3002;</p>
-<pre><code class="lang-python">ident = rlayer.dataProvider().identify(QgsPointXY(<span class="hljs-number">20.5</span>, <span class="hljs-number">-34</span>), QgsRaster.IdentifyFormatValue)
-<span class="hljs-keyword">if</span> ident.isValid():
-    print(ident.results())
-</code></pre>
-<p>&#x5728;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x8BE5;<a href="https://qgis.org/pyqgis/3.4/core/QgsRasterIdentifyResult.html#qgis.core.QgsRasterIdentifyResult.results" target="_blank"><code>results</code></a> &#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5B57;&#x5178;&#xFF0C;&#x6CE2;&#x6BB5;&#x7D22;&#x5F15;&#x4F5C;&#x4E3A;&#x952E;&#xFF0C;&#x6CE2;&#x6BB5;&#x503C;&#x4F5C;&#x4E3A;&#x503C;&#x3002;&#x4F8B;&#x5982;<code>{1: 323.0}</code></p>
-</body></html>
+<h2 id="132-adapt-plugins-to-use-authentication-infrastructure">13.2 <a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/authentication.html#id23" target="_blank">Adapt plugins to use Authentication infrastructure</a></h2>
+<p><strong>TODO</strong></p>
+<h2 id="134-authentication-guis">13.4 <a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/authentication.html#id24" target="_blank">Authentication GUIs</a></h2>
+<p><strong>TODO</strong></p>
+
                                 
                                 </section>
                             
@@ -1255,12 +1273,12 @@ rlayer_multi.renderer().setRedBand(<span class="hljs-number">2</span>)
 
             
                 
-                <a href="3 加载图层.html#33-qgsproject-实例" class="navigation navigation-prev " aria-label="Previous page: 3.3 QgsProject 实例">
+                <a href="12 与用户通信.html#123-日志" class="navigation navigation-prev " aria-label="Previous page: 12.3 日志">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="4 使用栅格图层.html#41-图层细节" class="navigation navigation-next " aria-label="Next page: 4.1 图层细节">
+                <a href="13 认证基础.html#131-介绍" class="navigation navigation-next " aria-label="Next page: 13.1 介绍">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1271,69 +1289,69 @@ rlayer_multi.renderer().setRedBand(<span class="hljs-number">2</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4 使用栅格图层","level":"1.5","depth":1,"next":{"title":"4.1 图层细节","level":"1.5.1","depth":2,"anchor":"#41-图层细节","path":"chapter/4 使用栅格图层.md","ref":"chapter/4 使用栅格图层.md#41-图层细节","articles":[]},"previous":{"title":"3.3 QgsProject 实例","level":"1.4.3","depth":2,"anchor":"#33-qgsproject-实例","path":"chapter/3 加载图层.md","ref":"chapter/3 加载图层.md#33-qgsproject-实例","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/favicon.ico","lightbox":{"jquery":true},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","links":{"sidebar":{"Home":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"}},"gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"chapter/4 使用栅格图层.md","mtime":"2019-08-19T00:51:17.975Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-08-20T07:13:37.830Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"13 认证基础","level":"1.14","depth":1,"next":{"title":"13.1 介绍","level":"1.14.1","depth":2,"anchor":"#131-介绍","path":"gitbook/13 认证基础.md","ref":"gitbook/13 认证基础.md#131-介绍","articles":[]},"previous":{"title":"12.3 日志","level":"1.13.3","depth":2,"anchor":"#123-日志","path":"gitbook/12 与用户通信.md","ref":"gitbook/12 与用户通信.md#123-日志","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count","livereload"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"livereload":{},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/13 认证基础.md","mtime":"2020-03-07T07:14:06.635Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-07T08:40:15.364Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
 
         
-    <script src="../gitbook/gitbook.js"></script>
-    <script src="../gitbook/theme.js"></script>
+    <script src="gitbook.js"></script>
+    <script src="theme.js"></script>
     
         
-        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
-        
-    
-        
-        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        <script src="gitbook-plugin-search-pro/jquery.mark.min.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        <script src="gitbook-plugin-search-pro/search.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-github/plugin.js"></script>
+        <script src="gitbook-plugin-chapter-fold/chapter-fold.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        <script src="gitbook-plugin-github/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        <script src="gitbook-plugin-splitter/splitter.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        <script src="gitbook-plugin-code/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-hide-element/plugin.js"></script>
+        <script src="gitbook-plugin-back-to-top-button/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        <script src="gitbook-plugin-hide-element/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-auto-scroll-table/plugin.js"></script>
+        <script src="gitbook-plugin-donate/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-lightbox/jquery.min.js"></script>
+        <script src="gitbook-plugin-auto-scroll-table/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-lightbox/lightbox.min.js"></script>
+        <script src="gitbook-plugin-lightbox/js/lightbox.min.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        <script src="gitbook-plugin-pageview-count/plugin.js"></script>
         
     
         
-        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        <script src="gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook-plugin-fontsettings/fontsettings.js"></script>
         
     
 

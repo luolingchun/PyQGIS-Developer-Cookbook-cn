@@ -3,11 +3,6 @@
 	"author": "llc",
 	"description": "PYQGIS开发者手册中文翻译",
 	"language": "zh-hans",
-	"links": {
-		"sidebar": {
-			"Home": "https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"
-		}
-	},
 	"plugins": [
 		"-lunr",
 		"-search",
@@ -26,7 +21,7 @@
 		"pageview-count"
 	],
 	"pluginsConfig": {
-		"favicon": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/favicon.ico",
+		"favicon": "./gitbook/images/favicon.ico",
 		"code": {
 			"copyButtons": true
 		},
@@ -39,8 +34,8 @@
 			"url": "https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"
 		},
 		"donate": {
-			"wechat": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/wechat.jpg",
-			"alipay": "https://raw.githubusercontent.com/luolingchun/blog/master/chapter/image/alipay.jpg",
+			"wechat": "https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg",
+			"alipay": "https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg",
 			"title": "",
 			"button": "赏",
 			"alipayText": "支付宝打赏",
