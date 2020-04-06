@@ -68,3 +68,4 @@
 - [16 编写处理插件](gitbook/16 编写处理插件.md)
 - [17 网络分析库](gitbook/17 网络分析库.md)
 - [18 QGIS Server Python插件](gitbook/18 QGIS Server Python插件.md)
+- [PyQGIS速查表](gitbook/PyQGIS速查表.md)
