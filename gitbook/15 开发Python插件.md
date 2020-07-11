@@ -57,6 +57,12 @@ PYTHON_PLUGINS_PATH/
 
 有一个名为[Plugin Builder 3](https://plugins.qgis.org/plugins/pluginbuilder3/)的QGIS插件 ，它为QGIS创建一个插件模板，不需要互联网连接。这是推荐的选择，因为它兼容3.x版本。
 
+---
+
+**警告：**如果您打算将插件上传到[Python官方插件存储库](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)，则必须检查插件是否遵循插件[验证](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository-validation)所必需的一些附加规则
+
+---
+
 ### 15.1.2 插件内容
 
 在这里，你可以找到有关在上述文件结构中，每个文件需要添加内容的信息和示例。
@@ -67,25 +73,28 @@ PYTHON_PLUGINS_PATH/
 
 **注意：** 所有元数据必须采用UTF-8编码。
 
-| 元数据名称         | 是否必需 | 描述                                                         |
-| :----------------- | :------: | :----------------------------------------------------------- |
-| name               |    是    | 插件名称，短字符串                                           |
-| qgisMinimumVersion |    是    | 最小QGIS版本                                                 |
-| qgisMaximumVersion |    否    | 最大QGIS版本                                                 |
-| description        |    是    | 描述插件的简短文本，不支持HTML                               |
-| about              |    是    | 较长的文本，详细描述插件，不支持HTML                         |
-| version            |    是    | 版本                                                         |
-| author             |    是    | 作者姓名                                                     |
-| email              |    是    | 作者的电子邮件，在网站上仅显示给登录的用户，但在插件安装后可在插件管理器中看到 |
-| changelog          |    否    | 字符串，可以是多行，不支持HTML                               |
-| experimental       |    否    | 布尔值，True或False                                          |
-| deprecated         |    否    | boolean值，True或False，适用于整个插件，而不仅仅适用于上传的版本 |
-| tags               |    否    | 以逗号分隔的列表，允许在单个标记内使用空格                   |
-| homepage           |    否    | 指向插件主页的有效网址                                       |
-| repository         |    是    | 源代码存储库的有效URL                                        |
-| tracker            |    否    | 故障单和错误报告的有效URL                                    |
-| icon               |    否    | 对于web友好的图像（PNG，JPEG）的文件名或相对路径（相对于插件压缩包的文件夹） |
-| category           |    否    | Raster, Vector, Database and Web（栅格、矢量、数据库和网络） |
+| 元数据名称            | 是否必需 | 描述                                                         |
+| :-------------------- | :------: | :----------------------------------------------------------- |
+| name                  |    是    | 插件名称，短字符串                                           |
+| qgisMinimumVersion    |    是    | 最小QGIS版本                                                 |
+| qgisMaximumVersion    |    否    | 最大QGIS版本                                                 |
+| description           |    是    | 描述插件的简短文本，不支持HTML                               |
+| about                 |    是    | 较长的文本，详细描述插件，不支持HTML                         |
+| version               |    是    | 版本                                                         |
+| author                |    是    | 作者姓名                                                     |
+| email                 |    是    | 作者的电子邮件，在网站上仅显示给登录的用户，但在插件安装后可在插件管理器中看到 |
+| changelog             |    否    | 字符串，可以是多行，不支持HTML                               |
+| experimental          |    否    | 布尔值，True或False                                          |
+| deprecated            |    否    | boolean值，True或False，适用于整个插件，而不仅仅适用于上传的版本 |
+| tags                  |    否    | 以逗号分隔的列表，允许在单个标记内使用空格                   |
+| homepage              |    否    | 指向插件主页的有效网址                                       |
+| repository            |    是    | 源代码存储库的有效URL                                        |
+| tracker               |    否    | 故障单和错误报告的有效URL                                    |
+| icon                  |    否    | 对于web友好的图像（PNG，JPEG）的文件名或相对路径（相对于插件压缩包的文件夹） |
+| category              |    否    | Raster, Vector, Database and Web（栅格、矢量、数据库和网络） |
+| plugin_dependencies   |    否    | 类似于PIP的逗号分隔的其他插件列表                            |
+| server                |    否    | 布尔值，True或False，确定插件是否具有服务器接口              |
+| hasProcessingProvider |    否    | 布尔值，True或False，确定插件是否提供处理算法                |
 
 默认情况下，插件放在**插件菜单**中（我们将在下一节中看到如何为插件添加菜单项），但也可以将它们放入**Raster**，**Vector**， **Database**和**Web**菜单中。
 
@@ -147,6 +156,10 @@ deprecated=False
 
 ; 如果为空，它将自动设置为主要版本+.99
 qgisMaximumVersion=3.99
+
+; 从 QGIS 3.8开始，可以指定以逗号分隔的要安装（或更新）的插件列表
+; 下面示例安装或更新版本1.12的“MyOtherPlugin”和任何版本的“YetAnotherPlugin”
+plugin_dependencies=MyOtherPlugin==1.12,YetAnotherPlugin
 ```
 
 #### \_\_init\_\_.py

@@ -744,10 +744,10 @@
     
         <li class="chapter " data-level="1.11.3" data-path="10 表达式，过滤和计算值.html">
             
-                <a href="10 表达式，过滤和计算值.html#103-示例">
+                <a href="10 表达式，过滤和计算值.html#103-处理错误">
             
                     
-                    10.3 示例
+                    10.3 处理错误
             
                 </a>
             
@@ -1055,6 +1055,38 @@
             
 
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.17.1" data-path="16 编写处理插件.html">
+            
+                <a href="16 编写处理插件.html#161-从头开始创建">
+            
+                    
+                    16.1 从头开始创建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17.2" data-path="16 编写处理插件.html">
+            
+                <a href="16 编写处理插件.html#162-更新插件">
+            
+                    
+                    16.2 更新插件
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="1.18" data-path="17 网络分析库.html">
@@ -1089,6 +1121,19 @@
             
                     
                     PyQGIS速查表
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="访问图层目录树.html">
+            
+                <a href="访问图层目录树.html">
+            
+                    
+                    访问图层目录树
             
                 </a>
             
@@ -1186,6 +1231,9 @@
 </ul>
 <p><a href="https://www.dimitrisk.gr/qgis/creator/" target="_blank">&#x8FD9;</a>&#x662F;&#x4E00;&#x79CD;&#x81EA;&#x52A8;&#x521B;&#x5EFA;&#x5178;&#x578B;QGIS Python&#x63D2;&#x4EF6;&#x7684;&#x57FA;&#x672C;&#x6587;&#x4EF6;&#xFF08;&#x6846;&#x67B6;&#xFF09;&#x7684;&#x5728;&#x7EBF;&#x65B9;&#x5F0F;&#x3002;</p>
 <p>&#x6709;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<a href="https://plugins.qgis.org/plugins/pluginbuilder3/" target="_blank">Plugin Builder 3</a>&#x7684;QGIS&#x63D2;&#x4EF6; &#xFF0C;&#x5B83;&#x4E3A;QGIS&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x63D2;&#x4EF6;&#x6A21;&#x677F;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x4E92;&#x8054;&#x7F51;&#x8FDE;&#x63A5;&#x3002;&#x8FD9;&#x662F;&#x63A8;&#x8350;&#x7684;&#x9009;&#x62E9;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x517C;&#x5BB9;3.x&#x7248;&#x672C;&#x3002;</p>
+<hr>
+<p><strong>&#x8B66;&#x544A;&#xFF1A;</strong>&#x5982;&#x679C;&#x60A8;&#x6253;&#x7B97;&#x5C06;&#x63D2;&#x4EF6;&#x4E0A;&#x4F20;&#x5230;<a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository" target="_blank">Python&#x5B98;&#x65B9;&#x63D2;&#x4EF6;&#x5B58;&#x50A8;&#x5E93;</a>&#xFF0C;&#x5219;&#x5FC5;&#x987B;&#x68C0;&#x67E5;&#x63D2;&#x4EF6;&#x662F;&#x5426;&#x9075;&#x5FAA;&#x63D2;&#x4EF6;<a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository-validation" target="_blank">&#x9A8C;&#x8BC1;</a>&#x6240;&#x5FC5;&#x9700;&#x7684;&#x4E00;&#x4E9B;&#x9644;&#x52A0;&#x89C4;&#x5219;</p>
+<hr>
 <h3 id="1512-&#x63D2;&#x4EF6;&#x5185;&#x5BB9;">15.1.2 &#x63D2;&#x4EF6;&#x5185;&#x5BB9;</h3>
 <p>&#x5728;&#x8FD9;&#x91CC;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x627E;&#x5230;&#x6709;&#x5173;&#x5728;&#x4E0A;&#x8FF0;&#x6587;&#x4EF6;&#x7ED3;&#x6784;&#x4E2D;&#xFF0C;&#x6BCF;&#x4E2A;&#x6587;&#x4EF6;&#x9700;&#x8981;&#x6DFB;&#x52A0;&#x5185;&#x5BB9;&#x7684;&#x4FE1;&#x606F;&#x548C;&#x793A;&#x4F8B;&#x3002;</p>
 <h4 id="metadata">metadata</h4>
@@ -1285,6 +1333,21 @@
 <td style="text-align:center">&#x5426;</td>
 <td style="text-align:left">Raster, Vector, Database and Web&#xFF08;&#x6805;&#x683C;&#x3001;&#x77E2;&#x91CF;&#x3001;&#x6570;&#x636E;&#x5E93;&#x548C;&#x7F51;&#x7EDC;&#xFF09;</td>
 </tr>
+<tr>
+<td style="text-align:left">plugin_dependencies</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x7C7B;&#x4F3C;&#x4E8E;PIP&#x7684;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x5176;&#x4ED6;&#x63D2;&#x4EF6;&#x5217;&#x8868;</td>
+</tr>
+<tr>
+<td style="text-align:left">server</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x5E03;&#x5C14;&#x503C;&#xFF0C;True&#x6216;False&#xFF0C;&#x786E;&#x5B9A;&#x63D2;&#x4EF6;&#x662F;&#x5426;&#x5177;&#x6709;&#x670D;&#x52A1;&#x5668;&#x63A5;&#x53E3;</td>
+</tr>
+<tr>
+<td style="text-align:left">hasProcessingProvider</td>
+<td style="text-align:center">&#x5426;</td>
+<td style="text-align:left">&#x5E03;&#x5C14;&#x503C;&#xFF0C;True&#x6216;False&#xFF0C;&#x786E;&#x5B9A;&#x63D2;&#x4EF6;&#x662F;&#x5426;&#x63D0;&#x4F9B;&#x5904;&#x7406;&#x7B97;&#x6CD5;</td>
+</tr>
 </tbody>
 </table>
 <p>&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x63D2;&#x4EF6;&#x653E;&#x5728;<strong>&#x63D2;&#x4EF6;&#x83DC;&#x5355;</strong>&#x4E2D;&#xFF08;&#x6211;&#x4EEC;&#x5C06;&#x5728;&#x4E0B;&#x4E00;&#x8282;&#x4E2D;&#x770B;&#x5230;&#x5982;&#x4F55;&#x4E3A;&#x63D2;&#x4EF6;&#x6DFB;&#x52A0;&#x83DC;&#x5355;&#x9879;&#xFF09;&#xFF0C;&#x4F46;&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x5B83;&#x4EEC;&#x653E;&#x5165;<strong>Raster</strong>&#xFF0C;<strong>Vector</strong>&#xFF0C; <strong>Database</strong>&#x548C;<strong>Web</strong>&#x83DC;&#x5355;&#x4E2D;&#x3002;</p>
@@ -1338,6 +1401,10 @@ deprecated=False
 
 ; &#x5982;&#x679C;&#x4E3A;&#x7A7A;&#xFF0C;&#x5B83;&#x5C06;&#x81EA;&#x52A8;&#x8BBE;&#x7F6E;&#x4E3A;&#x4E3B;&#x8981;&#x7248;&#x672C;+.99
 qgisMaximumVersion=3.99
+
+; &#x4ECE; QGIS 3.8&#x5F00;&#x59CB;&#xFF0C;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x4EE5;&#x9017;&#x53F7;&#x5206;&#x9694;&#x7684;&#x8981;&#x5B89;&#x88C5;&#xFF08;&#x6216;&#x66F4;&#x65B0;&#xFF09;&#x7684;&#x63D2;&#x4EF6;&#x5217;&#x8868;
+; &#x4E0B;&#x9762;&#x793A;&#x4F8B;&#x5B89;&#x88C5;&#x6216;&#x66F4;&#x65B0;&#x7248;&#x672C;1.12&#x7684;&#x201C;MyOtherPlugin&#x201D;&#x548C;&#x4EFB;&#x4F55;&#x7248;&#x672C;&#x7684;&#x201C;YetAnotherPlugin&#x201D;
+plugin_dependencies=MyOtherPlugin==1.12,YetAnotherPlugin
 </code></pre>
 <h4 id="initpy">__init__.py</h4>
 <p>Python&#x5305;&#x9700;&#x8981;&#x6B64;&#x6587;&#x4EF6;&#x3002;&#x6B64;&#x5916;&#xFF0C;QGIS&#x8981;&#x6C42;&#x6B64;&#x6587;&#x4EF6;&#x5305;&#x542B;&#x4E00;&#x4E2A;<code>classFactory()</code>&#x51FD;&#x6570;&#xFF0C;&#x8BE5;&#x51FD;&#x6570;&#x5728;&#x63D2;&#x4EF6;&#x88AB;&#x52A0;&#x8F7D;&#x5230;QGIS&#x65F6;&#x8C03;&#x7528;&#x3002;&#x5B83;&#x63A5;&#x6536;<a href="https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface" target="_blank"><code>QgisInterface</code></a>&#x5B9E;&#x4F8B;&#xFF0C; &#x5E76;&#x4E14;&#x5FC5;&#x987B;&#x8FD4;&#x56DE;<code>mainplugin.py</code>&#x4E2D;&#x63D2;&#x4EF6;&#x7C7B;&#x7684;&#x5BF9;&#x8C61;&#x2014;&#x2014;&#x5728;&#x6211;&#x4EEC;&#x7684;&#x4F8B;&#x5B50;&#x4E2D;&#x5B83;&#x88AB;&#x547D;&#x540D;&#x4E3A;<code>TestPlugin</code>&#xFF08;&#x89C1;&#x4E0B;&#x6587;&#xFF09;&#x3002;<code>__init__.py</code>&#x5E94;&#x8BE5;&#x662F;&#x4EC0;&#x4E48;&#x6837;&#x7684;&#xFF1A;</p>
@@ -1640,7 +1707,7 @@ node.setItemVisibilityChecked(new_state)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"15 开发Python插件","level":"1.16","depth":1,"next":{"title":"15.1 构建Python插件","level":"1.16.1","depth":2,"anchor":"#151-构建python插件","path":"gitbook/15 开发Python插件.md","ref":"gitbook/15 开发Python插件.md#151-构建python插件","articles":[]},"previous":{"title":"14.2 示例","level":"1.15.2","depth":2,"anchor":"#142-示例","path":"gitbook/14 任务 - 在后台做繁重的工作.md","ref":"gitbook/14 任务 - 在后台做繁重的工作.md#142-示例","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/15 开发Python插件.md","mtime":"2020-04-06T04:49:39.833Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-06T04:54:35.782Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"15 开发Python插件","level":"1.16","depth":1,"next":{"title":"15.1 构建Python插件","level":"1.16.1","depth":2,"anchor":"#151-构建python插件","path":"gitbook/15 开发Python插件.md","ref":"gitbook/15 开发Python插件.md#151-构建python插件","articles":[]},"previous":{"title":"14.2 示例","level":"1.15.2","depth":2,"anchor":"#142-示例","path":"gitbook/14 任务 - 在后台做繁重的工作.md","ref":"gitbook/14 任务 - 在后台做繁重的工作.md#142-示例","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/15 开发Python插件.md","mtime":"2020-07-11T07:14:44.450Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-11T07:35:57.469Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
