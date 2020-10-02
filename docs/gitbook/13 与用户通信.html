@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>2 加载项目 · PYQGIS开发者手册-中文</title>
+        <title>13 与用户通信 · PYQGIS开发者手册-中文</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,10 +89,10 @@
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="2 加载项目.html" />
+    <link rel="next" href="13 与用户通信.html" />
     
     
-    <link rel="prev" href="1 引言.html" />
+    <link rel="prev" href="12 读取和存储设置.html" />
     
 
     </head>
@@ -205,7 +205,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.3" data-path="2 加载项目.html">
+        <li class="chapter " data-level="1.3" data-path="2 加载项目.html">
             
                 <a href="2 加载项目.html">
             
@@ -837,7 +837,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14" data-path="13 与用户通信.html">
+        <li class="chapter active" data-level="1.14" data-path="13 与用户通信.html">
             
                 <a href="13 与用户通信.html">
             
@@ -1384,7 +1384,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >2 加载项目</a>
+        <a href=".." >13 与用户通信</a>
     </h1>
 </div>
 
@@ -1399,76 +1399,130 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>&#x672C;&#x8282;&#x7684;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x9700;&#x8981;&#x5BFC;&#x5165;&#x4EE5;&#x4E0B;&#x6A21;&#x5757;&#xFF1A;</p>
+                                <h1 id="13-&#x4E0E;&#x7528;&#x6237;&#x901A;&#x4FE1;">13 &#x4E0E;&#x7528;&#x6237;&#x901A;&#x4FE1;</h1>
+<p>&#x672C;&#x8282;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x9700;&#x5BFC;&#x5165;&#x4EE5;&#x4E0B;&#x6A21;&#x5757;&#xFF1A;</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> qgis.core <span class="hljs-keyword">import</span> (
-    QgsProject,
-    QgsPathResolver
+    QgsMessageLog,
+    QgsGeometry,
 )
 
 <span class="hljs-keyword">from</span> qgis.gui <span class="hljs-keyword">import</span> (
-    QgsLayerTreeMapCanvasBridge,
+    QgsMessageBar,
+)
+
+<span class="hljs-keyword">from</span> qgis.PyQt.QtWidgets <span class="hljs-keyword">import</span> (
+    QSizePolicy,
+    QPushButton,
+    QDialog,
+    QGridLayout,
+    QDialogButtonBox,
 )
 </code></pre>
-<h1 id="2-&#x52A0;&#x8F7D;&#x9879;&#x76EE;">2 &#x52A0;&#x8F7D;&#x9879;&#x76EE;</h1>
-<p>&#x6709;&#x65F6;&#x4F60;&#x9700;&#x8981;&#x4ECE;&#x63D2;&#x4EF6;&#x52A0;&#x8F7D;&#x73B0;&#x6709;&#x9879;&#x76EE;&#xFF0C;&#x6216;&#x8005;&#x5728;&#x5F00;&#x53D1;&#x72EC;&#x7ACB;&#x7684;QGIS Python&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x65F6;&#x52A0;&#x8F7D;&#xFF08;&#x8BF7;&#x53C2;&#x9605;&#xFF1A;<a href="1%20&#x5F15;&#x8A00;.html#14-python&#x5E94;&#x7528;&#x7A0B;&#x5E8F;">Python&#x5E94;&#x7528;&#x7A0B;&#x5E8F;</a>&#xFF09;&#x3002;</p>
-<p>&#x5C06;&#x9879;&#x76EE;&#x52A0;&#x8F7D;&#x5230;&#x5F53;&#x524D;QGIS&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x521B;&#x5EFA;<a href="https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject" target="_blank"><code>QgsProject</code></a>&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x3002;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x5355;&#x4F8B;&#x7C7B;&#xFF0C;&#x56E0;&#x6B64;&#x4F60;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x5176;<a href="https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.instance" target="_blank"><code>instance()</code></a>&#x65B9;&#x6CD5;&#x6765;&#x6267;&#x884C;&#x6B64;&#x64CD;&#x4F5C;&#x3002;&#x4F60;&#x53EF;&#x4EE5;&#x8C03;&#x7528;<a href="https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.read" target="_blank"><code>read()</code></a>&#x65B9;&#x6CD5;&#xFF0C;&#x4F20;&#x9012;&#x52A0;&#x8F7D;&#x7684;&#x9879;&#x76EE;&#x7684;&#x8DEF;&#x5F84;&#xFF1A;</p>
-<pre><code class="lang-python"><span class="hljs-comment"># &#x5982;&#x679C;&#x4F60;&#x4E0D;&#x5728;QGIS&#x63A7;&#x5236;&#x53F0;&#x5185;&#x8FD0;&#x884C;&#xFF0C;&#x9996;&#x5148;&#x9700;&#x8981;&#x5BFC;&#x5165;qgis&#x548C;PyQt&#x7C7B;&#xFF0C;&#x5982;&#x4E0B;&#x6240;&#x793A;&#xFF1A;</span>
-<span class="hljs-keyword">from</span> qgis.core <span class="hljs-keyword">import</span> QgsProject
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x9879;&#x76EE;&#x5B9E;&#x4F8B;</span>
-project = QgsProject.instance()
-<span class="hljs-comment"># &#x6253;&#x5370;&#x5F53;&#x524D;&#x9879;&#x76EE;&#x7684;&#x6587;&#x4EF6;&#x540D;&#xFF08;&#x53EF;&#x80FD;&#x4E3A;&#x7A7A;&#xFF0C;&#x56E0;&#x4E3A;&#x6CA1;&#x6709;&#x9879;&#x76EE;&#x52A0;&#x8F7D;&#xFF09;</span>
-print(project.fileName())
-<span class="hljs-string">&apos;/home/user/projects/my_qgis_project.qgs&apos;</span>
-<span class="hljs-comment"># &#x52A0;&#x8F7D;&#x53E6;&#x4E00;&#x4E2A;&#x9879;&#x76EE;</span>
-project.read(<span class="hljs-string">&apos;/home/user/projects/my_other_qgis_project.qgs&apos;</span>)
-print(project.fileName())
-<span class="hljs-comment"># &apos;/home/user/projects/my_other_qgis_project.qgs&apos;</span>
+<p>&#x672C;&#x8282;&#x4ECB;&#x7ECD;&#x7528;&#x4E8E;&#x4E0E;&#x7528;&#x6237;&#x901A;&#x4FE1;&#x7684;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x548C;&#x5143;&#x7D20;&#xFF0C;&#x4EE5;&#x4FDD;&#x6301;&#x7528;&#x6237;&#x63A5;&#x53E3;&#x7684;&#x4E00;&#x81F4;&#x6027;&#x3002;  </p>
+<h2 id="131-&#x663E;&#x793A;&#x6D88;&#x606F;">13.1 &#x663E;&#x793A;&#x6D88;&#x606F;</h2>
+<p>&#x4ECE;&#x7528;&#x6237;&#x4F53;&#x9A8C;&#x7684;&#x89D2;&#x5EA6;&#x6765;&#x770B;&#xFF0C;&#x4F7F;&#x7528;&#x6D88;&#x606F;&#x6846;&#x53EF;&#x80FD;&#x662F;&#x4E2A;&#x574F;&#x4E3B;&#x610F;&#x3002;&#x4E3A;&#x4E86;&#x663E;&#x793A;&#x5C0F;&#x4FE1;&#x606F;&#x884C;&#x6216;&#x8B66;&#x544A;/&#x9519;&#x8BEF;&#x6D88;&#x606F;&#xFF0C;QGIS&#x6D88;&#x606F;&#x680F;&#x901A;&#x5E38;&#x662F;&#x66F4;&#x597D;&#x7684;&#x9009;&#x62E9;&#x3002;</p>
+<p>&#x4F7F;&#x7528;&#x5BF9;QGIS&#x63A5;&#x53E3;&#x5BF9;&#x8C61;&#x7684;&#x5F15;&#x7528;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x4EE3;&#x7801;&#x5728;&#x6D88;&#x606F;&#x680F;&#x4E2D;&#x663E;&#x793A;&#x6D88;&#x606F;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> qgis.core <span class="hljs-keyword">import</span> Qgis
+iface.messageBar().pushMessage(<span class="hljs-string">&quot;Error&quot;</span>, <span class="hljs-string">&quot;I&apos;m sorry Dave, I&apos;m afraid I can&apos;t do that&quot;</span>, level=Qgis.Critical)
 </code></pre>
-<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x5BF9;&#x9879;&#x76EE;&#x8FDB;&#x884C;&#x4FEE;&#x6539;&#xFF08;&#x4F8B;&#x5982;&#x6DFB;&#x52A0;&#x6216;&#x5220;&#x9664;&#x67D0;&#x4E9B;&#x56FE;&#x5C42;&#xFF09;&#x5E76;&#x4FDD;&#x5B58;&#x66F4;&#x6539;&#xFF0C;&#x8BF7;&#x8C03;&#x7528;<a href="https://qgis.org/pyqgis/3.4/core/QgsProject.html#qgis.core.QgsProject.write" target="_blank"><code>write()</code></a>&#x65B9;&#x6CD5;&#x3002;&#x8BE5;&#x65B9;&#x6CD5;&#x8FD8;&#x652F;&#x6301;&#x5C06;&#x9879;&#x76EE;&#x4FDD;&#x5B58;&#x5230;&#x65B0;&#x7684;&#x4F4D;&#x7F6E;&#xFF1A;</p>
-<pre><code class="lang-python"><span class="hljs-comment"># &#x5C06;&#x9879;&#x76EE;&#x4FDD;&#x5B58;&#x5230;&#x540C;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;</span>
-project.write()
-<span class="hljs-comment"># ...&#x6216;&#x65B0;&#x6587;&#x4EF6;</span>
-project.write(<span class="hljs-string">&apos;/home/user/projects/my_new_qgis_project.qgs&apos;</span>)
+<p><a href="assets/errorbar.png" data-lightbox="4f03a3d0-fb2a-4b10-8211-784c7b97752b" data-title="errorbar.png"><img src="assets/errorbar.png" alt="errorbar.png"></a></p>
+<p>&#x200B;                                                                                        QGIS&#x6D88;&#x606F;&#x680F;</p>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x6301;&#x7EED;&#x65F6;&#x95F4;&#xFF0C;&#x4EE5;&#x5728;&#x6709;&#x9650;&#x65F6;&#x95F4;&#x5185;&#x663E;&#x793A;&#x5B83;</p>
+<pre><code class="lang-python">iface.messageBar().pushMessage(<span class="hljs-string">&quot;Ooops&quot;</span>, <span class="hljs-string">&quot;The plugin is not working as it should&quot;</span>, level=Qgis.Critical, duration=<span class="hljs-number">3</span>)
 </code></pre>
-<p><code>read()</code>&#x548C;<code>write()</code>&#x51FD;&#x6570;&#x90FD;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5E03;&#x5C14;&#x503C;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5B83;&#x6765;&#x68C0;&#x67E5;&#x64CD;&#x4F5C;&#x662F;&#x5426;&#x6210;&#x529F;&#x3002;</p>
-<hr>
-<p><strong>&#x5C0F;&#x8D34;&#x58EB;&#xFF1A;</strong> &#x5982;&#x679C;&#x4F60;&#x6B63;&#x5728;&#x7F16;&#x5199;QGIS&#x72EC;&#x7ACB;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x4E3A;&#x4E86;&#x5C06;&#x52A0;&#x8F7D;&#x7684;&#x9879;&#x76EE;&#x4E0E;&#x753B;&#x5E03;&#x540C;&#x6B65;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x5B9E;&#x4F8B;&#x5316;<a href="https://qgis.org/pyqgis/3.4/gui/QgsLayerTreeMapCanvasBridge.html#qgis.gui.QgsLayerTreeMapCanvasBridge" target="_blank"><code>QgsLayerTreeMapCanvasBridge</code></a>&#xFF0C;&#x5982;&#x4E0B;&#x4F8B;&#x6240;&#x793A;&#xFF1A;</p>
-<hr>
-<pre><code class="lang-python">bridge = QgsLayerTreeMapCanvasBridge(QgsProject.instance().layerTreeRoot(), canvas)
-<span class="hljs-comment"># &#x73B0;&#x5728;&#x4F60;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x52A0;&#x8F7D;&#x9879;&#x76EE;&#xFF0C;&#x5E76;&#x5728;&#x753B;&#x5E03;&#x4E0A;&#x770B;&#x5230;&#x5B83;</span>
-project.read(<span class="hljs-string">&apos;/home/user/projects/my_other_qgis_project.qgs&apos;</span>)
-</code></pre>
-<h2 id="21-&#x89E3;&#x51B3;&#x9519;&#x8BEF;&#x8DEF;&#x5F84;">2.1 &#x89E3;&#x51B3;&#x9519;&#x8BEF;&#x8DEF;&#x5F84;</h2>
-<p>&#x5728;&#x9879;&#x76EE;&#x4E2D;&#x52A0;&#x8F7D;&#x7684;&#x56FE;&#x5C42;&#x53EF;&#x80FD;&#x88AB;&#x79FB;&#x52A8;&#x5230;&#x53E6;&#x4E00;&#x4E2A;&#x4F4D;&#x7F6E;&#x3002;&#x5F53;&#x9879;&#x76EE;&#x518D;&#x6B21;&#x52A0;&#x8F7D;&#x65F6;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x56FE;&#x5C42;&#x8DEF;&#x5F84;&#x90FD;&#x88AB;&#x7834;&#x574F;&#x3002;</p>
-<p><code>QgsPathResolver</code>&#x7C7B;&#x7684;<code>setPathPreprocessor()</code>&#x5141;&#x8BB8;&#x8BBE;&#x7F6E;&#x4E00;&#x4E2A;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x8DEF;&#x5F84;&#x9884;&#x5904;&#x7406;&#x51FD;&#x6570;&#xFF0C;&#x5B83;&#x5141;&#x8BB8;&#x5728;&#x5C06;&#x8DEF;&#x5F84;&#x548C;&#x6570;&#x636E;&#x6E90;&#x89E3;&#x6790;&#x4E3A;&#x6587;&#x4EF6;&#x5F15;&#x7528;&#x6216;&#x56FE;&#x5C42;&#x6E90;&#x4E4B;&#x524D;&#x5BF9;&#x5B83;&#x4EEC;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
-<p>&#x8BE5;&#x5904;&#x7406;&#x51FD;&#x6570;&#x5FC5;&#x987B;&#x63A5;&#x53D7;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x53C2;&#x6570;&#xFF08;&#x4EE3;&#x8868;&#x539F;&#x59CB;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#x6216;&#x6570;&#x636E;&#x6E90;&#xFF09;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;&#x8BE5;&#x8DEF;&#x5F84;&#x7684;&#x5904;&#x7406;&#x7248;&#x672C;&#x3002;</p>
-<p>&#x8DEF;&#x5F84;&#x9884;&#x5904;&#x7406;&#x5668;&#x51FD;&#x6570;&#x5728;&#x4EFB;&#x4F55;&#x9519;&#x8BEF;&#x56FE;&#x5C42;&#x5904;&#x7406;&#x7A0B;&#x5E8F;&#x4E4B;&#x524D;&#x88AB;&#x8C03;&#x7528;&#x3002;</p>
-<p>&#x4E00;&#x4E9B;&#x5E94;&#x7528;&#x6848;&#x4F8B;&#xFF1A;</p>
+<p><a href="assets/errorbar-timed.png" data-lightbox="b535f937-90ee-429c-b171-7e0cfcc4eb10" data-title="errorbar-timed.png"><img src="assets/errorbar-timed.png" alt="errorbar-timed.png"></a></p>
+<p>&#x200B;                                                                                &#x5E26;&#x5B9A;&#x65F6;&#x5668;&#x7684;QGIS&#x6D88;&#x606F;&#x680F;</p>
+<p>&#x4E0A;&#x9762;&#x7684;&#x793A;&#x4F8B;&#x663E;&#x793A;&#x4E86;&#x9519;&#x8BEF;&#x680F;&#xFF0C;&#x4F46;<code>level</code>&#x53C2;&#x6570;&#x53EF;&#x7528;&#x4E8E;&#x4F7F;&#x7528;<a href="https://qgis.org/pyqgis/3.4/core/Qgis.html#qgis.core.Qgis.MessageLevel" target="_blank"><code>Qgis.MessageLevel</code></a>&#x679A;&#x4E3E;&#x521B;&#x5EFA;&#x8B66;&#x544A;&#x6D88;&#x606F;&#x6216;&#x6B63;&#x5E38;&#x6D88;&#x606F; &#x3002;&#x4F60;&#x6700;&#x591A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;4&#x4E2A;&#x4E0D;&#x540C;&#x7EA7;&#x522B;&#xFF1A;</p>
 <ol>
-<li><p>&#x66FF;&#x6362;&#x8FC7;&#x65F6;&#x7684;&#x8DEF;&#x5F84;&#xFF1A;</p>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_processor</span><span class="hljs-params">(path)</span>:</span>
-    <span class="hljs-keyword">return</span> path.replace(<span class="hljs-string">&apos;c:/Users/ClintBarton/Documents/Projects&apos;</span>, <span class="hljs-string">&apos;x:/Projects/&apos;</span>)
-
-QgsPathResolver.setPathPreprocessor(my_processor)
-</code></pre>
-</li>
-<li><p>&#x7528;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x6570;&#x636E;&#x5E93;&#x4E3B;&#x673A;&#x5730;&#x5740;&#x6765;&#x66FF;&#x6362;&#xFF1A;</p>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_processor</span><span class="hljs-params">(path)</span>:</span>
-    <span class="hljs-keyword">return</span> path.replace(<span class="hljs-string">&apos;host=10.1.1.115&apos;</span>, <span class="hljs-string">&apos;host=10.1.1.116&apos;</span>)
-
-QgsPathResolver.setPathPreprocessor(my_processor)
-</code></pre>
-</li>
-<li><p>&#x66FF;&#x6362;&#x65B0;&#x7684;&#x6570;&#x636E;&#x5E93;&#x8BC1;&#x4E66;&#xFF1A;</p>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">my_processor</span><span class="hljs-params">(path)</span>:</span>
-    path= path.replace(<span class="hljs-string">&quot;user=&apos;gis_team&apos;&quot;</span>, <span class="hljs-string">&quot;user=&apos;team_awesome&apos;&quot;</span>)
-    path = path.replace(<span class="hljs-string">&quot;password=&apos;cats&apos;&quot;</span>, <span class="hljs-string">&quot;password=&apos;g7as!m*&apos;&quot;</span>)
-    <span class="hljs-keyword">return</span> path
-
-QgsPathResolver.setPathPreprocessor(my_processor)
-</code></pre>
-</li>
+<li>Info</li>
+<li>Warning</li>
+<li>Critical</li>
+<li>Success</li>
 </ol>
+<p><a href="assets/infobar.png" data-lightbox="78e4c8d2-e71b-4a2c-864b-d33d622d3c5d" data-title="infobar.png"><img src="assets/infobar.png" alt="infobar.png"></a></p>
+<p>&#x200B;                                                                                        QGIS&#x6D88;&#x606F;&#x680F;&#xFF08;info&#xFF09;</p>
+<p>&#x7A97;&#x53E3;&#x63A7;&#x4EF6;&#x53EF;&#x4EE5;&#x6DFB;&#x52A0;&#x5230;&#x6D88;&#x606F;&#x680F;&#x4E2D;&#xFF0C;&#x4F8B;&#x5982;&#x7528;&#x4E8E;&#x663E;&#x793A;&#x66F4;&#x591A;&#x4FE1;&#x606F;&#x7684;&#x6309;&#x94AE;</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">showError</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">pass</span>
+
+widget = iface.messageBar().createMessage(<span class="hljs-string">&quot;Missing Layers&quot;</span>, <span class="hljs-string">&quot;Show Me&quot;</span>)
+button = QPushButton(widget)
+button.setText(<span class="hljs-string">&quot;Show Me&quot;</span>)
+button.pressed.connect(showError)
+widget.layout().addWidget(button)
+iface.messageBar().pushWidget(widget, Qgis.Warning)
+</code></pre>
+<p><a href="assets/bar-button.png" data-lightbox="a6868d38-12fe-489b-ae15-765ce88b51c8" data-title="bar-button.png"><img src="assets/bar-button.png" alt="bar-button.png"></a></p>
+<p>&#x200B;                                                                                &#x5E26;&#x6709;&#x6309;&#x94AE;&#x7684;QGIS&#x6D88;&#x606F;&#x680F;</p>
+<p>&#x4F60;&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x5BF9;&#x8BDD;&#x6846;&#x4E2D;&#x4F7F;&#x7528;&#x6D88;&#x606F;&#x680F;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x4E0D;&#x5FC5;&#x663E;&#x793A;&#x6D88;&#x606F;&#x6846;&#xFF0C;&#x6216;&#x8005;&#x5728;&#x4E3B;QGIS&#x7A97;&#x53E3;&#x4E2D;&#x663E;&#x793A;&#x6D88;&#x606F;&#x65F6;&#x6CA1;&#x6709;&#x610F;&#x4E49;</p>
+<pre><code class="lang-python"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyDialog</span><span class="hljs-params">(QDialog)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self)</span>:</span>
+        QDialog.__init__(self)
+        self.bar = QgsMessageBar()
+        self.bar.setSizePolicy( QSizePolicy.Minimum, QSizePolicy.Fixed )
+        self.setLayout(QGridLayout())
+        self.layout().setContentsMargins(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+        self.buttonbox = QDialogButtonBox(QDialogButtonBox.Ok)
+        self.buttonbox.accepted.connect(self.run)
+        self.layout().addWidget(self.buttonbox, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>)
+        self.layout().addWidget(self.bar, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">1</span>)
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">run</span><span class="hljs-params">(self)</span>:</span>
+        self.bar.pushMessage(<span class="hljs-string">&quot;Hello&quot;</span>, <span class="hljs-string">&quot;World&quot;</span>, level=Qgis.Info)
+
+myDlg = MyDialog()
+myDlg.show()
+</code></pre>
+<p><a href="assets/dialog-with-bar.png" data-lightbox="b7dc7d3b-8453-40b8-902c-cb16daba0996" data-title="dialog-with-bar.png"><img src="assets/dialog-with-bar.png" alt="dialog-with-bar.png"></a></p>
+<p>&#x200B;                                                                        &#x81EA;&#x5B9A;&#x4E49;&#x5BF9;&#x8BDD;&#x6846;&#x4E2D;&#x7684;QGIS&#x6D88;&#x606F;&#x680F;</p>
+<h2 id="132-&#x663E;&#x793A;&#x8FDB;&#x5EA6;">13.2 &#x663E;&#x793A;&#x8FDB;&#x5EA6;</h2>
+<p>&#x8FDB;&#x5EA6;&#x6761;&#x4E5F;&#x53EF;&#x4EE5;&#x653E;&#x5728;QGIS&#x6D88;&#x606F;&#x680F;&#x4E2D;&#xFF0C;&#x56E0;&#x4E3A;&#x6B63;&#x5982;&#x6211;&#x4EEC;&#x6240;&#x89C1;&#xFF0C;&#x5B83;&#x63A5;&#x53D7;&#x63A7;&#x4EF6;&#x3002;&#x4EE5;&#x4E0B;&#x662F;&#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x63A7;&#x5236;&#x53F0;&#x4E2D;&#x5C1D;&#x8BD5;&#x7684;&#x793A;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> time
+<span class="hljs-keyword">from</span> qgis.PyQt.QtWidgets <span class="hljs-keyword">import</span> QProgressBar
+<span class="hljs-keyword">from</span> qgis.PyQt.QtCore <span class="hljs-keyword">import</span> *
+progressMessageBar = iface.messageBar().createMessage(<span class="hljs-string">&quot;Doing something boring...&quot;</span>)
+progress = QProgressBar()
+progress.setMaximum(<span class="hljs-number">10</span>)
+progress.setAlignment(Qt.AlignLeft|Qt.AlignVCenter)
+progressMessageBar.layout().addWidget(progress)
+iface.messageBar().pushWidget(progressMessageBar, Qgis.Info)
+
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(<span class="hljs-number">10</span>):
+    time.sleep(<span class="hljs-number">1</span>)
+    progress.setValue(i + <span class="hljs-number">1</span>)
+
+iface.messageBar().clearWidgets()
+</code></pre>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5185;&#x7F6E;&#x72B6;&#x6001;&#x680F;&#x62A5;&#x544A;&#x8FDB;&#x5EA6;&#xFF0C;&#x5982;&#x4E0B;&#x4E00;&#x4E2A;&#x793A;&#x4F8B;&#x6240;&#x793A;&#xFF1A;</p>
+<pre><code class="lang-python">vlayer = QgsProject.instance().mapLayersByName(<span class="hljs-string">&quot;countries&quot;</span>)[<span class="hljs-number">0</span>]
+
+count = vlayer.featureCount()
+features = vlayer.getFeatures()
+
+<span class="hljs-keyword">for</span> i, feature <span class="hljs-keyword">in</span> enumerate(features):
+    <span class="hljs-comment"># &#x505A;&#x4E00;&#x4E9B;&#x8017;&#x65F6;&#x4EFB;&#x52A1;</span>
+    print(<span class="hljs-string">&apos;&apos;</span>) <span class="hljs-comment"># &#x7ED9;&#x4E88;&#x8DB3;&#x591F;&#x7684;&#x65F6;&#x95F4;&#x6765;&#x5C55;&#x793A;&#x8FDB;&#x5EA6;</span>
+
+    percent = i / float(count) * <span class="hljs-number">100</span>
+
+    iface.statusBarIface().showMessage(<span class="hljs-string">&quot;Processed {} %&quot;</span>.format(int(percent)))
+
+iface.statusBarIface().clearMessage()
+</code></pre>
+<h2 id="133-&#x65E5;&#x5FD7;">13.3 &#x65E5;&#x5FD7;</h2>
+<p>&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;QGIS&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;&#x7CFB;&#x7EDF;&#x8BB0;&#x5F55;&#x4FDD;&#x5B58;&#x6709;&#x5173;&#x4EE3;&#x7801;&#x6267;&#x884C;&#x7684;&#x6240;&#x6709;&#x4FE1;&#x606F;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-comment"># &#x4F60;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4F20;&#x9012;&apos;tag&apos;&#x548C;&apos;level&apos;&#x53C2;&#x6570;</span>
+QgsMessageLog.logMessage(<span class="hljs-string">&quot;Your plugin code has been executed correctly&quot;</span>, <span class="hljs-string">&apos;MyPlugin&apos;</span>, level=Qgis.Info)
+QgsMessageLog.logMessage(<span class="hljs-string">&quot;Your plugin code might have some problems&quot;</span>, level=Qgis.Warning)
+QgsMessageLog.logMessage(<span class="hljs-string">&quot;Your plugin code has crashed!&quot;</span>, level=Qgis.Critical)
+</code></pre>
+<hr>
+<p><strong>&#x8B66;&#x544A;&#xFF1A;</strong> <strong>Python&#x8BED;&#x53E5;<code>print</code>&#x5728;&#x4EFB;&#x4F55;&#x591A;&#x7EBF;&#x7A0B;&#x7684;&#x4EE3;&#x7801;&#x4E2D;&#x4F7F;&#x7528;&#x662F;&#x4E0D;&#x5B89;&#x5168;&#x7684;</strong>&#x3002;&#x8FD9;&#x5305;&#x62EC;<strong>&#x8868;&#x8FBE;&#x5F0F;&#x51FD;&#x6570;</strong>&#xFF0C;<strong>&#x6E32;&#x67D3;&#x5668;</strong>&#xFF0C; <strong>&#x7B26;&#x53F7;&#x5C42;</strong>&#x548C;<strong>&#x5904;&#x7406;&#x7B97;&#x6CD5;</strong>&#xFF08;&#x4EE5;&#x53CA;&#x5176;&#x4ED6;&#xFF09;&#x3002;&#x5728;&#x8FD9;&#x4E9B;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x4F60;&#x5E94;&#x8BE5;&#x59CB;&#x7EC8;&#x4F7F;&#x7528;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7C7B;&#xFF08;<a href="https://qgis.org/pyqgis/3.4/core/QgsLogger.html#qgis.core.QgsLogger" target="_blank"><code>QgsLogger</code></a> &#x6216;<a href="https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog" target="_blank"><code>QgsMessageLog</code></a>&#xFF09;&#x3002;</p>
+<p><strong>&#x5C0F;&#x8D34;&#x58EB;&#xFF1A;</strong> &#x4F60;&#x53EF;&#x4EE5;&#x5728;&#x201C; <a href="https://docs.qgis.org/3.4/en/docs/user_manual/introduction/general_tools.html#log-message-panel" target="_blank">&#x65E5;&#x5FD7;&#x6D88;&#x606F;&#x201D;&#x9762;&#x677F;&#x4E2D;</a>&#x770B;&#x5230;<a href="https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog" target="_blank"><code>QgsMessageLog</code></a> &#x7684;&#x8F93;&#x51FA;</p>
+<ul>
+<li><a href="https://qgis.org/pyqgis/3.4/core/QgsLogger.html#qgis.core.QgsLogger" target="_blank"><code>QgsLogger</code></a> &#x7528;&#x4E8E;&#x8C03;&#x8BD5;/&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x7684;&#x6D88;&#x606F;&#xFF08;&#x6BD4;&#x5982;&#xFF0C;&#x4F60;&#x6000;&#x7591;&#x5B83;&#x4EEC;&#x662F;&#x7531;&#x67D0;&#x4E9B;&#x5F02;&#x5E38;&#x4EE3;&#x7801;&#x89E6;&#x53D1;&#x7684;&#xFF09;</li>
+<li><a href="https://qgis.org/pyqgis/3.4/core/QgsMessageLog.html#qgis.core.QgsMessageLog" target="_blank"><code>QgsMessageLog</code></a> &#x7528;&#x4E8E;&#x8C03;&#x67E5;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x6D88;&#x606F;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x5E2E;&#x52A9;&#x7CFB;&#x7EDF;&#x7BA1;&#x7406;&#x5458;&#x4FEE;&#x590D;&#x914D;&#x7F6E;&#xFF09;</li>
+</ul>
+<hr>
 
                                 
                                 </section>
@@ -1496,12 +1550,12 @@ QgsPathResolver.setPathPreprocessor(my_processor)
 
             
                 
-                <a href="1 引言.html#14-python应用程序" class="navigation navigation-prev " aria-label="Previous page: 1.4 Python应用程序">
+                <a href="12 读取和存储设置.html" class="navigation navigation-prev " aria-label="Previous page: 12 读取和存储设置">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="2 加载项目.html#21-解决错误路径" class="navigation navigation-next " aria-label="Next page: 2.1 解决错误路径">
+                <a href="13 与用户通信.html#131-显示消息" class="navigation navigation-next " aria-label="Next page: 13.1 显示消息">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1512,7 +1566,7 @@ QgsPathResolver.setPathPreprocessor(my_processor)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2 加载项目","level":"1.3","depth":1,"next":{"title":"2.1 解决错误路径","level":"1.3.1","depth":2,"anchor":"#21-解决错误路径","path":"gitbook/2 加载项目.md","ref":"gitbook/2 加载项目.md#21-解决错误路径","articles":[]},"previous":{"title":"1.4 Python应用程序","level":"1.2.4","depth":2,"anchor":"#14-python应用程序","path":"gitbook/1 引言.md","ref":"gitbook/1 引言.md#14-python应用程序","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/2 加载项目.md","mtime":"2020-10-02T08:17:20.750Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-02T08:55:11.564Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"13 与用户通信","level":"1.14","depth":1,"next":{"title":"13.1 显示消息","level":"1.14.1","depth":2,"anchor":"#131-显示消息","path":"gitbook/13 与用户通信.md","ref":"gitbook/13 与用户通信.md#131-显示消息","articles":[]},"previous":{"title":"12 读取和存储设置","level":"1.13","depth":1,"path":"gitbook/12 读取和存储设置.md","ref":"gitbook/12 读取和存储设置.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/13 与用户通信.md","mtime":"2020-10-02T07:04:55.003Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-02T08:55:11.564Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
