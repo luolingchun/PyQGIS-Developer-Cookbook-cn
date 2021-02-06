@@ -1426,6 +1426,12 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="4-&#x8BBF;&#x95EE;&#x56FE;&#x5C42;&#x76EE;&#x5F55;&#x6811;">4 &#x8BBF;&#x95EE;&#x56FE;&#x5C42;&#x76EE;&#x5F55;&#x6811;</h1>
+<p>&#x6B64;&#x9875;&#x9762;&#x4E0A;&#x7684;&#x4EE3;&#x7801;&#x7247;&#x6BB5;&#x9700;&#x8981;&#x5BFC;&#x5165;&#x4EE5;&#x4E0B;&#x6A21;&#x5757;&#xFF1A;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> qgis.core <span class="hljs-keyword">import</span> (
+    QgsProject,
+    QgsVectorLayer,
+)
+</code></pre>
 <h2 id="41-qgsproject&#x7C7B;">4.1 QgsProject&#x7C7B;</h2>
 <p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject" target="_blank">QgsProject</a>&#x68C0;&#x7D22;&#x6709;&#x5173;&#x76EE;&#x5F55;&#x548C;&#x6240;&#x6709;&#x5DF2;&#x52A0;&#x8F7D;&#x56FE;&#x5C42;&#x7684;&#x4FE1;&#x606F;&#x3002;</p>
 <p>&#x5FC5;&#x987B;&#x521B;&#x5EFA;<a href="https://qgis.org/pyqgis/master/core/QgsProject.html#qgis.core.QgsProject" target="_blank">QgsProject</a>&#x7684;&#x5B9E;&#x4F8B;<code>instance</code>&#xFF0C;&#x5E76;&#x4F7F;&#x7528;&#x5176;&#x65B9;&#x6CD5;&#x6765;&#x83B7;&#x53D6;&#x5DF2;&#x52A0;&#x8F7D;&#x7684;&#x56FE;&#x5C42;&#x3002;</p>
@@ -1435,7 +1441,7 @@ print(layers)
 
 <span class="hljs-comment"># {&apos;countries_89ae1b0f_f41b_4f42_bca4_caf55ddbe4b6&apos;: &lt;QgsMapLayer: &apos;countries&apos; (ogr)&gt;}</span>
 </code></pre>
-<p>&#x5B57;&#x5178;&#x7684;<code>key</code>&#x662F;&#x56FE;&#x5C42;&#x7684;&#x552F;&#x4E00;id&#xFF0C;&#x800C;<code>value</code>&#x662F;&#x56FE;&#x5C42;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
+<p>&#x5B57;&#x5178;&#x7684;<code>keys</code>&#x662F;&#x56FE;&#x5C42;&#x7684;&#x552F;&#x4E00;id&#xFF0C;&#x800C;<code>values</code>&#x662F;&#x56FE;&#x5C42;&#x7684;&#x5BF9;&#x8C61;&#x3002;</p>
 <p>&#x73B0;&#x5728;&#x5F88;&#x5BB9;&#x6613;&#x83B7;&#x5F97;&#x6709;&#x5173;&#x56FE;&#x5C42;&#x7684;&#x4EFB;&#x4F55;&#x5176;&#x4ED6;&#x4FE1;&#x606F;&#xFF1A;</p>
 <pre><code class="lang-python"><span class="hljs-comment"># &#x4F7F;&#x7528;&#x5217;&#x8868;&#x8868;&#x8FBE;&#x5F0F;&#x83B7;&#x5F97;&#x56FE;&#x5C42;&#x540D;&#x79F0;</span>
 l = [layer.name() <span class="hljs-keyword">for</span> layer <span class="hljs-keyword">in</span> QgsProject.instance().mapLayers().values()]
@@ -1452,7 +1458,7 @@ print(layers_list)
 <pre><code class="lang-python">country_layer = QgsProject.instance().mapLayersByName(<span class="hljs-string">&quot;countries&quot;</span>)[<span class="hljs-number">0</span>]
 </code></pre>
 <hr>
-<p><strong>&#x5C0F;&#x8D34;&#x58EB;&#xFF1A;</strong>&#x4F7F;&#x7528;&#x7D22;&#x5F15;<code>[0]</code>&#x83B7;&#x5F97;&#x7B2C;&#x4E00;&#x4E2A;&#x56FE;&#x5C42;&#x3002;</p>
+<p><strong>&#x5C0F;&#x8D34;&#x58EB;&#xFF1A;</strong>&#x8FD4;&#x56DE;&#x5177;&#x6709;&#x6240;&#x6709;&#x5339;&#x914D;&#x56FE;&#x5C42;&#x7684;&#x5217;&#x8868;&#xFF0C;&#x56E0;&#x6B64;&#x6211;&#x4EEC;&#x4F7F;&#x7528;[0]&#x8FDB;&#x884C;&#x7D22;&#x5F15;&#x4EE5;&#x83B7;&#x5F97;&#x5177;&#x6709;&#x8BE5;&#x540D;&#x79F0;&#x7684;&#x7B2C;&#x4E00;&#x4E2A;&#x56FE;&#x5C42;&#x3002;</p>
 <hr>
 <h2 id="42-qgslayertreegroup&#x7C7B;">4.2 QgsLayerTreeGroup&#x7C7B;</h2>
 <p>&#x56FE;&#x5C42;&#x6811;&#x662F;&#x7531;&#x8282;&#x70B9;&#x6784;&#x5EFA;&#x7684;&#x7ECF;&#x5178;&#x6811;&#x7ED3;&#x6784;&#x3002;&#x5F53;&#x524D;&#x6709;&#x4E24;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x8282;&#x70B9;&#xFF1A;&#x56FE;&#x5C42;&#x7EC4;&#x8282;&#x70B9;&#xFF08;<a href="https://qgis.org/pyqgis/master/core/QgsLayerTreeGroup.html#qgis.core.QgsLayerTreeGroup" target="_blank">QgsLayerTreeGroup</a>&#xFF09;&#x548C;&#x56FE;&#x5C42;&#x8282;&#x70B9;&#xFF08;<a href="https://qgis.org/pyqgis/master/core/QgsLayerTreeLayer.html#qgis.core.QgsLayerTreeLayer" target="_blank">QgsLayerTreeLayer</a>&#xFF09;&#x3002;</p>
@@ -1465,7 +1471,7 @@ print(layers_list)
 <p><code>root</code>&#x662F;&#x4E00;&#x4E2A;&#x56FE;&#x5C42;&#x7EC4;&#x8282;&#x70B9;&#xFF0C;&#x5177;&#x6709;&#x5B50;&#x8282;&#x70B9;&#xFF1A;</p>
 <pre><code class="lang-python">root.children()
 </code></pre>
-<p>&#x8FD4;&#x56DE;&#x76F4;&#x63A5;&#x5B50;&#x8282;&#x70B9;&#x5217;&#x8868;&#x3002;&#x5B50;&#x7EC4;&#x8282;&#x70B9;&#x5E94;&#x8BE5;&#x4ECE;&#x4ED6;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x76F4;&#x63A5;&#x7236;&#x7EA7;&#x8BBF;&#x95EE;&#x3002;</p>
+<p>&#x8FD4;&#x56DE;&#x76F4;&#x63A5;&#x5B50;&#x8282;&#x70B9;&#x5217;&#x8868;&#x3002;&#x5B50;&#x7EC4;&#x8282;&#x70B9;&#x53EF;&#x4EE5;&#x4ECE;&#x4ED6;&#x4EEC;&#x81EA;&#x5DF1;&#x7684;&#x76F4;&#x63A5;&#x7236;&#x7EA7;&#x8BBF;&#x95EE;&#x3002;</p>
 <p>&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x68C0;&#x7D22;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;&#x5B50;&#x8282;&#x70B9;&#xFF1A;</p>
 <pre><code class="lang-python">child0 = root.children()[<span class="hljs-number">0</span>]
 print(child0)
@@ -1537,7 +1543,7 @@ vl = QgsProject.instance().mapLayersByName(<span class="hljs-string">&quot;count
 myvl = root.findLayer(vl.id())
 <span class="hljs-comment"># &#x514B;&#x9686;</span>
 myvlclone = myvl.clone()
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x7236;&#x7EA7;. If None (layer is not in group) returns &apos;&apos;</span>
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x7236;&#x7EA7;&#xFF0C;&#x5982;&#x679C;&#x56FE;&#x5C42;&#x4E0D;&#x5728;&#x56FE;&#x5C42;&#x4E2D;&#x8FD4;&#x56DE;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;</span>
 parent = myvl.parent()
 <span class="hljs-comment"># &#x79FB;&#x52A8;&#x56FE;&#x5C42;&#x8282;&#x70B9;&#x5230;&#x9876;&#x5C42;</span>
 parent.insertChildNode(<span class="hljs-number">0</span>, myvlclone)
@@ -1553,7 +1559,7 @@ myvl = root.findLayer(vl.id())
 myvlclone = myvl.clone()
 <span class="hljs-comment"># &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7EC4;</span>
 group1 = root.addGroup(<span class="hljs-string">&quot;Group1&quot;</span>)
-<span class="hljs-comment"># &#x83B7;&#x53D6;&#x7236;&#x7EA7; If None (layer is not in group) returns &apos;&apos;</span>
+<span class="hljs-comment"># &#x83B7;&#x53D6;&#x7236;&#x7EA7;&#xFF0C;&#x5982;&#x679C;&#x56FE;&#x5C42;&#x4E0D;&#x5728;&#x56FE;&#x5C42;&#x4E2D;&#x8FD4;&#x56DE;&#x7A7A;&#x5B57;&#x7B26;&#x4E32;</span>
 parent = myvl.parent()
 <span class="hljs-comment"># &#x79FB;&#x52A8;&#x56FE;&#x5C42;&#x8282;&#x70B9;&#x5230;&#x9876;&#x5C42;</span>
 group1.insertChildNode(<span class="hljs-number">0</span>, myvlclone)
@@ -1617,7 +1623,7 @@ node_group1.setExpanded(<span class="hljs-keyword">False</span>)
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4 访问图层目录树","level":"1.5","depth":1,"next":{"title":"4.1 QgsProject类","level":"1.5.1","depth":2,"anchor":"#41-qgsproject类","path":"gitbook/4 访问图层目录树.md","ref":"gitbook/4 访问图层目录树.md#41-qgsproject类","articles":[]},"previous":{"title":"3.3 QgsProject 实例","level":"1.4.3","depth":2,"anchor":"#33-qgsproject-实例","path":"gitbook/3 加载图层.md","ref":"gitbook/3 加载图层.md#33-qgsproject-实例","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/4 访问图层目录树.md","mtime":"2020-11-14T08:52:38.519Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-31T08:27:06.133Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4 访问图层目录树","level":"1.5","depth":1,"next":{"title":"4.1 QgsProject类","level":"1.5.1","depth":2,"anchor":"#41-qgsproject类","path":"gitbook/4 访问图层目录树.md","ref":"gitbook/4 访问图层目录树.md#41-qgsproject类","articles":[]},"previous":{"title":"3.3 QgsProject 实例","level":"1.4.3","depth":2,"anchor":"#33-qgsproject-实例","path":"gitbook/3 加载图层.md","ref":"gitbook/3 加载图层.md#33-qgsproject-实例","articles":[]},"dir":"ltr"},"config":{"plugins":["-lunr","-search","search-pro","-sharing","chapter-fold","github","splitter","code","back-to-top-button","hide-element","donate","auto-scroll-table","lightbox","custom-favicon","pageview-count"],"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"chapter-fold":{},"github":{"url":"https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn"},"splitter":{},"search-pro":{},"auto-scroll-table":{},"code":{"copyButtons":true},"donate":{"alipay":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/alipay.jpg","alipayText":"支付宝打赏","button":"赏","title":"","wechat":"https://raw.githubusercontent.com/luolingchun/luolingchun.github.io/master/gitbook/images/wechat.jpg","wechatText":"微信打赏"},"hide-element":{"elements":[".gitbook-link"]},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"favicon":"./gitbook/images/favicon.ico","lightbox":{"jquery":true,"sameUuid":false},"back-to-top-button":{},"pageview-count":{},"custom-favicon":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"llc","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PYQGIS开发者手册-中文","language":"zh-hans","gitbook":"*","description":"PYQGIS开发者手册中文翻译"},"file":{"path":"gitbook/4 访问图层目录树.md","mtime":"2021-02-06T05:38:06.506Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-02-06T05:38:36.071Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
