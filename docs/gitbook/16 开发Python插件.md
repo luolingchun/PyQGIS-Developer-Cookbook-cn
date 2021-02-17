@@ -7,7 +7,7 @@ Python插件与QGIS插件管理器中的C ++插件一起列出。他们在`~/(Us
 - UNIX / Mac上： `(qgis_prefix)/share/qgis/python/plugins`
 - Windows： `(qgis_prefix)/python/plugins`
 
-有关`~`和`(UserProfile)`的定义,请查看[Core和External插件](https://docs.qgis.org/3.4/en/docs/user_manual/plugins/plugins.html#core-and-external-plugins)。
+有关`~`和`(UserProfile)`的定义,请查看[Core和External插件](https://docs.qgis.org/latest/en/docs/user_manual/plugins/plugins.html#core-and-external-plugins)。
 
 ------
 
@@ -20,14 +20,14 @@ Python插件与QGIS插件管理器中的C ++插件一起列出。他们在`~/(Us
 要创建插件，请执行以下步骤：
 
 1. *想法*：了解你想要使用新的QGIS插件做什么。你为什么要这么做？你想解决什么问题？这个问题已经有另一个插件吗？
-2. *创建文件*：要点：一个起点`__init__.py`; 填写[插件元数据](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-metadata)`metadata.txt`。然后实现自己的设计。一个主要的Python插件体，例如`mainplugin.py`。可能是Qt Designer中的一个ui文件`form.ui`，带有资源文件`resources.qrc`。
+2. *创建文件*：要点：一个起点`__init__.py`; 填写[插件元数据](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-metadata)`metadata.txt`。然后实现自己的设计。一个主要的Python插件体，例如`mainplugin.py`。可能是Qt Designer中的一个ui文件`form.ui`，带有资源文件`resources.qrc`。
 3. *编写代码*：在里面写代码`mainplugin.py`
 4. *测试*：关闭并重新打开QGIS并再次导入插件。检查一切是否正常。
 5. *发布*：在QGIS存储库中发布你的插件或将你自己的存储库作为个人“GIS武器”的“武器库”。
 
 ### 16.1.1 编写一个插件
 
-自从在QGIS中引入Python插件以来，出现了许多插件。QGIS团队维护一个[官方Python插件库](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)。你可以使用他们的源码来了解使用PyQGIS进行编程的更多信息，或者了解你是否在重复开发。
+自从在QGIS中引入Python插件以来，出现了许多插件。QGIS团队维护一个[官方Python插件库](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)。你可以使用他们的源码来了解使用PyQGIS进行编程的更多信息，或者了解你是否在重复开发。
 
 #### 16.1.1.1 插件文件
 
@@ -108,7 +108,7 @@ category=Raster
 
 ------
 
-**小贴士：** 如果qgisMaximumVersion为空，则在上传到[官方Python插件存储库](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)时，它将自动设置为主要版本加上.99（例如：3.99）。
+**小贴士：** 如果qgisMaximumVersion为空，则在上传到[官方Python插件存储库](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)时，它将自动设置为主要版本加上.99（例如：3.99）。
 
 ------
 
@@ -166,7 +166,7 @@ plugin_dependencies=MyOtherPlugin==1.12,YetAnotherPlugin
 
 #### 16.1.2.2 \_\_init\_\_.py
 
-Python包需要此文件。此外，QGIS要求此文件包含一个`classFactory()`函数，该函数在插件被加载到QGIS时调用。它接收[`QgisInterface`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface)实例， 并且必须返回`mainplugin.py`中插件类的对象——在我们的例子中它被命名为`TestPlugin`（见下文）。`__init__.py`应该是什么样的：
+Python包需要此文件。此外，QGIS要求此文件包含一个`classFactory()`函数，该函数在插件被加载到QGIS时调用。它接收[`QgisInterface`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface)实例， 并且必须返回`mainplugin.py`中插件类的对象——在我们的例子中它被命名为`TestPlugin`（见下文）。`__init__.py`应该是什么样的：
 
 ```python
 def classFactory(iface):
@@ -231,14 +231,14 @@ class TestPlugin:
 - `initGui()` - >加载插件时调用
 - `unload()` - >在卸载插件时调用
 
-在上面的例子中，[`addPluginToMenu`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)被使用。这会将相应的菜单操作添加到**Plugins** 菜单中。存在将动作（action）添加到不同菜单的方法。以下是这些方法的列表：
+在上面的例子中，[`addPluginToMenu`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)被使用。这会将相应的菜单操作添加到**Plugins** 菜单中。存在将动作（action）添加到不同菜单的方法。以下是这些方法的列表：
 
-- [`addPluginToRasterMenu()`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToRasterMenu)
-- [`addPluginToVectorMenu()`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToVectorMenu)
-- [`addPluginToDatabaseMenu()`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToDatabaseMenu)
-- [`addPluginToWebMenu()`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToWebMenu)
+- [`addPluginToRasterMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToRasterMenu)
+- [`addPluginToVectorMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToVectorMenu)
+- [`addPluginToDatabaseMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToDatabaseMenu)
+- [`addPluginToWebMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToWebMenu)
 
-它们都具有与[`addPluginToMenu`](https://qgis.org/pyqgis/3.4/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)方法相同的语法 。
+它们都具有与[`addPluginToMenu`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)方法相同的语法 。
 
 建议将插件菜单添加到其中一个预定义方法，以保持插件条目组织方式的一致性。但是，你可以将自定义菜单组直接添加到菜单栏，如下面示例所示：
 
@@ -314,7 +314,7 @@ sudo apt-get install qttools5-dev-tools
 
 首先，你应该创建一个`.pro`文件，这是一个可以由**Qt Linguist**管理的*项目*文件。
 
-在此`.pro`文件中，你必须指定要翻译的所有文件和表单。此文件用于设置本地化文件和变量。一个项目文件，匹配我们的[示例插件](https://docs.qgis.org/3.4/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-files-architecture)的结构 ：
+在此`.pro`文件中，你必须指定要翻译的所有文件和表单。此文件用于设置本地化文件和变量。一个项目文件，匹配我们的[示例插件](https://docs.qgis.org/latest/en/docs/pyqgis_developer_cookbook/plugins/plugins.html#plugin-files-architecture)的结构 ：
 
 ```ini
 FORMS = ../form.ui
@@ -411,7 +411,7 @@ my_plugin = qgis.utils.plugins['My Plugin']
 
 #### 16.1.5.3 日志消息
 
-插件在“ [日志消息”面板中](https://docs.qgis.org/3.4/en/docs/user_manual/introduction/general_tools.html#log-message-panel)有自己的选项卡。
+插件在“ [日志消息”面板中](https://docs.qgis.org/latest/en/docs/user_manual/introduction/general_tools.html#log-message-panel)有自己的选项卡。
 
 #### 16.1.5.4 分享你的插件
 
