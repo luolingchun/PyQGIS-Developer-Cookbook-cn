@@ -1,6 +1,6 @@
-# 20 PyQGIS速查表
+# 21 PyQGIS速查表
 
-## 20.1 用户接口
+## 21.1 用户接口
 
 **改变外观**
 
@@ -20,7 +20,7 @@ icon = QIcon(r"/path/to/logo/file.png")
 iface.mainWindow().setWindowIcon(icon)
 iface.mainWindow().setWindowTitle("My QGIS")
 ```
-## 20.2 设置
+## 21.2 设置
 
 **获得设置列表**
 
@@ -32,7 +32,7 @@ qs = QSettings()
 for k in sorted(qs.allKeys()):
     print (k)
 ```
-## 20.3 工具栏
+## 21.3 工具栏
 **移除工具栏**
 
 ```python
@@ -53,7 +53,7 @@ iface.attributesToolBar().clear()
 iface.attributesToolBar().addAction(actions[4])
 iface.attributesToolBar().addAction(actions[3])
 ```
-## 20.4 菜单
+## 21.4 菜单
 
 **移除菜单**
 
@@ -68,7 +68,7 @@ menubar.removeAction(menu.menuAction())
 # and add again
 menubar.addAction(menu.menuAction())
 ```
-## 20.5 画布
+## 21.5 画布
 **访问画布**
 
 ```python
@@ -91,7 +91,7 @@ from qgis.PyQt.QtCore import QSettings
 # Set milliseconds (150 milliseconds)
 QSettings().setValue("/qgis/map_update_interval", 150)
 ```
-## 20.6 图层
+## 21.6 图层
 **添加图层**
 
 ```python
@@ -292,7 +292,7 @@ QgsProject.instance().removeAllMapLayers()
 ```python
 QgsProject.instance().clear()
 ```
-## 20.7 目录
+## 21.7 目录
 **访问选中的图层**
 
 ```python
@@ -309,7 +309,7 @@ ltv.setMenuProvider(None)
 # Restore
 ltv.setMenuProvider(mp)
 ```
-## 20.8 高级目录
+## 21.8 高级目录
 **根节点**
 
 ```python
@@ -490,7 +490,7 @@ view = QgsLayerTreeView()
 view.setModel(model)
 view.show()
 ```
-## 20.9 处理算法
+## 21.9 处理算法
 **获得算法列表**
 
 ```python
@@ -543,7 +543,7 @@ from qgis.core import QgsExpression
 
 len(QgsExpression.Functions())
 ```
-## 20.10 装饰
+## 21.10 装饰
 **版权**
 
 ```python
@@ -623,7 +623,7 @@ iface.mapCanvas().renderComplete.connect(_on_render_complete)
 iface.mapCanvas().refresh()
 ```
 
-## 20.11 创作者
+## 21.11 创作者
 
 **按名称获取打印布局**
 
@@ -635,7 +635,7 @@ projectLayoutManager = project.layoutManager()
 layout = projectLayoutManager.layoutByName(composerTitle)
 ```
 
-## 20.12 来源
+## 21.12 来源
 
 - [QGIS Python (PyQGIS) API](https://qgis.org/pyqgis/master/)
 - [QGIS C++ API](https://qgis.org/api/)
