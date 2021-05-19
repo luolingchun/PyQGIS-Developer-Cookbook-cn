@@ -1,0 +1,82 @@
+site_name: PyQGIS开发者手册
+site_url: https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn
+site_description: 本项目是PyQGIS开发者手册的中文翻译。
+site_author: llc
+
+repo_url: https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn
+repo_name: 'Github'
+
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - toc:
+      permalink: true
+  - footnotes
+  - meta
+  - def_list
+  - pymdownx.arithmatex
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_png
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tasklist
+  - pymdownx.tilde
+
+extra:
+  search:
+    language: 'zh'
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-sunny 
+        name: 深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-night
+        name: 默认模式
+  language: 'zh'
+  features:
+    - navigation.tracking
+    - navigation.top
+    - navigation.expand
+
+plugins:
+    - search
+
+nav:
+  - 1-引言: 1-引言.md
+  - 2-加载项目: 2-加载项目.md
+  - 3-加载图层: 3-加载图层.md
+  - 4-访问图层目录树: 4-访问图层目录树.md
+  - 5-使用栅格图层: 5-使用栅格图层.md
+  - 6-使用矢量图层: 6-使用矢量图层.md
+  - 7-几何处理: 7-几何处理.md
+  - 8-投影支持: 8-投影支持.md
+  - 9-使用地图画布: 9-使用地图画布.md
+  - 10-地图渲染和打印: 10-地图渲染和打印.md
+  - 11-表达式，过滤和计算值: 11-表达式，过滤和计算值.md
+  - 12-读取和存储设置: 12-读取和存储设置.md
+  - 13-与用户通信: 13-与用户通信.md
+  - 14-认证基础: 14-认证基础.md
+  - 15-任务 - 在后台做繁重的工作: 15-任务——在后台做繁重的工作.md
+  - 16-开发Python插件: 16-开发Python插件.md
+  - 17-编写处理插件: 17-编写处理插件.md
+  - 18-使用插件图层: 18-使用插件图层.md
+  - 19-网络分析库: 19-网络分析库.md
+  - 20-QGIS Server Python插件: 20-QGIS-Server-Python插件.md
+  - 21-PyQGIS速查表: 21-PyQGIS速查表.md
