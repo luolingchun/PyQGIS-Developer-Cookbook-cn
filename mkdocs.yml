@@ -32,9 +32,8 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.tilde
 
-extra:
-  search:
-    language: 'zh'
+extra_javascript:
+  - js/db.js
 
 theme:
   name: material
