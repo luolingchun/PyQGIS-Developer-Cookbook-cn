@@ -31,31 +31,41 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.tasklist
   - pymdownx.tilde
+  - pymdownx.snippets
 
-extra_javascript:
-  - js/db.js
 
 theme:
   name: material
+  language: 'zh'
+  logo: images/logo.svg
+  favicon: images/logo-blue.svg
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
       toggle:
-        icon: material/weather-sunny 
-        name: 深色模式
+        icon: material/weather-sunny
+        name: 黑
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       toggle:
         icon: material/weather-night
-        name: 默认模式
-  language: 'zh'
+        name: 亮
   features:
     - navigation.tracking
     - navigation.top
     - navigation.expand
+    - search.suggest
+    - search.highlight
+    - search.share
 
 plugins:
-    - search
+  - search
+
+extra_javascript:
+  - js/db.js
+
+extra_css:
+  - css/img.css
 
 nav:
   - 1-引言: 1-引言.md
