@@ -36,6 +36,7 @@ markdown_extensions:
 
 theme:
   name: material
+  custom_dir: overrides
   language: 'zh'
   logo: images/logo.svg
   favicon: images/logo-blue.svg
@@ -63,6 +64,7 @@ plugins:
 
 extra_javascript:
   - js/db.js
+  - js/busuanzi.pure.mini.js
 
 extra_css:
   - css/img.css
