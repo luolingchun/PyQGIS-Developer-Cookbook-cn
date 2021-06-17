@@ -36,7 +36,6 @@ markdown_extensions:
 
 theme:
   name: material
-  custom_dir: overrides
   language: 'zh'
   logo: images/logo.svg
   favicon: images/logo-blue.svg
