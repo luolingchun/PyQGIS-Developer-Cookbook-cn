@@ -63,7 +63,6 @@ plugins:
 
 extra_javascript:
   - js/db.js
-  - js/busuanzi.pure.mini.js
 
 extra_css:
   - css/img.css
