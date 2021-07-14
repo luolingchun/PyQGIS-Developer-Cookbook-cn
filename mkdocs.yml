@@ -32,6 +32,8 @@ markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.tilde
   - pymdownx.snippets
+  - pymdownx.highlight:
+      linenums: true
 
 
 theme:
