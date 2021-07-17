@@ -1,0 +1,2155 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本项目是PyQGIS开发者手册的中文翻译。">
+      
+      
+      
+        <meta name="author" content="llc">
+      
+      
+        <link rel="canonical" href="https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn/16-%E5%BC%80%E5%8F%91Python%E6%8F%92%E4%BB%B6/">
+      
+      <link rel="icon" href="../images/logo-blue.svg">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>16-开发Python插件 - PyQGIS开发者手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/img.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#16-python" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyQGIS开发者手册" class="md-header__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyQGIS开发者手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              16-开发Python插件
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="黑"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="黑" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="亮"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="亮" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyQGIS开发者手册" class="md-nav__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    PyQGIS开发者手册
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-%E5%BC%95%E8%A8%80/" class="md-nav__link">
+        1-引言
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE/" class="md-nav__link">
+        2-加载项目
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E5%8A%A0%E8%BD%BD%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        3-加载图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%B1%82%E7%9B%AE%E5%BD%95%E6%A0%91/" class="md-nav__link">
+        4-访问图层目录树
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-%E4%BD%BF%E7%94%A8%E6%A0%85%E6%A0%BC%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        5-使用栅格图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-%E4%BD%BF%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        6-使用矢量图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/" class="md-nav__link">
+        7-几何处理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-%E6%8A%95%E5%BD%B1%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        8-投影支持
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9-%E4%BD%BF%E7%94%A8%E5%9C%B0%E5%9B%BE%E7%94%BB%E5%B8%83/" class="md-nav__link">
+        9-使用地图画布
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E5%9C%B0%E5%9B%BE%E6%B8%B2%E6%9F%93%E5%92%8C%E6%89%93%E5%8D%B0/" class="md-nav__link">
+        10-地图渲染和打印
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E8%BF%87%E6%BB%A4%E5%92%8C%E8%AE%A1%E7%AE%97%E5%80%BC/" class="md-nav__link">
+        11-表达式，过滤和计算值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E8%AF%BB%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BE%E7%BD%AE/" class="md-nav__link">
+        12-读取和存储设置
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E4%B8%8E%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1/" class="md-nav__link">
+        13-与用户通信
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        14-认证基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-%E4%BB%BB%E5%8A%A1%E2%80%94%E2%80%94%E5%9C%A8%E5%90%8E%E5%8F%B0%E5%81%9A%E7%B9%81%E9%87%8D%E7%9A%84%E5%B7%A5%E4%BD%9C/" class="md-nav__link">
+        15-任务 - 在后台做繁重的工作
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          16-开发Python插件
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        16-开发Python插件
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#161-python" class="md-nav__link">
+    16.1 构建Python插件
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1 构建Python插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1611" class="md-nav__link">
+    16.1.1 编写一个插件
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.1 编写一个插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16111" class="md-nav__link">
+    16.1.1.1 插件文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1612" class="md-nav__link">
+    16.1.2 插件内容
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.2 插件内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16121" class="md-nav__link">
+    16.1.2.1 插件元数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16122-__init__py" class="md-nav__link">
+    16.1.2.2 __init__.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16123-mainpluginpy" class="md-nav__link">
+    16.1.2.3 mainPlugin.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16124" class="md-nav__link">
+    16.1.2.4 资源文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1613" class="md-nav__link">
+    16.1.3 文档
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1614" class="md-nav__link">
+    16.1.4 翻译
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.4 翻译">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16141" class="md-nav__link">
+    16.1.4.1 软件要求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16142" class="md-nav__link">
+    16.1.4.2 文件和目录
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.4.2 文件和目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161421-pro" class="md-nav__link">
+    16.1.4.2.1 .pro文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#161422-ts" class="md-nav__link">
+    16.1.4.2.2 .ts文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#161423-qm" class="md-nav__link">
+    16.1.4.2.3 .qm文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16143-makefile" class="md-nav__link">
+    16.1.4.3 使用MakeFile进行翻译
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16144" class="md-nav__link">
+    16.1.4.4 加载插件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1615" class="md-nav__link">
+    16.1.5 提示和技巧
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.5 提示和技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16151" class="md-nav__link">
+    16.1.5.1 插件重载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16152" class="md-nav__link">
+    16.1.5.2 访问插件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16153" class="md-nav__link">
+    16.1.5.3 日志消息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16154" class="md-nav__link">
+    16.1.5.4 分享你的插件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#162" class="md-nav__link">
+    16.2 代码片段
+  </a>
+  
+    <nav class="md-nav" aria-label="16.2 代码片段">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1621" class="md-nav__link">
+    16.2.1 如何通过快捷键调用方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1622" class="md-nav__link">
+    16.2.2 如何切换图层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1623" class="md-nav__link">
+    16.2.3 如何访问所选要素的属性表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1624" class="md-nav__link">
+    16.2.4 选项对话框中的插件接口
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#163-ide" class="md-nav__link">
+    16.3 编写和调试插件的IDE设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#164" class="md-nav__link">
+    16.4 发布你的插件
+  </a>
+  
+    <nav class="md-nav" aria-label="16.4 发布你的插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1641" class="md-nav__link">
+    16.4.1 元数据和名称
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1642" class="md-nav__link">
+    16.4.2 代码和帮助
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1643-python" class="md-nav__link">
+    16.4.3 官方python插件仓库
+  </a>
+  
+    <nav class="md-nav" aria-label="16.4.3 官方python插件仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16431" class="md-nav__link">
+    16.4.3.1 权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16432" class="md-nav__link">
+    16.4.3.2 信任管理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16433" class="md-nav__link">
+    16.4.3.3 验证
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16434" class="md-nav__link">
+    16.4.3.4 插件结构
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-%E7%BC%96%E5%86%99%E5%A4%84%E7%90%86%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        17-编写处理插件
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        18-使用插件图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%BA%93/" class="md-nav__link">
+        19-网络分析库
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%92%8CPython/" class="md-nav__link">
+        20-QGIS服务和Python
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-PyQGIS%E9%80%9F%E6%9F%A5%E8%A1%A8/" class="md-nav__link">
+        21-PyQGIS速查表
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#161-python" class="md-nav__link">
+    16.1 构建Python插件
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1 构建Python插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1611" class="md-nav__link">
+    16.1.1 编写一个插件
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.1 编写一个插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16111" class="md-nav__link">
+    16.1.1.1 插件文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1612" class="md-nav__link">
+    16.1.2 插件内容
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.2 插件内容">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16121" class="md-nav__link">
+    16.1.2.1 插件元数据
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16122-__init__py" class="md-nav__link">
+    16.1.2.2 __init__.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16123-mainpluginpy" class="md-nav__link">
+    16.1.2.3 mainPlugin.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16124" class="md-nav__link">
+    16.1.2.4 资源文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1613" class="md-nav__link">
+    16.1.3 文档
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1614" class="md-nav__link">
+    16.1.4 翻译
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.4 翻译">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16141" class="md-nav__link">
+    16.1.4.1 软件要求
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16142" class="md-nav__link">
+    16.1.4.2 文件和目录
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.4.2 文件和目录">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#161421-pro" class="md-nav__link">
+    16.1.4.2.1 .pro文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#161422-ts" class="md-nav__link">
+    16.1.4.2.2 .ts文件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#161423-qm" class="md-nav__link">
+    16.1.4.2.3 .qm文件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16143-makefile" class="md-nav__link">
+    16.1.4.3 使用MakeFile进行翻译
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16144" class="md-nav__link">
+    16.1.4.4 加载插件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1615" class="md-nav__link">
+    16.1.5 提示和技巧
+  </a>
+  
+    <nav class="md-nav" aria-label="16.1.5 提示和技巧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16151" class="md-nav__link">
+    16.1.5.1 插件重载
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16152" class="md-nav__link">
+    16.1.5.2 访问插件
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16153" class="md-nav__link">
+    16.1.5.3 日志消息
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16154" class="md-nav__link">
+    16.1.5.4 分享你的插件
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#162" class="md-nav__link">
+    16.2 代码片段
+  </a>
+  
+    <nav class="md-nav" aria-label="16.2 代码片段">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1621" class="md-nav__link">
+    16.2.1 如何通过快捷键调用方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1622" class="md-nav__link">
+    16.2.2 如何切换图层
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1623" class="md-nav__link">
+    16.2.3 如何访问所选要素的属性表
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1624" class="md-nav__link">
+    16.2.4 选项对话框中的插件接口
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#163-ide" class="md-nav__link">
+    16.3 编写和调试插件的IDE设置
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#164" class="md-nav__link">
+    16.4 发布你的插件
+  </a>
+  
+    <nav class="md-nav" aria-label="16.4 发布你的插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1641" class="md-nav__link">
+    16.4.1 元数据和名称
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1642" class="md-nav__link">
+    16.4.2 代码和帮助
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1643-python" class="md-nav__link">
+    16.4.3 官方python插件仓库
+  </a>
+  
+    <nav class="md-nav" aria-label="16.4.3 官方python插件仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#16431" class="md-nav__link">
+    16.4.3.1 权限
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16432" class="md-nav__link">
+    16.4.3.2 信任管理
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16433" class="md-nav__link">
+    16.4.3.3 验证
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16434" class="md-nav__link">
+    16.4.3.4 插件结构
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/edit/master/docs/16-开发Python插件.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="16-python">16 开发Python插件<a class="headerlink" href="#16-python" title="Permanent link">⚓︎</a></h1>
+<p>可以用Python编程语言创建插件。与用C ++编写插件相比，由于Python语言的动态特性，这些插件应该更容易编写，理解，维护和分发。</p>
+<p>Python插件与QGIS插件管理器中的C ++插件一起列出。他们在<code>~/(UserProfile)/python/plugins</code>和以下路径中搜索：</p>
+<ul>
+<li>UNIX / Mac上： <code>(qgis_prefix)/share/qgis/python/plugins</code></li>
+<li>Windows： <code>(qgis_prefix)/python/plugins</code></li>
+</ul>
+<p>有关<code>~</code>和<code>(UserProfile)</code>的定义,请查看<a href="https://docs.qgis.org/latest/en/docs/user_manual/plugins/plugins.html#core-and-external-plugins">Core和External插件</a>。</p>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>将QGIS_PLUGINPATH设置为一个存在的目录路径，可以将此路径添加到插件的搜索路径列表中。</p>
+</div>
+<h2 id="161-python">16.1 构建Python插件<a class="headerlink" href="#161-python" title="Permanent link">⚓︎</a></h2>
+<p>创建插件，需要以下步骤：</p>
+<ol>
+<li><em>想法</em>：你想要使用新的QGIS插件做什么。你为什么要这么做？你想解决什么问题？这个问题已经有另一个插件吗？</li>
+<li><em>创建文件</em>：一些必要文件（查看<a href="#16111">插件文件</a>）</li>
+<li><em>编写代码</em>：在恰当的文件中写代码</li>
+<li><em>测试</em>：如果准备就绪，<a href="#1615">重新加载插件</a></li>
+<li><em>发布</em>：在QGIS仓库中发布你的插件或将你自己的仓库作为个人“GIS武器”的“武器库”。</li>
+</ol>
+<h3 id="1611">16.1.1 编写一个插件<a class="headerlink" href="#1611" title="Permanent link">⚓︎</a></h3>
+<p>自从在QGIS中引入Python插件以来，出现了许多插件。QGIS团队维护了一个<a href="#1643">官方Python插件库</a>。你可以使用他们的源码来了解使用PyQGIS进行编程的更多信息，或者了解你是否在重复开发。</p>
+<h4 id="16111">16.1.1.1 插件文件<a class="headerlink" href="#16111" title="Permanent link">⚓︎</a></h4>
+<p>这是我们的示例插件的目录结构</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>PYTHON_PLUGINS_PATH/
+  MyPlugin/
+    __init__.py    --&gt; *必需*
+    mainPlugin.py  --&gt; *核心代码*
+    metadata.txt   --&gt; *必需*
+    resources.qrc  --&gt; *可能需要*
+    resources.py   --&gt; *编译版本, 可能需要*
+    form.ui        --&gt; *可能需要*
+    form.py        --&gt; *编译版本, 可能需要*
+</code></pre></div>
+</td></tr></table>
+<p>这些文件的含义是什么：</p>
+<ul>
+<li><code>__init__.py</code>=插件的入口。它必须具有 <code>classFactory()</code>方法，还可以具有任何其他初始化代码。</li>
+<li><code>mainPlugin.py</code>=插件的主要工作代码。包含有关插件操作和主要代码的所有信息。</li>
+<li><code>resources.qrc</code>= Qt设计师创建的xml文档。包含表单资源的相对路径。</li>
+<li><code>resources.py</code> =将上述.qrc文件转换为Python代码。</li>
+<li><code>form.ui</code> = Qt设计师创建的GUI。</li>
+<li><code>form.py</code> =将上面描述的form.ui转换为Python代码。</li>
+<li><code>metadata.txt</code> =包含插件网站和插件基础结构使用的常规信息，版本、名称和一些其他元数据。</li>
+</ul>
+<p><a href="https://github.com/wonder-sk/qgis-minimal-plugin">这</a>是一种自动创建典型QGIS Python插件的基本文件（框架）的方式。</p>
+<p>有一个名为<a href="https://plugins.qgis.org/plugins/pluginbuilder3/">Plugin Builder 3</a>的QGIS插件 ，它为QGIS创建一个插件模板，不需要互联网连接。这是推荐的选择，因为它兼容3.x版本。</p>
+<div class="admonition warning 警告">
+<p class="admonition-title">Warning</p>
+<p>如果您打算将插件上传到<a href="#1643">Python官方插件库</a>，则必须检查插件是否遵循插件<a href="#16433">验证</a>所必需的一些附加规则</p>
+</div>
+<h3 id="1612">16.1.2 插件内容<a class="headerlink" href="#1612" title="Permanent link">⚓︎</a></h3>
+<p>在这里，你可以找到有关在上述文件结构中的每个文件需要添加内容的信息和示例。</p>
+<h4 id="16121">16.1.2.1 插件元数据<a class="headerlink" href="#16121" title="Permanent link">⚓︎</a></h4>
+<p>首先，插件管理器需要检索有关插件的一些基本信息，例如其名称、描述等。文件<code>metadata.txt</code>存储此信息。</p>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>所有元数据必须采用UTF-8编码。</p>
+</div>
+<table>
+<thead>
+<tr>
+<th align="left">元数据名称</th>
+<th align="center">是否必需</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">name</td>
+<td align="center">是</td>
+<td align="left">插件名称，短字符串</td>
+</tr>
+<tr>
+<td align="left">qgisMinimumVersion</td>
+<td align="center">是</td>
+<td align="left">最小QGIS版本</td>
+</tr>
+<tr>
+<td align="left">qgisMaximumVersion</td>
+<td align="center">否</td>
+<td align="left">最大QGIS版本</td>
+</tr>
+<tr>
+<td align="left">description</td>
+<td align="center">是</td>
+<td align="left">描述插件的简短文本，不支持HTML</td>
+</tr>
+<tr>
+<td align="left">about</td>
+<td align="center">是</td>
+<td align="left">较长的文本，详细描述插件，不支持HTML</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="center">是</td>
+<td align="left">版本</td>
+</tr>
+<tr>
+<td align="left">author</td>
+<td align="center">是</td>
+<td align="left">作者姓名</td>
+</tr>
+<tr>
+<td align="left">email</td>
+<td align="center">是</td>
+<td align="left">作者的电子邮件，在网站上仅显示给登录的用户，但在插件安装后可在插件管理器中看到</td>
+</tr>
+<tr>
+<td align="left">changelog</td>
+<td align="center">否</td>
+<td align="left">字符串，可以是多行，不支持HTML</td>
+</tr>
+<tr>
+<td align="left">experimental</td>
+<td align="center">否</td>
+<td align="left">实验性，布尔值，True或False</td>
+</tr>
+<tr>
+<td align="left">deprecated</td>
+<td align="center">否</td>
+<td align="left">弃用，boolean值，True或False，适用于整个插件，而不仅仅适用于上传的版本</td>
+</tr>
+<tr>
+<td align="left">tags</td>
+<td align="center">否</td>
+<td align="left">以逗号分隔的列表，允许在单个标记内使用空格</td>
+</tr>
+<tr>
+<td align="left">homepage</td>
+<td align="center">否</td>
+<td align="left">指向插件主页的有效网址</td>
+</tr>
+<tr>
+<td align="left">repository</td>
+<td align="center">是</td>
+<td align="left">源代码存储库的有效URL</td>
+</tr>
+<tr>
+<td align="left">tracker</td>
+<td align="center">否</td>
+<td align="left">故障和错误报告的有效URL</td>
+</tr>
+<tr>
+<td align="left">icon</td>
+<td align="center">否</td>
+<td align="left">对于web友好的图像（PNG，JPEG）文件名或相对路径（相对于插件压缩包的文件夹）</td>
+</tr>
+<tr>
+<td align="left">category</td>
+<td align="center">否</td>
+<td align="left">Raster, Vector, Database and Web（栅格、矢量、数据库和网络）</td>
+</tr>
+<tr>
+<td align="left">plugin_dependencies</td>
+<td align="center">否</td>
+<td align="left">类似于PIP的逗号分隔的其他插件列表</td>
+</tr>
+<tr>
+<td align="left">server</td>
+<td align="center">否</td>
+<td align="left">布尔值，True或False，确定插件是否具有服务器接口</td>
+</tr>
+<tr>
+<td align="left">hasProcessingProvider</td>
+<td align="center">否</td>
+<td align="left">布尔值，True或False，确定插件是否提供处理算法</td>
+</tr>
+</tbody>
+</table>
+<p>默认情况下，插件放在**Plugins**菜单中（我们将在下一节中看到如何为插件添加菜单项），但也可以将它们放入**Raster**，<strong>Vector</strong>， **Database**和**Web**菜单中。</p>
+<p>输入指定的“category”元数据，可以相应地对插件进行分类。此元数据用于提示用户，并告诉他们可以在哪里（在哪个菜单中）找到该插件。“category”的允许值为：Vector, Raster, Database或者Web。例如，如果你的插件可以从Raster菜单中找到，请将其添加到<code>metadata.txt</code>中</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="na">category</span><span class="o">=</span><span class="s">Raster</span>
+</code></pre></div>
+</td></tr></table>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>如果qgisMaximumVersion为空，则在上传到<a href="#1643">官方Python插件库</a>时，它将自动设置为主要版本加上.99（例如：3.99）。</p>
+</div>
+<p>metadata.txt示例：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="c1">; 以下是强制性的</span>
+
+<span class="k">[general]</span>
+<span class="na">name</span><span class="o">=</span><span class="s">HelloWorld</span>
+<span class="na">email</span><span class="o">=</span><span class="s">me@example.com</span>
+<span class="na">author</span><span class="o">=</span><span class="s">Just Me</span>
+<span class="na">qgisMinimumVersion</span><span class="o">=</span><span class="s">3.0</span>
+<span class="na">description</span><span class="o">=</span><span class="s">This is an example plugin for greeting the world.\</span>
+    <span class="na">Multiline is allowed:\</span>
+    <span class="na">lines starting with spaces belong to the same\</span>
+    <span class="na">field, in this case to the &quot;description&quot; field.\</span>
+    <span class="na">HTML formatting is not allowed.</span>
+<span class="na">about</span><span class="o">=</span><span class="s">This paragraph can contain a detailed description\</span>
+    <span class="na">of the plugin. Multiline is allowed, HTML is not.</span>
+<span class="na">version</span><span class="o">=</span><span class="s">version 1.2</span>
+<span class="na">tracker</span><span class="o">=</span><span class="s">http://bugs.itopen.it</span>
+<span class="na">repository</span><span class="o">=</span><span class="s">http://www.itopen.it/repo</span>
+<span class="c1">; 结束强制</span>
+
+<span class="c1">; 以下是可选的</span>
+<span class="na">category</span><span class="o">=</span><span class="s">Raster</span>
+<span class="na">changelog</span><span class="o">=</span><span class="s">The changelog lists the plugin versions\</span>
+    <span class="na">and their changes as in the example below:\</span>
+    <span class="na">1.0 - First stable release\</span>
+    <span class="na">0.9 - All features implemented\</span>
+    <span class="na">0.8 - First testing release</span>
+
+<span class="c1">; 标签采用逗号分隔，标签名称允许使用空格</span>
+<span class="c1">; 标签应该是英文的，在创建之前请检查现有标签和同义词</span>
+<span class="na">tags</span><span class="o">=</span><span class="s">wkt,raster,hello world</span>
+
+<span class="c1">; 这些元数据可以为空，最终将成为强制性的。</span>
+<span class="na">homepage</span><span class="o">=</span><span class="s">https://www.itopen.it</span>
+<span class="na">icon</span><span class="o">=</span><span class="s">icon.png</span>
+
+<span class="c1">; 实验标志（适用于单一版本）</span>
+<span class="na">experimental</span><span class="o">=</span><span class="s">True</span>
+
+<span class="c1">; 弃用标志 （适用于整个插件，不仅适用于上传的版本）</span>
+<span class="na">deprecated</span><span class="o">=</span><span class="s">False</span>
+
+<span class="c1">; 如果为空，它将自动设置为主要版本+.99</span>
+<span class="na">qgisMaximumVersion</span><span class="o">=</span><span class="s">3.99</span>
+
+<span class="c1">; 从 QGIS 3.8开始，可以指定以逗号分隔指定要安装（或更新）的插件列表</span>
+<span class="c1">; 下面示例安装或更新版本1.12的“MyOtherPlugin”和任何版本的“YetAnotherPlugin”</span>
+<span class="na">plugin_dependencies</span><span class="o">=</span><span class="s">MyOtherPlugin==1.12,YetAnotherPlugin</span>
+</code></pre></div>
+</td></tr></table>
+<h4 id="16122-__init__py">16.1.2.2 __init__.py<a class="headerlink" href="#16122-__init__py" title="Permanent link">⚓︎</a></h4>
+<p>Python包需要此文件。此外，QGIS要求此文件包含一个<code>classFactory()</code>函数，该函数在插件被加载到QGIS时调用。它接收<a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface"><code>QgisInterface</code></a>实例， 并且必须返回<code>mainplugin.py</code>中插件类的对象——在我们的例子中它被命名为<code>TestPlugin</code>（见下文）。<code>__init__.py</code>应该是这样的：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">classFactory</span><span class="p">(</span><span class="n">iface</span><span class="p">):</span>
+    <span class="kn">from</span> <span class="nn">.mainPlugin</span> <span class="kn">import</span> <span class="n">TestPlugin</span>
+    <span class="k">return</span> <span class="n">TestPlugin</span><span class="p">(</span><span class="n">iface</span><span class="p">)</span>
+
+<span class="c1"># 任何其他初始化</span>
+</code></pre></div>
+</td></tr></table>
+<h4 id="16123-mainpluginpy">16.1.2.3 mainPlugin.py<a class="headerlink" href="#16123-mainpluginpy" title="Permanent link">⚓︎</a></h4>
+<p>这就是魔法发生的地方，下面就是魔法的例子:</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">qgis.PyQt.QtGui</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qgis.PyQt.QtWidgets</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># 从文件resources.py初始化Qt的资源</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">resources</span>
+
+
+<span class="k">class</span> <span class="nc">TestPlugin</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iface</span><span class="p">):</span>
+        <span class="c1"># 保存QGIS interface引用</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span> <span class="o">=</span> <span class="n">iface</span>
+
+    <span class="k">def</span> <span class="nf">initGui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 创建操作，它将启动插件配置</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">QAction</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s2">&quot;:/plugins/testplug/icon.png&quot;</span><span class="p">),</span> <span class="s2">&quot;Test plugin&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s2">&quot;testAction&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">setWhatsThis</span><span class="p">(</span><span class="s2">&quot;Configuration for test plugin&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">setStatusTip</span><span class="p">(</span><span class="s2">&quot;This is status tip&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+
+        <span class="c1"># 添加工具栏按钮和菜单项</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">addToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">addPluginToMenu</span><span class="p">(</span><span class="s2">&quot;&amp;Test plugins&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="c1"># 连接信号renderComplete——画布渲染完成后发送的信号</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">renderComplete</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderTest</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">unload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 删除插件菜单项和图标</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">removePluginMenu</span><span class="p">(</span><span class="s2">&quot;&amp;Test plugins&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">removeToolBarIcon</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+
+        <span class="c1"># 断开信号</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">renderComplete</span><span class="o">.</span><span class="n">disconnect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">renderTest</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 创建并显示一个配置对话框或类似的事情</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TestPlugin: run called!&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">renderTest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">painter</span><span class="p">):</span>
+
+        <span class="c1"># 使用painter绘制地图画布</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;TestPlugin: renderTest called!&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>主插件源文件中（例如 <code>mainPlugin.py</code>）必须存在的插件函数是：</p>
+<ul>
+<li><code>__init__</code> - &gt;可以访问QGIS界面</li>
+<li><code>initGui()</code> - &gt;加载插件时调用</li>
+<li><code>unload()</code> - &gt;卸载插件时调用</li>
+</ul>
+<p>在上面的例子中，<a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu"><code>addPluginToMenu()</code></a>被使用。这会将相应的菜单操作添加到**Plugins** 菜单中。存在额外的方法将操作（action）添加到不同菜单。以下是这些方法的列表：</p>
+<ul>
+<li><a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToRasterMenu"><code>addPluginToRasterMenu()</code></a></li>
+<li><a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToVectorMenu"><code>addPluginToVectorMenu()</code></a></li>
+<li><a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToDatabaseMenu"><code>addPluginToDatabaseMenu()</code></a></li>
+<li><a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToWebMenu"><code>addPluginToWebMenu()</code></a></li>
+</ul>
+<p>它们都具有与<a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu"><code>addPluginToMenu()</code></a>方法相同的语法 。</p>
+<p>建议将插件菜单添加到其中一个预定义方法，以保持插件条目组织方式的一致性。但是，你可以将自定义菜单组直接添加到菜单栏，如下面示例所示：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">initGui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">menu</span> <span class="o">=</span> <span class="n">QMenu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s2">&quot;testMenu&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="s2">&quot;MyMenu&quot;</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">action</span> <span class="o">=</span> <span class="n">QAction</span><span class="p">(</span><span class="n">QIcon</span><span class="p">(</span><span class="s2">&quot;:/plugins/testplug/icon.png&quot;</span><span class="p">),</span> <span class="s2">&quot;Test plugin&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">setObjectName</span><span class="p">(</span><span class="s2">&quot;testAction&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">setWhatsThis</span><span class="p">(</span><span class="s2">&quot;Configuration for test plugin&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">setStatusTip</span><span class="p">(</span><span class="s2">&quot;This is status tip&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">action</span><span class="p">)</span>
+
+    <span class="n">menuBar</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">()</span><span class="o">.</span><span class="n">menuBar</span><span class="p">()</span>
+    <span class="n">menuBar</span><span class="o">.</span><span class="n">insertMenu</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">firstRightStandardMenu</span><span class="p">()</span><span class="o">.</span><span class="n">menuAction</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">menu</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="n">deleteLater</span><span class="p">()</span>
+</code></pre></div>
+</td></tr></table>
+<p>不要忘记设置<code>QAction</code>和<code>QMenu</code> <code>objectName</code>插件的特定名称，以便可以自定义。</p>
+<h4 id="16124">16.1.2.4 资源文件<a class="headerlink" href="#16124" title="Permanent link">⚓︎</a></h4>
+<p>你可以看到在<code>initGui()</code>中我们使用了资源文件中的图标（在我们的案例中是<code>resources.qrc</code>）</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="nt">&lt;RCC&gt;</span>
+  <span class="nt">&lt;qresource</span> <span class="na">prefix=</span><span class="s">&quot;/plugins/testplug&quot;</span> <span class="nt">&gt;</span>
+     <span class="nt">&lt;file&gt;</span>icon.png<span class="nt">&lt;/file&gt;</span>
+  <span class="nt">&lt;/qresource&gt;</span>
+<span class="nt">&lt;/RCC&gt;</span>
+</code></pre></div>
+</td></tr></table>
+<p>最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则你可能会得到你不想要的资源。现在你只需要生成一个包含资源的Python文件。它是用**pyrcc5**命令完成的：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>pyrcc5 -o resources.py resources.qrc
+</code></pre></div>
+</td></tr></table>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>在Windows环境中，尝试从CMD或Powershell运行pyrcc5可能会导致错误“Windows无法访问指定的设备，路径，或文件[...]”。最简单的解决方案可能是使用osgeo4wshell，但如果你愿意修改PATH环境变量或显式指定可执行文件的路径，你应该可以在<code>&lt;Your QGIS Install Directory&gt;\bin\pyrcc5.exe</code>找到它</p>
+</div>
+<p>就这些……没什么复杂的:)</p>
+<p>如果你已正确完成所有操作，则应该能够在插件管理器中查找并加载插件，在点击工具栏图标或相应的菜单项时，可以在控制台中查看到消息。</p>
+<p>在处理真正的插件时，最好将插件写入另一个（工作）目录并创建一个makefile，它将生成UI和资源文件并将插件安装到QGIS安装中。</p>
+<h3 id="1613">16.1.3 文档<a class="headerlink" href="#1613" title="Permanent link">⚓︎</a></h3>
+<p>该插件的文档可以编写为HTML帮助文档。<code>qgis.utils</code>模块提供了一个函数，<code>showPluginHelp()</code>将打开帮助文档浏览器，与其他QGIS帮助文档的方式相同。</p>
+<p><code>showPluginHelp()</code>函数在与调用模块相同的目录中查找帮助文档。它会寻找<code>index-ll_cc.html</code>，<code>index-ll.html</code>，<code>index-en.html</code>，<code>index-en_us.html</code>和<code>index.html</code>，显示它找到的第一个文档。这<code>ll_cc</code>是QGIS语言环境，这允许文档有多个翻译。</p>
+<p><code>showPluginHelp()</code>函数还可以使用参数<code>packageName</code>——它显示指定插件的帮助文档，<code>filename</code>——可以替换被搜索的文件名中的“index”，section——它是html锚标记的名称，浏览器将定位到该位置。</p>
+<h3 id="1614">16.1.4 翻译<a class="headerlink" href="#1614" title="Permanent link">⚓︎</a></h3>
+<p>通过几个步骤，你可以设置插件本地化的环境，以便根据计算机的区域，插件将以不同语言加载。</p>
+<h4 id="16141">16.1.4.1 软件要求<a class="headerlink" href="#16141" title="Permanent link">⚓︎</a></h4>
+<p>创建和管理所有翻译文件的最简单方法是安装 <a href="https://doc.qt.io/qt-5/qtlinguist-index.html">Qt Linguist</a>。在基于Debian的GNU / Linux环境中，你可以这样安装它：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>sudo apt-get install qttools5-dev-tools
+</code></pre></div>
+</td></tr></table>
+<h4 id="16142">16.1.4.2 文件和目录<a class="headerlink" href="#16142" title="Permanent link">⚓︎</a></h4>
+<p>创建插件时，你将在主插件目录中找到该文件夹<code>i18n</code>。</p>
+<p><strong>所有翻译文件都必须放在此目录中。</strong></p>
+<h5 id="161421-pro">16.1.4.2.1 .pro文件<a class="headerlink" href="#161421-pro" title="Permanent link">⚓︎</a></h5>
+<p>首先，你应该创建一个<code>.pro</code>文件，这是一个可以由**Qt Linguist**管理的*项目*文件。</p>
+<p>在此<code>.pro</code>文件中，你必须指定要翻译的所有文件和窗体（.ui文件）。此文件用于设置本地化文件和变量。下面是一个项目文件，匹配我们的<a href="#16111">示例插件</a>的结构 ：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="na">FORMS</span> <span class="o">=</span> <span class="s">../form.ui</span>
+<span class="na">SOURCES</span> <span class="o">=</span> <span class="s">../your_plugin.py</span>
+<span class="na">TRANSLATIONS</span> <span class="o">=</span> <span class="s">your_plugin_it.ts</span>
+</code></pre></div>
+</td></tr></table>
+<p>你的插件可能有更复杂的结构，并且可能分布在多个文件中。如果是这种情况，请记住，使用<code>pylupdate5</code>读取<code>.pro</code>文件并更新可翻译字符串，这不会扩展通配符，因此你需要将每个文件显式放在<code>.pro</code>文件中。你的项目文件可能看起来像这样：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="na">FORMS</span> <span class="o">=</span> <span class="s">../ui/about.ui ../ui/feedback.ui \</span>
+        <span class="na">../ui/main_dialog.ui</span>
+<span class="na">SOURCES</span> <span class="o">=</span> <span class="s">../your_plugin.py ../computation.py \</span>
+          <span class="na">../utils.py</span>
+</code></pre></div>
+</td></tr></table>
+<p>此外，<code>your_plugin.py</code>文件是*调用* QGIS工具栏中插件的所有菜单和子菜单的文件，你希望将它们全部翻译。</p>
+<p>最后，使用*TRANSLATIONS*变量，你可以指定所需的翻译语言。</p>
+<div class="admonition 警告 warning">
+<p class="admonition-title">警告</p>
+<p>确保<code>ts</code>文件名称为<code>your_plugin_</code> + <code>language</code> + <code>.ts</code>，否则语言将加载失败。使用两个字母的语言缩写（it对应Italian，de对应German，等等）</p>
+</div>
+<h5 id="161422-ts">16.1.4.2.2 .ts文件<a class="headerlink" href="#161422-ts" title="Permanent link">⚓︎</a></h5>
+<p>创建<code>.pro</code>完成后，你就可以为插件的语言生成<code>.ts</code>文件了。</p>
+<p>打开终端，转到<code>your_plugin/i18n</code>目录并输入：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>pylupdate5 your_plugin.pro
+</code></pre></div>
+</td></tr></table>
+<p>你应该可以看到<code>your_plugin_language.ts</code>文件。</p>
+<p>用**Qt Linguist**打开<code>.ts</code>文件并开始翻译。</p>
+<h5 id="161423-qm">16.1.4.2.3 .qm文件<a class="headerlink" href="#161423-qm" title="Permanent link">⚓︎</a></h5>
+<p>当你完成插件翻译时（如果某些字符串未完成，将使用这些字符串的源语言），你必须创建<code>.qm</code> 文件（将被QGIS使用的<code>.ts</code>编译文件）。</p>
+<p>只需在<code>your_plugin/i18n</code>目录中打开终端cd 并输入：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>lrelease your_plugin.ts
+</code></pre></div>
+</td></tr></table>
+<p>现在，在<code>i18n</code>目录中你将看到<code>your_plugin.qm</code>文件。</p>
+<h4 id="16143-makefile">16.1.4.3 使用MakeFile进行翻译<a class="headerlink" href="#16143-makefile" title="Permanent link">⚓︎</a></h4>
+<p>或者，如果你使用Plugin Builder创建了插件，则可以使用makefile从python代码和Qt对话框中提取消息。在Makefile的开头有一个LOCALES变量：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="na">LOCALES</span> <span class="o">=</span> <span class="s">en</span>
+</code></pre></div>
+</td></tr></table>
+<p>将该语言的缩写添加到此变量中，例如匈牙利语：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="na">LOCALES</span> <span class="o">=</span> <span class="s">en hu</span>
+</code></pre></div>
+</td></tr></table>
+<p>现在，你可以通过以下方式从源生成或更新<code>hu.ts</code>文件（以及其中的<code>en.ts</code>）：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>make transup
+</code></pre></div>
+</td></tr></table>
+<p>在此之后，你已在LOCALES变量中更新<code>.ts</code>了所有语言的文件。使用**Qt Linguist**翻译程序消息。完成翻译后，<code>.qm</code>可以通过<code>transcompile</code>创建：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>make transcompile
+</code></pre></div>
+</td></tr></table>
+<p>你必须在你的插件中分发<code>.ts</code>文件。</p>
+<h4 id="16144">16.1.4.4 加载插件<a class="headerlink" href="#16144" title="Permanent link">⚓︎</a></h4>
+<p>要查看插件的翻译，只需打开QGIS，更改语言（<strong>设置‣选项‣通用</strong>）并重新启动QGIS。</p>
+<p>你应该看到你的插件使用正确的语言。</p>
+<div class="admonition 警告 warning">
+<p class="admonition-title">警告</p>
+<p>如果你改变了一些东西（新的UI，新的菜单，等等），你必须重新生成<code>.ts</code>和<code>.qm</code>文件，因此需要再一次执行以上命令。</p>
+</div>
+<h3 id="1615">16.1.5 提示和技巧<a class="headerlink" href="#1615" title="Permanent link">⚓︎</a></h3>
+<h4 id="16151">16.1.5.1 插件重载<a class="headerlink" href="#16151" title="Permanent link">⚓︎</a></h4>
+<p>在开发插件期间，你经常需要在QGIS中重新加载它以进行测试。使用**Plugin Reloader**插件非常容易。你可以在<a href="https://docs.qgis.org/testing/en/docs/user_manual/plugins/plugins.html#plugins">插件管理器</a>中找到它。</p>
+<h4 id="16152">16.1.5.2 访问插件<a class="headerlink" href="#16152" title="Permanent link">⚓︎</a></h4>
+<p>你可以使用python从QGIS中访问所有已安装插件类，这可以方便调试：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">my_plugin</span> <span class="o">=</span> <span class="n">qgis</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">plugins</span><span class="p">[</span><span class="s1">&#39;My Plugin&#39;</span><span class="p">]</span>
+</code></pre></div>
+</td></tr></table>
+<h4 id="16153">16.1.5.3 日志消息<a class="headerlink" href="#16153" title="Permanent link">⚓︎</a></h4>
+<p>插件在<a href="https://docs.qgis.org/latest/en/docs/user_manual/introduction/general_tools.html#log-message-panel">日志消息面板中</a>有自己的选项卡。</p>
+<h4 id="16154">16.1.5.4 分享你的插件<a class="headerlink" href="#16154" title="Permanent link">⚓︎</a></h4>
+<p>QGIS在插件仓库中托管了数百个插件。考虑分享你的插件！它将扩展QGIS，人们将能够从你的代码中学习。可以使用插件管理器在QGIS中找到并安装所有托管的插件。</p>
+<p>信息和要求：<a href="https://plugins.qgis.org/">plugins.qgis.org</a>。</p>
+<h2 id="162">16.2 代码片段<a class="headerlink" href="#162" title="Permanent link">⚓︎</a></h2>
+<p>本节以代码片段为例，讲解插件开发</p>
+<h3 id="1621">16.2.1 如何通过快捷键调用方法<a class="headerlink" href="#1621" title="Permanent link">⚓︎</a></h3>
+<p>在<code>initGui()</code>中添加：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">key_action</span> <span class="o">=</span> <span class="n">QAction</span><span class="p">(</span><span class="s2">&quot;Test Plugin&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">())</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">registerMainWindowAction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key_action</span><span class="p">,</span> <span class="s2">&quot;Ctrl+I&quot;</span><span class="p">)</span>  <span class="c1"># 操作被Ctrl+I触发</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">addPluginToMenu</span><span class="p">(</span><span class="s2">&quot;&amp;Test plugins&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">key_action</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">key_action</span><span class="o">.</span><span class="n">triggered</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key_action_triggered</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>在<code>unload()</code>中添加：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">unregisterMainWindowAction</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">keyAction</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>按下<code>CTRL+I</code>时调用方法：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">key_action_triggered</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">QMessageBox</span><span class="o">.</span><span class="n">information</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">(),</span><span class="s2">&quot;Ok&quot;</span><span class="p">,</span> <span class="s2">&quot;You pressed Ctrl+I&quot;</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="1622">16.2.2 如何切换图层<a class="headerlink" href="#1622" title="Permanent link">⚓︎</a></h3>
+<p>图例中有一个访问图层的API。下面是如何切换当前图层可见性的示例：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+<span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findLayer</span><span class="p">(</span><span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="n">new_state</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Checked</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">isVisible</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Unchecked</span> <span class="k">else</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Unchecked</span>
+<span class="n">node</span><span class="o">.</span><span class="n">setItemVisibilityChecked</span><span class="p">(</span><span class="n">new_state</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="1623">16.2.3 如何访问所选要素的属性表<a class="headerlink" href="#1623" title="Permanent link">⚓︎</a></h3>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">change_value</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;改变所选要素第二字段值</span>
+
+<span class="sd">    :param value: The new value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">layer</span><span class="p">:</span>
+        <span class="n">count_selected</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">selectedFeatureCount</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">count_selected</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">layer</span><span class="o">.</span><span class="n">startEditing</span><span class="p">()</span>
+            <span class="n">id_features</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">selectedFeatureIds</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">id_features</span><span class="p">:</span>
+                <span class="n">layer</span><span class="o">.</span><span class="n">changeAttributeValue</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="c1"># 1 being the second column</span>
+            <span class="n">layer</span><span class="o">.</span><span class="n">commitChanges</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">iface</span><span class="o">.</span><span class="n">messageBar</span><span class="p">()</span><span class="o">.</span><span class="n">pushCritical</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;Please select at least one feature from current layer&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">iface</span><span class="o">.</span><span class="n">messageBar</span><span class="p">()</span><span class="o">.</span><span class="n">pushCritical</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;Please select a layer&quot;</span><span class="p">)</span>
+
+<span class="c1"># 该方法需要一个参数（所选要素第二个字段的新值），可以通过调用以下方法：</span>
+<span class="n">changeValue</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="1624">16.2.4 选项对话框中的插件接口<a class="headerlink" href="#1624" title="Permanent link">⚓︎</a></h3>
+<p>你可以在**设置‣选项**中添加一个自定义插件选项标签。这比为你的插件选项添加一个特定的主菜单条目更可取，因为它将所有的QGIS应用程序设置和插件设置保存在一个单一的地方，便于用户发现和导航。</p>
+<p>下面的代码片段将为插件的设置添加一个新的空白选项卡，为你填充所有选项和你的插件特定设置做好准备。你可以将下面的类拆分成不同的文件。在这个例子中，我们在mainPlugin.py文件中添加了两个类。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">MyPluginOptionsFactory</span><span class="p">(</span><span class="n">QgsOptionsWidgetFactory</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">icon</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">QIcon</span><span class="p">(</span><span class="s1">&#39;icons/my_plugin_icon.svg&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">createWidget</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ConfigOptionsPage</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">ConfigOptionsPage</span><span class="p">(</span><span class="n">QgsOptionsPageWidget</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+        <span class="n">layout</span> <span class="o">=</span> <span class="n">QHBoxLayout</span><span class="p">()</span>
+        <span class="n">layout</span><span class="o">.</span><span class="n">setContentsMargins</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setLayout</span><span class="p">(</span><span class="n">layout</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>最后我们添加导入和修改<code>__init__</code>函数：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">qgis.gui</span> <span class="kn">import</span> <span class="n">QgsOptionsWidgetFactory</span><span class="p">,</span> <span class="n">QgsOptionsPageWidget</span>
+
+
+<span class="k">class</span> <span class="nc">MyPlugin</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iface</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;构造函数.</span>
+
+<span class="sd">        :param iface: 将传递给该类的接口实例它提供了一个钩子，你可以通过它来操作QGIS运行时应用程序。</span>
+<span class="sd">        :type iface: QgsInterface</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># 保存引用</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iface</span> <span class="o">=</span> <span class="n">iface</span>
+
+
+    <span class="k">def</span> <span class="nf">initGui</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options_factory</span> <span class="o">=</span> <span class="n">MyPluginOptionsFactory</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">options_factory</span><span class="o">.</span><span class="n">setTitle</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tr</span><span class="p">(</span><span class="s1">&#39;My Plugin&#39;</span><span class="p">))</span>
+        <span class="n">iface</span><span class="o">.</span><span class="n">registerOptionsWidgetFactory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options_factory</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">unload</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">iface</span><span class="o">.</span><span class="n">unregisterOptionsWidgetFactory</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">options_factory</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p><strong>将自定义选项卡添加到矢量图层属性对话框</strong> </p>
+<p>你可以应用类似的逻辑，使用<a href="https://qgis.org/pyqgis/master/gui/QgsMapLayerConfigWidgetFactory.html#qgis.gui.QgsMapLayerConfigWidgetFactory">QgsMapLayerConfigWidgetFactory</a>和<a href="https://qgis.org/pyqgis/master/gui/QgsMapLayerConfigWidget.html#qgis.gui.QgsMapLayerConfigWidget">QgsMapLayerConfigWidget</a>类将插件自定义选项添加到图层属性对话框中。</p>
+</div>
+<h2 id="163-ide">16.3 编写和调试插件的IDE设置<a class="headerlink" href="#163-ide" title="Permanent link">⚓︎</a></h2>
+<p><strong>TODO</strong></p>
+<h2 id="164">16.4 发布你的插件<a class="headerlink" href="#164" title="Permanent link">⚓︎</a></h2>
+<p>一旦你的插件准备好了，并且你认为这个插件可能对某些人有帮助，不要犹豫，把它上传到<a href="https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository">官方Python插件仓库</a>。在该页面上，你还可以找到关于如何准备插件以与插件安装程序良好配合的打包指南。或者，如果你想建立自己的插件库，可以创建一个简单的XML文件，列出插件及其元数据。</p>
+<p>请特别注意一下建议：</p>
+<h3 id="1641">16.4.1 元数据和名称<a class="headerlink" href="#1641" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>避免使用与现有插件过于相似的名称</li>
+<li>如果你的插件与现有的插件有类似的功能，请在 "关于 "一栏中解释其区别，这样用户就会知道使用哪一个，而不需要安装和测试。</li>
+<li>避免在插件本身的名称中重复使用"plugin"。</li>
+<li>使用元数据中的描述字段进行单行描述，使用关于字段进行更详细的说明</li>
+<li>包括一个代码库、一个错误跟踪器和一个主页；这将极大地提高合作的可能性，并且可以通过现有的网络基础设施（GitHub、GitLab、Bitbucket等）非常容易地完成。</li>
+<li>谨慎选择标签：避免不具参考价值的标签（如vector），最好选择已经被他人使用的标签（见插件网站）。</li>
+<li>添加一个合适的图标，不要使用默认的图标；参见QGIS界面，了解要使用的风格建议</li>
+</ul>
+<h3 id="1642">16.4.2 代码和帮助<a class="headerlink" href="#1642" title="Permanent link">⚓︎</a></h3>
+<ul>
+<li>
+<p>不要把生成的文件（ui_*.py, resources_rc.py, 生成的帮助文件...）和无用的东西（如.gitignore）包括在版本库中</p>
+</li>
+<li>
+<p>将插件添加到适当的菜单中（Vector, Raster, Web, Database）。</p>
+</li>
+<li>
+<p>在适当的时候（执行分析的插件），考虑将插件添加为Processing框架的子插件：这将允许用户批量运行它，将它集成到更复杂的工作流中，并将你从设计界面的负担中解放出来</p>
+</li>
+<li>
+<p>至少包括最基本的文档，如果对测试和理解有用的话，还包括样本数据。</p>
+</li>
+</ul>
+<h3 id="1643-python">16.4.3 官方python插件仓库<a class="headerlink" href="#1643-python" title="Permanent link">⚓︎</a></h3>
+<p>你可以找到官方python插件仓库：<a href="https://plugins.qgis.org/">https://plugins.qgis.org/</a>。</p>
+<p>为了使用官方python插件仓库，你必须从<a href="https://www.osgeo.org/community/getting-started-osgeo/osgeo_userid/">OSGEO web portal</a>获得OSGEO ID。</p>
+<p>一旦你上传了你的插件，它将得到一个工作人员的批准，你会得到通知。</p>
+<h4 id="16431">16.4.3.1 权限<a class="headerlink" href="#16431" title="Permanent link">⚓︎</a></h4>
+<p>这些规则已经在官方插件库中实现：</p>
+<ul>
+<li>
+<p>每个注册用户都可以添加一个新的插件</p>
+</li>
+<li>
+<p>员工用户可以批准或不批准所有的插件版本</p>
+</li>
+<li>
+<p>拥有特殊权限<code>plugins.can_approve</code>的用户可以自动批准他们上传的版本</p>
+</li>
+<li>
+<p>拥有特殊权限<code>plugins.can_approve</code>的用户可以批准其他人上传的版本，只要他们在插件所有者的列表中。</p>
+</li>
+<li>
+<p>一个特定的插件只能由员工用户和插件所有者删除和编辑。</p>
+</li>
+<li>
+<p>如果一个没有<code>plugins.can_approve</code>权限的用户上传了一个新的版本，该插件的版本会自动取消审批。</p>
+</li>
+</ul>
+<h4 id="16432">16.4.3.2 信任管理<a class="headerlink" href="#16432" title="Permanent link">⚓︎</a></h4>
+<p>工作人员可以通过前端应用程序设置<code>plugins.can_approve</code>权限，向选定的插件创建者授予信任。</p>
+<p>插件详情视图提供了直接链接，以授予对插件创建者或插件所有者的信任。</p>
+<h4 id="16433">16.4.3.3 验证<a class="headerlink" href="#16433" title="Permanent link">⚓︎</a></h4>
+<p>在上传插件时，插件的元数据会自动从压缩包中导入并进行验证。</p>
+<p>这里有一些验证规则，当你想在官方仓库上传一个插件时，你应该注意：</p>
+<ol>
+<li>包含插件的主文件夹的名称必须只包含ASCII字符（A-Z和a-z）、数字和下划线（_）和减号（-），而且不能以数字开头。</li>
+<li><code>metadata.txt</code>是必需的</li>
+<li>元数据表中列出的所有必需的元数据都必须存在</li>
+<li>元数据<code>version</code>字段必须是唯一的</li>
+</ol>
+<h4 id="16434">16.4.3.4 插件结构<a class="headerlink" href="#16434" title="Permanent link">⚓︎</a></h4>
+<p>按照验证规则，你的插件的压缩包（.zip）必须有一个特定的结构，才能作为一个功能性插件进行验证。由于该插件将被解压在用户的plugins文件夹内，它必须在.zip文件内有自己的目录，以不干扰其他插件。必需的文件有：<code>metadata.txt</code> 和 <code>__init__.py</code>。但如果能有一个README，当然还有一个代表该插件的图标（resources.qrc），那就更好了。以下是一个plugin.zip的例子，它应该是这样的。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>plugin.zip
+  pluginfolder/
+  |-- i18n
+  |   |-- translation_file_de.ts
+  |-- img
+  |   |-- icon.png
+  |   `-- iconsource.svg
+  |-- __init__.py
+  |-- Makefile
+  |-- metadata.txt
+  |-- more_code.py
+  |-- main_code.py
+  |-- README
+  |-- resources.qrc
+  |-- resources_rc.py
+  `-- ui_Qt_user_interface_file.ui
+</code></pre></div>
+</td></tr></table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../15-%E4%BB%BB%E5%8A%A1%E2%80%94%E2%80%94%E5%9C%A8%E5%90%8E%E5%8F%B0%E5%81%9A%E7%B9%81%E9%87%8D%E7%9A%84%E5%B7%A5%E4%BD%9C/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 15-任务 - 在后台做繁重的工作" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              15-任务 - 在后台做繁重的工作
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../17-%E7%BC%96%E5%86%99%E5%A4%84%E7%90%86%E6%8F%92%E4%BB%B6/" class="md-footer__link md-footer__link--next" aria-label="下一页: 17-编写处理插件" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              17-编写处理插件
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.expand", "search.suggest", "search.highlight", "search.share"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+        <script src="../js/db.js"></script>
+      
+    
+  </body>
+</html>

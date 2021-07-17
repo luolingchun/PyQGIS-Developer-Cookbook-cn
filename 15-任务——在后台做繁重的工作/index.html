@@ -1,0 +1,1354 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本项目是PyQGIS开发者手册的中文翻译。">
+      
+      
+      
+        <meta name="author" content="llc">
+      
+      
+        <link rel="canonical" href="https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn/15-%E4%BB%BB%E5%8A%A1%E2%80%94%E2%80%94%E5%9C%A8%E5%90%8E%E5%8F%B0%E5%81%9A%E7%B9%81%E9%87%8D%E7%9A%84%E5%B7%A5%E4%BD%9C/">
+      
+      <link rel="icon" href="../images/logo-blue.svg">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.10">
+    
+    
+      
+        <title>15-任务 - 在后台做繁重的工作 - PyQGIS开发者手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1fe995fd.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../css/img.css">
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    <script>function __prefix(e){return new URL("..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+      <script>var palette=__get("__palette");if(null!==palette&&"object"==typeof palette.color)for(var key in palette.color)document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#15-" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyQGIS开发者手册" class="md-header__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyQGIS开发者手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              15-任务 - 在后台做繁重的工作
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="黑"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="黑" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5c-.84 0-1.65.15-2.39.42L12 2M3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29L3.34 7m.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14L3.36 17M20.65 7l-1.77 3.79a7.023 7.023 0 0 0-2.38-4.15l4.15.36m-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29L20.64 17M12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44L12 22z"/></svg>
+            </label>
+          
+        
+          
+          
+          <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="亮"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="亮" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3 3.19.09m3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95 2.06.05m-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyQGIS开发者手册" class="md-nav__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    PyQGIS开发者手册
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/" title="前往 GitHub 仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-%E5%BC%95%E8%A8%80/" class="md-nav__link">
+        1-引言
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE/" class="md-nav__link">
+        2-加载项目
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E5%8A%A0%E8%BD%BD%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        3-加载图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%B1%82%E7%9B%AE%E5%BD%95%E6%A0%91/" class="md-nav__link">
+        4-访问图层目录树
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-%E4%BD%BF%E7%94%A8%E6%A0%85%E6%A0%BC%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        5-使用栅格图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-%E4%BD%BF%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        6-使用矢量图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/" class="md-nav__link">
+        7-几何处理
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-%E6%8A%95%E5%BD%B1%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        8-投影支持
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9-%E4%BD%BF%E7%94%A8%E5%9C%B0%E5%9B%BE%E7%94%BB%E5%B8%83/" class="md-nav__link">
+        9-使用地图画布
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E5%9C%B0%E5%9B%BE%E6%B8%B2%E6%9F%93%E5%92%8C%E6%89%93%E5%8D%B0/" class="md-nav__link">
+        10-地图渲染和打印
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E8%BF%87%E6%BB%A4%E5%92%8C%E8%AE%A1%E7%AE%97%E5%80%BC/" class="md-nav__link">
+        11-表达式，过滤和计算值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E8%AF%BB%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BE%E7%BD%AE/" class="md-nav__link">
+        12-读取和存储设置
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E4%B8%8E%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1/" class="md-nav__link">
+        13-与用户通信
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        14-认证基础
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          15-任务 - 在后台做繁重的工作
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        15-任务 - 在后台做繁重的工作
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    15.1 引言
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    15.2 示例
+  </a>
+  
+    <nav class="md-nav" aria-label="15.2 示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1521-qgstask" class="md-nav__link">
+    15.2.1 扩展QgsTask
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1522" class="md-nav__link">
+    15.2.2 从函数创建任务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1423" class="md-nav__link">
+    14.2.3 处理算法任务
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-%E5%BC%80%E5%8F%91Python%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        16-开发Python插件
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-%E7%BC%96%E5%86%99%E5%A4%84%E7%90%86%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        17-编写处理插件
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        18-使用插件图层
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%BA%93/" class="md-nav__link">
+        19-网络分析库
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%92%8CPython/" class="md-nav__link">
+        20-QGIS服务和Python
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-PyQGIS%E9%80%9F%E6%9F%A5%E8%A1%A8/" class="md-nav__link">
+        21-PyQGIS速查表
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#151" class="md-nav__link">
+    15.1 引言
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#152" class="md-nav__link">
+    15.2 示例
+  </a>
+  
+    <nav class="md-nav" aria-label="15.2 示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1521-qgstask" class="md-nav__link">
+    15.2.1 扩展QgsTask
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1522" class="md-nav__link">
+    15.2.2 从函数创建任务
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1423" class="md-nav__link">
+    14.2.3 处理算法任务
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/edit/master/docs/15-任务——在后台做繁重的工作.md" title="编辑此页" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <p>本节代码片段需导入以下模块：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="p">(</span>
+  <span class="n">QgsProcessingContext</span><span class="p">,</span>
+  <span class="n">QgsTaskManager</span><span class="p">,</span>
+  <span class="n">QgsTask</span><span class="p">,</span>
+  <span class="n">QgsProcessingAlgRunnerTask</span><span class="p">,</span>
+  <span class="n">Qgis</span><span class="p">,</span>
+  <span class="n">QgsProcessingFeedback</span><span class="p">,</span>
+  <span class="n">QgsApplication</span><span class="p">,</span>
+  <span class="n">QgsMessageLog</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<h1 id="15-">15 任务 - 在后台做繁重的工作<a class="headerlink" href="#15-" title="Permanent link">⚓︎</a></h1>
+<h2 id="151">15.1 引言<a class="headerlink" href="#151" title="Permanent link">⚓︎</a></h2>
+<p>使用线程的后台处理，是在进行繁重处理时保持用户界面响应的一种方式。任务可用于在QGIS中实现线程。</p>
+<p>任务（<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a>）是在后台执行代码的容器，任务管理（<a href="https://qgis.org/pyqgis/master/core/QgsTaskManager.html#qgis.core.QgsTaskManager"><code>QgsTaskManager</code></a>）用于控制任务的运行。这些类通过提供信号传递机制、进度报告和后台进程状态访问机制，简化了QGIS中的后台处理。可以使用子任务对任务进行分组。</p>
+<p>全局任务管理器（<a href="https://qgis.org/pyqgis/master/core/QgsApplication.html#qgis.core.QgsApplication.taskManager"><code>QgsApplication.taskManager()</code></a>）通常被使用。这意味着你的任务可能不是由任务管理器控制的唯一任务。</p>
+<p>有几种方法可以创建QGIS任务：</p>
+<ul>
+<li>通过扩展<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a>创建自己的任务</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">class</span> <span class="nc">SpecialisedTask</span><span class="p">(</span><span class="n">QgsTask</span><span class="p">):</span>
+    <span class="k">pass</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>从函数创建任务</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">heavyFunction</span><span class="p">():</span>
+    <span class="c1"># 一些CPU密集型处理 ...</span>
+    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">workdone</span><span class="p">():</span>
+    <span class="c1"># ... 使用结果做一些有用的事情</span>
+    <span class="k">pass</span>
+
+<span class="n">task</span> <span class="o">=</span> <span class="n">QgsTask</span><span class="o">.</span><span class="n">fromFunction</span><span class="p">(</span><span class="s1">&#39;heavy function&#39;</span><span class="p">,</span> <span class="n">heavyFunction</span><span class="p">,</span>
+                     <span class="n">onfinished</span><span class="o">=</span><span class="n">workdone</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<ul>
+<li>从处理算法创建任务</li>
+</ul>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="n">params</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">QgsProcessingContext</span><span class="p">()</span>
+<span class="n">feedback</span> <span class="o">=</span> <span class="n">QgsProcessingFeedback</span><span class="p">()</span>
+
+<span class="n">buffer_alg</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">processingRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">algorithmById</span><span class="p">(</span><span class="s1">&#39;native:buffer&#39;</span><span class="p">)</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">QgsProcessingAlgRunnerTask</span><span class="p">(</span><span class="n">buffer_alg</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span><span class="n">feedback</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<div class="admonition warning 警告">
+<p class="admonition-title">Warning</p>
+<p>任何后台任务（无论如何创建）决不能使用任何主线程上的QObject，比如访问QgsVectorLayer, QgsProject或者执行任何GUI操作——比如创建新的部件或者与现有部件交互。只能从主线程访问或修改Qt控件。在任务启动之前，必须复制任务中使用的数据。试图从后台线程使用它们将导致崩溃。</p>
+</div>
+<p>可以使用<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a>中的<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask.addSubTask"><code>addSubTask()</code></a> 函数来描述任务之间的依赖关系。当声明依赖关系时，任务管理器将自动确定如何执行这些依赖关系。只要有可能，依赖项将并行执行，以便尽快满足它们。如果取消了一个任务所依赖的任务，则相关任务也将被取消。循环依赖可能造成死锁，所以要小心。</p>
+<p>如果任务依赖于可用的图层，则可以使用<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a>中的<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask.setDependentLayers"><code>setDependentLayers</code></a> 函数来声明。如果任务所依赖的图层不可用，则该任务将被取消。</p>
+<p>创建任务后，可以使用任务管理器的<a href="https://qgis.org/pyqgis/master/core/QgsTaskManager.html#qgis.core.QgsTaskManager.addTask"><code>addTask()</code></a>函数调度任务运行。向管理器添加任务会自动将该任务的所有权转移给管理员，管理员将在执行完后清理和删除任务。任务的调度受任务优先级的影响，任务优先级在<a href="https://qgis.org/pyqgis/master/core/QgsTaskManager.html#qgis.core.QgsTaskManager.addTask"><code>addTask()</code></a>中设置。</p>
+<p>任务的状态可以使用<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a>、<a href="https://qgis.org/pyqgis/master/core/QgsTaskManager.html#qgis.core.QgsTaskManager"><code>QgsTaskManager</code></a>的信号和函数进行监控。</p>
+<h2 id="152">15.2 示例<a class="headerlink" href="#152" title="Permanent link">⚓︎</a></h2>
+<h3 id="1521-qgstask">15.2.1 扩展QgsTask<a class="headerlink" href="#1521-qgstask" title="Permanent link">⚓︎</a></h3>
+<p>在此示例中，<code>RandomIntegerSumTask</code>扩展了<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a>，它将在指定的时间段内生成0到500之间的100个随机整数。如果随机数为42，则中止任务并引发异常。<code>RandomIntegerSumTask</code>（带子任务）生成了几个实例并将其添加到任务管理器，展示两种类型的依赖项：</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">QgsApplication</span><span class="p">,</span> <span class="n">QgsTask</span><span class="p">,</span> <span class="n">QgsMessageLog</span><span class="p">,</span>
+    <span class="p">)</span>
+
+<span class="n">MESSAGE_CATEGORY</span> <span class="o">=</span> <span class="s1">&#39;RandomIntegerSumTask&#39;</span>
+
+<span class="k">class</span> <span class="nc">RandomIntegerSumTask</span><span class="p">(</span><span class="n">QgsTask</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;展示如何子类化QgsTask&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">description</span><span class="p">,</span> <span class="n">duration</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">description</span><span class="p">,</span> <span class="n">QgsTask</span><span class="o">.</span><span class="n">CanCancel</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="n">duration</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exception</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;在这里你要实现你的任务。</span>
+<span class="sd">        应该定期测试isCanceled()，以便优雅地终止。</span>
+<span class="sd">        此方法必须返回True或False。</span>
+<span class="sd">        引发异常将使QGIS崩溃，因此我们在内部处理这些异常，并在self.finished中抛出。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span><span class="s1">&#39;Started task &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                     <span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">()),</span>
+                                 <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Info</span><span class="p">)</span>
+        <span class="n">wait_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">/</span> <span class="mi">100</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
+            <span class="c1"># 使用setProgress报告进度</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setProgress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">arandominteger</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">+=</span> <span class="n">arandominteger</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="c1"># 检查isCanceled()处理取消</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isCanceled</span><span class="p">():</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="c1"># 模拟异常情况</span>
+            <span class="k">if</span> <span class="n">arandominteger</span> <span class="o">==</span> <span class="mi">42</span><span class="p">:</span>
+                <span class="c1"># 不要raise Exception(&#39;bad value!&#39;)，否则将使QGIS崩溃</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">exception</span> <span class="o">=</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;bad value!&#39;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">finished</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        当任务完成（无论成功与否）时，这个函数会被自动调用。</span>
+<span class="sd">        你可以通过实现 finished() 来执行任务完成后的后续事情。</span>
+<span class="sd">        finished总是从主线程中调用的，因此在这里进行GUI操作和引发 Python 异常是安全的。</span>
+<span class="sd">        result是self.run的返回值。</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">result</span><span class="p">:</span>
+            <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+                <span class="s1">&#39;Task &quot;</span><span class="si">{name}</span><span class="s1">&quot; completed</span><span class="se">\n</span><span class="s1">&#39;</span> \
+                <span class="s1">&#39;Total: </span><span class="si">{total}</span><span class="s1"> (with </span><span class="si">{iterations}</span><span class="s1"> &#39;</span>\
+              <span class="s1">&#39;iterations)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                  <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">(),</span>
+                  <span class="n">total</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">,</span>
+                  <span class="n">iterations</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">iterations</span><span class="p">),</span>
+              <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Success</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+                    <span class="s1">&#39;Task &quot;</span><span class="si">{name}</span><span class="s1">&quot; not successful but without &#39;</span>\
+                    <span class="s1">&#39;exception (probably the task was manually &#39;</span>\
+                    <span class="s1">&#39;canceled by the user)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">()),</span>
+                    <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+                    <span class="s1">&#39;Task &quot;</span><span class="si">{name}</span><span class="s1">&quot; Exception: </span><span class="si">{exception}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                        <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">(),</span>
+                        <span class="n">exception</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">exception</span><span class="p">),</span>
+                    <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span>
+
+    <span class="k">def</span> <span class="nf">cancel</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+            <span class="s1">&#39;Task &quot;</span><span class="si">{name}</span><span class="s1">&quot; was canceled&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">description</span><span class="p">()),</span>
+            <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Info</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span>
+
+
+<span class="n">longtask</span> <span class="o">=</span> <span class="n">RandomIntegerSumTask</span><span class="p">(</span><span class="s1">&#39;waste cpu long&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">shorttask</span> <span class="o">=</span> <span class="n">RandomIntegerSumTask</span><span class="p">(</span><span class="s1">&#39;waste cpu short&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">minitask</span> <span class="o">=</span> <span class="n">RandomIntegerSumTask</span><span class="p">(</span><span class="s1">&#39;waste cpu mini&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">shortsubtask</span> <span class="o">=</span> <span class="n">RandomIntegerSumTask</span><span class="p">(</span><span class="s1">&#39;waste cpu subtask short&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">longsubtask</span> <span class="o">=</span> <span class="n">RandomIntegerSumTask</span><span class="p">(</span><span class="s1">&#39;waste cpu subtask long&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">shortestsubtask</span> <span class="o">=</span> <span class="n">RandomIntegerSumTask</span><span class="p">(</span><span class="s1">&#39;waste cpu subtask shortest&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># 添加子任务(shortsubtask)到shorttask——必须在minitask和longtask完成后执行</span>
+<span class="n">shorttask</span><span class="o">.</span><span class="n">addSubTask</span><span class="p">(</span><span class="n">shortsubtask</span><span class="p">,</span> <span class="p">[</span><span class="n">minitask</span><span class="p">,</span> <span class="n">longtask</span><span class="p">])</span>
+<span class="c1"># 添加子任务(longsubtask)到longtask——必须父级任务之前运行</span>
+<span class="n">longtask</span><span class="o">.</span><span class="n">addSubTask</span><span class="p">(</span><span class="n">longsubtask</span><span class="p">,</span> <span class="p">[],</span> <span class="n">QgsTask</span><span class="o">.</span><span class="n">ParentDependsOnSubTask</span><span class="p">)</span>
+<span class="c1"># 添加子任务(shortestsubtask)到longtask</span>
+<span class="n">longtask</span><span class="o">.</span><span class="n">addSubTask</span><span class="p">(</span><span class="n">shortestsubtask</span><span class="p">)</span>
+
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">taskManager</span><span class="p">()</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">longtask</span><span class="p">)</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">taskManager</span><span class="p">()</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">shorttask</span><span class="p">)</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">taskManager</span><span class="p">()</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">minitask</span><span class="p">)</span>
+
+
+
+
+<span class="c1"># RandomIntegerSumTask(0): Started task &quot;waste cpu subtask shortest&quot;</span>
+<span class="c1"># RandomIntegerSumTask(0): Started task &quot;waste cpu short&quot;</span>
+<span class="c1"># RandomIntegerSumTask(0): Started task &quot;waste cpu mini&quot;</span>
+<span class="c1"># RandomIntegerSumTask(0): Started task &quot;waste cpu subtask long&quot;</span>
+<span class="c1"># RandomIntegerSumTask(3): Task &quot;waste cpu subtask shortest&quot; completed</span>
+<span class="c1"># RandomTotal: 25452 (with 100 iterations)</span>
+<span class="c1"># RandomIntegerSumTask(3): Task &quot;waste cpu mini&quot; completed</span>
+<span class="c1"># RandomTotal: 23810 (with 100 iterations)</span>
+<span class="c1"># RandomIntegerSumTask(3): Task &quot;waste cpu subtask long&quot; completed</span>
+<span class="c1"># RandomTotal: 26308 (with 100 iterations)</span>
+<span class="c1"># RandomIntegerSumTask(0): Started task &quot;waste cpu long&quot;</span>
+<span class="c1"># RandomIntegerSumTask(3): Task &quot;waste cpu long&quot; completed</span>
+<span class="c1"># RandomTotal: 22534 (with 100 iterations)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="1522">15.2.2 从函数创建任务<a class="headerlink" href="#1522" title="Permanent link">⚓︎</a></h3>
+<p>从函数创建任务（本示例中的<code>doSomething</code>）。该函数的第一个参数为<a href="https://qgis.org/pyqgis/master/core/QgsTask.html#qgis.core.QgsTask"><code>QgsTask</code></a> 。一个重要的参数是<code>on_finished</code>，它是在任务完成时被调用的函数。示例中的<code>doSomething</code>函数有另一个参数<code>wait_time</code>。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+
+<span class="n">MESSAGE_CATEGORY</span> <span class="o">=</span> <span class="s1">&#39;TaskFromFunction&#39;</span>
+
+<span class="k">def</span> <span class="nf">doSomething</span><span class="p">(</span><span class="n">task</span><span class="p">,</span> <span class="n">wait_time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    抛出一个异常终止任务</span>
+<span class="sd">    成功则返回结果</span>
+<span class="sd">    结果将和异常一起传递给 (成功则为空)on_finished函数.</span>
+<span class="sd">    如果存在异常，结果为空</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span><span class="s1">&#39;Started task </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">()),</span>
+                             <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Info</span><span class="p">)</span>
+    <span class="n">wait_time</span> <span class="o">=</span> <span class="n">wait_time</span> <span class="o">/</span> <span class="mi">100</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">iterations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="n">wait_time</span><span class="p">)</span>
+        <span class="c1"># 使用task.setProgress报告进度</span>
+        <span class="n">task</span><span class="o">.</span><span class="n">setProgress</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">arandominteger</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">arandominteger</span>
+        <span class="n">iterations</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># 检查task.isCanceled()处理取消</span>
+        <span class="k">if</span> <span class="n">task</span><span class="o">.</span><span class="n">isCanceled</span><span class="p">():</span>
+            <span class="n">stopped</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="c1"># 抛出异常终止任务</span>
+        <span class="k">if</span> <span class="n">arandominteger</span> <span class="o">==</span> <span class="mi">42</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;bad value!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="n">total</span><span class="p">,</span> <span class="s1">&#39;iterations&#39;</span><span class="p">:</span> <span class="n">iterations</span><span class="p">,</span>
+            <span class="s1">&#39;task&#39;</span><span class="p">:</span> <span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">()}</span>
+
+<span class="k">def</span> <span class="nf">stopped</span><span class="p">(</span><span class="n">task</span><span class="p">):</span>
+    <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+        <span class="s1">&#39;Task &quot;</span><span class="si">{name}</span><span class="s1">&quot; was canceled&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">task</span><span class="o">.</span><span class="n">description</span><span class="p">()),</span>
+        <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Info</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">completed</span><span class="p">(</span><span class="n">exception</span><span class="p">,</span> <span class="n">result</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;当doSomething完成时呗调佣</span>
+<span class="sd">    如果抛出异常则异常信息不是空</span>
+<span class="sd">    结果是doSomething返回的结果&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">exception</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+                <span class="s1">&#39;Completed with no exception and no result &#39;</span>\
+                <span class="s1">&#39;(probably manually canceled by the user)&#39;</span><span class="p">,</span>
+                <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span>
+                <span class="s1">&#39;Task </span><span class="si">{name}</span><span class="s1"> completed</span><span class="se">\n</span><span class="s1">&#39;</span>
+                <span class="s1">&#39;Total: </span><span class="si">{total}</span><span class="s1"> ( with </span><span class="si">{iterations}</span><span class="s1"> &#39;</span>
+                <span class="s1">&#39;iterations)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                    <span class="n">name</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;task&#39;</span><span class="p">],</span>
+                    <span class="n">total</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;total&#39;</span><span class="p">],</span>
+                    <span class="n">iterations</span><span class="o">=</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;iterations&#39;</span><span class="p">]),</span>
+                <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Info</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span><span class="s2">&quot;Exception: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exception</span><span class="p">),</span>
+                                 <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Critical</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">exception</span>
+
+<span class="c1"># 创建一些任务</span>
+<span class="n">task1</span> <span class="o">=</span> <span class="n">QgsTask</span><span class="o">.</span><span class="n">fromFunction</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;Waste cpu 1&#39;</span><span class="p">,</span> <span class="n">doSomething</span><span class="p">,</span>
+                             <span class="n">on_finished</span><span class="o">=</span><span class="n">completed</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">task2</span> <span class="o">=</span> <span class="n">QgsTask</span><span class="o">.</span><span class="n">fromFunction</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;Waste cpu 2&#39;</span><span class="p">,</span> <span class="n">dosomething</span><span class="p">,</span>
+                             <span class="n">on_finished</span><span class="o">=</span><span class="n">completed</span><span class="p">,</span> <span class="n">wait_time</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">taskManager</span><span class="p">()</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">task1</span><span class="p">)</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">taskManager</span><span class="p">()</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">task2</span><span class="p">)</span>
+
+
+<span class="c1"># RandomIntegerSumTask(0): Started task &quot;waste cpu subtask short&quot;</span>
+<span class="c1"># RandomTaskFromFunction(0): Started task Waste cpu 1</span>
+<span class="c1"># RandomTaskFromFunction(0): Started task Waste cpu 2</span>
+<span class="c1"># RandomTaskFromFunction(0): Task Waste cpu 2 completed</span>
+<span class="c1"># RandomTotal: 23263 ( with 100 iterations)</span>
+<span class="c1"># RandomTaskFromFunction(0): Task Waste cpu 1 completed</span>
+<span class="c1"># RandomTotal: 25044 ( with 100 iterations)</span>
+</code></pre></div>
+</td></tr></table>
+<h3 id="1423">14.2.3 处理算法任务<a class="headerlink" href="#1423" title="Permanent link">⚓︎</a></h3>
+<p>创建一个使用算法<a href="https://docs.qgis.org/testing/en/docs/user_manual/processing_algs/qgis/vectorcreation.html#qgisrandompointsinextent"><code>qgis:randompointsinextent</code></a>的任务，在指定范围内生成50000个随机点。结果以安全的方式添加到项目中。</p>
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span> <span class="nn">qgis.core</span> <span class="kn">import</span> <span class="p">(</span><span class="n">QgsTaskManager</span><span class="p">,</span> <span class="n">QgsMessageLog</span><span class="p">,</span>
+                       <span class="n">QgsProcessingAlgRunnerTask</span><span class="p">,</span> <span class="n">QgsApplication</span><span class="p">,</span>
+                       <span class="n">QgsProcessingContext</span><span class="p">,</span> <span class="n">QgsProcessingFeedback</span><span class="p">,</span>
+                       <span class="n">QgsProject</span><span class="p">)</span>
+
+<span class="n">MESSAGE_CATEGORY</span> <span class="o">=</span> <span class="s1">&#39;AlgRunnerTask&#39;</span>
+
+<span class="k">def</span> <span class="nf">task_finished</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">successful</span><span class="p">,</span> <span class="n">results</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">successful</span><span class="p">:</span>
+        <span class="n">QgsMessageLog</span><span class="o">.</span><span class="n">logMessage</span><span class="p">(</span><span class="s1">&#39;Task finished unsucessfully&#39;</span><span class="p">,</span>
+                                 <span class="n">MESSAGE_CATEGORY</span><span class="p">,</span> <span class="n">Qgis</span><span class="o">.</span><span class="n">Warning</span><span class="p">)</span>
+    <span class="n">output_layer</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">getMapLayer</span><span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;OUTPUT&#39;</span><span class="p">])</span>
+    <span class="c1"># 因为getMapLayer没有移交所有权, 当上下文超出范围时图层将被删除，你会遇到崩溃</span>
+    <span class="c1"># takeMapLayer移交所有权，因此它将安全地添加到QgsProject中，并赋予QgsProject所有权</span>
+    <span class="k">if</span> <span class="n">output_layer</span> <span class="ow">and</span> <span class="n">output_layer</span><span class="o">.</span><span class="n">isValid</span><span class="p">():</span>
+        <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span>
+             <span class="n">context</span><span class="o">.</span><span class="n">takeResultLayer</span><span class="p">(</span><span class="n">output_layer</span><span class="o">.</span><span class="n">id</span><span class="p">()))</span>
+
+<span class="n">alg</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">processingRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">algorithmById</span><span class="p">(</span>
+                                      <span class="sa">u</span><span class="s1">&#39;qgis:randompointsinextent&#39;</span><span class="p">)</span>
+<span class="n">context</span> <span class="o">=</span> <span class="n">QgsProcessingContext</span><span class="p">()</span>
+<span class="n">feedback</span> <span class="o">=</span> <span class="n">QgsProcessingFeedback</span><span class="p">()</span>
+<span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;EXTENT&#39;</span><span class="p">:</span> <span class="s1">&#39;0.0,10.0,40,50 [EPSG:4326]&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;MIN_DISTANCE&#39;</span><span class="p">:</span> <span class="mf">0.0</span><span class="p">,</span>
+    <span class="s1">&#39;POINTS_NUMBER&#39;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">,</span>
+    <span class="s1">&#39;TARGET_CRS&#39;</span><span class="p">:</span> <span class="s1">&#39;EPSG:4326&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span> <span class="s1">&#39;memory:My random points&#39;</span>
+<span class="p">}</span>
+<span class="n">task</span> <span class="o">=</span> <span class="n">QgsProcessingAlgRunnerTask</span><span class="p">(</span><span class="n">alg</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">feedback</span><span class="p">)</span>
+<span class="n">task</span><span class="o">.</span><span class="n">executed</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">partial</span><span class="p">(</span><span class="n">task_finished</span><span class="p">,</span> <span class="n">context</span><span class="p">))</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">taskManager</span><span class="p">()</span><span class="o">.</span><span class="n">addTask</span><span class="p">(</span><span class="n">task</span><span class="p">)</span>
+</code></pre></div>
+</td></tr></table>
+<p>也可以查看博客：<a href="https://opengis.ch/2018/06/22/threads-in-pyqgis3/">https://opengis.ch/2018/06/22/threads-in-pyqgis3/</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" data-md-state="hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../14-%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 14-认证基础" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              14-认证基础
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../16-%E5%BC%80%E5%8F%91Python%E6%8F%92%E4%BB%B6/" class="md-footer__link md-footer__link--next" aria-label="下一页: 16-开发Python插件" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              16-开发Python插件
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.top", "navigation.expand", "search.suggest", "search.highlight", "search.share"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.ddd52ceb.min.js"></script>
+      
+        <script src="../js/db.js"></script>
+      
+    
+  </body>
+</html>
