@@ -10,6 +10,7 @@ markdown_extensions:
   - admonition
   - toc:
       permalink: ⚓︎
+      toc_depth: 4
   - footnotes
   - meta
   - def_list
