@@ -8,8 +8,10 @@
 from qgis.PyQt.QtWidgets import QApplication
 
 app = QApplication.instance()
-qss_file = open(r"/path/to/style/file.qss").read()
-app.setStyleSheet(qss_file)
+app.setStyleSheet(".QWidget {color: blue; background-color: yellow;}")
+# 你可以从文件读取样式
+with  open("testdata/file.qss") as qss_file_content:
+    app.setStyleSheet(qss_file_content.read())
 ```
 **改变图标和标题**
 
@@ -42,10 +44,10 @@ toolbar = iface.helpToolBar()
 parent = toolbar.parentWidget()
 parent.removeToolBar(toolbar)
 
-# and add again
+# 添加
 parent.addToolBar(toolbar)
 ```
-**移除动作**
+**移除操作**
 
 ```python
 actions = iface.attributesToolBar().actions()
@@ -60,12 +62,12 @@ iface.attributesToolBar().addAction(actions[3])
 ```python
 from qgis.utils import iface
 
-# for example Help Menu
+# 帮助菜单
 menu = iface.helpMenu()
 menubar = menu.parentWidget()
 menubar.removeAction(menu.menuAction())
 
-# and add again
+# 添加
 menubar.addAction(menu.menuAction())
 ```
 ## 21.5 画布
@@ -88,7 +90,7 @@ iface.mapCanvas().refresh()
 
 ```python
 from qgis.PyQt.QtCore import QSettings
-# Set milliseconds (150 milliseconds)
+# 150毫秒
 QSettings().setValue("/qgis/map_update_interval", 150)
 ```
 ## 21.6 图层
@@ -106,16 +108,27 @@ if not layer:
 ```python
 layer = iface.activeLayer()
 ```
+**图层列表**
+
+```python
+from qgis.core import QgsProject
+
+QgsProject.instance().mapLayers().values()
+```
+
 **获得图层名称**
 
 ```python
+from qgis.core import QgsVectorLayer
+layer = QgsVectorLayer("Point?crs=EPSG:4326", "layer name you like", "memory")
+QgsProject.instance().addMapLayer(layer)
+
 layers_names = []
 for layer in QgsProject.instance().mapLayers().values():
     layers_names.append(layer.name())
 
 print("layers TOC = {}".format(layers_names))
 
-# otherwise
 layers_names = [layer.name() for layer in QgsProject.instance().mapLayers().values()]
 print("layers TOC = {}".format(layers_names))
 ```
@@ -141,9 +154,9 @@ iface.setActiveLayer(layer)
 from qgis.core import QgsProject
 
 layer = QgsProject.instance().mapLayersByName("layer name you like")[0]
-# Set seconds (5 seconds)
+# 5秒
 layer.setAutoRefreshInterval(5000)
-# Enable auto refresh
+# 自动刷新
 layer.setAutoRefreshEnabled(True)
 ```
 **添加表单要素**
@@ -194,10 +207,10 @@ from qgis.core import QgsFeatureRequest
 memory_layer = layer.materialize(QgsFeatureRequest().setFilterFids(layer.selectedFeatureIds()))
 QgsProject.instance().addMapLayer(memory_layer)
 ```
-获得几何
+**获得几何**
 
 ```python
-# Point layer
+# 点图层
 for f in layer.getFeatures():
     geom = f.geometry()
     print ('%f, %f' % (geom.asPoint().y(), geom.asPoint().x()))
@@ -205,8 +218,12 @@ for f in layer.getFeatures():
 **移动几何**
 
 ```python
-geom.translate(100, 100)
+from qgis.core import QgsFeature, QgsGeometry
+poly = QgsFeature()
+geom = QgsGeometry.fromWkt("POINT(7 45)")
+geom.translate(1, 1)
 poly.setGeometry(geom)
+print(poly.geometry())
 ```
 **设置坐标参考系统**
 
@@ -265,7 +282,7 @@ subLayers =layer.dataProvider().subLayers()
 for subLayer in subLayers:
     name = subLayer.split('!!::!!')[1]
     uri = "%s|layername=%s" % (fileName, name,)
-    # Create layer
+    # 创建图层
     sub_vlayer = QgsVectorLayer(uri, name, 'ogr')
     # Add layer to map
     QgsProject.instance().addMapLayer(sub_vlayer)
@@ -306,18 +323,25 @@ iface.mapCanvas().layers()
 ltv = iface.layerTreeView()
 mp = ltv.menuProvider()
 ltv.setMenuProvider(None)
-# Restore
+# 恢复
 ltv.setMenuProvider(mp)
 ```
 ## 21.8 高级目录
 **根节点**
 
 ```python
-from qgis.core import QgsProject
+from qgis.core import QgsVectorLayer, QgsProject, QgsLayerTreeLayer
 
 root = QgsProject.instance().layerTreeRoot()
-print (root)
-print (root.children())
+node_group = root.addGroup("My Group")
+
+layer = QgsVectorLayer("Point?crs=EPSG:4326", "layer name you like", "memory")
+QgsProject.instance().addMapLayer(layer, False)
+
+node_group.addLayer(layer)
+
+print(root)
+print(root.children())
 ```
 **访问第一个子节点**
 
@@ -339,7 +363,7 @@ def get_group_layers(group):
    print('- group: ' + group.name())
    for child in group.children():
       if isinstance(child, QgsLayerTreeGroup):
-         # Recursive call to get nested groups
+         # 遍历嵌套图层组
          get_group_layers(child)
       else:
          print('  - layer: ' + child.name())
@@ -379,16 +403,51 @@ from qgis.core import QgsLayerTreeGroup
 node_group2 = QgsLayerTreeGroup("Group 2")
 root.addChildNode(node_group2)
 ```
-**移除图层**
+**移除加载的图层**
 
 ```python
-root.removeLayer(layer1)
+layer = QgsProject.instance().mapLayersByName("layer name you like")[0]
+root = QgsProject.instance().layerTreeRoot()
+
+myLayer = root.findLayer(layer.id())
+myClone = myLayer.clone()
+parent = myLayer.parent()
+
+myGroup = root.findGroup("My Group")
+# 插入到第一个位置
+myGroup.insertChildNode(0, myClone)
+
+parent.removeChildNode(myLayer)
 ```
-**移除图层组**
+**移除指定图层组**
 
 ```python
-root.removeChildNode(node_group2)
+QgsProject.instance().addMapLayer(layer, False)
+
+root = QgsProject.instance().layerTreeRoot()
+myGroup = root.findGroup("My Group")
+myOriginalLayer = root.findLayer(layer.id())
+myLayer = myOriginalLayer.clone()
+myGroup.insertChildNode(0, myLayer)
+parent.removeChildNode(myOriginalLayer)
 ```
+**改变可见性**
+
+```python
+myGroup.setItemVisibilityChecked(False)
+myLayer.setItemVisibilityChecked(False)
+```
+
+**图层组是否被选择**
+
+```python
+def isMyGroupSelected( groupName ):
+    myGroup = QgsProject.instance().layerTreeRoot().findGroup( groupName )
+    return myGroup in iface.layerTreeView().selectedNodes()
+
+print(isMyGroupSelected( 'my group name' ))
+```
+
 **移动节点**
 
 ```python
@@ -396,59 +455,13 @@ cloned_group1 = node_group.clone()
 root.insertChildNode(0, cloned_group1)
 root.removeChildNode(node_group)
 ```
-重命名节点
-
-```python
-cloned_group1.setName("Group X")
-node_layer1.setName("Layer X")
-```
-**移动加载的图层**
-
-```python
-layer = QgsProject.instance().mapLayersByName("layer name you like")[0]
-root = QgsProject.instance().layerTreeRoot()
-
-mylayer = root.findLayer(layer.id())
-myClone = mylayer.clone()
-parent = mylayer.parent()
-
-group = root.findGroup("My Group")
-# Insert in first position
-group.insertChildNode(0, myClone)
-
-parent.removeChildNode(mylayer)
-```
-**加载指定图层组**
-
-```python
-QgsProject.instance().addMapLayer(layer, False)
-
-root = QgsProject.instance().layerTreeRoot()
-g = root.findGroup("My Group")
-g.insertChildNode(0, QgsLayerTreeLayer(layer))
-```
-**改变可视性**
-
-```python
-print (cloned_group1.isVisible())
-cloned_group1.setItemVisibilityChecked(False)
-node_layer1.setItemVisibilityChecked(False)
-```
-**判断图层组是否选中**
-
-```python
-def isMyGroupSelected( groupName ):
-    myGroup = QgsProject.instance().layerTreeRoot().findGroup( groupName )
-    return myGroup in iface.layerTreeView().selectedNodes()
-
-print (isMyGroupSelected( 'my group name' ))
-```
 **展开节点**
 
 ```python
-print (cloned_group1.isExpanded())
-cloned_group1.setExpanded(False)
+print(myGroup.isExpanded())
+myGroup.setExpanded(False)
 ```
+
 **隐藏节点**
 
 ```python
@@ -459,13 +472,14 @@ ltv = iface.layerTreeView()
 root = QgsProject.instance().layerTreeRoot()
 
 layer = QgsProject.instance().mapLayersByName('layer name you like')[0]
-node=root.findLayer( layer.id())
+node = root.findLayer( layer.id())
 
 index = model.node2index( node )
 ltv.setRowHidden( index.row(), index.parent(), True )
 node.setCustomProperty( 'nodeHidden', 'true')
 ltv.setCurrentIndex(model.node2index(root))
 ```
+
 **节点信号**
 
 ```python
@@ -478,17 +492,42 @@ def onAddedChildren(node, indexFrom, indexTo):
 root.willAddChildren.connect(onWillAddChildren)
 root.addedChildren.connect(onAddedChildren)
 ```
-**创建新目录**
+
+**移除图层**
 
 ```python
-from qgis.core import QgsProject, QgsLayerTreeModel
-from qgis.gui import QgsLayerTreeView
+root.removeLayer(layer)
+```
 
+**移除图层组**
+
+```python
+root.removeChildNode(node_group2)
+```
+
+**创建新的目录树**
+
+```python
 root = QgsProject.instance().layerTreeRoot()
 model = QgsLayerTreeModel(root)
 view = QgsLayerTreeView()
 view.setModel(model)
-view.show()
+view.show(
+```
+
+**移动节点**
+
+```python
+cloned_group1 = node_group.clone()
+root.insertChildNode(0, cloned_group1)
+root.removeChildNode(node_group)
+```
+
+**重命名节点**
+
+```python
+cloned_group1.setName("Group X")
+node_layer1.setName("Layer X")
 ```
 ## 21.9 处理算法
 **获得算法列表**
@@ -497,16 +536,8 @@ view.show()
 from qgis.core import QgsApplication
 
 for alg in QgsApplication.processingRegistry().algorithms():
-    print("{}:{} --> {}".format(alg.provider().name(), alg.name(), alg.displayName()))
-
-# otherwise
-def alglist():
-    s = ''
-    for i in QgsApplication.processingRegistry().algorithms():
-        l = i.displayName().ljust(50, "-")
-        r = i.id()
-        s += '{}--->{}\n'.format(l, r)
-    print(s)
+    if 'buffer' == alg.name():
+        print("{}:{} --> {}".format(alg.provider().name(), alg.name(), alg.displayName()))
 ```
 **获得算法帮助**
 
@@ -516,6 +547,8 @@ from qgis import processing
 processing.algorithmHelp("qgis:randomselection")
 ```
 **运行算法**
+
+本示例，结果存储在添加到项目的临时内存层中。
 
 ```python
 from qgis import processing
@@ -543,7 +576,7 @@ from qgis.core import QgsExpression
 
 len(QgsExpression.Functions())
 ```
-## 21.10 装饰
+## 21.10 装饰器
 **版权**
 
 ```python
@@ -557,7 +590,7 @@ mMarginHorizontal = 0
 mMarginVertical = 0
 mLabelQColor = "#FF0000"
 
-INCHES_TO_MM = 0.0393700787402 # 1 millimeter = 0.0393700787402 inches
+INCHES_TO_MM = 0.0393700787402 # 1 毫米 = 0.0393700787402 英寸
 case = 2
 
 def add_copyright(p, text, xOffset, yOffset):
@@ -566,9 +599,9 @@ def add_copyright(p, text, xOffset, yOffset):
     p.setWorldTransform( p.worldTransform() )
 
 def _on_render_complete(p):
-    deviceHeight = p.device().height() # Get paint device height on which this painter is currently painting
-    deviceWidth  = p.device().width() # Get paint device width on which this painter is currently painting
-    # Create new container for structured rich text
+    deviceHeight = p.device().height() # 获取绘制设备高度
+    deviceWidth  = p.device().width() # 获取绘制设备宽度
+    # 创建一个新的富文本容器
     text = QTextDocument()
     font = QFont()
     font.setFamily(mQFont)
@@ -576,50 +609,50 @@ def _on_render_complete(p):
     text.setDefaultFont(font)
     style = "<style type=\"text/css\"> p {color: " + mLabelQColor + "}</style>"
     text.setHtml( style + "<p>" + mLabelQString + "</p>" )
-    # Text Size
+    # 文本大小
     size = text.size()
 
-    # RenderMillimeters
+    # 渲染
     pixelsInchX  = p.device().logicalDpiX()
     pixelsInchY  = p.device().logicalDpiY()
     xOffset  = pixelsInchX  * INCHES_TO_MM * int(mMarginHorizontal)
     yOffset  = pixelsInchY  * INCHES_TO_MM * int(mMarginVertical)
 
-    # Calculate positions
+    # 计算点位
     if case == 0:
-        # Top Left
+        # 左上
         add_copyright(p, text, xOffset, yOffset)
 
     elif case == 1:
-        # Bottom Left
+        # 左下
         yOffset = deviceHeight - yOffset - size.height()
         add_copyright(p, text, xOffset, yOffset)
 
     elif case == 2:
-        # Top Right
+        # 右上
         xOffset  = deviceWidth  - xOffset - size.width()
         add_copyright(p, text, xOffset, yOffset)
 
     elif case == 3:
-        # Bottom Right
+        # 右下
         yOffset  = deviceHeight - yOffset - size.height()
         xOffset  = deviceWidth  - xOffset - size.width()
         add_copyright(p, text, xOffset, yOffset)
 
     elif case == 4:
-        # Top Center
+        # 上中心点
         xOffset = deviceWidth / 2
         add_copyright(p, text, xOffset, yOffset)
 
     else:
-        # Bottom Center
+        # 下中心点
         yOffset = deviceHeight - yOffset - size.height()
         xOffset = deviceWidth / 2
         add_copyright(p, text, xOffset, yOffset)
 
-# Emitted when the canvas has rendered
+# 当画布渲染完成后发送信号
 iface.mapCanvas().renderComplete.connect(_on_render_complete)
-# Repaint the canvas map
+# 重绘画布
 iface.mapCanvas().refresh()
 ```
 
@@ -628,7 +661,7 @@ iface.mapCanvas().refresh()
 **按名称获取打印布局**
 
 ```python
-composerTitle = 'MyComposer' # Name of the composer
+composerTitle = 'MyComposer' # 创作者名称
 
 project = QgsProject.instance()
 projectLayoutManager = project.layoutManager()
@@ -641,3 +674,4 @@ layout = projectLayoutManager.layoutByName(composerTitle)
 - [QGIS C++ API](https://qgis.org/api/)
 - [StackOverFlow QGIS questions](https://stackoverflow.com/questions/tagged/qgis)
 - [Script by Klas Karlsson](https://raw.githubusercontent.com/klakar/QGIS_resources/master/collections/Geosupportsystem/python/qgis_basemaps.py)
+
