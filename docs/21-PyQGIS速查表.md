@@ -434,8 +434,10 @@ parent.removeChildNode(myOriginalLayer)
 **改变可见性**
 
 ```python
-myGroup.setItemVisibilityChecked(False)
-myLayer.setItemVisibilityChecked(False)
+root = QgsProject.instance().layerTreeRoot()
+node = root.findLayer(layer.id())
+new_state = Qt.Checked if node.isVisible() == Qt.Unchecked else Qt.Unchecked
+node.setItemVisibilityChecked(new_state)
 ```
 
 **图层组是否被选择**
@@ -472,7 +474,7 @@ ltv = iface.layerTreeView()
 root = QgsProject.instance().layerTreeRoot()
 
 layer = QgsProject.instance().mapLayersByName('layer name you like')[0]
-node = root.findLayer( layer.id())
+node = root.findLayer(layer.id())
 
 index = model.node2index( node )
 ltv.setRowHidden( index.row(), index.parent(), True )
@@ -512,7 +514,7 @@ root = QgsProject.instance().layerTreeRoot()
 model = QgsLayerTreeModel(root)
 view = QgsLayerTreeView()
 view.setModel(model)
-view.show(
+view.show()
 ```
 
 **移动节点**
