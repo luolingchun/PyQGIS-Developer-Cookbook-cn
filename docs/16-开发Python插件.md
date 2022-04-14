@@ -94,7 +94,7 @@ PYTHON_PLUGINS_PATH/
 | tracker               |    否    | 故障和错误报告的有效URL                                      |
 | icon                  |    否    | 对于web友好的图像（PNG，JPEG）文件名或相对路径（相对于插件压缩包的文件夹） |
 | category              |    否    | Raster, Vector, Database and Web（栅格、矢量、数据库和网络） |
-| plugin_dependencies   |    否    | 类似于PIP的逗号分隔的其他插件列表                            |
+| plugin_dependencies   |    否    | 类似于PIP的逗号分隔的其他插件列表，使用来自元数据名称字段的插件名称 |
 | server                |    否    | 布尔值，True或False，确定插件是否具有服务器接口              |
 | hasProcessingProvider |    否    | 布尔值，True或False，确定插件是否提供处理算法                |
 
