@@ -107,11 +107,13 @@ I/O过滤器可以修改核心服务（WMS、WFS等）的服务器输入和输�
 
 每一个插件应该至少实现以下三个回调函数：
 
-- [`requestReady()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.requestReady)
-- [`responseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.responseComplete)
-- [`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)
+- [`onRequestReady()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onRequestReady)
+- [`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)
+- [`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)
 
 所有的过滤器都可以访问请求/响应对象（[`QgsRequestHandler`](https://qgis.org/pyqgis/master/server/QgsRequestHandler.html#qgis.server.QgsRequestHandler)），并且可以操作它的所有属性（输入/输出）和引发异常（同时以一种相当特别的方式，我们将在下面看到）。
+
+所有这些方法都返回一个布尔值，指示调用是否应传播到后续过滤器。如果其中一个方法返回False，则传播链停止，否则调用将传播到下一个过滤器。
 
 下面是显示服务器如何处理一个典型请求以及何时调用过滤器回调函数的伪代码。
 
@@ -119,15 +121,15 @@ I/O过滤器可以修改核心服务（WMS、WFS等）的服务器输入和输�
 for each incoming request:
     create GET/POST request handler
     pass request to an instance of QgsServerInterface
-    call requestReady filters
+    call onRequestReady filters
+
     if there is not a response:
         if SERVICE is WMS/WFS/WCS:
             create WMS/WFS/WCS service
             call service’s executeRequest
-                possibly call sendResponse for each chunk of bytes
+                possibly call onSendResponse for each chunk of bytes
                 sent to the client by a streaming services (WFS)
-        call responseComplete
-        call sendResponse
+        call onResponseComplete
     request handler sends the response to the client
 ```
 
@@ -146,15 +148,21 @@ for each incoming request:
 
 ##### 20.4.1.1.2 发送响应
 
-每当有任何输出被发送到**FCGI** `stdout`（并从那里发送到客户端）时，将被调用。这通常是在核心服务完成它们的过程和调用`responseComplete`钩子后进行的，但在少数情况下，XML会变得如此巨大，以至于需要一个流式XML实现（WFS GetFeature就是其中之一）。在这种情况下，在响应完成之前，可能会例外地多次调用[`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)，而不是单次调用该方法，在这种情况下（也只有在这种情况下），也会在[`responseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.responseComplete)之前调用。
+无论何时从响应缓冲区刷新任何部分输出，都会调用该函数（例如**FCGI**标准输出被使用），并从缓冲区刷新到客户端。当大量内容被流式传输（比如WFS GetFeature）时，就会发生这种情况。在这种情况下，[`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)可能会被多次调用。
 
-[`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)是直接操作核心服务输出的最佳位置，虽然[`responseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.responseComplete)通常也是一种选择，但在流媒体服务的情况下，[`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)是唯一可行的选择。
+请注意，如果响应没有流式传输，则根本不会调用[`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)。
+
+在所有情况下，调用[`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)后，最后一个（或唯一的）块将被发送到客户端。
+
+返回`False`将防止向客户端刷新数据。当插件希望从响应中收集所有块，并在[`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)中检查或更改响应时，这是可取的。
 
 ##### 20.4.1.1.3 响应完成
 
-当核心服务（如果被击中的话）完成它们的过程，并且请求准备好被发送到客户端时，将被调用一次。如上所述，通常在[`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)之前调用，除了流媒体服务（或其他插件过滤器）可能在之前调用[`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)。
+当核心服务（如果被击中的话）完成它们的过程，并且请求准备好被发送到客户端时，将被调用一次。如上所述，通常在[`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)之前调用，除了流媒体服务（或其他插件过滤器）可能在之前调用[`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)。
 
-[`responseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.responseComplete)是提供新服务实现（WPS或自定义服务）和对来自核心服务的输出进行直接操作的理想场所（例如，在WMS图像上添加水印）。
+[`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)是提供新服务实现（WPS或自定义服务）和对来自核心服务的输出进行直接操作的理想场所（例如，在WMS图像上添加水印）。
+
+请注意，返回`False`将阻止下一个插件执行[`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)，但在任何情况下，都会阻止将响应发送到客户端。
 
 #### 20.4.1.2 从插件引发异常
 
@@ -208,9 +216,9 @@ def serverClassFactory(serverIface):
 
 每个[`QgsServerFilter`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter)都实现了一个或多个以下的回调函数：
 
-- [`requestReady()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.requestReady)
-- [`responseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.responseComplete)
-- [`sendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.sendResponse)
+- [`onRequestReady()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onRequestReady)
+- [`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)
+- [`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)
 
 下面的例子实现了一个最小的过滤器，当**SERVICE**参数等于 "**HELLO**"时，打印出*HelloServer*!
 
@@ -220,14 +228,16 @@ class HelloFilter(QgsServerFilter):
     def __init__(self, serverIface):
         super().__init__(serverIface)
 
-    def requestReady(self):
-        QgsMessageLog.logMessage("HelloFilter.requestReady")
+    def onRequestReady(self) -> bool:
+        QgsMessageLog.logMessage("HelloFilter.onRequestReady")
+        return True
 
-    def sendResponse(self):
-        QgsMessageLog.logMessage("HelloFilter.sendResponse")
+    def onSendResponse(self) -> bool:
+        QgsMessageLog.logMessage("HelloFilter.onSendResponse")
+        return True
 
-    def responseComplete(self):
-        QgsMessageLog.logMessage("HelloFilter.responseComplete")
+    def onResponseComplete(self) -> bool:
+        QgsMessageLog.logMessage("HelloFilter.onResponseComplete")
         request = self.serverInterface().requestHandler()
         params = request.parameterMap()
         if params.get('SERVICE', '').upper() == 'HELLO':
@@ -235,6 +245,7 @@ class HelloFilter(QgsServerFilter):
             request.setResponseHeader('Content-type', 'text/plain')
             # 注意内容类型是"bytes"
             request.appendBody(b'HelloServer!')
+        return True
 ```
 
 过滤器必须被注册到**serverIface**中，如下例所示：
@@ -261,18 +272,20 @@ class ParamsFilter(QgsServerFilter):
     def __init__(self, serverIface):
         super(ParamsFilter, self).__init__(serverIface)
 
-    def requestReady(self):
+    def onRequestReady(self) -> bool:
         request = self.serverInterface().requestHandler()
         params = request.parameterMap( )
         request.setParameter('TEST_NEW_PARAM', 'ParamsFilter')
+        return True
 
-    def responseComplete(self):
+    def onResponseComplete(self) -> bool:
         request = self.serverInterface().requestHandler()
         params = request.parameterMap( )
         if params.get('TEST_NEW_PARAM') == 'ParamsFilter':
-            QgsMessageLog.logMessage("SUCCESS - ParamsFilter.responseComplete")
+            QgsMessageLog.logMessage("SUCCESS - ParamsFilter.onResponseComplete")
         else:
-            QgsMessageLog.logMessage("FAIL    - ParamsFilter.responseComplete")
+            QgsMessageLog.logMessage("FAIL    - ParamsFilter.onResponseComplete")
+        return True
 ```
 
 这是日志文件中内容的摘录：
@@ -282,8 +295,8 @@ src/core/qgsmessagelog.cpp: 45: (logMessage) [0ms] 2014-12-12T12:39:29 plugin[0]
  src/core/qgsmessagelog.cpp: 45: (logMessage) [1ms] 2014-12-12T12:39:29 Server[0] Server plugin HelloServer loaded!
  src/core/qgsmessagelog.cpp: 45: (logMessage) [0ms] 2014-12-12T12:39:29 Server[0] Server python plugins loaded
  src/mapserver/qgshttprequesthandler.cpp: 547: (requestStringToParameterMap) [1ms] inserting pair SERVICE // HELLO into the parameter map
- src/mapserver/qgsserverfilter.cpp: 42: (requestReady) [0ms] QgsServerFilter plugin default requestReady called
- src/core/qgsmessagelog.cpp: 45: (logMessage) [0ms] 2014-12-12T12:39:29 plugin[0] SUCCESS - ParamsFilter.responseComplete
+ src/mapserver/qgsserverfilter.cpp: 42: (onRequestReady) [0ms] QgsServerFilter plugin default onRequestReady called
+ src/core/qgsmessagelog.cpp: 45: (logMessage) [0ms] 2014-12-12T12:39:29 plugin[0] SUCCESS - ParamsFilter.onResponseComplete
 ```
 
 在突出显示的一行，"SUCCESS "字符串表示该插件通过了测试。
