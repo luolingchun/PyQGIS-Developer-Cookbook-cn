@@ -54,14 +54,15 @@ PYTHON_PLUGINS_PATH/
 - `form.py` =将上面描述的form.ui转换为Python代码。
 - `metadata.txt` =包含插件网站和插件基础结构使用的常规信息，版本、名称和一些其他元数据。
 
-[这](https://github.com/wonder-sk/qgis-minimal-plugin)是一种自动创建典型QGIS Python插件的基本文件（框架）的方式。
-
-有一个名为[Plugin Builder 3](https://plugins.qgis.org/plugins/pluginbuilder3/)的QGIS插件 ，它为QGIS创建一个插件模板，不需要互联网连接。这是推荐的选择，因为它兼容3.x版本。
-
 !!! warning 警告
 
     如果您打算将插件上传到[Python官方插件库](#1643)，则必须检查插件是否遵循插件[验证](#16433)所必需的一些附加规则
 
+#### 16.1.1.2 使用工具快速创建插件
+
+[一个最小的入门插件](https://github.com/wonder-sk/qgis-minimal-plugin)，仅包含典型QGIS Python插件的基本文件（骨架）。
+
+一个名为[Plugin Builder 3](https://plugins.qgis.org/plugins/pluginbuilder3/)的功能齐全的QGIS插件，用于为QGIS创建插件模板。它生成与 3.x 兼容的源，具有许多可用的插件功能。
 
 ### 16.1.2 插件内容
 
@@ -93,12 +94,12 @@ PYTHON_PLUGINS_PATH/
 | repository            |    是    | 源代码存储库的有效URL                                        |
 | tracker               |    否    | 故障和错误报告的有效URL                                      |
 | icon                  |    否    | 对于web友好的图像（PNG，JPEG）文件名或相对路径（相对于插件压缩包的文件夹） |
-| category              |    否    | Raster, Vector, Database and Web（栅格、矢量、数据库和网络） |
+| category              |    否    | `Raster`, `Vector`, `Database`, `Mesh` and `Web`（栅格、矢量、数据库和网络） |
 | plugin_dependencies   |    否    | 类似于PIP的逗号分隔的其他插件列表，使用来自元数据名称字段的插件名称 |
 | server                |    否    | 布尔值，True或False，确定插件是否具有服务器接口              |
 | hasProcessingProvider |    否    | 布尔值，True或False，确定插件是否提供处理算法                |
 
-默认情况下，插件放在**Plugins**菜单中（我们将在下一节中看到如何为插件添加菜单项），但也可以将它们放入**Raster**，**Vector**， **Database**和**Web**菜单中。
+默认情况下，插件放在 **Plugins** 菜单中（我们将在下一节中看到如何为插件添加菜单项），但也可以将它们放入 **Raster** ， **Vector** ， **Database** ，**Mesh** 和 **Web** 菜单中。
 
 输入指定的“category”元数据，可以相应地对插件进行分类。此元数据用于提示用户，并告诉他们可以在哪里（在哪个菜单中）找到该插件。“category”的允许值为：Vector, Raster, Database或者Web。例如，如果你的插件可以从Raster菜单中找到，请将其添加到`metadata.txt`中
 
@@ -232,7 +233,7 @@ class TestPlugin:
 - `initGui()` - >加载插件时调用
 - `unload()` - >卸载插件时调用
 
-在上面的例子中，[`addPluginToMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)被使用。这会将相应的菜单操作添加到**Plugins** 菜单中。存在额外的方法将操作（action）添加到不同菜单。以下是这些方法的列表：
+在上面的例子中，[`addPluginToMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToMenu)被使用。这会将相应的菜单操作添加到 **Plugins** 菜单中。存在额外的方法将操作（action）添加到不同菜单。以下是这些方法的列表：
 
 - [`addPluginToRasterMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToRasterMenu)
 - [`addPluginToVectorMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addPluginToVectorMenu)
@@ -265,6 +266,32 @@ def unload(self):
 
 不要忘记设置`QAction`和`QMenu` `objectName`插件的特定名称，以便可以自定义。
 
+虽然帮助和关于操作也可以添加到你的自定义菜单中，但QGIS主 **帮助** ► **插件** 菜单中有一个简便的地方。这是使用[`pluginHelpMenu()`](https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.pluginHelpMenu)方法完成的。
+
+```python
+def initGui(self):
+
+    self.help_action = QAction(
+        QIcon(":/plugins/testplug/icon.png"),
+        self.tr("Test Plugin..."),
+        self.iface.mainWindow()
+    )
+    # 添加操作到帮助菜单
+    self.iface.pluginHelpMenu().addAction(self.help_action)
+
+    self.help_action.triggered.connect(self.show_help)
+
+@staticmethod
+def show_help():
+    """打开在线帮助"""
+    QDesktopServices.openUrl(QUrl('https://docs.qgis.org'))
+
+def unload(self):
+
+    self.iface.pluginHelpMenu().removeAction(self.help_action)
+    del self.help_action
+```
+
 #### 16.1.2.4 资源文件
 
 你可以看到在`initGui()`中我们使用了资源文件中的图标（在我们的案例中是`resources.qrc`）
@@ -277,7 +304,7 @@ def unload(self):
 </RCC>
 ```
 
-最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则你可能会得到你不想要的资源。现在你只需要生成一个包含资源的Python文件。它是用**pyrcc5**命令完成的：
+最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则你可能会得到你不想要的资源。现在你只需要生成一个包含资源的Python文件。它是用 **pyrcc5** 命令完成的：
 
 ```shell
 pyrcc5 -o resources.py resources.qrc
@@ -321,7 +348,7 @@ sudo apt-get install qttools5-dev-tools
 
 ##### 16.1.4.2.1 .pro文件
 
-首先，你应该创建一个`.pro`文件，这是一个可以由**Qt Linguist**管理的*项目*文件。
+首先，你应该创建一个`.pro`文件，这是一个可以由 **Qt Linguist** 管理的 *项目* 文件。
 
 在此`.pro`文件中，你必须指定要翻译的所有文件和窗体（.ui文件）。此文件用于设置本地化文件和变量。下面是一个项目文件，匹配我们的[示例插件](#16111)的结构 ：
 
@@ -360,7 +387,7 @@ pylupdate5 your_plugin.pro
 
 你应该可以看到`your_plugin_language.ts`文件。
 
-用**Qt Linguist**打开`.ts`文件并开始翻译。
+用 **Qt Linguist** 打开`.ts`文件并开始翻译。
 
 ##### 16.1.4.2.3 .qm文件
 
@@ -394,7 +421,7 @@ LOCALES = en hu
 make transup
 ```
 
-在此之后，你已在LOCALES变量中更新`.ts`了所有语言的文件。使用**Qt Linguist**翻译程序消息。完成翻译后，`.qm`可以通过`transcompile`创建：
+在此之后，你已在LOCALES变量中更新`.ts`了所有语言的文件。使用 **Qt Linguist** 翻译程序消息。完成翻译后，`.qm`可以通过`transcompile`创建：
 
 ```shell
 make transcompile
@@ -404,7 +431,7 @@ make transcompile
 
 #### 16.1.4.4 加载插件
 
-要查看插件的翻译，只需打开QGIS，更改语言（**设置‣选项‣通用**）并重新启动QGIS。
+要查看插件的翻译，只需打开QGIS，更改语言（ **设置** ‣ **选项** ‣ **通用** ）并重新启动QGIS。
 
 你应该看到你的插件使用正确的语言。
 
@@ -416,9 +443,13 @@ make transcompile
 
 #### 16.1.5.1 插件重载
 
-在开发插件期间，你经常需要在QGIS中重新加载它以进行测试。使用**Plugin Reloader**插件非常容易。你可以在[插件管理器](https://docs.qgis.org/testing/en/docs/user_manual/plugins/plugins.html#plugins)中找到它。
+在开发插件期间，你经常需要在QGIS中重新加载它以进行测试。使用 **Plugin Reloader** 插件非常容易。你可以在[插件管理器](https://docs.qgis.org/testing/en/docs/user_manual/plugins/plugins.html#plugins)中找到它。
 
-#### 16.1.5.2 访问插件
+#### 16.1.5.2 使用 qgis-plugin-ci自动打包、发布和翻译
+
+[qgis-plugin-ci](https://opengisch.github.io/qgis-plugin-ci/)提供了一个命令行界面，用于在你的计算机上执行 QGIS 插件的自动打包和部署，或使用持续集成（如 [GitHub 工作流](https://docs.github.com/en/actions/using-workflows)或 [Gitlab-CI](https://docs.gitlab.com/ee/ci/) 以及 [Transifex](https://www.transifex.com/) 进行翻译）。
+
+#### 16.1.5.3 访问插件
 
 你可以使用python从QGIS中访问所有已安装插件类，这可以方便调试：
 
@@ -426,11 +457,11 @@ make transcompile
 my_plugin = qgis.utils.plugins['My Plugin']
 ```
 
-#### 16.1.5.3 日志消息
+#### 16.1.5.4 日志消息
 
 插件在[日志消息面板中](https://docs.qgis.org/latest/en/docs/user_manual/introduction/general_tools.html#log-message-panel)有自己的选项卡。
 
-#### 16.1.5.4 分享你的插件
+#### 16.1.5.5 分享你的插件
 
 QGIS在插件仓库中托管了数百个插件。考虑分享你的插件！它将扩展QGIS，人们将能够从你的代码中学习。可以使用插件管理器在QGIS中找到并安装所有托管的插件。
 
@@ -464,7 +495,35 @@ def key_action_triggered(self):
     QMessageBox.information(self.iface.mainWindow(),"Ok", "You pressed Ctrl+I")
 ```
 
-### 16.2.2 如何切换图层
+还可以允许用户为提供的操作自定义快捷键。这是通过添加以下内容来完成的：
+
+```python
+# 在 initGui() 方法中
+QgsGui.shortcutsManager().registerAction(self.key_action)
+
+# 在 unload() 方法中
+QgsGui.shortcutsManager().unregisterAction(self.key_action)
+```
+
+### 16.2.2 如何重用QGIS图标
+
+因为它们是众所周知的，并且向用户传达了明确的信息，所以有时你可能希望在插件中重用QGIS图标，而不是绘制和设置新图标。使用[`getThemeIcon()`](https://qgis.org/pyqgis/master/core/QgsApplication.html#qgis.core.QgsApplication.getThemeIcon)方法。
+
+例如，重用 QGIS 代码存储库中可用的 [mActionFileOpen.svg](https://github.com/qgis/QGIS/blob/master/images/themes/default/mActionFileOpen.svg) 图标：
+
+```
+# 例如：在初始化GUI时
+self.file_open_action = QAction(
+    QgsApplication.getThemeIcon("/mActionFileOpen.svg"),
+    self.tr("Select a File..."),
+    self.iface.mainWindow()
+)
+self.iface.addPluginToMenu("MyPlugin", self.file_open_action)
+```
+
+[`iconPath()`](https://qgis.org/pyqgis/master/core/QgsApplication.html#qgis.core.QgsApplication.iconPath)是调用 QGIS 图标的另一种方法。有关调用主题图标的示例，请访问[QGIS嵌入式图像—速查表](https://static.geotribu.fr/toc_nav_ignored/qgis_resources_preview_table/)。
+
+### 16.2.3 如何切换图层
 
 图例中有一个访问图层的API。下面是如何切换当前图层可见性的示例：
 
@@ -475,7 +534,7 @@ new_state = Qt.Checked if node.isVisible() == Qt.Unchecked else Qt.Unchecked
 node.setItemVisibilityChecked(new_state)
 ```
 
-### 16.2.3 如何访问所选要素的属性表
+### 16.2.4 如何访问所选要素的属性表
 
 ```python
 def change_value(value):
@@ -502,9 +561,9 @@ def change_value(value):
 changeValue(50)
 ```
 
-### 16.2.4 选项对话框中的插件接口
+### 16.2.5 选项对话框中的插件接口
 
-你可以在**设置‣选项**中添加一个自定义插件选项标签。这比为你的插件选项添加一个特定的主菜单条目更可取，因为它将所有的QGIS应用程序设置和插件设置保存在一个单一的地方，便于用户发现和导航。
+你可以在 **设置** ‣ **选项** 中添加一个自定义插件选项标签。这比为你的插件选项添加一个特定的主菜单条目更可取，因为它将所有的QGIS应用程序设置和插件设置保存在一个单一的地方，便于用户发现和导航。
 
 下面的代码片段将为插件的设置添加一个新的空白选项卡，为你填充所有选项和你的插件特定设置做好准备。你可以将下面的类拆分成不同的文件。在这个例子中，我们在mainPlugin.py文件中添加了两个类。
 
@@ -558,7 +617,7 @@ class MyPlugin:
 
 !!! 提示
 
-    **将自定义选项卡添加到矢量图层属性对话框** 
+    **将自定义选项卡添加到图层属性对话框** 
     
     你可以应用类似的逻辑，使用[QgsMapLayerConfigWidgetFactory](https://qgis.org/pyqgis/master/gui/QgsMapLayerConfigWidgetFactory.html#qgis.gui.QgsMapLayerConfigWidgetFactory)和[QgsMapLayerConfigWidget](https://qgis.org/pyqgis/master/gui/QgsMapLayerConfigWidget.html#qgis.gui.QgsMapLayerConfigWidget)类将插件自定义选项添加到图层属性对话框中。
 
