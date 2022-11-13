@@ -144,11 +144,11 @@ for each incoming request:
 - 添加删除某些参数 (例如类型名称)
 - 抛出异常
 
-你甚至可以通过改变**SERVICE**参数来完全替代一个核心服务，从而完全绕过核心服务（不过这并没有什么意义）。
+你甚至可以通过改变 **SERVICE** 参数来完全替代一个核心服务，从而完全绕过核心服务（不过这并没有什么意义）。
 
 ##### 20.4.1.1.2 发送响应
 
-无论何时从响应缓冲区刷新任何部分输出，都会调用该函数（例如**FCGI**标准输出被使用），并从缓冲区刷新到客户端。当大量内容被流式传输（比如WFS GetFeature）时，就会发生这种情况。在这种情况下，[`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)可能会被多次调用。
+无论何时从响应缓冲区刷新任何部分输出，都会调用该函数（例如 **FCGI** 标准输出被使用），并从缓冲区刷新到客户端。当大量内容被流式传输（比如WFS GetFeature）时，就会发生这种情况。在这种情况下，[`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)可能会被多次调用。
 
 请注意，如果响应没有流式传输，则根本不会调用[`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)。
 
@@ -220,7 +220,7 @@ def serverClassFactory(serverIface):
 - [`onResponseComplete()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onResponseComplete)
 - [`onSendResponse()`](https://qgis.org/pyqgis/master/server/QgsServerFilter.html#qgis.server.QgsServerFilter.onSendResponse)
 
-下面的例子实现了一个最小的过滤器，当**SERVICE**参数等于 "**HELLO**"时，打印出*HelloServer*!
+下面的例子实现了一个最小的过滤器，当 **SERVICE** 参数等于 " **HELLO** "时，打印出*HelloServer*!
 
 ```python
 class HelloFilter(QgsServerFilter):
@@ -248,7 +248,7 @@ class HelloFilter(QgsServerFilter):
         return True
 ```
 
-过滤器必须被注册到**serverIface**中，如下例所示：
+过滤器必须被注册到 **serverIface** 中，如下例所示：
 
 ```python
 class HelloServerServer:
@@ -301,7 +301,7 @@ src/core/qgsmessagelog.cpp: 45: (logMessage) [0ms] 2014-12-12T12:39:29 plugin[0]
 
 在突出显示的一行，"SUCCESS "字符串表示该插件通过了测试。
 
-同样的技术可以被利用来代替核心服务：例如，你可以跳过**WFS SERVICE**请求或任何其他核心请求，只需将**SERVICE**参数改为不同的参数，核心服务就会被跳过。然后，你可以将你的自定义结果注入到输出中，并将其发送给客户端（这将在下面解释）。
+同样的技术可以被利用来代替核心服务：例如，你可以跳过 **WFS SERVICE** 请求或任何其他核心请求，只需将 **SERVICE** 参数改为不同的参数，核心服务就会被跳过。然后，你可以将你的自定义结果注入到输出中，并将其发送给客户端（这将在下面解释）。
 
 !!! 提示 infomation
 
@@ -346,7 +346,7 @@ class WatermarkFilter(QgsServerFilter):
             request.appendBody(ba)
 ```
 
-在这个例子中，**SERVICE**参数值被检查，如果传入的请求是一个**WMS GETMAP**，并且没有被先前执行的插件或核心服务（在这个例子中是WMS）设置过异常，那么WMS生成的图像就会从输出缓冲区中被检索出来，并且添加水印图像。最后一步是清除输出缓冲区，用新生成的图像替换它。请注意，在现实世界中，我们还应该检查所要求的图像类型，而不是只支持PNG或JPG。
+在这个例子中，**SERVICE** 参数值被检查，如果传入的请求是一个 **WMS GETMAP** ，并且没有被先前执行的插件或核心服务（在这个例子中是WMS）设置过异常，那么WMS生成的图像就会从输出缓冲区中被检索出来，并且添加水印图像。最后一步是清除输出缓冲区，用新生成的图像替换它。请注意，在现实世界中，我们还应该检查所要求的图像类型，而不是只支持PNG或JPG。
 
 #### 20.4.1.5 访问控制过滤器
 
