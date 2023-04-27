@@ -7,7 +7,7 @@
 QGIS服务器是三个不同的东西：
 
 1. QGIS服务器库：一个为创建OGC网络服务提供API的库
-2. QGIS服务器FCGI：一个FCGI二进制应用程序`qgis_maserv.fcgi`，与网络服务器一起实现一套OGC服务（WMS、WFS、WCS等）和OGC APIs（WFS3/OAPIF）。
+2. QGIS服务器FCGI：一个FCGI二进制应用程序`qgis_mapserv.fcgi`，与网络服务器一起实现一套OGC服务（WMS、WFS、WCS等）和OGC APIs（WFS3/OAPIF）。
 3. QGIS开发服务器：一个开发服务器二进制应用程序`qgis_mapserver`，实现了一套OGC服务（WMS、WFS、WCS等）和OGC APIs（WFS3/OAPIF）。
 
 本章的重点是第一个话题，通过解释QGIS服务器API的用法来说明如何使用Python来扩展、增强或定制服务器行为，或如何使用QGIS服务器API将QGIS服务器嵌入到另一个应用程序。
@@ -184,7 +184,7 @@ server=True
 
     只有设置了`server=True`元数据的插件才能被QGIS Server加载和执行。
 
-这里讨论的例子插件（还有很多）可以在github上找到，地址是https://github.com/elpaso/qgis3-server-vagrant/tree/master/resources/web/plugins，一些服务器插件也发布在[QGIS官方插件仓库](https://plugins.qgis.org/plugins/server)中。
+这里讨论的 [qgis3-server-vagrant](https://github.com/elpaso/qgis3-server-vagrant/tree/master/resources/web/plugins) 示例插件（以及更多插件）可在 Github 上找到，一些服务器插件也发布在官方的 [QGIS 插件仓库](https://plugins.qgis.org/plugins/server)中。
 
 #### 20.4.1.4 插件文件
 
@@ -427,14 +427,14 @@ class AccessControlServer:
 
 ##### 20.4.1.5.4. layerFilterExpression
 
-用于添加一个表达式来限制结果，例如：
+用于添加一个表达式来限制结果。
+
+例如：限制要素的属性`role`等于`user`。
 
 ```python
 def layerFilterExpression(self, layer):
     return "$role = 'user'"
 ```
-
-限制要素的属性`role`等于`“user”`。
 
 ##### 20.4.1.5.5. layerFilterSubsetString
 
