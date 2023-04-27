@@ -10,25 +10,9 @@ markdown_extensions:
   - admonition
   - toc:
       permalink: ⚓︎
-      toc_depth: 4
-  - footnotes
-  - meta
-  - def_list
-  - pymdownx.arithmatex
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:pymdownx.emoji.to_png
-  - pymdownx.inlinehilite
+  - md_in_html
   - pymdownx.magiclink
-  - pymdownx.mark
-  - pymdownx.smartsymbols
   - pymdownx.superfences
-  - pymdownx.tasklist
-  - pymdownx.tilde
   - pymdownx.snippets
   - pymdownx.highlight:
       linenums: true
@@ -52,17 +36,19 @@ theme:
         name: 亮
   features:
     - navigation.tracking
+    - navigation.footer
     - navigation.top
-    - navigation.expand
+    #    - navigation.expand
     - search.suggest
     - search.highlight
     - search.share
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+    - toc.follow
 
 plugins:
   - search
-
-extra_javascript:
-  - js/db.js
 
 extra_css:
   - css/img.css
