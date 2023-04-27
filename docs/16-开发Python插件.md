@@ -21,54 +21,43 @@ Python插件与QGIS插件管理器中的C ++插件一起列出。他们在`~/(Us
 1. *想法*：你想要使用新的QGIS插件做什么。你为什么要这么做？你想解决什么问题？这个问题已经有另一个插件吗？
 2. *创建文件*：一些必要文件（查看[插件文件](#16111)）
 3. *编写代码*：在恰当的文件中写代码
+3. 文档：编写插件文档 
+3. 可选：翻译：将插件翻译成不同的语言
 4. *测试*：如果准备就绪，[重新加载插件](#1615)
 5. *发布*：在QGIS仓库中发布你的插件或将你自己的仓库作为个人“GIS武器”的“武器库”。
 
-### 16.1.1 编写一个插件
+### 16.1.1 准备开始
 
-自从在QGIS中引入Python插件以来，出现了许多插件。QGIS团队维护了一个[官方Python插件库](#1643)。你可以使用他们的源码来了解使用PyQGIS进行编程的更多信息，或者了解你是否在重复开发。
+在开始编写新的插件之前，先看看[Python官方插件库](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)。现有插件的源代码可以帮助你了解更多编程知识。你也可能会发现类似的插件已经存在，你可以扩展它，或者至少在它的基础上开发自己的插件。
 
-#### 16.1.1.1 插件文件
+#### 16.1.1.1 插件文件结构
 
-  这是我们的示例插件的目录结构
+ 开始使用一个新的插件，我们需要设置必要的插件文件。
 
-```bash
-PYTHON_PLUGINS_PATH/
-  MyPlugin/
-    __init__.py    --> *必需*
-    mainPlugin.py  --> *核心代码*
-    metadata.txt   --> *必需*
-    resources.qrc  --> *可能需要*
-    resources.py   --> *编译版本, 可能需要*
-    form.ui        --> *可能需要*
-    form.py        --> *编译版本, 可能需要*
-```
+有两种插件模板资源可以帮助你入门：
 
-这些文件的含义是什么：
+- 为了教育目的或者在需要采用极简主义方法时，[最小化插件模板](https://github.com/wonder-sk/qgis-minimal-plugin)提供了创建有效的QGIS Python插件所需的基本文件（框架）。
+- 更加完整的插件模板，[插件构建器](https://plugins.qgis.org/plugins/pluginbuilder3/)可以创建多种不同类型的插件模板，包括本地化（翻译）和测试等功能。
 
-- `__init__.py`=插件的入口。它必须具有 `classFactory()`方法，还可以具有任何其他初始化代码。
-- `mainPlugin.py`=插件的主要工作代码。包含有关插件操作和主要代码的所有信息。
-- `resources.qrc`= Qt设计师创建的xml文档。包含表单资源的相对路径。
-- `resources.py` =将上述.qrc文件转换为Python代码。
-- `form.ui` = Qt设计师创建的GUI。
-- `form.py` =将上面描述的form.ui转换为Python代码。
-- `metadata.txt` =包含插件网站和插件基础结构使用的常规信息，版本、名称和一些其他元数据。
+典型的插件目录包括以下文件：
+
+- `metadata.txt` - *必须* - 包含插件网站和插件基础结构使用的常规信息，版本、名称和一些其他元数据。
+- `__init__.py` - *必须* - 插件的入口。它必须具有 `classFactory()`方法，还可以具有任何其他初始化代码。
+- `mainPlugin.py` - *核心代码* - 插件的主要工作代码。包含有关插件操作和主要代码的所有信息。
+- `form.ui` - *插件自定义UI* - Qt设计师创建的GUI。
+- `form.py` - *编译的GUI* - 将上面描述的form.ui转换为Python代码。
+- `resources.qrc` - *可选* - Qt设计师创建的xml文档。包含表单资源的相对路径。
+- `resources.py` - *编译的资源文件，可选* - 将上述.qrc文件转换为Python代码。
 
 !!! warning 警告
 
-    如果您打算将插件上传到[Python官方插件库](#1643)，则必须检查插件是否遵循插件[验证](#16433)所必需的一些附加规则
+    如果您打算将插件上传到[Python官方插件库](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository)，则必须检查插件是否遵循插件[验证](https://docs.qgis.org/testing/en/docs/pyqgis_developer_cookbook/plugins/releasing.html#official-pyqgis-repository-validation)所必需的一些附加规则
 
-#### 16.1.1.2 使用工具快速创建插件
+### 16.1.2 编写插件代码
 
-[一个最小的入门插件](https://github.com/wonder-sk/qgis-minimal-plugin)，仅包含典型QGIS Python插件的基本文件（骨架）。
+以下部分显示了应该在上面介绍的每个文件中添加哪些内容。
 
-一个名为[Plugin Builder 3](https://plugins.qgis.org/plugins/pluginbuilder3/)的功能齐全的QGIS插件，用于为QGIS创建插件模板。它生成与 3.x 兼容的源，具有许多可用的插件功能。
-
-### 16.1.2 插件内容
-
-在这里，你可以找到有关在上述文件结构中的每个文件需要添加内容的信息和示例。
-
-#### 16.1.2.1 插件元数据
+#### 16.1.2.1 metadata.txt
 
 首先，插件管理器需要检索有关插件的一些基本信息，例如其名称、描述等。文件`metadata.txt`存储此信息。
 
@@ -292,34 +281,6 @@ def unload(self):
     del self.help_action
 ```
 
-#### 16.1.2.4 资源文件
-
-你可以看到在`initGui()`中我们使用了资源文件中的图标（在我们的案例中是`resources.qrc`）
-
-```xml
-<RCC>
-  <qresource prefix="/plugins/testplug" >
-     <file>icon.png</file>
-  </qresource>
-</RCC>
-```
-
-最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则你可能会得到你不想要的资源。现在你只需要生成一个包含资源的Python文件。它是用 **pyrcc5** 命令完成的：
-
-```shell
-pyrcc5 -o resources.py resources.qrc
-```
-
-!!! 提示
-
-    在Windows环境中，尝试从CMD或Powershell运行pyrcc5可能会导致错误“Windows无法访问指定的设备，路径，或文件[...]”。最简单的解决方案可能是使用osgeo4wshell，但如果你愿意修改PATH环境变量或显式指定可执行文件的路径，你应该可以在`<Your QGIS Install Directory>\bin\pyrcc5.exe`找到它
-
-就这些……没什么复杂的:)
-
-如果你已正确完成所有操作，则应该能够在插件管理器中查找并加载插件，在点击工具栏图标或相应的菜单项时，可以在控制台中查看到消息。
-
-在处理真正的插件时，最好将插件写入另一个（工作）目录并创建一个makefile，它将生成UI和资源文件并将插件安装到QGIS安装中。
-
 ### 16.1.3 文档
 
 该插件的文档可以编写为HTML帮助文档。`qgis.utils`模块提供了一个函数，`showPluginHelp()`将打开帮助文档浏览器，与其他QGIS帮助文档的方式相同。
@@ -467,6 +428,58 @@ QGIS在插件仓库中托管了数百个插件。考虑分享你的插件！它�
 
 信息和要求：[plugins.qgis.org](https://plugins.qgis.org/)。
 
+### 16.1.6 提示和技巧
+
+#### 16.1.6.1 插件重新加载程序
+
+在开发插件过程中，你经常需要重新加载它以进行测试。使用**Plugin Reloader**插件非常容易。你可以在[插件管理器](https://docs.qgis.org/testing/en/docs/user_manual/plugins/plugins.html#plugins)中找到它。
+
+#### 16.1.6.2 使用qgis插件ci自动打包、发布和翻译
+
+[qgis-plugin-ci](https://opengisch.github.io/qgis-plugin-ci/) 提供了一个命令行界面，可以在你的计算机上或使用持续集成工具（如 [GitHub 工作流](https://docs.github.com/en/actions/using-workflows)或 [Gitlab-CI](https://docs.gitlab.com/ee/ci/)）以及 [Transifex](https://www.transifex.com/) 进行自动打包和部署 QGIS 插件。它允许通过 CLI 或在 CI 操作中发布、翻译、发布或生成 XML 插件存储库文件。
+
+#### 16.1.6.3 访问插件
+
+你可以使用Python在QGIS中访问所有已安装插件的类，这对于调试很有用。
+
+```python
+my_plugin = qgis.utils.plugins['My Plugin']
+```
+
+#### 16.1.6.4 日志信息
+
+插件在[日志消息面板](https://docs.qgis.org/testing/en/docs/user_manual/introduction/general_tools.html#log-message-panel)中有自己的选项卡。
+
+#### 16.1.6.5 资源文件
+
+你可以看到在`initGui()`中我们使用了资源文件中的图标（在我们的案例中是`resources.qrc`）
+
+```xml
+<RCC>
+  <qresource prefix="/plugins/testplug" >
+     <file>icon.png</file>
+  </qresource>
+</RCC>
+```
+
+最好使用不会与其他插件或QGIS的任何部分发生冲突的前缀，否则你可能会得到你不想要的资源。现在你只需要生成一个包含资源的Python文件。它是用 **pyrcc5** 命令完成的：
+
+```shell
+pyrcc5 -o resources.py resources.qrc
+```
+
+!!! 提示
+
+    在Windows环境中，尝试从CMD或Powershell运行pyrcc5可能会导致错误“Windows无法访问指定的设备，路径，或文件[...]”。最简单的解决方案可能是使用osgeo4wshell，但如果你愿意修改PATH环境变量或显式指定可执行文件的路径，你应该可以在`<Your QGIS Install Directory>\bin\pyrcc5.exe`找到它
+
+就这些……没什么复杂的:)
+
+如果你已正确完成所有操作，则应该能够在插件管理器中查找并加载插件，在点击工具栏图标或相应的菜单项时，可以在控制台中查看到消息。
+
+在处理真正的插件时，最好将插件写入另一个（工作）目录并创建一个makefile，它将生成UI和资源文件并将插件安装到QGIS安装中。
+
+
+
 ## 16.2 代码片段
 
 本节以代码片段为例，讲解插件开发
@@ -523,45 +536,7 @@ self.iface.addPluginToMenu("MyPlugin", self.file_open_action)
 
 [`iconPath()`](https://qgis.org/pyqgis/master/core/QgsApplication.html#qgis.core.QgsApplication.iconPath)是调用 QGIS 图标的另一种方法。有关调用主题图标的示例，请访问[QGIS嵌入式图像—速查表](https://static.geotribu.fr/toc_nav_ignored/qgis_resources_preview_table/)。
 
-### 16.2.3 如何切换图层
-
-图例中有一个访问图层的API。下面是如何切换当前图层可见性的示例：
-
-```python
-root = QgsProject.instance().layerTreeRoot()
-node = root.findLayer(iface.activeLayer().id())
-new_state = Qt.Checked if node.isVisible() == Qt.Unchecked else Qt.Unchecked
-node.setItemVisibilityChecked(new_state)
-```
-
-### 16.2.4 如何访问所选要素的属性表
-
-```python
-def change_value(value):
-    """改变所选要素第二字段值
-
-    :param value: The new value.
-    """
-    layer = iface.activeLayer()
-    if layer:
-        count_selected = layer.selectedFeatureCount()
-        if count_selected > 0:
-            layer.startEditing()
-            id_features = layer.selectedFeatureIds()
-            for i in id_features:
-                layer.changeAttributeValue(i, 1, value) # 1 being the second column
-            layer.commitChanges()
-        else:
-            iface.messageBar().pushCritical("Error",
-                "Please select at least one feature from current layer")
-    else:
-        iface.messageBar().pushCritical("Error", "Please select a layer")
-
-# 该方法需要一个参数（所选要素第二个字段的新值），可以通过调用以下方法：
-changeValue(50)
-```
-
-### 16.2.5 选项对话框中的插件接口
+### 16.2.3 选项对话框中的插件接口
 
 你可以在 **设置** ‣ **选项** 中添加一个自定义插件选项标签。这比为你的插件选项添加一个特定的主菜单条目更可取，因为它将所有的QGIS应用程序设置和插件设置保存在一个单一的地方，便于用户发现和导航。
 
@@ -620,6 +595,63 @@ class MyPlugin:
     **将自定义选项卡添加到图层属性对话框** 
     
     你可以应用类似的逻辑，使用[QgsMapLayerConfigWidgetFactory](https://qgis.org/pyqgis/master/gui/QgsMapLayerConfigWidgetFactory.html#qgis.gui.QgsMapLayerConfigWidgetFactory)和[QgsMapLayerConfigWidget](https://qgis.org/pyqgis/master/gui/QgsMapLayerConfigWidget.html#qgis.gui.QgsMapLayerConfigWidget)类将插件自定义选项添加到图层属性对话框中。
+
+### 16.2.4 在图层树中嵌入图层的自定义小组件
+
+除了在图层面板中常见的图层符号元素之外，你还可以添加自己的小部件，以便快速访问一些经常与图层一起使用的操作（设置过滤、选择、样式、使用按钮小部件刷新图层、创建基于时间轴的图层或仅在标签中显示额外的图层信息等）。这些所谓的图层树嵌入式小部件通过图层的属性图例选项卡为各个图层提供。
+
+以下代码片段在图例中创建一个下拉菜单，显示图层可用的图层样式，允许快速在不同的图层样式之间切换。
+
+```python
+class LayerStyleComboBox(QComboBox):
+    def __init__(self, layer):
+        QComboBox.__init__(self)
+        self.layer = layer
+        for style_name in layer.styleManager().styles():
+            self.addItem(style_name)
+
+        idx = self.findText(layer.styleManager().currentStyle())
+        if idx != -1:
+          self.setCurrentIndex(idx)
+
+        self.currentIndexChanged.connect(self.on_current_changed)
+
+    def on_current_changed(self, index):
+        self.layer.styleManager().setCurrentStyle(self.itemText(index))
+
+class LayerStyleWidgetProvider(QgsLayerTreeEmbeddedWidgetProvider):
+    def __init__(self):
+        QgsLayerTreeEmbeddedWidgetProvider.__init__(self)
+
+    def id(self):
+        return "style"
+
+    def name(self):
+        return "Layer style chooser"
+
+    def createWidget(self, layer, widgetIndex):
+        return LayerStyleComboBox(layer)
+
+    def supportsLayer(self, layer):
+        return True   # any layer is fine
+
+provider = LayerStyleWidgetProvider()
+QgsGui.layerTreeEmbeddedWidgetRegistry().addProvider(provider)
+```
+
+从给定图层的图例属性选项卡中，将“图层样式选择器”从“可用小部件”拖动到“已用小部件”，以在图层树中启用小部件。嵌入式小部件始终显示在其相关图层节点子项的顶部。
+
+如果你想从插件中使用小部件，可以按以下方法添加它们：
+
+```python
+layer = iface.activeLayer()
+counter = int(layer.customProperty("embeddedWidgets/count", 0))
+layer.setCustomProperty("embeddedWidgets/count", counter+1)
+layer.setCustomProperty("embeddedWidgets/{}/id".format(counter), "style")
+view = self.iface.layerTreeView()
+view.layerTreeModel().refreshLayerLegend(view.currentLegendNode())
+view.currentNode().setExpanded(True)
+```
 
 ## 16.3 编写和调试插件的IDE设置
 
