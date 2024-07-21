@@ -157,7 +157,7 @@ layer = QgsProject.instance().mapLayersByName("layer name you like")[0]
 # 5秒
 layer.setAutoRefreshInterval(5000)
 # 自动刷新
-layer.setAutoRefreshEnabled(True)
+layer.setAutoRefreshMode(Qgis.AutoRefreshMode.ReloadData)
 ```
 **添加表单要素**
 
@@ -264,7 +264,7 @@ from qgis.core import QgsVectorLayer, QgsFeature, QgsGeometry, QgsProject
 layer = QgsVectorLayer('Polygon?crs=epsg:4326', 'Mississippi', 'memory')
 pr = layer.dataProvider()
 poly = QgsFeature()
-geom = QgsGeometry.fromWkt("POLYGON ((-88.82 34.99,-88.0934.89,-88.39 30.34,-89.57 30.18,-89.73 31,-91.63 30.99,-90.8732.37,-91.23 33.44,-90.93 34.23,-90.30 34.99,-88.82 34.99))")
+geom = QgsGeometry.fromWkt("POLYGON ((-88.82 34.99,-88.09 34.89,-88.39 30.34,-89.57 30.18,-89.73 31,-91.63 30.99,-90.87 32.37,-91.23 33.44,-90.93 34.23,-90.30 34.99,-88.82 34.99))")
 poly.setGeometry(geom)
 pr.addFeatures([poly])
 layer.updateExtents()

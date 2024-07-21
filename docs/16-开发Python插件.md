@@ -98,7 +98,7 @@ category=Raster
 
 !!! 提示
 
-    如果qgisMaximumVersion为空，则在上传到[官方Python插件库](#1643)时，它将自动设置为主要版本加上.99（例如：3.99）。
+    如果qgisMaximumVersion为空，则在上传到[官方Python插件库](#1643-python)时，它将自动设置为主要版本加上.99（例如：3.99）。
 
 
 metadata.txt示例：
