@@ -1,0 +1,2014 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本项目是PyQGIS开发者手册的中文翻译。">
+      
+      
+        <meta name="author" content="llc">
+      
+      
+        <link rel="canonical" href="https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn/21-PyQGIS%E9%80%9F%E6%9F%A5%E8%A1%A8/">
+      
+      
+        <link rel="prev" href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CPython/">
+      
+      
+      
+      <link rel="icon" href="../images/logo-blue.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>21-PyQGIS速查表 - PyQGIS开发者手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/img.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#21-pyqgis" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="PyQGIS开发者手册" class="md-header__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyQGIS开发者手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              21-PyQGIS速查表
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="黑"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="黑" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="亮"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="亮" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyQGIS开发者手册" class="md-nav__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    PyQGIS开发者手册
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1-%E5%BC%95%E8%A8%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1-引言
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2-加载项目
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E5%8A%A0%E8%BD%BD%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3-加载图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%B1%82%E7%9B%AE%E5%BD%95%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4-访问图层目录树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-%E4%BD%BF%E7%94%A8%E6%A0%85%E6%A0%BC%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5-使用栅格图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-%E4%BD%BF%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6-使用矢量图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7-几何处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-%E6%8A%95%E5%BD%B1%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8-投影支持
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9-%E4%BD%BF%E7%94%A8%E5%9C%B0%E5%9B%BE%E7%94%BB%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9-使用地图画布
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E5%9C%B0%E5%9B%BE%E6%B8%B2%E6%9F%93%E5%92%8C%E6%89%93%E5%8D%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10-地图渲染和打印
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E8%BF%87%E6%BB%A4%E5%92%8C%E8%AE%A1%E7%AE%97%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11-表达式，过滤和计算值
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E8%AF%BB%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BE%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12-读取和存储设置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E4%B8%8E%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13-与用户通信
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14-认证基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-%E4%BB%BB%E5%8A%A1%E2%80%94%E2%80%94%E5%9C%A8%E5%90%8E%E5%8F%B0%E5%81%9A%E7%B9%81%E9%87%8D%E7%9A%84%E5%B7%A5%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15-任务 - 在后台做繁重的工作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-%E5%BC%80%E5%8F%91Python%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16-开发Python插件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-%E7%BC%96%E5%86%99%E5%A4%84%E7%90%86%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17-编写处理插件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    18-使用插件图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%BA%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    19-网络分析库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CPython/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20-QGIS服务器和Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    21-PyQGIS速查表
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    21-PyQGIS速查表
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.1 用户接口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.2 设置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#213" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.3 工具栏
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#214" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.4 菜单
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#215" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.5 画布
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#216" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.6 图层
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#217" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.7 目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#218" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.8 高级目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#219" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.9 处理算法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2110" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.10 装饰器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2111" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.11 创作者
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2112" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.12 来源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#211" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.1 用户接口
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#212" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.2 设置
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#213" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.3 工具栏
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#214" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.4 菜单
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#215" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.5 画布
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#216" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.6 图层
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#217" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.7 目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#218" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.8 高级目录
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#219" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.9 处理算法
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2110" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.10 装饰器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2111" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.11 创作者
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2112" class="md-nav__link">
+    <span class="md-ellipsis">
+      21.12 来源
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/edit/master/docs/21-PyQGIS速查表.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/raw/master/docs/21-PyQGIS速查表.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="21-pyqgis">21 PyQGIS速查表<a class="headerlink" href="#21-pyqgis" title="Permanent link">⚓︎</a></h1>
+<h2 id="211">21.1 用户接口<a class="headerlink" href="#211" title="Permanent link">⚓︎</a></h2>
+<p><strong>改变外观</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.QtWidgets</span><span class="w"> </span><span class="kn">import</span> <span class="n">QApplication</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">QApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+<span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="s2">&quot;.QWidget {color: blue; background-color: yellow;}&quot;</span><span class="p">)</span>
+<span class="c1"># 你可以从文件读取样式</span>
+<span class="k">with</span>  <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;testdata/file.qss&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">qss_file_content</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">setStyleSheet</span><span class="p">(</span><span class="n">qss_file_content</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>改变图标和标题</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QIcon</span>
+
+<span class="n">icon</span> <span class="o">=</span> <span class="n">QIcon</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;/path/to/logo/file.png&quot;</span><span class="p">)</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">()</span><span class="o">.</span><span class="n">setWindowIcon</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">mainWindow</span><span class="p">()</span><span class="o">.</span><span class="n">setWindowTitle</span><span class="p">(</span><span class="s2">&quot;My QGIS&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="212">21.2 设置<a class="headerlink" href="#212" title="Permanent link">⚓︎</a></h2>
+<p><strong>获得设置列表</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QSettings</span>
+
+<span class="n">qs</span> <span class="o">=</span> <span class="n">QSettings</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">qs</span><span class="o">.</span><span class="n">allKeys</span><span class="p">()):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">k</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="213">21.3 工具栏<a class="headerlink" href="#213" title="Permanent link">⚓︎</a></h2>
+<p><strong>移除工具栏</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">iface</span>
+
+<span class="n">toolbar</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">helpToolBar</span><span class="p">()</span>
+<span class="n">parent</span> <span class="o">=</span> <span class="n">toolbar</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span>
+<span class="n">parent</span><span class="o">.</span><span class="n">removeToolBar</span><span class="p">(</span><span class="n">toolbar</span><span class="p">)</span>
+
+<span class="c1"># 添加</span>
+<span class="n">parent</span><span class="o">.</span><span class="n">addToolBar</span><span class="p">(</span><span class="n">toolbar</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>移除操作</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">actions</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">attributesToolBar</span><span class="p">()</span><span class="o">.</span><span class="n">actions</span><span class="p">()</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">attributesToolBar</span><span class="p">()</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">attributesToolBar</span><span class="p">()</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">actions</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">attributesToolBar</span><span class="p">()</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">actions</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="214">21.4 菜单<a class="headerlink" href="#214" title="Permanent link">⚓︎</a></h2>
+<p><strong>移除菜单</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">iface</span>
+
+<span class="c1"># 帮助菜单</span>
+<span class="n">menu</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">helpMenu</span><span class="p">()</span>
+<span class="n">menubar</span> <span class="o">=</span> <span class="n">menu</span><span class="o">.</span><span class="n">parentWidget</span><span class="p">()</span>
+<span class="n">menubar</span><span class="o">.</span><span class="n">removeAction</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">menuAction</span><span class="p">())</span>
+
+<span class="c1"># 添加</span>
+<span class="n">menubar</span><span class="o">.</span><span class="n">addAction</span><span class="p">(</span><span class="n">menu</span><span class="o">.</span><span class="n">menuAction</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="215">21.5 画布<a class="headerlink" href="#215" title="Permanent link">⚓︎</a></h2>
+<p><strong>访问画布</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">iface</span>
+
+<span class="n">canvas</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<strong>改变画布颜色</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">Qt</span>
+
+<span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">setCanvasColor</span><span class="p">(</span><span class="n">Qt</span><span class="o">.</span><span class="n">black</span><span class="p">)</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<strong>画布刷新间隔</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.QtCore</span><span class="w"> </span><span class="kn">import</span> <span class="n">QSettings</span>
+<span class="c1"># 150毫秒</span>
+<span class="n">QSettings</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="s2">&quot;/qgis/map_update_interval&quot;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="216">21.6 图层<a class="headerlink" href="#216" title="Permanent link">⚓︎</a></h2>
+<p><strong>添加图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">iface</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">addVectorLayer</span><span class="p">(</span><span class="s2">&quot;/path/to/shapefile/file.shp&quot;</span><span class="p">,</span> <span class="s2">&quot;layer name you like&quot;</span><span class="p">,</span> <span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">layer</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Layer failed to load!&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>获取当前图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">layer</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">activeLayer</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<strong>图层列表</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span>
+
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>获得图层名称</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsVectorLayer</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Point?crs=EPSG:4326&quot;</span><span class="p">,</span> <span class="s2">&quot;layer name you like&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">)</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+<span class="n">layers_names</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">layers_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;layers TOC = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layers_names</span><span class="p">))</span>
+
+<span class="n">layers_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">()</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">()]</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;layers TOC = </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layers_names</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<strong>通过名称查找图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayersByName</span><span class="p">(</span><span class="s2">&quot;layer name you like&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>设置当前图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayersByName</span><span class="p">(</span><span class="s2">&quot;layer name you like&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">setActiveLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>刷新图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayersByName</span><span class="p">(</span><span class="s2">&quot;layer name you like&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="c1"># 5秒</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">setAutoRefreshInterval</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+<span class="c1"># 自动刷新</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">setAutoRefreshMode</span><span class="p">(</span><span class="n">Qgis</span><span class="o">.</span><span class="n">AutoRefreshMode</span><span class="o">.</span><span class="n">ReloadData</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>添加表单要素</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsFeature</span><span class="p">,</span> <span class="n">QgsGeometry</span>
+
+<span class="n">feat</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">()</span>
+<span class="n">geom</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="p">()</span>
+<span class="n">feat</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="n">feat</span><span class="o">.</span><span class="n">setFields</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">fields</span><span class="p">())</span>
+
+<span class="n">iface</span><span class="o">.</span><span class="n">openFeatureForm</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">feat</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>添加无表单要素</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsPointXY</span>
+
+<span class="n">pr</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span>
+<span class="n">feat</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">()</span>
+<span class="n">feat</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromPointXY</span><span class="p">(</span><span class="n">QgsPointXY</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">feat</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<strong>获得要素</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>获得已选要素</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">selectedFeatures</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="n">f</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>获得要素id</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">selected_ids</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">selectedFeatureIds</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selected_ids</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>从已选要素id创建内存图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsFeatureRequest</span>
+
+<span class="n">memory_layer</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">materialize</span><span class="p">(</span><span class="n">QgsFeatureRequest</span><span class="p">()</span><span class="o">.</span><span class="n">setFilterFids</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">selectedFeatureIds</span><span class="p">()))</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">memory_layer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>获得几何</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="c1"># 点图层</span>
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">layer</span><span class="o">.</span><span class="n">getFeatures</span><span class="p">():</span>
+    <span class="n">geom</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">geometry</span><span class="p">()</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%f</span><span class="s1">, </span><span class="si">%f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">y</span><span class="p">(),</span> <span class="n">geom</span><span class="o">.</span><span class="n">asPoint</span><span class="p">()</span><span class="o">.</span><span class="n">x</span><span class="p">()))</span>
+</code></pre></div></td></tr></table></div>
+<strong>移动几何</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsFeature</span><span class="p">,</span> <span class="n">QgsGeometry</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">()</span>
+<span class="n">geom</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromWkt</span><span class="p">(</span><span class="s2">&quot;POINT(7 45)&quot;</span><span class="p">)</span>
+<span class="n">geom</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">poly</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">poly</span><span class="o">.</span><span class="n">geometry</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>设置坐标参考系统</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span><span class="p">,</span> <span class="n">QgsCoordinateReferenceSystem</span>
+
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">setCrs</span><span class="p">(</span><span class="n">QgsCoordinateReferenceSystem</span><span class="p">(</span><span class="mi">4326</span><span class="p">,</span> <span class="n">QgsCoordinateReferenceSystem</span><span class="o">.</span><span class="n">EpsgCrsId</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<strong>查看坐标参考系统</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span>
+
+<span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayers</span><span class="p">()</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="n">crs</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">crs</span><span class="p">()</span><span class="o">.</span><span class="n">authid</span><span class="p">()</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> (</span><span class="si">{}</span><span class="s1">)&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">crs</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<strong>隐藏字段</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsEditorWidgetSetup</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">fieldVisibility</span> <span class="p">(</span><span class="n">layer</span><span class="p">,</span><span class="n">fname</span><span class="p">):</span>
+    <span class="n">setup</span> <span class="o">=</span> <span class="n">QgsEditorWidgetSetup</span><span class="p">(</span><span class="s1">&#39;Hidden&#39;</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">column</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">fields</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">column</span><span class="o">.</span><span class="n">name</span><span class="p">()</span><span class="o">==</span><span class="n">fname</span><span class="p">:</span>
+            <span class="n">layer</span><span class="o">.</span><span class="n">setEditorWidgetSetup</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">setup</span><span class="p">)</span>
+            <span class="k">break</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">continue</span>
+</code></pre></div></td></tr></table></div>
+<strong>图层添加WKT要素</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsVectorLayer</span><span class="p">,</span> <span class="n">QgsFeature</span><span class="p">,</span> <span class="n">QgsGeometry</span><span class="p">,</span> <span class="n">QgsProject</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s1">&#39;Polygon?crs=epsg:4326&#39;</span><span class="p">,</span> <span class="s1">&#39;Mississippi&#39;</span><span class="p">,</span> <span class="s1">&#39;memory&#39;</span><span class="p">)</span>
+<span class="n">pr</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span>
+<span class="n">poly</span> <span class="o">=</span> <span class="n">QgsFeature</span><span class="p">()</span>
+<span class="n">geom</span> <span class="o">=</span> <span class="n">QgsGeometry</span><span class="o">.</span><span class="n">fromWkt</span><span class="p">(</span><span class="s2">&quot;POLYGON ((-88.82 34.99,-88.09 34.89,-88.39 30.34,-89.57 30.18,-89.73 31,-91.63 30.99,-90.87 32.37,-91.23 33.44,-90.93 34.23,-90.30 34.99,-88.82 34.99))&quot;</span><span class="p">)</span>
+<span class="n">poly</span><span class="o">.</span><span class="n">setGeometry</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="n">pr</span><span class="o">.</span><span class="n">addFeatures</span><span class="p">([</span><span class="n">poly</span><span class="p">])</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">updateExtents</span><span class="p">()</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayers</span><span class="p">([</span><span class="n">layer</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<strong>从GeoPackage加载所有图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsVectorLayer</span><span class="p">,</span> <span class="n">QgsProject</span>
+
+<span class="n">fileName</span> <span class="o">=</span> <span class="s2">&quot;/path/to/gpkg/file.gpkg&quot;</span>
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">fileName</span><span class="p">,</span><span class="s2">&quot;test&quot;</span><span class="p">,</span><span class="s2">&quot;ogr&quot;</span><span class="p">)</span>
+<span class="n">subLayers</span> <span class="o">=</span><span class="n">layer</span><span class="o">.</span><span class="n">dataProvider</span><span class="p">()</span><span class="o">.</span><span class="n">subLayers</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">subLayer</span> <span class="ow">in</span> <span class="n">subLayers</span><span class="p">:</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">subLayer</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;!!::!!&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">uri</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">|layername=</span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">fileName</span><span class="p">,</span> <span class="n">name</span><span class="p">,)</span>
+    <span class="c1"># 创建图层</span>
+    <span class="n">sub_vlayer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s1">&#39;ogr&#39;</span><span class="p">)</span>
+    <span class="c1"># Add layer to map</span>
+    <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">sub_vlayer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>加载瓦片图层（xyz）</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsRasterLayer</span><span class="p">,</span> <span class="n">QgsProject</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">loadXYZ</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">rasterLyr</span> <span class="o">=</span> <span class="n">QgsRasterLayer</span><span class="p">(</span><span class="s2">&quot;type=xyz&amp;url=&quot;</span> <span class="o">+</span> <span class="n">url</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;wms&quot;</span><span class="p">)</span>
+    <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">rasterLyr</span><span class="p">)</span>
+
+<span class="n">urlWithParams</span> <span class="o">=</span> <span class="s1">&#39;type=xyz&amp;url=https://a.tile.openstreetmap.org/%7Bz%7D/%7Bx%7D/%7By%7D.png&amp;zmax=19&amp;zmin=0&amp;crs=EPSG3857&#39;</span>
+<span class="n">loadXYZ</span><span class="p">(</span><span class="n">urlWithParams</span><span class="p">,</span> <span class="s1">&#39;OpenStreetMap&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>移除所有图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">removeAllMapLayers</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<strong>移除全部</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="217">21.7 目录<a class="headerlink" href="#217" title="Permanent link">⚓︎</a></h2>
+<p><strong>访问选中的图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">iface</span>
+
+<span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">layers</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<strong>移除上下文菜单</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">ltv</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">layerTreeView</span><span class="p">()</span>
+<span class="n">mp</span> <span class="o">=</span> <span class="n">ltv</span><span class="o">.</span><span class="n">menuProvider</span><span class="p">()</span>
+<span class="n">ltv</span><span class="o">.</span><span class="n">setMenuProvider</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="c1"># 恢复</span>
+<span class="n">ltv</span><span class="o">.</span><span class="n">setMenuProvider</span><span class="p">(</span><span class="n">mp</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="218">21.8 高级目录<a class="headerlink" href="#218" title="Permanent link">⚓︎</a></h2>
+<p><strong>根节点</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsVectorLayer</span><span class="p">,</span> <span class="n">QgsProject</span><span class="p">,</span> <span class="n">QgsLayerTreeLayer</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+<span class="n">node_group</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">addGroup</span><span class="p">(</span><span class="s2">&quot;My Group&quot;</span><span class="p">)</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Point?crs=EPSG:4326&quot;</span><span class="p">,</span> <span class="s2">&quot;layer name you like&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">)</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">node_group</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>访问第一个子节点</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsLayerTreeGroup</span><span class="p">,</span> <span class="n">QgsLayerTreeLayer</span><span class="p">,</span> <span class="n">QgsLayerTree</span>
+
+<span class="n">child0</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span> <span class="p">(</span><span class="n">child0</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">child0</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">child0</span><span class="p">,</span> <span class="n">QgsLayerTreeLayer</span><span class="p">))</span>
+<span class="nb">print</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">child0</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="n">QgsLayerTree</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<strong>查找图层组和所有节点</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsLayerTreeGroup</span><span class="p">,</span> <span class="n">QgsLayerTreeLayer</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_group_layers</span><span class="p">(</span><span class="n">group</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- group: &#39;</span> <span class="o">+</span> <span class="n">group</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+   <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">group</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+      <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">QgsLayerTreeGroup</span><span class="p">):</span>
+         <span class="c1"># 遍历嵌套图层组</span>
+         <span class="n">get_group_layers</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+      <span class="k">else</span><span class="p">:</span>
+         <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;  - layer: &#39;</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">():</span>
+   <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">QgsLayerTreeGroup</span><span class="p">):</span>
+      <span class="n">get_group_layers</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+   <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">QgsLayerTreeLayer</span><span class="p">):</span>
+      <span class="nb">print</span> <span class="p">(</span><span class="s1">&#39;- layer: &#39;</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>通过名称查找图层组</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">findGroup</span><span class="p">(</span><span class="s2">&quot;My Group&quot;</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<strong>通过id查找图层组</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span> <span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">findLayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">layerId</span><span class="p">()))</span>
+</code></pre></div></td></tr></table></div>
+<strong>添加图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsVectorLayer</span><span class="p">,</span> <span class="n">QgsProject</span>
+
+<span class="n">layer1</span> <span class="o">=</span> <span class="n">QgsVectorLayer</span><span class="p">(</span><span class="s2">&quot;Point?crs=EPSG:4326&quot;</span><span class="p">,</span> <span class="s2">&quot;layer name you like&quot;</span><span class="p">,</span> <span class="s2">&quot;memory&quot;</span><span class="p">)</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">layer1</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+<span class="n">node_layer1</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">addLayer</span><span class="p">(</span><span class="n">layer1</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>添加图层组</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsLayerTreeGroup</span>
+
+<span class="n">node_group2</span> <span class="o">=</span> <span class="n">QgsLayerTreeGroup</span><span class="p">(</span><span class="s2">&quot;Group 2&quot;</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">addChildNode</span><span class="p">(</span><span class="n">node_group2</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>移除加载的图层</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">layer</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayersByName</span><span class="p">(</span><span class="s2">&quot;layer name you like&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+
+<span class="n">myLayer</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findLayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="n">myClone</span> <span class="o">=</span> <span class="n">myLayer</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="n">parent</span> <span class="o">=</span> <span class="n">myLayer</span><span class="o">.</span><span class="n">parent</span><span class="p">()</span>
+
+<span class="n">myGroup</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findGroup</span><span class="p">(</span><span class="s2">&quot;My Group&quot;</span><span class="p">)</span>
+<span class="c1"># 插入到第一个位置</span>
+<span class="n">myGroup</span><span class="o">.</span><span class="n">insertChildNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">myClone</span><span class="p">)</span>
+
+<span class="n">parent</span><span class="o">.</span><span class="n">removeChildNode</span><span class="p">(</span><span class="n">myLayer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>移除指定图层组</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+
+<span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+<span class="n">myGroup</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findGroup</span><span class="p">(</span><span class="s2">&quot;My Group&quot;</span><span class="p">)</span>
+<span class="n">myOriginalLayer</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findLayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="n">myLayer</span> <span class="o">=</span> <span class="n">myOriginalLayer</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="n">myGroup</span><span class="o">.</span><span class="n">insertChildNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">myLayer</span><span class="p">)</span>
+<span class="n">parent</span><span class="o">.</span><span class="n">removeChildNode</span><span class="p">(</span><span class="n">myOriginalLayer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>改变可见性</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+<span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findLayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+<span class="n">new_state</span> <span class="o">=</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Checked</span> <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">isVisible</span><span class="p">()</span> <span class="o">==</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Unchecked</span> <span class="k">else</span> <span class="n">Qt</span><span class="o">.</span><span class="n">Unchecked</span>
+<span class="n">node</span><span class="o">.</span><span class="n">setItemVisibilityChecked</span><span class="p">(</span><span class="n">new_state</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>图层组是否被选择</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">isMyGroupSelected</span><span class="p">(</span> <span class="n">groupName</span> <span class="p">):</span>
+    <span class="n">myGroup</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span><span class="o">.</span><span class="n">findGroup</span><span class="p">(</span> <span class="n">groupName</span> <span class="p">)</span>
+    <span class="k">return</span> <span class="n">myGroup</span> <span class="ow">in</span> <span class="n">iface</span><span class="o">.</span><span class="n">layerTreeView</span><span class="p">()</span><span class="o">.</span><span class="n">selectedNodes</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">isMyGroupSelected</span><span class="p">(</span> <span class="s1">&#39;my group name&#39;</span> <span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>移动节点</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cloned_group1</span> <span class="o">=</span> <span class="n">node_group</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="n">root</span><span class="o">.</span><span class="n">insertChildNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cloned_group1</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">removeChildNode</span><span class="p">(</span><span class="n">node_group</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>展开节点</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">myGroup</span><span class="o">.</span><span class="n">isExpanded</span><span class="p">())</span>
+<span class="n">myGroup</span><span class="o">.</span><span class="n">setExpanded</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>隐藏节点</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsProject</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">layerTreeView</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeModel</span><span class="p">()</span>
+<span class="n">ltv</span> <span class="o">=</span> <span class="n">iface</span><span class="o">.</span><span class="n">layerTreeView</span><span class="p">()</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">mapLayersByName</span><span class="p">(</span><span class="s1">&#39;layer name you like&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">node</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">findLayer</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">id</span><span class="p">())</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">node2index</span><span class="p">(</span> <span class="n">node</span> <span class="p">)</span>
+<span class="n">ltv</span><span class="o">.</span><span class="n">setRowHidden</span><span class="p">(</span> <span class="n">index</span><span class="o">.</span><span class="n">row</span><span class="p">(),</span> <span class="n">index</span><span class="o">.</span><span class="n">parent</span><span class="p">(),</span> <span class="kc">True</span> <span class="p">)</span>
+<span class="n">node</span><span class="o">.</span><span class="n">setCustomProperty</span><span class="p">(</span> <span class="s1">&#39;nodeHidden&#39;</span><span class="p">,</span> <span class="s1">&#39;true&#39;</span><span class="p">)</span>
+<span class="n">ltv</span><span class="o">.</span><span class="n">setCurrentIndex</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">node2index</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>节点信号</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">onWillAddChildren</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">indexFrom</span><span class="p">,</span> <span class="n">indexTo</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;WILL ADD&quot;</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">indexFrom</span><span class="p">,</span> <span class="n">indexTo</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">onAddedChildren</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">indexFrom</span><span class="p">,</span> <span class="n">indexTo</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;ADDED&quot;</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">indexFrom</span><span class="p">,</span> <span class="n">indexTo</span><span class="p">)</span>
+
+<span class="n">root</span><span class="o">.</span><span class="n">willAddChildren</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">onWillAddChildren</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">addedChildren</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">onAddedChildren</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>移除图层</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">root</span><span class="o">.</span><span class="n">removeLayer</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>移除图层组</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">root</span><span class="o">.</span><span class="n">removeChildNode</span><span class="p">(</span><span class="n">node_group2</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>创建新的目录树</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">root</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">layerTreeRoot</span><span class="p">()</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">QgsLayerTreeModel</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+<span class="n">view</span> <span class="o">=</span> <span class="n">QgsLayerTreeView</span><span class="p">()</span>
+<span class="n">view</span><span class="o">.</span><span class="n">setModel</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<span class="n">view</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>移动节点</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cloned_group1</span> <span class="o">=</span> <span class="n">node_group</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="n">root</span><span class="o">.</span><span class="n">insertChildNode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">cloned_group1</span><span class="p">)</span>
+<span class="n">root</span><span class="o">.</span><span class="n">removeChildNode</span><span class="p">(</span><span class="n">node_group</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>重命名节点</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">cloned_group1</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;Group X&quot;</span><span class="p">)</span>
+<span class="n">node_layer1</span><span class="o">.</span><span class="n">setName</span><span class="p">(</span><span class="s2">&quot;Layer X&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="219">21.9 处理算法<a class="headerlink" href="#219" title="Permanent link">⚓︎</a></h2>
+<p><strong>获得算法列表</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsApplication</span>
+
+<span class="k">for</span> <span class="n">alg</span> <span class="ow">in</span> <span class="n">QgsApplication</span><span class="o">.</span><span class="n">processingRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">algorithms</span><span class="p">():</span>
+    <span class="k">if</span> <span class="s1">&#39;buffer&#39;</span> <span class="o">==</span> <span class="n">alg</span><span class="o">.</span><span class="n">name</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{}</span><span class="s2">:</span><span class="si">{}</span><span class="s2"> --&gt; </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">alg</span><span class="o">.</span><span class="n">provider</span><span class="p">()</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">alg</span><span class="o">.</span><span class="n">name</span><span class="p">(),</span> <span class="n">alg</span><span class="o">.</span><span class="n">displayName</span><span class="p">()))</span>
+</code></pre></div></td></tr></table></div>
+<strong>获得算法帮助</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis</span><span class="w"> </span><span class="kn">import</span> <span class="n">processing</span>
+
+<span class="n">processing</span><span class="o">.</span><span class="n">algorithmHelp</span><span class="p">(</span><span class="s2">&quot;qgis:randomselection&quot;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<strong>运行算法</strong></p>
+<p>本示例，结果存储在添加到项目的临时内存层中。</p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis</span><span class="w"> </span><span class="kn">import</span> <span class="n">processing</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">processing</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="s2">&quot;native:buffer&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;INPUT&#39;</span><span class="p">:</span> <span class="n">layer</span><span class="p">,</span> <span class="s1">&#39;OUTPUT&#39;</span><span class="p">:</span> <span class="s1">&#39;memory:&#39;</span><span class="p">})</span>
+<span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">addMapLayer</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;OUTPUT&#39;</span><span class="p">])</span>
+</code></pre></div></td></tr></table></div>
+<strong>算法统计</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsApplication</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">processingRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">algorithms</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>数据提供者统计</strong></p>
+<p><div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsApplication</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">QgsApplication</span><span class="o">.</span><span class="n">processingRegistry</span><span class="p">()</span><span class="o">.</span><span class="n">providers</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<strong>表达式统计</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">QgsExpression</span>
+
+<span class="nb">len</span><span class="p">(</span><span class="n">QgsExpression</span><span class="o">.</span><span class="n">Functions</span><span class="p">())</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="2110">21.10 装饰器<a class="headerlink" href="#2110" title="Permanent link">⚓︎</a></h2>
+<p><strong>版权</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.Qt</span><span class="w"> </span><span class="kn">import</span> <span class="n">QTextDocument</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qgis.PyQt.QtGui</span><span class="w"> </span><span class="kn">import</span> <span class="n">QFont</span>
+
+<span class="n">mQFont</span> <span class="o">=</span> <span class="s2">&quot;Sans Serif&quot;</span>
+<span class="n">mQFontsize</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">mLabelQString</span> <span class="o">=</span> <span class="s2">&quot;© QGIS 2019&quot;</span>
+<span class="n">mMarginHorizontal</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mMarginVertical</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">mLabelQColor</span> <span class="o">=</span> <span class="s2">&quot;#FF0000&quot;</span>
+
+<span class="n">INCHES_TO_MM</span> <span class="o">=</span> <span class="mf">0.0393700787402</span> <span class="c1"># 1 毫米 = 0.0393700787402 英寸</span>
+<span class="n">case</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">):</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">translate</span><span class="p">(</span> <span class="n">xOffset</span> <span class="p">,</span> <span class="n">yOffset</span>  <span class="p">)</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">drawContents</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">setWorldTransform</span><span class="p">(</span> <span class="n">p</span><span class="o">.</span><span class="n">worldTransform</span><span class="p">()</span> <span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_on_render_complete</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">deviceHeight</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">device</span><span class="p">()</span><span class="o">.</span><span class="n">height</span><span class="p">()</span> <span class="c1"># 获取绘制设备高度</span>
+    <span class="n">deviceWidth</span>  <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">device</span><span class="p">()</span><span class="o">.</span><span class="n">width</span><span class="p">()</span> <span class="c1"># 获取绘制设备宽度</span>
+    <span class="c1"># 创建一个新的富文本容器</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">QTextDocument</span><span class="p">()</span>
+    <span class="n">font</span> <span class="o">=</span> <span class="n">QFont</span><span class="p">()</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">setFamily</span><span class="p">(</span><span class="n">mQFont</span><span class="p">)</span>
+    <span class="n">font</span><span class="o">.</span><span class="n">setPointSize</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">mQFontsize</span><span class="p">))</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">setDefaultFont</span><span class="p">(</span><span class="n">font</span><span class="p">)</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="s2">&quot;&lt;style type=</span><span class="se">\&quot;</span><span class="s2">text/css</span><span class="se">\&quot;</span><span class="s2">&gt; p {color: &quot;</span> <span class="o">+</span> <span class="n">mLabelQColor</span> <span class="o">+</span> <span class="s2">&quot;}&lt;/style&gt;&quot;</span>
+    <span class="n">text</span><span class="o">.</span><span class="n">setHtml</span><span class="p">(</span> <span class="n">style</span> <span class="o">+</span> <span class="s2">&quot;&lt;p&gt;&quot;</span> <span class="o">+</span> <span class="n">mLabelQString</span> <span class="o">+</span> <span class="s2">&quot;&lt;/p&gt;&quot;</span> <span class="p">)</span>
+    <span class="c1"># 文本大小</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
+
+    <span class="c1"># 渲染</span>
+    <span class="n">pixelsInchX</span>  <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">device</span><span class="p">()</span><span class="o">.</span><span class="n">logicalDpiX</span><span class="p">()</span>
+    <span class="n">pixelsInchY</span>  <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">device</span><span class="p">()</span><span class="o">.</span><span class="n">logicalDpiY</span><span class="p">()</span>
+    <span class="n">xOffset</span>  <span class="o">=</span> <span class="n">pixelsInchX</span>  <span class="o">*</span> <span class="n">INCHES_TO_MM</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">mMarginHorizontal</span><span class="p">)</span>
+    <span class="n">yOffset</span>  <span class="o">=</span> <span class="n">pixelsInchY</span>  <span class="o">*</span> <span class="n">INCHES_TO_MM</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">mMarginVertical</span><span class="p">)</span>
+
+    <span class="c1"># 计算点位</span>
+    <span class="k">if</span> <span class="n">case</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># 左上</span>
+        <span class="n">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># 左下</span>
+        <span class="n">yOffset</span> <span class="o">=</span> <span class="n">deviceHeight</span> <span class="o">-</span> <span class="n">yOffset</span> <span class="o">-</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
+        <span class="n">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="c1"># 右上</span>
+        <span class="n">xOffset</span>  <span class="o">=</span> <span class="n">deviceWidth</span>  <span class="o">-</span> <span class="n">xOffset</span> <span class="o">-</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span><span class="p">()</span>
+        <span class="n">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="c1"># 右下</span>
+        <span class="n">yOffset</span>  <span class="o">=</span> <span class="n">deviceHeight</span> <span class="o">-</span> <span class="n">yOffset</span> <span class="o">-</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
+        <span class="n">xOffset</span>  <span class="o">=</span> <span class="n">deviceWidth</span>  <span class="o">-</span> <span class="n">xOffset</span> <span class="o">-</span> <span class="n">size</span><span class="o">.</span><span class="n">width</span><span class="p">()</span>
+        <span class="n">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">case</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="c1"># 上中心点</span>
+        <span class="n">xOffset</span> <span class="o">=</span> <span class="n">deviceWidth</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># 下中心点</span>
+        <span class="n">yOffset</span> <span class="o">=</span> <span class="n">deviceHeight</span> <span class="o">-</span> <span class="n">yOffset</span> <span class="o">-</span> <span class="n">size</span><span class="o">.</span><span class="n">height</span><span class="p">()</span>
+        <span class="n">xOffset</span> <span class="o">=</span> <span class="n">deviceWidth</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="n">add_copyright</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">xOffset</span><span class="p">,</span> <span class="n">yOffset</span><span class="p">)</span>
+
+<span class="c1"># 当画布渲染完成后发送信号</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">renderComplete</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">_on_render_complete</span><span class="p">)</span>
+<span class="c1"># 重绘画布</span>
+<span class="n">iface</span><span class="o">.</span><span class="n">mapCanvas</span><span class="p">()</span><span class="o">.</span><span class="n">refresh</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="2111">21.11 创作者<a class="headerlink" href="#2111" title="Permanent link">⚓︎</a></h2>
+<p><strong>按名称获取打印布局</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">composerTitle</span> <span class="o">=</span> <span class="s1">&#39;MyComposer&#39;</span> <span class="c1"># 创作者名称</span>
+
+<span class="n">project</span> <span class="o">=</span> <span class="n">QgsProject</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span>
+<span class="n">projectLayoutManager</span> <span class="o">=</span> <span class="n">project</span><span class="o">.</span><span class="n">layoutManager</span><span class="p">()</span>
+<span class="n">layout</span> <span class="o">=</span> <span class="n">projectLayoutManager</span><span class="o">.</span><span class="n">layoutByName</span><span class="p">(</span><span class="n">composerTitle</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="2112">21.12 来源<a class="headerlink" href="#2112" title="Permanent link">⚓︎</a></h2>
+<ul>
+<li><a href="https://qgis.org/pyqgis/master/">QGIS Python (PyQGIS) API</a></li>
+<li><a href="https://qgis.org/api/">QGIS C++ API</a></li>
+<li><a href="https://stackoverflow.com/questions/tagged/qgis">StackOverFlow QGIS questions</a></li>
+<li><a href="https://raw.githubusercontent.com/klakar/QGIS_resources/master/collections/Geosupportsystem/python/qgis_basemaps.py">Script by Klas Karlsson</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CPython/" class="md-footer__link md-footer__link--prev" aria-label="上一页: 20-QGIS服务器和Python">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                20-QGIS服务器和Python
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.footer", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1381 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="本项目是PyQGIS开发者手册的中文翻译。">
+      
+      
+        <meta name="author" content="llc">
+      
+      
+        <link rel="canonical" href="https://luolingchun.github.io/PyQGIS-Developer-Cookbook-cn/1-%E5%BC%95%E8%A8%80/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../2-%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE/">
+      
+      
+      <link rel="icon" href="../images/logo-blue.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
+    
+    
+      
+        <title>1-引言 - PyQGIS开发者手册</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../css/img.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="PyQGIS开发者手册" class="md-header__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyQGIS开发者手册
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1-引言
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="黑"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="黑" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="亮"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="亮" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="分享" aria-label="分享" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyQGIS开发者手册" class="md-nav__button md-logo" aria-label="PyQGIS开发者手册" data-md-component="logo">
+      
+  <img src="../images/logo.svg" alt="logo">
+
+    </a>
+    PyQGIS开发者手册
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Github
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    主页
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    1-引言
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    1-引言
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 在Python控制台中编写脚本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Python插件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Python插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1 处理插件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-qgispython" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 QGIS启动时运行Python代码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 QGIS启动时运行Python代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-startuppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1 startup.py文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-pyqgis_startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2 PYQGIS_STARTUP环境变量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.3 --code参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.4 Python 的其他参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Python应用程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 Python应用程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-pyqgis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.1 在独立脚本中使用PyQGIS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-pyqgis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.2 在自定义应用程序中使用PyQGIS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.3 运行自定义应用程序
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-pyqtsip" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 关于PyQt和SIP的技术说明
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2-加载项目
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-%E5%8A%A0%E8%BD%BD%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3-加载图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4-%E8%AE%BF%E9%97%AE%E5%9B%BE%E5%B1%82%E7%9B%AE%E5%BD%95%E6%A0%91/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4-访问图层目录树
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5-%E4%BD%BF%E7%94%A8%E6%A0%85%E6%A0%BC%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5-使用栅格图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6-%E4%BD%BF%E7%94%A8%E7%9F%A2%E9%87%8F%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6-使用矢量图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7-%E5%87%A0%E4%BD%95%E5%A4%84%E7%90%86/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7-几何处理
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8-%E6%8A%95%E5%BD%B1%E6%94%AF%E6%8C%81/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8-投影支持
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9-%E4%BD%BF%E7%94%A8%E5%9C%B0%E5%9B%BE%E7%94%BB%E5%B8%83/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9-使用地图画布
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-%E5%9C%B0%E5%9B%BE%E6%B8%B2%E6%9F%93%E5%92%8C%E6%89%93%E5%8D%B0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10-地图渲染和打印
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%8C%E8%BF%87%E6%BB%A4%E5%92%8C%E8%AE%A1%E7%AE%97%E5%80%BC/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11-表达式，过滤和计算值
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-%E8%AF%BB%E5%8F%96%E5%92%8C%E5%AD%98%E5%82%A8%E8%AE%BE%E7%BD%AE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12-读取和存储设置
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-%E4%B8%8E%E7%94%A8%E6%88%B7%E9%80%9A%E4%BF%A1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13-与用户通信
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-%E8%AE%A4%E8%AF%81%E5%9F%BA%E7%A1%80/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14-认证基础
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-%E4%BB%BB%E5%8A%A1%E2%80%94%E2%80%94%E5%9C%A8%E5%90%8E%E5%8F%B0%E5%81%9A%E7%B9%81%E9%87%8D%E7%9A%84%E5%B7%A5%E4%BD%9C/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15-任务 - 在后台做繁重的工作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-%E5%BC%80%E5%8F%91Python%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16-开发Python插件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-%E7%BC%96%E5%86%99%E5%A4%84%E7%90%86%E6%8F%92%E4%BB%B6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17-编写处理插件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6%E5%9B%BE%E5%B1%82/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    18-使用插件图层
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-%E7%BD%91%E7%BB%9C%E5%88%86%E6%9E%90%E5%BA%93/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    19-网络分析库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CPython/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20-QGIS服务器和Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-PyQGIS%E9%80%9F%E6%9F%A5%E8%A1%A8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    21-PyQGIS速查表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 在Python控制台中编写脚本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 Python插件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 Python插件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2.1 处理插件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-qgispython" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 QGIS启动时运行Python代码
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 QGIS启动时运行Python代码">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-startuppy" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.1 startup.py文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-pyqgis_startup" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.2 PYQGIS_STARTUP环境变量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#133-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.3 --code参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#134-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3.4 Python 的其他参数
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 Python应用程序
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.4 Python应用程序">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#141-pyqgis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.1 在独立脚本中使用PyQGIS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#142-pyqgis" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.2 在自定义应用程序中使用PyQGIS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4.3 运行自定义应用程序
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-pyqtsip" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.5 关于PyQt和SIP的技术说明
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/edit/master/docs/1-引言.md" title="编辑此页" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/luolingchun/PyQGIS-Developer-Cookbook-cn/raw/master/docs/1-引言.md" title="查看本页的源代码" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="1">1 引言<a class="headerlink" href="#1" title="Permanent link">⚓︎</a></h1>
+<p>本文档既可作为教程，也可作为参考指南。虽然没有列举所有可能的案例，但是对主要功能有一个很好的概述。</p>
+<p>根据GNU免费文档许可证、版本1.3或自由软件基金会发布的任何后续版本的条款，允许复制、分发和/或修改该文档；没有固定章节，没有封面文本，也没有封底文本。</p>
+<p><a href="https://docs.qgis.org/testing/en/docs/gentle_gis_introduction/gnu_free_documentation_license.html#gnu-fdl">GNU免费文档许可证</a>一节中包含了该许可证的副本。</p>
+<p>本许可证也适用于本文档中的所有代码段。</p>
+<p>对于Python的支持最初是在QGIS 0.9中引入的。 目前，在QGIS桌面版中有几种方法可以使用Python，如下：</p>
+<ul>
+<li>在QGIS的Python控制台中</li>
+<li>创建并使用插件</li>
+<li>QGIS启动时自动运行Python代码</li>
+<li>创建处理算法</li>
+<li>在QGIS中为表达式创建函数</li>
+<li>基于QGIS API创建自定义应用程序</li>
+</ul>
+<p>Python支持在QGIS 0.9中首次引入。这里有几种方法可以在QGIS桌面软件中使用Python（涵盖一下部分）：</p>
+<ul>
+<li>在QGIS中的Python控制台中使用命令</li>
+<li>创建并使用插件</li>
+<li>当QGIS启动时自动运行Python代码</li>
+<li>创建处理算法</li>
+<li>在QGIS中创建函数表达式</li>
+<li>基于QGIS API创建自定义应用</li>
+</ul>
+<p>Python绑定也可用于QGIS服务，包括Python插件（请参阅<a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CPython/">20-QGIS服务器和Python</a>）和Python绑定，可用于将QGIS服务嵌入到Python应用程序中。
+这里有一个<a href="https://qgis.org/api/">完整的QGIS C++ API</a>参考——用于记录QGIS库中的类。 <a href="https://qgis.org/pyqgis">Pythonic QGIS API（pyqgis）</a>几乎与C ++ API相同。
+学习执行常见任务的另一个好办法是从<a href="https://plugins.qgis.org/">插件仓库</a>下载现有插件并学习它们的代码。</p>
+<h2 id="11-python">1.1 在Python控制台中编写脚本<a class="headerlink" href="#11-python" title="Permanent link">⚓︎</a></h2>
+<p>QGIS为脚本编写提供了一个集成的python控制台。可以从插件→python控制台菜单中打开：</p>
+<p><img alt="1559181577361" src="../assets/1559181577361.png" /></p>
+<p>上面的截图说明了如何获取图层列表中当前选定的图层，并显示其ID，如果是矢量图层，还可以显示要素个数。对于与QGIS交互环境，有一个<code>iface</code>变量，它是<a href="https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface">QgisInterface</a>的一个实例。此接口允许访问地图画布、菜单、工具栏和QGIS应用程序的其他部分。</p>
+<p>为了方便用户，在启动控制台时将会执行以下语句（将来可以设置更多的初始命令）</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">qgis.utils</span>
+</code></pre></div></td></tr></table></div>
+<p>对于经常使用控制台的用户，设置打开控制台的快捷键可能很有用（在设置→键盘快捷键中...）</p>
+<h2 id="12-python">1.2 Python插件<a class="headerlink" href="#12-python" title="Permanent link">⚓︎</a></h2>
+<p>可以使用插件来扩展QGIS的功能，可以使用Python编写插件。与C ++插件相比，主要优点是分发简单（不对每个平台进行编译）、更容易的开发。</p>
+<p>自从引入对Python的支持以来，已经编写了许多涵盖各种功能的插件。插件安装程序允许用户很容易获取、升级和删除Python插件。有关插件和插件开发的更多信息，请参阅<a href="https://plugins.qgis.org/">Python插件</a>页面。</p>
+<p>使用Python创建插件很简单，详细说明请参阅<a href="../16-%E5%BC%80%E5%8F%91Python%E6%8F%92%E4%BB%B6/">16-开发Python插件</a>。</p>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>Python插件也可用于QGIS服务，更多信息，请参阅<a href="../20-QGIS%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8CPython/">20-QGIS服务器和Python</a>。</p>
+</div>
+<h3 id="121">1.2.1 处理插件<a class="headerlink" href="#121" title="Permanent link">⚓︎</a></h3>
+<p>处理插件可被用于处理数据。它们比Python插件更容易开发、更具体、更轻量。<a href="../17-%E7%BC%96%E5%86%99%E5%A4%84%E7%90%86%E6%8F%92%E4%BB%B6/">17-编写处理插件</a>阐述了什么时候该使用处理算法，并且怎么开发它们。</p>
+<h2 id="13-qgispython">1.3 QGIS启动时运行Python代码<a class="headerlink" href="#13-qgispython" title="Permanent link">⚓︎</a></h2>
+<p>每次QGIS启动时，都有不同的方法来运行Python代码。</p>
+<ol>
+<li>创建startup.py脚本</li>
+<li>将<code>PYQGIS_STARTUP</code>环境变量设置为现有Python文件</li>
+<li>使用 <code>--code init_qgis.py</code> 参数指定启动脚本</li>
+</ol>
+<h3 id="131-startuppy">1.3.1 startup.py文件<a class="headerlink" href="#131-startuppy" title="Permanent link">⚓︎</a></h3>
+<p>每次QGIS启动时，都会在用户的Python主目录和系统路径列表中搜索名为<code>startup.py</code>的文件。 如果该文件存在，则由嵌入式Python解释器执行。</p>
+<p>用户主目录中的路径通常位于：</p>
+<ul>
+<li>Linux： <code>.local/share/QGIS/QGIS3</code></li>
+<li>Windows： <code>AppData\Roaming\QGIS\QGIS3</code></li>
+<li>macOS： <code>Library/Application Support/QGIS/QGIS3</code></li>
+</ul>
+<p>默认系统路径取决于操作系统。要查找适合您的路径，请打开 Python 控制台并运行 <code>QStandardPaths.standardLocations（QStandardPaths.AppDataLocation）</code>以查看默认目录列表。</p>
+<p><code>startup.py</code>脚本在QGIS中初始化python时立即执行，在应用程序启动的早期。</p>
+<h3 id="132-pyqgis_startup">1.3.2 PYQGIS_STARTUP环境变量<a class="headerlink" href="#132-pyqgis_startup" title="Permanent link">⚓︎</a></h3>
+<p>你可以在QGIS初始化完成之前将<code>PYQGIS_STARTUP</code>环境变量设置为现有Python文件的路径来运行Python代码。</p>
+<p>此代码将在QGIS初始化完成之前运行。此方法对于清理sys.path非常有用——可能存在不需要的路径，或用于隔离/加载初始环境——无需虚拟环境，例如在Mac上使用homebrew或MacPorts。</p>
+<h3 id="133-code">1.3.3 <code>--code</code>参数<a class="headerlink" href="#133-code" title="Permanent link">⚓︎</a></h3>
+<p>你可以提供自定义代码作为 QGIS 的启动参数执行。为此，请创建一个 python 文件，例如 <code>qgis_init.py</code>，使用 <code>qgis --code qgis_init.py</code>从命令行执行和启动 QGIS。</p>
+<p>通过 <code>--code</code> 提供的代码在 QGIS 初始化阶段的后期，在加载应用程序组件之后执行。</p>
+<h3 id="134-python">1.3.4 Python 的其他参数<a class="headerlink" href="#134-python" title="Permanent link">⚓︎</a></h3>
+<p>要为 <code>--code</code> 脚本或执行的其他 python 代码提供其他参数，可以使用 <code>--py-args</code> 参数。在 <code>--py-args</code> 之后和 <code>-- arg</code>（如果存在）之前的任何参数都将传递给 Python，但被 QGIS 应用程序本身忽略。</p>
+<p>在下面的例子中，<code>myfile.tif</code> 将通过 Python 中的 <code>sys.argv</code> 提供，但不会由 QGIS 加载。而<code>otherfile.tif</code>将由QGIS加载，但不存在于<code>sys.argv</code>中。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>qgis<span class="w"> </span>--code<span class="w"> </span>qgis_init.py<span class="w"> </span>--py-args<span class="w"> </span>myfile.tif<span class="w"> </span>--<span class="w"> </span>otherfile.tif
+</code></pre></div></td></tr></table></div>
+<p>如果你想从Python中访问每个命令行参数，你可以使用<code>QCoreApplication.arguments()</code></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="n">QgsApplication</span><span class="o">.</span><span class="n">instance</span><span class="p">()</span><span class="o">.</span><span class="n">arguments</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<h2 id="14-python">1.4 Python应用程序<a class="headerlink" href="#14-python" title="Permanent link">⚓︎</a></h2>
+<p>为自动化流程创建脚本通常很方便。使用PyQGIS，这是完全可能的——导入<code>qgis.core</code>模块，初始化它，你就可以进行处理了。</p>
+<p>或者你可能想要创建一个使用GIS功能的交互式应用程序——执行测量、将地图导出为PDF或任何其他功能。<code>qgis.gui</code>模块提供了各种GUI部件，最值得注意的是可以合并到应用程序中的地图画布控件——支持缩放，平移和任何其他自定义地图工具。</p>
+<p>必须配置PyQGIS自定义应用程序或独立脚本以定位QGIS资源，例如投影信息，用于读取矢量和栅格图层的数据提供者等。QGIS资源通过在应用程序或脚本的开头添加几行（代码）来初始化。自定义应用程序和独立脚本初始化QGIS的代码类似。以下提供各自的实例。</p>
+<div class="admonition 提示">
+<p class="admonition-title">提示</p>
+<p>千万不能使用<code>qgis.py</code>作为你的测试脚本的名称，否则Python将无法导入绑定。</p>
+</div>
+<h3 id="141-pyqgis">1.4.1 在独立脚本中使用PyQGIS<a class="headerlink" href="#141-pyqgis" title="Permanent link">⚓︎</a></h3>
+<p>启动独立脚本，在脚本开头初始化QGIS资源，类似于以下代码：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># 提供qgis安装位置的路径(windows默认：C:\Program Files\QGIS 3.x\apps\qgis-ltr)</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s2">&quot;/path/to/qgis/installation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 创建对QgsApplication的引用，第二个参数设置为False将禁用GUI</span>
+<span class="n">qgs</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="p">([],</span> <span class="kc">False</span><span class="p">)</span>
+<span class="c1"># 加载提供者</span>
+<span class="n">qgs</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+<span class="c1"># 在这里编写代码，加载一些图层，使用处理算法等</span>
+<span class="c1"># 脚本完成后，调用exitQgis（）从内存中删除提供者和图层注册</span>
+<span class="n">qgs</span><span class="o">.</span><span class="n">exitQgis</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>我们首先导入<code>qgis.core</code>模块，然后配置前缀路径。前缀路径是安装QGIS的路径。它通过调用<code>setPrefixPath</code>方法在脚本中配置。第二个参数设置为<code>True</code>，它控制是否使用默认路径。</p>
+<p>QGIS安装路径因平台而异，在系统中找到它的最简单方法是在QGIS中使用<a href="#11-python">1.1 在Python控制台中编写脚本</a>运行 <code>QgsApplication.prefixPath()</code>并查看输出。</p>
+<p>配置前缀路径后，我们在变量<code>qgs</code>中保存了一个对<code>QgsApplication</code>的引用。第二个参数设置为<code>False</code>，表示我们不打算使用GUI，因为我们正在编写一个独立的脚本。配置<code>QgsApplication</code>后 ，我们通过调用<code>qgs.initQgis()</code>方法加载QGIS数据提供者和图层注册。在QGIS初始化后，我们准备编写脚本的其余部分。最后，我们通过调用<code>qgs.exitQgis()</code>从内存中删除数据提供者和图层注册。</p>
+<h3 id="142-pyqgis">1.4.2 在自定义应用程序中使用PyQGIS<a class="headerlink" href="#142-pyqgis" title="Permanent link">⚓︎</a></h3>
+<p><a href="#141-pyqgis">1.4.1 在独立脚本中使用PyQGIS</a>和自定义PyQGIS应用程序之间的唯一的区别是在实例化<code>QgsApplication</code>时的第二个参数。传递<code>True</code>而不是<code>False</code>，表示我们计划使用GUI。</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">qgis.core</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="c1"># 提供qgis安装位置的路径(windows默认：C:\Program Files\QGIS 3.x\apps\qgis-ltr)</span>
+<span class="n">QgsApplication</span><span class="o">.</span><span class="n">setPrefixPath</span><span class="p">(</span><span class="s2">&quot;/path/to/qgis/installation&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 创建对QgsApplication设置的引用第二个参数为True启用GUI，我们需要这样做，因为这是一个自定义应用程序</span>
+<span class="n">qgs</span> <span class="o">=</span> <span class="n">QgsApplication</span><span class="p">([],</span> <span class="kc">True</span><span class="p">)</span>
+<span class="c1"># 加载提供者</span>
+<span class="n">qgs</span><span class="o">.</span><span class="n">initQgis</span><span class="p">()</span>
+<span class="c1"># 在这里编写代码，加载一些图层，使用处理算法等</span>
+<span class="c1"># 脚本完成后，调用exitQgis（）从内存中删除提供者和图层注册</span>
+<span class="n">qgs</span><span class="o">.</span><span class="n">exitQgis</span><span class="p">()</span>
+</code></pre></div></td></tr></table></div>
+<p>现在，你可以使用QGIS API——加载图层并执行一些处理或使用地图画布启动GUI。可能性是无止境的:-)</p>
+<h3 id="143">1.4.3 运行自定义应用程序<a class="headerlink" href="#143" title="Permanent link">⚓︎</a></h3>
+<p>如果它们不在一个众所周知的位置，你需要告诉系统在哪里搜索QGIS库和合适的Python模块——否则Python会抛出异常：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">qgis.core</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="n">qgis</span><span class="o">.</span><span class="n">core</span>
+</code></pre></div></td></tr></table></div>
+<p>可以通过设置<code>PYTHONPATH</code>环境变量来修复。在以下命令中，<code>&lt;qgispath&gt;</code>应替换为你的实际QGIS安装路径：</p>
+<ul>
+<li>在Linux上：<strong>export PYTHONPATH=/&lt;qgispath&gt;/share/qgis/python</strong></li>
+<li>在Windows上：<strong>set PYTHONPATH=c:\&lt;qgispath&gt;\python</strong></li>
+<li>在macOS上：<strong>export PYTHONPATH=/&lt;qgispath&gt;/Contents/Resources/python</strong></li>
+</ul>
+<p>现在，PyQGIS模块的路径设置完成，但它们依赖于<code>qgis_core</code>和<code>qgis_gui</code>库（仅仅作为封装的Python模块）。这些库的路径通常是操作系统未知的，因此再次出现导入错误（错误消息可能因系统而异）：</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">qgis.core</span>
+<span class="ne">ImportError</span><span class="p">:</span> <span class="n">libqgis_core</span><span class="o">.</span><span class="n">so</span><span class="mf">.3.2.0</span><span class="p">:</span> <span class="n">cannot</span> <span class="nb">open</span> <span class="n">shared</span> <span class="nb">object</span> <span class="n">file</span><span class="p">:</span><span class="n">No</span> <span class="n">such</span> <span class="n">file</span> <span class="ow">or</span> <span class="n">directory</span>
+</code></pre></div></td></tr></table></div>
+<p>通过将QGIS库所在的目录添加到动态链接器的搜索路径来解决此问题：</p>
+<ul>
+<li>在Linux上：<strong>export LD_LIBRARY_PATH=/qgispath/lib</strong></li>
+<li>在Windows上：<strong>set PATH=C:\qgispath\BIN; C:\qgispath\APPS\qgisrelease\BIN;PATH％</strong> ，其中<code>qgisrelease</code>应替换成你的发布类型（例如，<code>qgis-ltr</code>，<code>qgis</code>，<code>qgis-dev</code>）</li>
+</ul>
+<p>这些命令可以放入一个引导脚本，负责启动。使用PyQGIS部署自定义应用程序时，通常有两种可能：</p>
+<ul>
+<li>要求用户在安装应用程序之前在其平台上安装QGIS。应用程序安装程序应查找QGIS库的默认位置，并允许用户设置路径（如果未找到）。该方法更简单，但是它需要用户执行更多步骤。</li>
+<li>将QGIS与你的应用程序一起打包。发布应用程序可能更具挑战性，并且程序包将更大，但用户将免于下载和安装其他软件的负担。</li>
+</ul>
+<p>这两种部署方式可以混合使用——在Windows和macOS上部署独立应用程序，但是对于Linux，将QGIS的安装留给用户和他的包管理器。</p>
+<h2 id="15-pyqtsip">1.5 关于PyQt和SIP的技术说明<a class="headerlink" href="#15-pyqtsip" title="Permanent link">⚓︎</a></h2>
+<p>我们决定使用Python，因为它是最受欢迎的脚本语言之一。QGIS3中的PyQGIS绑定依赖于SIP和PyQt5。使用SIP而不是使用更广泛使用的SWIG的原因是QGIS代码依赖于Qt库。Qt（PyQt）的Python绑定使用SIP完成，这允许PyQGIS与PyQt无缝集成。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="上一页: 主页">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                主页
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../2-%E5%8A%A0%E8%BD%BD%E9%A1%B9%E7%9B%AE/" class="md-footer__link md-footer__link--next" aria-label="下一页: 2-加载项目">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                2-加载项目
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tracking", "navigation.footer", "navigation.top", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view", "toc.follow"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.92b07e13.min.js"></script>
+      
+    
+  </body>
+</html>
