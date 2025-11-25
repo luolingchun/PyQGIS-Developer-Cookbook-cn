@@ -1,0 +1,11 @@
+  
+p img:not(#c) {
+    box-shadow: 0 0 10px #333743f0;
+    /* p标签img居中 */
+    display: block;
+    margin: 0 auto;
+}
+
+.md-header {
+    background: linear-gradient(to right, transparent, rgba(2, 80, 197, 0.9) 0%, rgba(212, 63, 141, 0.9) 100%);
+}
